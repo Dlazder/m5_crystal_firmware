@@ -4,7 +4,8 @@ bool lfsBegun = false;
 String* lfsFilePaths = nullptr;
 
 /**
- * Mounts LittleFS. Returns false on failure.
+ * Mounts LittleFS. Safe to call multiple times.
+ * @return true if mounted successfully, false on failure
  */
 bool lfsBegin() {
 	if (lfsBegun) return true;
@@ -13,15 +14,27 @@ bool lfsBegin() {
 }
 
 /**
- * Scans the LittleFS root, builds a MENU array and draws it.
- * File entries get command=targetPid. "back" entry gets command=backPid.
- * Full paths are stored in lfsFilePaths[] parallel to menu entries.
- * Caller must free with lfsFreeMenu().
+ * Clears MENU array and path list built by lfsSetup().
+ * @param menu   reference to MENU pointer to free (set to nullptr)
+ * @param count  reference to file count (reset to 0)
  */
-void lfsSetup(MENU*& menu, int& count, int backPid, int targetPid) {
+void lfsClearMenu(MENU*& menu, int& count) {
 	if (menu != nullptr) { delete[] menu; menu = nullptr; }
 	if (lfsFilePaths != nullptr) { delete[] lfsFilePaths; lfsFilePaths = nullptr; }
 	count = 0;
+}
+
+/**
+ * Scans the LittleFS root, builds a MENU array and draws it.
+ * Full paths are stored in lfsFilePaths[] parallel to menu entries.
+ * Caller must clear with lfsClearMenu().
+ * @param menu       reference to MENU pointer to allocate
+ * @param count      reference to file count (output)
+ * @param backPid    PID to switch to when "back" is selected
+ * @param targetPid  PID assigned to each file entry (used by lfsLoop internally)
+ */
+void lfsSetup(MENU*& menu, int& count, int backPid, int targetPid) {
+	lfsClearMenu(menu, count);
 
 	if (!lfsBegin()) { centeredPrint("LittleFS error", SMALL_TEXT); return; }
 
@@ -55,12 +68,15 @@ void lfsSetup(MENU*& menu, int& count, int backPid, int targetPid) {
 }
 
 /**
- * Handles navigation for an LFS file menu.
- * Returns the full path of the selected file, or "" if nothing selected yet.
- * On back (cursor==0) calls checkExit(backPid).
+ * Handles navigation for an LFS file menu built by lfsSetup().
+ * Must be called every loop tick while in file browser phase.
+ * @param menu     MENU array built by lfsSetup()
+ * @param count    number of files (excluding "back" entry)
+ * @param backPid  PID to switch to when "back" is selected or list is empty
+ * @return full path of the selected file, or "" if nothing selected yet
  */
-String lfsLoop(MENU* menu, int count, int backPid) {
-	if (count == 0) { checkExit(backPid); return ""; }
+String lfsLoop(MENU menu[], int count, int backPid) {
+	if (count == 0) { changeProcess(backPid); return ""; }
 
 	DEVICE.update();
 
@@ -78,18 +94,9 @@ String lfsLoop(MENU* menu, int count, int backPid) {
 	}
 
 	if (isBtnAWasPressed()) {
-		if (cursor == 0) { checkExit(backPid); return ""; }
+		if (cursor == 0) { changeProcess(backPid); return ""; }
 		return lfsFilePaths[cursor - 1];
 	}
 
 	return "";
-}
-
-/**
- * Frees MENU array and path list built by lfsSetup().
- */
-void lfsFreeMenu(MENU*& menu, int& count) {
-	if (menu != nullptr) { delete[] menu; menu = nullptr; }
-	if (lfsFilePaths != nullptr) { delete[] lfsFilePaths; lfsFilePaths = nullptr; }
-	count = 0;
 }

@@ -73,6 +73,6 @@ void badBleLoop() {
 		scriptRunning = false;
 		scriptDone = false;
 		badBleSelectedFile = "";
-		lfsFreeMenu(badBleFileMenu, badBleFileCount);
+		lfsClearMenu(badBleFileMenu, badBleFileCount);
 	}
 }

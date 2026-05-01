@@ -9,6 +9,7 @@ int badBleFileCount = 0;
 
 /**
  * Sets the script to execute and resets the parser state.
+ * @param script null-terminated DuckyScript string
  */
 void badBleSetScript(const char* script) {
   badBleScriptPtr  = script;
@@ -17,8 +18,9 @@ void badBleSetScript(const char* script) {
 }
 
 /**
- * Loads a script from LittleFS into the buffer and sets it as active.
- * Returns false on failure.
+ * Loads a DuckyScript file from LittleFS and sets it as the active script.
+ * @param path  full path to the file (e.g. "/notepad.txt")
+ * @return true if loaded successfully, false if file could not be opened
  */
 bool badBleLoadFile(String path) {
   File f = LittleFS.open(path, "r");
@@ -30,15 +32,18 @@ bool badBleLoadFile(String path) {
 }
 
 /**
- * Returns true if the parser is currently waiting for a DELAY to expire.
+ * Returns true if the parser is currently waiting for a DELAY command to expire.
+ * Call this before badBleNextLine() to avoid executing lines during a delay.
+ * @return true if delay is still active, false if ready to proceed
  */
 bool badBleIsDelaying() {
   return millis() < badBleDelayUntil;
 }
 
 /**
- * Resolves a key name string to its BLE HID keycode.
- * Returns 0 if the key name is not recognized.
+ * Resolves a DuckyScript key name to its BLE HID keycode.
+ * @param name  key name string (e.g. "ENTER", "GUI", "F1")
+ * @return BLE HID keycode, or 0 if not recognized
  */
 uint8_t badBleResolveKey(String name) {
   if (name == "ENTER")     return KEY_RETURN;
@@ -76,8 +81,9 @@ uint8_t badBleResolveKey(String name) {
 }
 
 /**
- * Executes the next line of the active script.
- * Returns false when the script is finished.
+ * Parses and executes the next line of the active script.
+ * Supports: DELAY, STRING, KEY, COMBO, REM, //.
+ * @return true if there are more lines to execute, false when script is finished
  */
 bool badBleNextLine() {
   if (!badBleScriptPtr) return false;
