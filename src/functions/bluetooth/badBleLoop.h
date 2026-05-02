@@ -4,24 +4,17 @@ void badBleLoop() {
 	static bool isBleConnected = false;
 	static bool scriptRunning = false;
 	static bool scriptDone = false;
-	static bool filePickerOpened = false;
 
 	if (isSetup()) {
 		isBleConnected = false;
 		scriptRunning = false;
 		scriptDone = false;
 
-		if (filePickerOpened && lfsSelectedFile == "") {
-			filePickerOpened = false;
-			changeProcess(PID::BAD_BLE_MENU);
-			return;
-		}
-		filePickerOpened = false;
-
-		if (lfsPickFile()) { filePickerOpened = true; return; }
+		if (!lfsFileSelected(PID::BAD_BLE_MENU)) return;
 
 		if (!badBleLoadFile(lfsSelectedFile)) {
 			centeredPrint("File error", SMALL_TEXT);
+			lfsSelectedFile = "";
 			return;
 		}
 		if (!bleCompositeBegan) {
@@ -70,7 +63,6 @@ void badBleLoop() {
 		isBleConnected = false;
 		scriptRunning = false;
 		scriptDone = false;
-		filePickerOpened = false;
 		lfsSelectedFile = "";
 	}
 }

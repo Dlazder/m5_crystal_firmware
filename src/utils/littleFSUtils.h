@@ -4,6 +4,7 @@ bool lfsBegun = false;
 String* lfsFilePaths = nullptr;
 String lfsSelectedFile = "";
 int lfsReturnPid = 0;
+bool lfsPickerVisited = false;
 
 /**
  * Mounts LittleFS. Safe to call multiple times.
@@ -78,6 +79,25 @@ bool lfsPickFile() {
 	lfsReturnPid = process;
 	changeProcess(PID::FILE_PICKER);
 	return true;
+}
+
+/**
+ * Ensures a file is selected, opening the picker if needed.
+ * Call once per isSetup() block. Returns true if a file is ready in lfsSelectedFile.
+ * If the picker was already visited but no file was chosen, redirects to fallbackPid.
+ * @param fallbackPid  PID to go to if the user cancelled or picker failed
+ * @return true if lfsSelectedFile is ready to use, false if redirecting
+ */
+bool lfsFileSelected(int fallbackPid) {
+	if (lfsSelectedFile != "") return true;
+	if (lfsPickerVisited) {
+		lfsPickerVisited = false;
+		changeProcess(fallbackPid);
+		return false;
+	}
+	lfsPickerVisited = true;
+	lfsPickFile();
+	return false;
 }
 
 /**
