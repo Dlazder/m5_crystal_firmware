@@ -10,7 +10,10 @@ void badBleLoop() {
 		scriptRunning = false;
 		scriptDone = false;
 
-		if (!lfsFileSelected(PID::BAD_BLE_MENU)) return;
+		if (lfsSelectedFile == "") {
+			lfsOpenPicker(PID::BAD_BLE, PID::BAD_BLE_MENU);
+			return;
+		}
 
 		if (!badBleLoadFile(lfsSelectedFile)) {
 			centeredPrint("File error", SMALL_TEXT);
@@ -49,7 +52,10 @@ void badBleLoop() {
 			centeredPrint("Running...", SMALL_TEXT);
 		}
 		if (scriptRunning) {
-			if (badBleIsDelaying()) return;
+			if (badBleIsDelaying()) {
+				checkExit();
+				return;
+			}
 			if (!badBleNextLine()) {
 				scriptRunning = false;
 				scriptDone = true;

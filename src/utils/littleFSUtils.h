@@ -4,7 +4,7 @@ bool lfsBegun = false;
 String* lfsFilePaths = nullptr;
 String lfsSelectedFile = "";
 int lfsReturnPid = 0;
-bool lfsPickerVisited = false;
+int lfsCancelPid = 0;
 
 /**
  * Mounts LittleFS. Safe to call multiple times.
@@ -31,12 +31,11 @@ void lfsClearMenu(MENU*& menu, int& count) {
  * Scans the LittleFS root, builds a MENU array and draws it.
  * Full paths are stored in lfsFilePaths[] parallel to menu entries.
  * Caller must clear with lfsClearMenu().
- * @param menu       reference to MENU pointer to allocate
- * @param count      reference to file count (output)
- * @param backPid    PID to switch to when "back" is selected
- * @param targetPid  PID assigned to each file entry (used by lfsLoop internally)
+ * @param menu     reference to MENU pointer to allocate
+ * @param count    reference to file count (output)
+ * @param backPid  PID to switch to when "back" is selected
  */
-void lfsSetup(MENU*& menu, int& count, int backPid, int targetPid) {
+void lfsSetup(MENU*& menu, int& count, int backPid) {
 	lfsClearMenu(menu, count);
 
 	if (!lfsBegin()) { centeredPrint("LittleFS error", SMALL_TEXT); return; }
@@ -59,7 +58,7 @@ void lfsSetup(MENU*& menu, int& count, int backPid, int targetPid) {
 		if (!f.isDirectory()) {
 			String name = String(f.name());
 			lfsFilePaths[idx - 1] = "/" + name;
-			menu[idx] = { targetPid, name.substring(0, 14) };
+			menu[idx] = { PID::FILE_PICKER, name.substring(0, 14) };
 			idx++;
 		}
 		f = root.openNextFile();
@@ -68,36 +67,6 @@ void lfsSetup(MENU*& menu, int& count, int backPid, int targetPid) {
 	cursor = 0;
 	cursorOnTop();
 	count > 0 ? drawMenu(menu, count + 1) : centeredPrint("No files", SMALL_TEXT);
-}
-
-/**
- * Redirects to the file picker process (PID 44) and returns to the current process after selection.
- * Call this when lfsSelectedFile is empty and a file is needed.
- */
-bool lfsPickFile() {
-	if (lfsSelectedFile != "") return false;
-	lfsReturnPid = process;
-	changeProcess(PID::FILE_PICKER);
-	return true;
-}
-
-/**
- * Ensures a file is selected, opening the picker if needed.
- * Call once per isSetup() block. Returns true if a file is ready in lfsSelectedFile.
- * If the picker was already visited but no file was chosen, redirects to fallbackPid.
- * @param fallbackPid  PID to go to if the user cancelled or picker failed
- * @return true if lfsSelectedFile is ready to use, false if redirecting
- */
-bool lfsFileSelected(int fallbackPid) {
-	if (lfsSelectedFile != "") return true;
-	if (lfsPickerVisited) {
-		lfsPickerVisited = false;
-		changeProcess(fallbackPid);
-		return false;
-	}
-	lfsPickerVisited = true;
-	lfsPickFile();
-	return false;
 }
 
 /**
@@ -113,7 +82,6 @@ String lfsLoop(MENU menu[], int count, int backPid) {
 
 	DEVICE.update();
 
-	// We do not use menuLoop, as it causes a process change. Processing navigation manually
 	if (isBtnBWasPressed()) {
 		cursor++;
 		cursorOnTop();
@@ -132,4 +100,15 @@ String lfsLoop(MENU menu[], int count, int backPid) {
 	}
 
 	return "";
+}
+
+/**
+ * Opens the file picker.
+ * @param returnPid  PID to switch to after a file is selected
+ * @param cancelPid  PID to switch to if the user presses "back"
+ */
+void lfsOpenPicker(int returnPid, int cancelPid) {
+	lfsReturnPid = returnPid;
+	lfsCancelPid = cancelPid;
+	changeProcess(PID::FILE_PICKER);
 }

@@ -8,8 +8,7 @@ void lfsFilePickerLoop() {
 
 	if (isSetup()) {
 		lfsError = false;
-		lfsSelectedFile = "";
-		lfsSetup(lfsPickerMenu, lfsPickerCount, previousProcess, PID::FILE_PICKER);
+		lfsSetup(lfsPickerMenu, lfsPickerCount, lfsCancelPid);
 		if (lfsPickerMenu == nullptr) {
 			lfsError = true;
 			return;
@@ -17,11 +16,11 @@ void lfsFilePickerLoop() {
 	}
 
 	if (lfsError) {
-		checkExit(previousProcess);
+		checkExit(lfsCancelPid);
 		return;
 	}
 
-	String selected = lfsLoop(lfsPickerMenu, lfsPickerCount, previousProcess);
+	String selected = lfsLoop(lfsPickerMenu, lfsPickerCount, lfsCancelPid);
 	if (selected != "") {
 		lfsSelectedFile = selected;
 		lfsClearMenu(lfsPickerMenu, lfsPickerCount);
