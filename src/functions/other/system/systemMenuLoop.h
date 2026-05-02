@@ -1,9 +1,9 @@
-// pid 30
+// pid PID::SYSTEM
 
 MENU systemMenu[] = {
-	{29, "back"},
-	{33, "shutdown"},
-	{34, "info"}
+	{PID::OTHER, "back"},
+	{PID::SHUTDOWN, "shutdown"},
+	{PID::SYSTEM_INFO, "info"}
 };
 int systemMenuSize = sizeof(systemMenu) / sizeof(MENU);
 

@@ -9,7 +9,7 @@ void defaultLoop() {
 		};
 		centeredPrintRows(lines, 2, SMALL_TEXT);
 	}
-	checkExit(0);
+	checkExit(PID::MAIN_MENU);
 	if (isWebDataRequested()) {
 		String res = generateFunctionElement("this PID is not", SMALL_TEXT, "center") + generateFunctionElement("defined in switcher", SMALL_TEXT, "center");
 		webData = generateWebData("function", res);

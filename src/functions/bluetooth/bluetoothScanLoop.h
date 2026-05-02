@@ -1,11 +1,11 @@
-// pid 36
+// pid PID::BT_SCAN
 
 int bleCount = 0;
 MENU* bleScanMenu = nullptr;
 
 void bluetoothScanLoop() {
 	if (isSetup()) {
-		if (bleCount == 0 || isMenuItemSelected(36)) {
+		if (bleCount == 0 || isMenuItemSelected(PID::BT_SCAN)) {
 			if (bleScanMenu != nullptr) {
 				delete[] bleScanMenu;
 				bleScanMenu = nullptr;
@@ -28,9 +28,9 @@ void bluetoothScanLoop() {
 
 			bleScanMenu = new MENU[bleCount + 2];
 			bleScanMenu[0].name = "back";
-			bleScanMenu[0].command = 14;
+			bleScanMenu[0].command = PID::BLUETOOTH;
 			bleScanMenu[1].name = "rescan";
-			bleScanMenu[1].command = 36;
+			bleScanMenu[1].command = PID::BT_SCAN;
 
 			for (int i = 0; i < bleCount; i++) {
 				BLEAdvertisedDevice device = results.getDevice(i);
@@ -41,7 +41,7 @@ void bluetoothScanLoop() {
 					: String(device.getAddress().toString().substr(0, 14).c_str());
 
 				bleScanMenu[i + 2].name = name;
-				bleScanMenu[i + 2].command = 38;
+				bleScanMenu[i + 2].command = PID::BT_SELECTED;
 			}
 		}
 		cursorOnTop();

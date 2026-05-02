@@ -76,7 +76,7 @@ void lfsSetup(MENU*& menu, int& count, int backPid, int targetPid) {
 bool lfsPickFile() {
 	if (lfsSelectedFile != "") return false;
 	lfsReturnPid = process;
-	changeProcess(44);
+	changeProcess(PID::FILE_PICKER);
 	return true;
 }
 

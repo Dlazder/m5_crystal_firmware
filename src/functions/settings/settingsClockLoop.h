@@ -59,7 +59,7 @@ void settingsClockLoop() {
 			dt.time.minutes = tempMinutes;
 			dt.time.seconds = 0;
 			DEVICE.Rtc.setDateTime(&dt);
-			changeProcess(3);
+			changeProcess(PID::SETTINGS);
 		}
 	}
 
@@ -76,7 +76,7 @@ void settingsClockLoop() {
 			dt.time.minutes = tempMinutes;
 			dt.time.seconds = 0;
 			DEVICE.Rtc.setDateTime(&dt);
-			changeProcess(3);
+			changeProcess(PID::SETTINGS);
 		}
 	}
 }

@@ -1,10 +1,9 @@
-// pid 21
+// pid PID::NFC
 
 MENU nfcMenu[] = {
-	{0, "back"},
-	{22, "read UID"},
-	{23, "write UID"},
-	// {19, "clock"}
+	{PID::MAIN_MENU, "back"},
+	{PID::NFC_READ, "read UID"},
+	{PID::NFC_WRITE, "write UID"},
 };
 
 int nfcMenuSize = sizeof(nfcMenu) / sizeof(MENU);

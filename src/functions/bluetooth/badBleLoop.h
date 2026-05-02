@@ -1,18 +1,24 @@
-// pid 43
+// pid PID::BAD_BLE
 
 void badBleLoop() {
 	static bool isBleConnected = false;
 	static bool scriptRunning = false;
 	static bool scriptDone = false;
+	static bool filePickerOpened = false;
 
 	if (isSetup()) {
 		isBleConnected = false;
 		scriptRunning = false;
 		scriptDone = false;
-		
 
-		// change process to filePicker if needed
-		if (lfsPickFile()) return;
+		if (filePickerOpened && lfsSelectedFile == "") {
+			filePickerOpened = false;
+			changeProcess(PID::BAD_BLE_MENU);
+			return;
+		}
+		filePickerOpened = false;
+
+		if (lfsPickFile()) { filePickerOpened = true; return; }
 
 		if (!badBleLoadFile(lfsSelectedFile)) {
 			centeredPrint("File error", SMALL_TEXT);
@@ -64,6 +70,7 @@ void badBleLoop() {
 		isBleConnected = false;
 		scriptRunning = false;
 		scriptDone = false;
+		filePickerOpened = false;
 		lfsSelectedFile = "";
 	}
 }

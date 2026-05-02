@@ -1,4 +1,4 @@
-// pid 19
+// pid FONTS
 
 void fontsLoop() {
   if (isSetup()) {
@@ -31,5 +31,5 @@ void fontsLoop() {
     centeredPrintRows(lines, 3, SMALL_TEXT);
   }
   
-  checkExit(3);
+  checkExit(PID::SETTINGS);
 }

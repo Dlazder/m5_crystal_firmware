@@ -1,8 +1,8 @@
-// pid 42
+// pid PID::BAD_BLE_MENU
 
 MENU badBleMenu[] = {
-  {14, "back"},
-  {43, "run script"}
+  {PID::BLUETOOTH, "back"},
+  {PID::BAD_BLE, "run script"}
 };
 int badBleMenuSize = sizeof(badBleMenu) / sizeof(MENU);
 

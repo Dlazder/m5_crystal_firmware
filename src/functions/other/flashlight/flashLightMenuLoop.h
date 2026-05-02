@@ -1,14 +1,13 @@
-// pid 24
+// pid PID::FLASHLIGHT_MENU
 
 MENU flashLightMenu[] = {
-	{29, "back"},
-	{25, "flashlight"},
-	{26, "flicker"},
-	{5, "brightness"},
-	{7, "colors"}
+	{PID::OTHER, "back"},
+	{PID::FLASHLIGHT, "flashlight"},
+	{PID::FLASHLIGHT_FLICKER, "flicker"},
+	{PID::BRIGHTNESS, "brightness"},
+	{PID::COLORS, "colors"}
 };
 int flashLightMenuSize = sizeof(flashLightMenu) / sizeof(MENU);
-
 
 void flashLightMenuLoop() {
 	if (isSetup()) {

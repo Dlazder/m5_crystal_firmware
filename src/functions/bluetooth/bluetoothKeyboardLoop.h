@@ -1,4 +1,4 @@
-// pid 37
+// pid PID::BT_KEYBOARD
 
 const int kbRowCount = 4;
 const int kbColCounts[] = { 12, 12, 12, 12 };
@@ -112,7 +112,6 @@ void bluetoothKeyboardLoop() {
 		centeredPrint("Waiting connection", SMALL_TEXT);
 		updateTimer();
 	}
-
 	if (bleKeyboard.isConnected()) {
 		if (!isBleConnected) {
 			isBleConnected = true;
@@ -125,16 +124,19 @@ void bluetoothKeyboardLoop() {
 			centeredPrint("Not connected", SMALL_TEXT);
 			DEVICE.Speaker.tone(2000, 200);
 		}
+		checkExit();
 		return;
 	}
 
 	DEVICE.update();
 
-	blinkCounter++;
-	if (blinkCounter >= 100) {
-		blinkCounter = 0;
-		cursorVisible = !cursorVisible;
-		drawKeyboardUi(cursorRow, cursorCol, inputBuf, capsOn, cursorVisible);
+	if (isBleConnected) {
+		blinkCounter++;
+		if (blinkCounter >= 100) {
+			blinkCounter = 0;
+			cursorVisible = !cursorVisible;
+			drawKeyboardUi(cursorRow, cursorCol, inputBuf, capsOn, cursorVisible);
+		}
 	}
 
 	// Gyro navigation
@@ -180,7 +182,7 @@ void bluetoothKeyboardLoop() {
 			if (cursorCol == 0) {
 				isBleConnected = false;
 				DISP.clear();
-				changeProcess(14);
+				changeProcess(PID::BLUETOOTH);
 				return;
 			} else if (cursorCol == 1) {
 				capsOn = !capsOn;

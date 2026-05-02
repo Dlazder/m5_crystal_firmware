@@ -1,4 +1,4 @@
-// pid 6
+// pid ROTATION
 
 void rotationLoop() {
 
@@ -21,7 +21,7 @@ void rotationLoop() {
     DISP.clear();
     centeredPrintRows(lines, 3, SMALL_TEXT);
   }
-  checkExit(3);
+  checkExit(PID::SETTINGS);
   if (isWebDataRequested()) {
     String res = generateFunctionElement("press A<br>to change<br>rotation", SMALL_TEXT, "center");
     webData = generateWebData("function", res);

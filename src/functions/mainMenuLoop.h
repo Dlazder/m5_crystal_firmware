@@ -1,11 +1,11 @@
-// pid 0
+// pid PID::MAIN_MENU
 
 MENU mainMenu[] = {
-	{13, "Wi-Fi"},
-	{14, "Bluetooth"},
-	{21, "NFC"},
-	{3, "settings"},
-	{29, "other"},
+	{PID::WIFI, "Wi-Fi"},
+	{PID::BLUETOOTH, "Bluetooth"},
+	{PID::NFC, "NFC"},
+	{PID::SETTINGS, "settings"},
+	{PID::OTHER, "other"},
 };
 int mainMenuSize = sizeof(mainMenu) / sizeof(MENU);
 

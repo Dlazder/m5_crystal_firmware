@@ -1,13 +1,13 @@
-// pid 29
+// pid PID::OTHER
 
 MENU otherMenu[] = {
-	{0, "back"},
-	{30, "system"},
-	{1, "clock"},
-	{27, "sound level"},
-	{24, "flashlight"},
-	{20, "level tool"},
-	{2, "battery info"},
+	{PID::MAIN_MENU, "back"},
+	{PID::SYSTEM, "system"},
+	{PID::CLOCK, "clock"},
+	{PID::SOUND_LEVEL, "sound level"},
+	{PID::FLASHLIGHT_MENU, "flashlight"},
+	{PID::LEVEL_TOOL, "level tool"},
+	{PID::BATTERY, "battery info"},
 };
 int otherMenuSize = sizeof(otherMenu) / sizeof(MENU);
 

@@ -1,16 +1,15 @@
-// pid 14
+// pid PID::BLUETOOTH
 
 MENU bluetoothMenu[] = {
-	{0, "back"},
-	{36, "scan"},
-	{42, "bad BLE"},
-	{37, "keyboard"},
-	{31, "air mouse"},
-	{32, "presenter"},
-	{15, "shutter"},
+	{PID::MAIN_MENU, "back"},
+	{PID::BT_SCAN, "scan"},
+	{PID::BAD_BLE_MENU, "bad BLE"},
+	{PID::BT_KEYBOARD, "keyboard"},
+	{PID::BT_MOUSE, "air mouse"},
+	{PID::BT_PRESENTER, "presenter"},
+	{PID::BT_SHUTTER, "shutter"},
 };
 int bluetoothMenuSize = sizeof(bluetoothMenu) / sizeof(MENU);
-
 
 void bluetoothMenuLoop() {
 	if (isSetup()) {
