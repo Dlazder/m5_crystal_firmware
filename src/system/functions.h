@@ -4,6 +4,7 @@
 #include "../functions/defaultLoop.h"
 #include "../functions/mainMenuLoop.h"
 #include "../functions/statusBarLoop.h"
+#include "../functions/lfsFilePickerLoop.h"
 
 
 // Settings functions

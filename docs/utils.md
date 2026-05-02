@@ -122,6 +122,36 @@ void mainMenuLoop() {
 ```
 
 
+## LittleFS utils
+
+*Utilities for working with the LittleFS filesystem. Use these to browse and select files stored on the device.*
+
+<table>
+	<tr>
+		<td><code>lfsPickFile</code><br>Redirects to the file picker process (PID 44) if no file is selected yet. Returns <code>true</code> if redirected. Use with <code>return</code> to stop setup until a file is chosen.</td>
+		<td><code>if (lfsPickFile()) return;</code></td>
+	</tr>
+	<tr>
+		<td><code>lfsSelectedFile</code><br>Global variable. Contains the full path of the file selected in the picker (e.g. <code>"/notepad.txt"</code>). Empty string if no file has been selected.</td>
+		<td><code>if (lfsSelectedFile != "") { ... }</code></td>
+	</tr>
+</table>
+
+### *Basic LittleFS usage example*
+
+```cpp
+void myLoop() {
+	if (isSetup()) {
+		lfsSelectedFile = "";
+	}
+
+	if (lfsPickFile()) return; // goes to picker, comes back here after selection
+
+	// lfsSelectedFile now contains the chosen path
+	File f = LittleFS.open(lfsSelectedFile, "r");
+}
+```
+
 ## Web interface utils
 
 #### Will be described later when the web interface is fully implemented

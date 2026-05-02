@@ -9,27 +9,21 @@ void badBleLoop() {
 		isBleConnected = false;
 		scriptRunning = false;
 		scriptDone = false;
-		badBleSelectedFile = "";
-		lfsSetup(badBleFileMenu, badBleFileCount, 42, 43);
-	}
+		
 
-	// File browser phase
-	if (badBleSelectedFile == "") {
-		badBleSelectedFile = lfsLoop(badBleFileMenu, badBleFileCount, 42);
-		if (badBleSelectedFile != "") {
-			if (!badBleLoadFile(badBleSelectedFile)) {
-				centeredPrint("File error", SMALL_TEXT);
-				badBleSelectedFile = "";
-				return;
-			}
-			if (!bleCompositeBegan) {
-				bleKeyboard.begin();
-				bleCompositeBegan = true;
-			}
-			centeredPrint("Waiting connection", SMALL_TEXT);
-			updateTimer();
+		// change process to filePicker if needed
+		if (lfsPickFile()) return;
+
+		if (!badBleLoadFile(lfsSelectedFile)) {
+			centeredPrint("File error", SMALL_TEXT);
+			return;
 		}
-		return;
+		if (!bleCompositeBegan) {
+			bleKeyboard.begin();
+			bleCompositeBegan = true;
+		}
+		centeredPrint("Waiting connection", SMALL_TEXT);
+		updateTimer();
 	}
 
 	// BLE phase
@@ -50,13 +44,11 @@ void badBleLoop() {
 
 	// Script phase
 	if (isBleConnected && !scriptDone) {
-
 		if (!scriptRunning && isBtnAWasPressed()) {
-			badBleLoadFile(badBleSelectedFile);
+			badBleLoadFile(lfsSelectedFile);
 			scriptRunning = true;
 			centeredPrint("Running...", SMALL_TEXT);
 		}
-		
 		if (scriptRunning) {
 			if (badBleIsDelaying()) return;
 			if (!badBleNextLine()) {
@@ -72,7 +64,6 @@ void badBleLoop() {
 		isBleConnected = false;
 		scriptRunning = false;
 		scriptDone = false;
-		badBleSelectedFile = "";
-		lfsClearMenu(badBleFileMenu, badBleFileCount);
+		lfsSelectedFile = "";
 	}
 }

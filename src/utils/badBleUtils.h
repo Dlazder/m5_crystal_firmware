@@ -2,10 +2,8 @@ const char* badBleScriptPtr = nullptr;
 int badBleScriptPos = 0;
 unsigned long badBleDelayUntil = 0;
 
-String badBleSelectedFile = "";
+
 String badBleScriptBuffer = "";
-MENU* badBleFileMenu = nullptr;
-int badBleFileCount = 0;
 
 /**
  * Sets the script to execute and resets the parser state.

@@ -2,6 +2,8 @@
 
 bool lfsBegun = false;
 String* lfsFilePaths = nullptr;
+String lfsSelectedFile = "";
+int lfsReturnPid = 0;
 
 /**
  * Mounts LittleFS. Safe to call multiple times.
@@ -65,6 +67,17 @@ void lfsSetup(MENU*& menu, int& count, int backPid, int targetPid) {
 	cursor = 0;
 	cursorOnTop();
 	count > 0 ? drawMenu(menu, count + 1) : centeredPrint("No files", SMALL_TEXT);
+}
+
+/**
+ * Redirects to the file picker process (PID 44) and returns to the current process after selection.
+ * Call this when lfsSelectedFile is empty and a file is needed.
+ */
+bool lfsPickFile() {
+	if (lfsSelectedFile != "") return false;
+	lfsReturnPid = process;
+	changeProcess(44);
+	return true;
 }
 
 /**

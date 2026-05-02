@@ -2,13 +2,13 @@
 
 MENU badBleMenu[] = {
   {14, "back"},
-  {43, "littleFS"}
+  {43, "run script"}
 };
 int badBleMenuSize = sizeof(badBleMenu) / sizeof(MENU);
 
 void badBleMenuLoop() {
   if (isSetup()) {
-    badBleSelectedFile = "";
+    lfsSelectedFile = "";
     cursor = 0;
     cursorOnTop();
     drawMenu(badBleMenu, badBleMenuSize);
