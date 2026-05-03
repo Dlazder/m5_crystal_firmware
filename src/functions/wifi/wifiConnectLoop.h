@@ -7,9 +7,8 @@ static bool wifiConnectResultShown = false;
 static bool wifiConnectPasswordDone = false;
 
 static void startWifiConnection(const char* password) {
-	wifiPassword = String(password);
-	WiFi.disconnect(true);
 	isWebInterfaceEnabled = false;
+	wifiPassword = String(password);
 	WiFi.mode(WIFI_STA);
 	delay(100);
 	if (wifiPassword.length() > 0)

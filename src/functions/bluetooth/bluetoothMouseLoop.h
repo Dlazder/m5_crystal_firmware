@@ -1,4 +1,4 @@
-// pid 31
+// pid PID::BT_MOUSE
 
 // Sensitivity settings
 #define GYRO_SENSITIVITY 1.5f

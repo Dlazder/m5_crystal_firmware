@@ -35,6 +35,15 @@ void setup() {
     DEVICE.Speaker.tone(2500, 200);
   }
 
+  // Warm up speaker DMA buffers before WiFi takes memory.
+  DEVICE.Speaker.begin();
+  DEVICE.Speaker.end();
+
+  // Initialize WiFi driver once at boot so its memory is allocated before BLE.
+  // This prevents ESP_ERR_NO_MEM when switching between WiFi and BLE at runtime.
+  WiFi.mode(WIFI_STA);
+  WiFi.disconnect(false);
+
   cursorOnTop();
   DISP.clear();
   drawMenu(mainMenu, mainMenuSize);

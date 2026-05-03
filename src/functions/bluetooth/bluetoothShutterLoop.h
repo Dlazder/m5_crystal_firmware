@@ -1,4 +1,4 @@
-// pid 15
+// pid PID::BT_SHUTTER
 
 void bluetoothShutterLoop() {
 	static bool isBleConnected = false;

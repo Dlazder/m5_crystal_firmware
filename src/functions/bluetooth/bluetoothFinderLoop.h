@@ -1,4 +1,4 @@
-// pid 40
+// pid PID::BT_FINDER
 
 static bool bleScanDone = false;
 static int bleFoundRssi = -100;

@@ -1,4 +1,4 @@
-// pid 32
+// pid PID::BT_PRESENTER
 
 void bluetoothPresenterLoop() {
 	static bool isBleConnected = false;
