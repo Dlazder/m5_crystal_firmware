@@ -11,7 +11,7 @@ String wifiSsid = "M5Stick";
 
 // Wi-Fi access point password
 // Leave the blank if you do not need a password
-String wifiPassword = "";
+String apWifiPassword = "";
 
 // Set to true to enable the startup sound
 bool startupSound = false;

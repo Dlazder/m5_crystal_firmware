@@ -3,18 +3,20 @@
 MENU selectedWifiMenu[] = {
 	{PID::WIFI_SCAN, "back"},
 	{PID::WIFI_INFO, "info"},
-	{PID::WIFI_DEAUTH, "deauth"}
+	{PID::WIFI_DEAUTH, "deauth"},
+	{PID::WIFI_CONNECT, "connect"}
 };
 int selectedWifiMenuSize = sizeof(selectedWifiMenu) / sizeof(MENU);
 
 void selectedWifiMenuLoop() {
 	if (isSetup()) {
 		if (previousProcess == PID::WIFI_SCAN) {
-			ssid = WiFi.SSID(cursor - 2);
-			mac = WiFi.BSSIDstr(cursor - 2);
-			channel = WiFi.channel(cursor - 2);
-			bssid = WiFi.BSSID(cursor - 2);
-			rssi = WiFi.RSSI(cursor - 2);
+			wifiScanIndex = cursor - 2;
+			ssid = WiFi.SSID(wifiScanIndex);
+			mac = WiFi.BSSIDstr(wifiScanIndex);
+			channel = WiFi.channel(wifiScanIndex);
+			bssid = WiFi.BSSID(wifiScanIndex);
+			rssi = WiFi.RSSI(wifiScanIndex);
 			cursor = 0;
 		}
 		cursorOnTop();

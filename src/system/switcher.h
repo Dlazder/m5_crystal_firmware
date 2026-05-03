@@ -28,6 +28,7 @@ const ProcessEntry processEntries[] = {
     {PID::WIFI_INFO,     wifiInfoLoop},
     {PID::WIFI_DEAUTH,   wifiDeauthLoop},
     {PID::WIFI_ACCESS_POINT, wifiApLoop},
+    {PID::WIFI_CONNECT,      wifiConnectLoop},
 
     // Bluetooth
     {PID::BLUETOOTH,    bluetoothMenuLoop},

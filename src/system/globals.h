@@ -105,6 +105,8 @@ String mac;
 int channel;
 uint8_t* bssid;
 int rssi;
+String wifiPassword;
+int wifiScanIndex;
 
 
 // bluetooth

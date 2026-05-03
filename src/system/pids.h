@@ -23,6 +23,7 @@ namespace PID {
   const int WIFI_INFO     = 203;
   const int WIFI_DEAUTH   = 204;
   const int WIFI_ACCESS_POINT = 205;
+  const int WIFI_CONNECT = 206;
 
   // Bluetooth (300-399)
   const int BLUETOOTH    = 300;

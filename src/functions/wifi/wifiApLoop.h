@@ -46,7 +46,7 @@ void wifiApLoop() {
   if (isSetup()) {
     if (!isWebInterfaceEnabled) {
       WiFi.mode(WIFI_AP);
-      WiFi.softAP(wifiSsid, wifiPassword);
+      WiFi.softAP(wifiSsid, apWifiPassword);
       WiFi.softAPConfig(AP_GATEWAY, AP_GATEWAY, IPAddress(255, 255, 255, 0));
       webServerSetup();
       isWebInterfaceEnabled = true;

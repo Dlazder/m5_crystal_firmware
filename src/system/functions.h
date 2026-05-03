@@ -28,6 +28,7 @@
 #include "../functions/wifi/selectedWifiMenuLoop.h"
 #include "../functions/wifi/wifiInfoLoop.h"
 #include "../functions/wifi/wifiMenuLoop.h"
+#include "../functions/wifi/wifiConnectLoop.h"
 
 
 // Bluetooth functions
