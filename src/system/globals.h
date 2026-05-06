@@ -13,8 +13,8 @@ using std::to_string;
 // Localization
 #include "../system/locale/locale.h"
 
-const Locale* locales[] = { &LANG_EN, &LANG_ES };
-const char* localeNames[] = { "English", "Espanol" };
+const Locale* locales[] = { &LANG_EN, &LANG_ES, &LANG_IT, &LANG_ID };
+const char* localeNames[] = { "English", "Espanol", "Italiano", "Indonesia" };
 int languageIndex = 0;
 int localesCount = sizeof(locales) / sizeof(locales[0]);
 

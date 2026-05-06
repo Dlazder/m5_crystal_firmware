@@ -1,0 +1,107 @@
+#include "locale.h"
+
+const Locale LANG_IT = {
+    // Common menu items
+    .MENU_BACK                    = "indietro",
+    .MENU_SCAN                    = "scansione",
+    .MENU_RESCAN                  = "riscansione",
+
+    // Wi-Fi menu
+    .MENU_WIFI                    = "Wi-Fi",
+    .MENU_WIFI_INFO               = "info",
+    .MENU_WIFI_DEAUTH             = "deauth",
+    .MENU_WIFI_CONNECT            = "connetti",
+    .MENU_WIFI_AP                 = "Wi-Fi AP",
+
+    // Bluetooth menu
+    .MENU_BT                      = "Bluetooth",
+    .MENU_BT_INFO                 = "info",
+    .MENU_BT_FIND                 = "trova",
+    .MENU_BT_KEYBOARD             = "tastiera",
+    .MENU_BT_AIR_MOUSE            = "air mouse",
+    .MENU_BT_PRESENTER            = "presentatore",
+    .MENU_BT_SHUTTER              = "otturatore",
+    .MENU_BT_BAD_BLE              = "bad BLE",
+    .MENU_BT_RUN_SCRIPT           = "esegui",
+
+    // NFC menu
+    .MENU_NFC                     = "NFC",
+    .MENU_NFC_READ_UID            = "leggi UID",
+    .MENU_NFC_WRITE_UID           = "scrivi UID",
+
+    // Settings menu
+    .MENU_SETTINGS                = "impostazioni",
+    .MENU_SETTINGS_TIME           = "ora",
+    .MENU_SETTINGS_BRIGHTNESS     = "luminosita",
+    .MENU_SETTINGS_ROTATION       = "rotazione",
+    .MENU_SETTINGS_COLORS         = "colori",
+    .MENU_SETTINGS_STATUS_BAR     = "barra stato",
+    .MENU_SETTINGS_STATUS_BAR_PID = "PID",
+    .MENU_SETTINGS_STARTUP_SOUND  = "suono avvio",
+    .MENU_SETTINGS_FONT           = "carattere",
+    .MENU_SETTINGS_KB_GYRO        = "giroscopio",
+    .MENU_SETTINGS_LANGUAGE       = "lingua",
+
+    // Other menu
+    .MENU_OTHER                   = "altro",
+    .MENU_OTHER_SYSTEM            = "sistema",
+    .MENU_OTHER_CLOCK             = "orologio",
+    .MENU_OTHER_SOUND_LEVEL       = "livello audio",
+    .MENU_OTHER_FLASHLIGHT        = "torcia",
+    .MENU_OTHER_FLICKER           = "sfarfallio",
+    .MENU_OTHER_LEVEL_TOOL        = "livella",
+    .MENU_OTHER_BATTERY_INFO      = "batteria",
+
+    // System menu
+    .MENU_SYSTEM_INFO             = "info",
+    .MENU_SYSTEM_SHUTDOWN         = "spegni",
+
+    // Common text
+    .TXT_PRESS_A                  = "premi A",
+    .TXT_ENABLED                  = "attivo",
+    .TXT_DISABLED                 = "disattivo",
+    .TXT_SCANNING                 = "Scansione...",
+    .TXT_CONNECTING               = "Connessione...",
+    .TXT_CONNECTED                = "Connesso",
+    .TXT_DISCONNECTED             = "Disconnesso",
+    .TXT_DISCONNECTING            = "Disconnessione...",
+    .TXT_WAITING_CONNECTION       = "Attesa connessione",
+    .TXT_NOT_CONNECTED            = "Non connesso",
+    .TXT_FAILED                   = "Errore",
+    .TXT_NA                       = "n/d",
+    .TXT_UNNAMED                  = "senza nome",
+
+    // Wi-Fi text
+    .TXT_WIFI_AP_ENABLED          = "WiFi AP attivo",
+    .TXT_WIFI_SSID_NOT_FOUND      = "Rete non trovata",
+    .TXT_WIFI_TIMEOUT             = "Tempo scaduto",
+    .TXT_WIFI_WRONG_PASSWORD      = "Password errata",
+
+    // Bluetooth text
+    .TXT_BT_FILE_ERROR            = "Errore file",
+    .TXT_BT_PRESS_A_TO_RUN        = "Premi A per eseguire",
+    .TXT_BT_RUNNING               = "Esecuzione...",
+    .TXT_BT_DONE                  = "Fatto!",
+
+    // NFC text
+    .TXT_NFC_NO_UID_STORED        = "Nessun UID salvato",
+    .TXT_NFC_READ_TAG_FIRST       = "Leggi un tag prima",
+    .TXT_NFC_INVALID_UID          = "UID non valido",
+    .TXT_NFC_UID_4BYTE_REQUIRED   = "UID 4 byte richiesto",
+    .TXT_NFC_WRITE_SUCCESS        = "Scrittura riuscita!",
+    .TXT_NFC_UID_WRITTEN          = "UID scritto sul tag",
+    .TXT_NFC_WRITE_FAILED         = "Scrittura fallita!",
+    .TXT_NFC_WRITE_ERROR          = "Nessun tag o errore",
+    .TXT_NFC_READY_TO_WRITE       = "Pronto a scrivere...",
+
+    // Settings text
+    .TXT_SETTINGS_LANGUAGE        = "Lingua:",
+    .TXT_SETTINGS_BRIGHTNESS      = "luminosita: ",
+    .TXT_SETTINGS_COLOR           = "colore: ",
+    .TXT_SETTINGS_FONT            = "Carattere:",
+    .TXT_SETTINGS_ROTATION        = "rotazione",
+    .TXT_SETTINGS_SOUND           = "Suono: ",
+    .TXT_SETTINGS_STATUS_BAR      = "barra stato: ",
+    .TXT_SETTINGS_PID             = "PID: ",
+    .TXT_SETTINGS_KB_GYRO         = "Giroscopio: ",
+};

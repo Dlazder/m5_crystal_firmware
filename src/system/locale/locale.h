@@ -108,6 +108,8 @@ struct Locale {
 
 extern const Locale LANG_EN;
 extern const Locale LANG_ES;
+extern const Locale LANG_IT;
+extern const Locale LANG_ID;
 
 inline const Locale* L = &LANG_EN;
 
