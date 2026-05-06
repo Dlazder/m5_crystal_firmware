@@ -1,14 +1,14 @@
 // pid PID::WIFI_SELECTED
 
-MENU selectedWifiMenu[] = {
-	{PID::WIFI_SCAN, "back"},
-	{PID::WIFI_INFO, "info"},
-	{PID::WIFI_DEAUTH, "deauth"},
-	{PID::WIFI_CONNECT, "connect"}
-};
-int selectedWifiMenuSize = sizeof(selectedWifiMenu) / sizeof(MENU);
-
 void selectedWifiMenuLoop() {
+	MENU selectedWifiMenu[] = {
+		{PID::WIFI_SCAN,    L->MENU_BACK},
+		{PID::WIFI_INFO,    L->MENU_WIFI_INFO},
+		{PID::WIFI_DEAUTH,  L->MENU_WIFI_DEAUTH},
+		{PID::WIFI_CONNECT, L->MENU_WIFI_CONNECT},
+	};
+	int selectedWifiMenuSize = sizeof(selectedWifiMenu) / sizeof(MENU);
+
 	if (isSetup()) {
 		if (previousProcess == PID::WIFI_SCAN) {
 			wifiScanIndex = cursor - 2;

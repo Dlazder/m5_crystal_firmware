@@ -3,8 +3,8 @@
 void toggleKbGyroLoop() {
 	if (isSetup()) {
 		String lines[] = {
-			"KB gyro: " + String(getData("kbGyro", kbGyroEnabled) ? "enabled" : "disabled"),
-			"press A"
+			String(L->TXT_SETTINGS_KB_GYRO) + String(getData("kbGyro", kbGyroEnabled) ? L->TXT_ENABLED : L->TXT_DISABLED),
+			L->TXT_PRESS_A
 		};
 		centeredPrintRows(lines, 2, SMALL_TEXT);
 		updateTimer();
@@ -16,8 +16,8 @@ void toggleKbGyroLoop() {
 		DISP.clear();
 
 		String lines[] = {
-			"KB gyro: " + String(kbGyroEnabled ? "enabled" : "disabled"),
-			"press A"
+			String(L->TXT_SETTINGS_KB_GYRO) + String(kbGyroEnabled ? L->TXT_ENABLED : L->TXT_DISABLED),
+			L->TXT_PRESS_A
 		};
 		centeredPrintRows(lines, 2, SMALL_TEXT);
 	}

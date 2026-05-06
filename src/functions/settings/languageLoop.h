@@ -3,9 +3,9 @@
 void languageLoop() {
 	if (isSetup()) {
 		String lines[] = {
-			"Language:",
+			L->TXT_SETTINGS_LANGUAGE,
 			String(localeNames[languageIndex]),
-			"Press A"
+			L->TXT_PRESS_A
 		};
 		centeredPrintRows(lines, 3, SMALL_TEXT);
 		updateTimer();
@@ -19,9 +19,9 @@ void languageLoop() {
 		setData("languageIndex", languageIndex);
 
 		String lines[] = {
-			"Language:",
+			L->TXT_SETTINGS_LANGUAGE,
 			String(localeNames[languageIndex]),
-			"Press A"
+			L->TXT_PRESS_A
 		};
 		DISP.clear();
 		centeredPrintRows(lines, 3, SMALL_TEXT);

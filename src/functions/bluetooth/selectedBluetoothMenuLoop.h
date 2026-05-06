@@ -1,13 +1,13 @@
 // pid PID::BT_SELECTED
 
-MENU selectedBluetoothMenu[] = {
-	{PID::BT_SCAN, "back"},
-	{PID::BT_INFO, "info"},
-	{PID::BT_FINDER, "find"},
-};
-int selectedBluetoothMenuSize = sizeof(selectedBluetoothMenu) / sizeof(MENU);
-
 void selectedBluetoothMenuLoop() {
+	MENU selectedBluetoothMenu[] = {
+		{PID::BT_SCAN,   L->MENU_BACK},
+		{PID::BT_INFO,   L->MENU_BT_INFO},
+		{PID::BT_FINDER, L->MENU_BT_FIND},
+	};
+	int selectedBluetoothMenuSize = sizeof(selectedBluetoothMenu) / sizeof(MENU);
+
 	if (isSetup()) {
 		if (previousProcess == PID::BT_SCAN) {
 			int idx = cursor - 2;
@@ -16,7 +16,7 @@ void selectedBluetoothMenuLoop() {
 			String devName = device.getName().c_str();
 			bleAddress = device.getAddress().toString().c_str();
 			bleRssi = device.getRSSI();
-			bleName = (device.haveName() && devName.length() > 0) ? devName : "unnamed";
+			bleName = (device.haveName() && devName.length() > 0) ? devName : L->TXT_UNNAMED;
 
 			bleManufacturer = "";
 			bleManufacturerRaw = "";
@@ -88,6 +88,5 @@ void selectedBluetoothMenuLoop() {
 		cursorOnTop();
 		drawMenu(selectedBluetoothMenu, selectedBluetoothMenuSize);
 	}
-
 	menuLoop(selectedBluetoothMenu, selectedBluetoothMenuSize);
 }

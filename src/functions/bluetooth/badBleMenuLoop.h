@@ -1,18 +1,17 @@
 // pid PID::BAD_BLE_MENU
 
-MENU badBleMenu[] = {
-  {PID::BLUETOOTH, "back"},
-  {PID::BAD_BLE, "run script"}
-};
-int badBleMenuSize = sizeof(badBleMenu) / sizeof(MENU);
-
 void badBleMenuLoop() {
+  MENU badBleMenu[] = {
+    {PID::BLUETOOTH, L->MENU_BACK},
+    {PID::BAD_BLE,   L->MENU_BT_RUN_SCRIPT},
+  };
+  int badBleMenuSize = sizeof(badBleMenu) / sizeof(MENU);
+
   if (isSetup()) {
     lfsSelectedFile = "";
     cursor = 0;
     cursorOnTop();
     drawMenu(badBleMenu, badBleMenuSize);
   }
-
   menuLoop(badBleMenu, badBleMenuSize);
 }

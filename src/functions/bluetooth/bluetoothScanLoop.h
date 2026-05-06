@@ -11,7 +11,7 @@ void bluetoothScanLoop() {
 				bleScanMenu = nullptr;
 			}
 			cursor = 0;
-			centeredPrint("Scanning...", SMALL_TEXT);
+			centeredPrint(L->TXT_SCANNING, SMALL_TEXT);
 			Serial.println("BLE Scanning...");
 
 			BLEDevice::init("");
@@ -27,9 +27,9 @@ void bluetoothScanLoop() {
 			bleCount = results.getCount();
 
 			bleScanMenu = new MENU[bleCount + 2];
-			bleScanMenu[0].name = "back";
+			bleScanMenu[0].name = L->MENU_BACK;
 			bleScanMenu[0].command = PID::BLUETOOTH;
-			bleScanMenu[1].name = "rescan";
+			bleScanMenu[1].name = L->MENU_RESCAN;
 			bleScanMenu[1].command = PID::BT_SCAN;
 
 			for (int i = 0; i < bleCount; i++) {

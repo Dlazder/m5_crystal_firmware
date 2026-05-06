@@ -1,14 +1,12 @@
 // pid PID::WIFI
 
-MENU wifiMenu[] = {
-	{PID::MAIN_MENU, "back"},
-	// {PID::WIFI_ACCESS_POINT, "Wi-Fi AP"},
-	{PID::WIFI_SCAN, "scan"}
-};
-
-int wifiMenuSize = sizeof(wifiMenu) / sizeof(MENU);
-
 void wifiMenuLoop() {
+	MENU wifiMenu[] = {
+		{PID::MAIN_MENU, L->MENU_BACK},
+		{PID::WIFI_SCAN, L->MENU_SCAN},
+	};
+	int wifiMenuSize = sizeof(wifiMenu) / sizeof(MENU);
+
 	if (isSetup()) {
 		cursorOnTop();
 		drawMenu(wifiMenu, wifiMenuSize);

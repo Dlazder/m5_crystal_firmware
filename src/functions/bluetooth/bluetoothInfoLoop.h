@@ -14,14 +14,14 @@ void bluetoothInfoLoop() {
 		txLine = "tx:" + String(bleTxPower) + "dBm " + distBuf;
 	}
 
-	String mfrLine = bleManufacturer.length() > 0 ? "mfr:" + String(bleManufacturer) : "mfr: n/a";
+	String mfrLine = bleManufacturer.length() > 0 ? "mfr:" + String(bleManufacturer) : String("mfr: ") + L->TXT_NA;
 	String rawLine = bleManufacturerRaw.length() > 0 ? "dat:" + bleManufacturerRaw : "";
 	String svcLine = bleServiceUUIDs.length() > 0 ? "svc:" + String(bleServiceUUIDs) : "";
 
 	// build array dynamically
 	String lines[8];
 	int count = 0;
-	lines[count++] = bleName.length() > 0 ? bleName : "unnamed";
+	lines[count++] = bleName.length() > 0 ? bleName : L->TXT_UNNAMED;
 	lines[count++] = bleAddress;
 	lines[count++] = mfrLine;
 	lines[count++] = "rssi: " + String(bleRssi);

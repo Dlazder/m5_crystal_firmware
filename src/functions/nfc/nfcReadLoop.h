@@ -39,7 +39,7 @@ void nfcReadLoop() {
 	if (isSetup()) {
 		String lines[] = {
 			"PN532: disconnected",
-			"Connecting...",
+			L->TXT_CONNECTING,
 		};
 		centeredPrintRows(lines, 2, SMALL_TEXT);
 
@@ -49,7 +49,7 @@ void nfcReadLoop() {
 			if (versiondata) {
 				String lines[] = {
 					"PN532: connected",
-					"Scanning..."
+					L->TXT_SCANNING
 				};
 				centeredPrintRows(lines, 2, SMALL_TEXT);
 
@@ -79,11 +79,11 @@ void nfcReadLoop() {
 				nfcModuleWasConnected = true;
 				DEVICE.Power.setLed(0);
 				DEVICE.Speaker.tone(2000, 200);
-				
+
 				clearScreenWithSymbols();
 				String lines[] = {
 					"PN532: connected",
-					"Scanning..."
+					L->TXT_SCANNING
 				};
 				centeredPrintRows(lines, 2, SMALL_TEXT);
 				Serial.println("PN532: connected");
@@ -97,11 +97,11 @@ void nfcReadLoop() {
 
 		Serial.println("Scanning...");
 		success = nfc.readPassiveTargetID(PN532_MIFARE_ISO14443A, uid, &uidLength, 100);
-	
+
 		if (success) {
 			updateTimer();
 			String uidString = uidToString(uid, uidLength);
-	
+
 			Serial.printf("Tag found: %s\n", uidString.c_str());
 			centeredPrint(uidString.c_str(), SMALL_TEXT);
 			DEVICE.Speaker.tone(2000, 100);

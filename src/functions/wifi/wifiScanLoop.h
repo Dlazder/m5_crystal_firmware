@@ -10,13 +10,13 @@ void wifiScanLoop() {
 				delete[] wifiScanMenu;
 			}
 			cursor = 0;
-			centeredPrint("Scanning...", SMALL_TEXT);
+			centeredPrint(L->TXT_SCANNING, SMALL_TEXT);
 			Serial.println("Scanning...");
 			wifiCount = WiFi.scanNetworks();
 			wifiScanMenu = new MENU[wifiCount + 2];
-			wifiScanMenu[0].name = "back";
+			wifiScanMenu[0].name = L->MENU_BACK;
 			wifiScanMenu[0].command = PID::WIFI;
-			wifiScanMenu[1].name = "rescan";
+			wifiScanMenu[1].name = L->MENU_RESCAN;
 			wifiScanMenu[1].command = PID::WIFI_SCAN;
 			for (int i = 0; i < wifiCount; i++) {
 				wifiScanMenu[i + 2].name = WiFi.SSID(i).substring(0, 14);

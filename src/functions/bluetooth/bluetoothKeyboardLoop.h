@@ -10,7 +10,7 @@ void bluetoothKeyboardLoop() {
 		}
 		kbReset();
 		isBleConnected = false;
-		centeredPrint("Waiting connection", SMALL_TEXT);
+		centeredPrint(L->TXT_WAITING_CONNECTION, SMALL_TEXT);
 		updateTimer();
 	}
 
@@ -23,7 +23,7 @@ void bluetoothKeyboardLoop() {
 	} else {
 		if (isBleConnected) {
 			isBleConnected = false;
-			centeredPrint("Not connected", SMALL_TEXT);
+			centeredPrint(L->TXT_NOT_CONNECTED, SMALL_TEXT);
 			DEVICE.Speaker.tone(2000, 200);
 		}
 		checkExit();

@@ -1,14 +1,13 @@
 // pid PID::NFC
 
-MENU nfcMenu[] = {
-	{PID::MAIN_MENU, "back"},
-	{PID::NFC_READ, "read UID"},
-	{PID::NFC_WRITE, "write UID"},
-};
-
-int nfcMenuSize = sizeof(nfcMenu) / sizeof(MENU);
-
 void nfcMenuLoop() {
+	MENU nfcMenu[] = {
+		{PID::MAIN_MENU, L->MENU_BACK},
+		{PID::NFC_READ,  L->MENU_NFC_READ_UID},
+		{PID::NFC_WRITE, L->MENU_NFC_WRITE_UID},
+	};
+	int nfcMenuSize = sizeof(nfcMenu) / sizeof(MENU);
+
 	if (isSetup()) {
 		cursor = 0;
 		cursorOnTop();

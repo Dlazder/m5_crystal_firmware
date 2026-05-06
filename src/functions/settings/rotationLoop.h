@@ -1,14 +1,12 @@
 // pid ROTATION
 
 void rotationLoop() {
-
-  String lines[] = {
-    "press A",
-    "to change",
-    "rotation"
-  };
-
   if (isSetup()) {
+    String lines[] = {
+      L->TXT_PRESS_A,
+      "to change",
+      L->TXT_SETTINGS_ROTATION
+    };
     centeredPrintRows(lines, 3, SMALL_TEXT);
     updateTimer();
   }
@@ -19,6 +17,11 @@ void rotationLoop() {
     setData("rotation", rotation);
     DISP.setRotation(rotation);
     DISP.clear();
+    String lines[] = {
+      L->TXT_PRESS_A,
+      "to change",
+      L->TXT_SETTINGS_ROTATION
+    };
     centeredPrintRows(lines, 3, SMALL_TEXT);
   }
   checkExit(PID::SETTINGS);

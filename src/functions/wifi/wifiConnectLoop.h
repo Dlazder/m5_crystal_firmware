@@ -16,7 +16,7 @@ static void startWifiConnection(const char* password) {
 	else
 		WiFi.begin(ssid.c_str());
 	wifiConnectStart = millis();
-	centeredPrint("Connecting...", SMALL_TEXT);
+	centeredPrint(L->TXT_CONNECTING, SMALL_TEXT);
 }
 
 static String wifiPasswordKey() {
@@ -71,7 +71,7 @@ void wifiConnectLoop() {
 			if (wifiPassword.length() > 0)
 				setDataString(wifiPasswordKey().c_str(), wifiPassword.c_str());
 			String ip = WiFi.localIP().toString();
-			String lines[] = { "Connected!", ssid.substring(0, 16), ip };
+			String lines[] = { L->TXT_CONNECTED, ssid.substring(0, 16), ip };
 			centeredPrintRows(lines, 3, SMALL_TEXT);
 			DEVICE.Speaker.tone(2000, 100);
 			delay(50);
@@ -81,11 +81,11 @@ void wifiConnectLoop() {
 			WiFi.disconnect(true);
 
 			const char* reason;
-			if (status == WL_NO_SSID_AVAIL) reason = "SSID not found";
-			else if (timedOut) reason = "Timeout";
-			else reason = "Wrong password";
+			if (status == WL_NO_SSID_AVAIL) reason = L->TXT_WIFI_SSID_NOT_FOUND;
+			else if (timedOut)              reason = L->TXT_WIFI_TIMEOUT;
+			else                            reason = L->TXT_WIFI_WRONG_PASSWORD;
 
-			String lines[] = { "Failed", String(reason) };
+			String lines[] = { L->TXT_FAILED, String(reason) };
 			centeredPrintRows(lines, 2, SMALL_TEXT);
 			DEVICE.Speaker.tone(500, 300);
 		}
