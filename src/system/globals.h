@@ -10,6 +10,14 @@ WebServer webServer(80);
 #include <string>
 using std::to_string;
 
+// Localization
+#include "../system/locale/locale.h"
+
+const Locale* locales[] = { &LANG_EN, &LANG_ES };
+const char* localeNames[] = { "English", "Espanol" };
+int languageIndex = 0;
+int localesCount = sizeof(locales) / sizeof(locales[0]);
+
 // NFC PN532
 #include <Adafruit_PN532.h>
 #include <Wire.h>

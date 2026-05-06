@@ -46,7 +46,6 @@ void setup() {
 
   cursorOnTop();
   DISP.clear();
-  drawMenu(mainMenu, mainMenuSize);
 }
 
 void loop() {

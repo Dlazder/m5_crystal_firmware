@@ -1,15 +1,15 @@
 // pid PID::MAIN_MENU
 
-MENU mainMenu[] = {
-	{PID::WIFI, "Wi-Fi"},
-	{PID::BLUETOOTH, "Bluetooth"},
-	{PID::NFC, "NFC"},
-	{PID::SETTINGS, "settings"},
-	{PID::OTHER, "other"},
-};
-int mainMenuSize = sizeof(mainMenu) / sizeof(MENU);
-
 void mainMenuLoop() {
+	MENU mainMenu[] = {
+		{PID::WIFI,      L->MENU_WIFI},
+		{PID::BLUETOOTH, L->MENU_BT},
+		{PID::NFC,       L->MENU_NFC},
+		{PID::SETTINGS,  L->MENU_SETTINGS},
+		{PID::OTHER,     L->MENU_OTHER},
+	};
+	int mainMenuSize = sizeof(mainMenu) / sizeof(MENU);
+
 	if (isSetup()) {
 		cursorOnTop();
 		drawMenu(mainMenu, mainMenuSize);

@@ -17,6 +17,7 @@
     X(KB_GYRO,               108, toggleKbGyroLoop) \
     X(TOGGLE_STATUS_BAR,     109, toggleStatusBarLoop) \
     X(TOGGLE_STATUS_BAR_PID, 110, toggleStatusBarPidLoop) \
+    X(LANGUAGE,              111, languageLoop) \
     \
     /* Wi-Fi (200-299) */ \
     X(WIFI,              200, wifiMenuLoop) \

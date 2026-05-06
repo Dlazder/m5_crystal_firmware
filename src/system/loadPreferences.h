@@ -30,5 +30,9 @@ void loadPreferences() {
 	kbGyroEnabled = getData("kbGyro", kbGyroEnabled);
 	Serial.printf("KB gyro: %s\n", kbGyroEnabled ? "enabled" : "disabled");
 
+	languageIndex = getData("languageIndex", languageIndex);
+	setLocale(locales[languageIndex]);
+	Serial.printf("Language: %s\n", localeNames[languageIndex]);
+
 	Serial.println("Preferences loaded");
 }

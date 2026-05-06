@@ -10,6 +10,7 @@ MENU settingsMenu[] = {
 	{PID::STARTUP_SOUND, "startup sound"},
 	{PID::FONTS, "font"},
 	{PID::KB_GYRO, "keyboard gyro"},
+	{PID::LANGUAGE, "language"},
 };
 int settingsMenuSize = sizeof(settingsMenu) / sizeof(MENU);
 
