@@ -12,6 +12,7 @@ const Locale LANG_ID = {
     .MENU_WIFI_DEAUTH             = "deauth",
     .MENU_WIFI_CONNECT            = "hubungkan",
     .MENU_WIFI_AP                 = "Wi-Fi AP",
+    .MENU_WIFI_WEATHER            = "cuaca",
 
     // Bluetooth menu
     .MENU_BT                      = "Bluetooth",
@@ -50,11 +51,11 @@ const Locale LANG_ID = {
     .MENU_OTHER_FLASHLIGHT        = "senter",
     .MENU_OTHER_FLICKER           = "kedip",
     .MENU_OTHER_LEVEL_TOOL        = "waterpass",
-    .MENU_OTHER_BATTERY_INFO      = "baterai",
 
     // System menu
     .MENU_SYSTEM_INFO             = "info",
     .MENU_SYSTEM_SHUTDOWN         = "matikan",
+    .MENU_SYSTEM_BATTERY_INFO     = "baterai",
 
     // Common text
     .TXT_PRESS_A                  = "tekan A",

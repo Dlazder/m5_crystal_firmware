@@ -5,6 +5,7 @@ void systemMenuLoop() {
 		{PID::OTHER,       L->MENU_BACK},
 		{PID::SHUTDOWN,    L->MENU_SYSTEM_SHUTDOWN},
 		{PID::SYSTEM_INFO, L->MENU_SYSTEM_INFO},
+		{PID::BATTERY,     L->MENU_SYSTEM_BATTERY_INFO},
 	};
 	int systemMenuSize = sizeof(systemMenu) / sizeof(MENU);
 

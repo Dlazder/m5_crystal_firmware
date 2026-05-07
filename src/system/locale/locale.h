@@ -12,6 +12,7 @@ struct Locale {
 	const char* MENU_WIFI_DEAUTH;
 	const char* MENU_WIFI_CONNECT;
 	const char* MENU_WIFI_AP;
+	const char* MENU_WIFI_WEATHER;
 
 	// Bluetooth menu
 	const char* MENU_BT;
@@ -50,11 +51,12 @@ struct Locale {
 	const char* MENU_OTHER_FLASHLIGHT;
 	const char* MENU_OTHER_FLICKER;
 	const char* MENU_OTHER_LEVEL_TOOL;
-	const char* MENU_OTHER_BATTERY_INFO;
 
 	// System menu
 	const char* MENU_SYSTEM_INFO;
 	const char* MENU_SYSTEM_SHUTDOWN;
+	const char* MENU_SYSTEM_BATTERY_INFO;
+
 
 	// Common text
 	const char* TXT_PRESS_A;

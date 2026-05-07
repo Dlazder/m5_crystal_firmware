@@ -57,7 +57,8 @@
     X(LEVEL_TOOL,         807, levelToolLoop) \
     X(SYSTEM,             808, systemMenuLoop) \
     X(SYSTEM_INFO,        809, systemInfoLoop) \
-    X(SHUTDOWN,           810, shutdownLoop)
+    X(SHUTDOWN,           810, shutdownLoop) \
+    X(WEATHER,            811, weatherLoop) 
 
 namespace PID {
     #define X(name, id, fn) const int name = id;

@@ -34,6 +34,7 @@ void setup() {
     DEVICE.Speaker.tone(2000, 200);
     delay(200);
     DEVICE.Speaker.tone(2500, 200);
+    delay(200);
   }
 
   // Warm up speaker DMA buffers before WiFi takes memory.

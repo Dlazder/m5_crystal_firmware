@@ -4,6 +4,7 @@ void wifiMenuLoop() {
 	MENU wifiMenu[] = {
 		{PID::MAIN_MENU, L->MENU_BACK},
 		{PID::WIFI_SCAN, L->MENU_SCAN},
+		{PID::WEATHER,   L->MENU_WIFI_WEATHER},
 	};
 	int wifiMenuSize = sizeof(wifiMenu) / sizeof(MENU);
 

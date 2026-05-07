@@ -12,6 +12,7 @@ const Locale LANG_UK = {
 	.MENU_WIFI_DEAUTH            = "деаут",
 	.MENU_WIFI_CONNECT           = "підключити",
 	.MENU_WIFI_AP                = "Wi-Fi AP",
+	.MENU_WIFI_WEATHER           = "погода",
 
 	// Bluetooth menu
 	.MENU_BT                     = "Bluetooth",
@@ -50,11 +51,11 @@ const Locale LANG_UK = {
 	.MENU_OTHER_FLASHLIGHT       = "ліхтарик",
 	.MENU_OTHER_FLICKER          = "мигання",
 	.MENU_OTHER_LEVEL_TOOL       = "рівень",
-	.MENU_OTHER_BATTERY_INFO     = "батарея",
-
+	
 	// System menu
 	.MENU_SYSTEM_INFO            = "інфо",
 	.MENU_SYSTEM_SHUTDOWN        = "вимкнути",
+	.MENU_SYSTEM_BATTERY_INFO     = "батарея",
 
 	// Common text
 	.TXT_PRESS_A                 = "натисніть A",

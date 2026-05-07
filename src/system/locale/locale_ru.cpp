@@ -12,6 +12,7 @@ const Locale LANG_RU = {
 	.MENU_WIFI_DEAUTH            = "деаутентификация",
 	.MENU_WIFI_CONNECT           = "подключить",
 	.MENU_WIFI_AP                = "Wi-Fi AP",
+	.MENU_WIFI_WEATHER           = "погода",
 
 	// Bluetooth menu
 	.MENU_BT                     = "Bluetooth",
@@ -50,11 +51,11 @@ const Locale LANG_RU = {
 	.MENU_OTHER_FLASHLIGHT       = "фонарик",
 	.MENU_OTHER_FLICKER          = "мигание",
 	.MENU_OTHER_LEVEL_TOOL       = "уровень",
-	.MENU_OTHER_BATTERY_INFO     = "батарея",
 
 	// System menu
 	.MENU_SYSTEM_INFO            = "инфо",
 	.MENU_SYSTEM_SHUTDOWN        = "выключить",
+	.MENU_SYSTEM_BATTERY_INFO    = "батарея",
 
 	// Common text
 	.TXT_PRESS_A                 = "нажмите A",

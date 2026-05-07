@@ -30,6 +30,7 @@
 #include "../functions/wifi/wifiInfoLoop.h"
 #include "../functions/wifi/wifiMenuLoop.h"
 #include "../functions/wifi/wifiConnectLoop.h"
+#include "../functions/wifi/weatherLoop.h"
 
 
 // Bluetooth functions
@@ -56,7 +57,6 @@
 #include "../functions/other/otherMenuLoop.h"
 #include "../functions/other/soundLevelLoop.h"
 #include "../functions/other/levelToolLoop.h"
-#include "../functions/other/batteryLoop.h"
 #include "../functions/other/clockLoop.h"
 // Flashlight
 #include "../functions/other/flashlight/flashLightMenuLoop.h"
@@ -66,3 +66,4 @@
 #include "../functions/other/system/systemInfoLoop.h"
 #include "../functions/other/system/systemMenuLoop.h"
 #include "../functions/other/system/shutdownLoop.h"
+#include "../functions/other/system/batteryLoop.h"

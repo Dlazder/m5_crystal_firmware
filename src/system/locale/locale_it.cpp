@@ -12,6 +12,7 @@ const Locale LANG_IT = {
     .MENU_WIFI_DEAUTH             = "deauth",
     .MENU_WIFI_CONNECT            = "connetti",
     .MENU_WIFI_AP                 = "Wi-Fi AP",
+    .MENU_WIFI_WEATHER            = "meteo",
 
     // Bluetooth menu
     .MENU_BT                      = "Bluetooth",
@@ -50,11 +51,11 @@ const Locale LANG_IT = {
     .MENU_OTHER_FLASHLIGHT        = "torcia",
     .MENU_OTHER_FLICKER           = "sfarfallio",
     .MENU_OTHER_LEVEL_TOOL        = "livella",
-    .MENU_OTHER_BATTERY_INFO      = "batteria",
 
     // System menu
     .MENU_SYSTEM_INFO             = "info",
     .MENU_SYSTEM_SHUTDOWN         = "spegni",
+    .MENU_SYSTEM_BATTERY_INFO     = "batteria",
 
     // Common text
     .TXT_PRESS_A                  = "premi A",
