@@ -40,10 +40,11 @@ void kbReset() {
 	kbBlinkCounter = 0;
 	kbCursorVisible = true;
 }
-
 void drawKeyboardUi() {
 	canvas.clear();
 	canvas.setTextSize(MEDIUM_TEXT);
+	// using the default font for correct display
+	canvas.setFont(&fonts::Font0);
 
 	int fontH = canvas.fontHeight();
 	int specH = fontH + 6;
@@ -100,7 +101,7 @@ void drawKeyboardUi() {
 			canvas.print(ch);
 		}
 	}
-
+	canvas.setFont(systemFonts[currentFontIndex]);
 	canvas.pushSprite(0, getStatusBarHeight());
 }
 

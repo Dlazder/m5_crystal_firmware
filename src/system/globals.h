@@ -9,6 +9,8 @@ DNSServer dnsServer;
 WebServer webServer(80);
 #include <string>
 using std::to_string;
+#include "version.h"
+#include "conf.h"
 
 // Localization
 #include "../system/locale/locale.h"
@@ -24,8 +26,6 @@ int localesCount = sizeof(locales) / sizeof(locales[0]);
 Adafruit_PN532 nfc(G32, G33, &Wire);
 
 
-#include "conf.h"
-#include "version.h"
 
 // For storage utils
 #include <Preferences.h>
@@ -62,23 +62,18 @@ int HUGE_TEXT = 4;
 
 // Fonts
 #include <U8g2lib.h>
-int currentFontIndex = 0;
 // static lgfx::U8g2font u8g2Font5x8(u8g2_font_5x8_t_cyrillic);
 static lgfx::U8g2font u8g2Font6x12(u8g2_font_6x12_t_cyrillic);
-static lgfx::U8g2font u8g2Font6x13(u8g2_font_6x13_t_cyrillic);
 
 const lgfx::IFont* systemFonts[] = {
-  &fonts::Font0,          // Basic 8x8 ASCII
+  // &fonts::Font0,          // Basic 8x8 ASCII
   // &u8g2Font5x8,           // 5x8 Cyrillic
   &u8g2Font6x12,          // 6x12 Cyrillic
-  &u8g2Font6x13,          // 6x13 Cyrillic
 };
 const char* fontNames[] = {
-  "Default",
+  // "Default",
   // "5x8",
   "6x12",
-  "6x13",
-  "Unifont 16px",
 };
 
 int brightnessMax = 255;

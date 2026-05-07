@@ -9,7 +9,7 @@ void settingsMenuLoop() {
 		{PID::COLORS,              L->MENU_SETTINGS_COLORS},
 		{PID::SETTINGS_STATUS_BAR, L->MENU_SETTINGS_STATUS_BAR},
 		{PID::STARTUP_SOUND,       L->MENU_SETTINGS_STARTUP_SOUND},
-		{PID::FONTS,               L->MENU_SETTINGS_FONT},
+		// {PID::FONTS,               L->MENU_SETTINGS_FONT},
 		{PID::KB_GYRO,             L->MENU_SETTINGS_KB_GYRO},
 		{PID::LANGUAGE,            L->MENU_SETTINGS_LANGUAGE},
 	};
