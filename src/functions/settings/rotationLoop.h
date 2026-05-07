@@ -1,15 +1,13 @@
-// pid 6
+// pid ROTATION
 
 void rotationLoop() {
-
-  String lines[] = {
-    "press A",
-    "to change",
-    "rotation"
-  };
-
   if (isSetup()) {
-    centeredPrintRows(lines, 3, SMALL_TEXT);
+    String lines[] = {
+      L->TXT_PRESS_A,
+      "to change",
+      L->TXT_SETTINGS_ROTATION
+    };
+    centeredPrintRows(lines, 3, MEDIUM_TEXT);
     updateTimer();
   }
   if (isBtnAWasPressed() && checkTimer(100)) {
@@ -19,11 +17,16 @@ void rotationLoop() {
     setData("rotation", rotation);
     DISP.setRotation(rotation);
     DISP.clear();
-    centeredPrintRows(lines, 3, SMALL_TEXT);
+    String lines[] = {
+      L->TXT_PRESS_A,
+      "to change",
+      L->TXT_SETTINGS_ROTATION
+    };
+    centeredPrintRows(lines, 3, MEDIUM_TEXT);
   }
-  checkExit(3);
+  checkExit(PID::SETTINGS);
   if (isWebDataRequested()) {
-    String res = generateFunctionElement("press A<br>to change<br>rotation", SMALL_TEXT, "center");
+    String res = generateFunctionElement("press A<br>to change<br>rotation", MEDIUM_TEXT, "center");
     webData = generateWebData("function", res);
   }
 }

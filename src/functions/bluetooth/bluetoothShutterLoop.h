@@ -1,4 +1,4 @@
-// pid 15
+// pid PID::BT_SHUTTER
 
 void bluetoothShutterLoop() {
 	static bool isBleConnected = false;
@@ -8,20 +8,20 @@ void bluetoothShutterLoop() {
 			bleKeyboard.begin();
 			bleCompositeBegan = true;
 		}
-		centeredPrint("Waiting connection", SMALL_TEXT);
+		centeredPrint(L->TXT_WAITING_CONNECTION, MEDIUM_TEXT);
 		updateTimer();
 	}
 
 	if (bleKeyboard.isConnected()) {
 		if (!isBleConnected) {
-			centeredPrint("Connected", SMALL_TEXT);
+			centeredPrint(L->TXT_CONNECTED, MEDIUM_TEXT);
 			DEVICE.Speaker.tone(2000, 200);
 			isBleConnected = true;
 		}
 	} else {
 		if (isBleConnected) {
 			isBleConnected = false;
-			centeredPrint("Not connected", SMALL_TEXT);
+			centeredPrint(L->TXT_NOT_CONNECTED, MEDIUM_TEXT);
 			DEVICE.Speaker.tone(2000, 200);
 		}
 	}
@@ -32,6 +32,6 @@ void bluetoothShutterLoop() {
 
 	if (checkExit()) {
 		isBleConnected = false;
-		centeredPrint("Disconnecting...", SMALL_TEXT);
+		centeredPrint(L->TXT_DISCONNECTING, MEDIUM_TEXT);
 	}
 }

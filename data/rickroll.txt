@@ -1,0 +1,5 @@
+DELAY 500
+COMBO GUI r
+DELAY 600
+STRING https://www.youtube.com/watch?v=dQw4w9WgXcQ
+KEY ENTER

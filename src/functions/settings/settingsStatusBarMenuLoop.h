@@ -1,16 +1,15 @@
-// pid 10
-
-MENU settingsStatusBarMenu[] = {
-	{3, "back"},
-	{16, "status bar"},
-	{17, "PID"},
-};
-
-int settingsStatusBarMenuSize = sizeof(settingsStatusBarMenu) / sizeof(MENU);
+// pid PID::SETTINGS_STATUS_BAR
 
 void settingsStatusBarMenuLoop() {
+	MENU settingsStatusBarMenu[] = {
+		{PID::SETTINGS,              L->MENU_BACK},
+		{PID::TOGGLE_STATUS_BAR,     L->MENU_SETTINGS_STATUS_BAR},
+		{PID::TOGGLE_STATUS_BAR_PID, L->MENU_SETTINGS_STATUS_BAR_PID},
+	};
+	int settingsStatusBarMenuSize = sizeof(settingsStatusBarMenu) / sizeof(MENU);
+
 	if (isSetup()) {
-		if (previousProcess == 3) cursor = 0;
+		if (previousProcess == PID::SETTINGS) cursor = 0;
 		cursorOnTop();
 		drawMenu(settingsStatusBarMenu, settingsStatusBarMenuSize);
 	}

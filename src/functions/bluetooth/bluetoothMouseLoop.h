@@ -1,4 +1,4 @@
-// pid 31
+// pid PID::BT_MOUSE
 
 // Sensitivity settings
 #define GYRO_SENSITIVITY 1.5f
@@ -38,37 +38,37 @@ void bluetoothMouseLoop() {
 			bleKeyboard.begin();
 			bleCompositeBegan = true;
 		}
-		centeredPrint("Waiting connection", SMALL_TEXT);
+		centeredPrint(L->TXT_WAITING_CONNECTION, MEDIUM_TEXT);
 		updateTimer();
 	}
 
 	if (bleKeyboard.isConnected()) {
 		if (!isBleConnected) {
-			centeredPrint("Connected", SMALL_TEXT);
+			centeredPrint(L->TXT_CONNECTED, MEDIUM_TEXT);
 			DEVICE.Speaker.tone(2000, 200);
 			isBleConnected = true;
 		}
-		
+
 		DEVICE.Imu.getAccelData(&accX, &accY, &accZ);
-		
+
 		float rawMoveX = accY;
 		float rawMoveY = accX;
-		
+
 		if (abs(rawMoveX) < DEADZONE) rawMoveX = 0;
 		if (abs(rawMoveY) < DEADZONE) rawMoveY = 0;
-		
+
 		smoothedX = (smoothedX * (1.0f - SMOOTHING_FACTOR)) + (rawMoveX * SMOOTHING_FACTOR);
 		smoothedY = (smoothedY * (1.0f - SMOOTHING_FACTOR)) + (rawMoveY * SMOOTHING_FACTOR);
-		
+
 		float absX = abs(smoothedX);
 		float absY = abs(smoothedY);
-		
+
 		int speedX = getSpeed(smoothedX);
 		int speedY = getSpeed(smoothedY);
-		
+
 		int deltaX = (smoothedX > 0) ? speedX : -speedX;
 		int deltaY = (smoothedY > 0) ? speedY : -speedY;
-		
+
 		if (deltaX != 0 || deltaY != 0) {
 			bleMouse.move(deltaX, deltaY);
 		}
@@ -76,17 +76,12 @@ void bluetoothMouseLoop() {
 	} else {
 		if (isBleConnected) {
 			isBleConnected = false;
-			centeredPrint("Not connected", SMALL_TEXT);
+			centeredPrint(L->TXT_NOT_CONNECTED, MEDIUM_TEXT);
 			DEVICE.Speaker.tone(2000, 200);
 			smoothedX = 0;
 			smoothedY = 0;
 		}
 	}
-		
-	// if (isBtnAWasPressed() && checkTimer(50, true)) {
-	// 	Serial.println("Button A pressed");
-	// 	bleMouse.click();
-	// }
 
 	if (isBtnPWRWasPressed() && checkTimer(100, true)) {
 		bleMouse.click(MOUSE_RIGHT);
@@ -102,6 +97,6 @@ void bluetoothMouseLoop() {
 		isBleConnected = false;
 		smoothedX = 0;
 		smoothedY = 0;
-		centeredPrint("Disconnecting...", SMALL_TEXT);
+		centeredPrint(L->TXT_DISCONNECTING, MEDIUM_TEXT);
 	}
 }

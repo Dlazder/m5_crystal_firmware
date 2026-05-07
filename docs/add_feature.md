@@ -21,7 +21,7 @@ After that, create a function for the process, let's create a new file for this 
 ```cpp
 void helloWorldLoop() {
 	if (isSetup()) {
-		centeredPrint("Hello world!", SMALL_TEXT);
+		centeredPrint("Hello world!", MEDIUM_TEXT);
 	}
 	checkExit(0);
 }

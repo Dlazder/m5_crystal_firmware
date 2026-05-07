@@ -1,0 +1,68 @@
+#pragma once
+
+// Add new processes here: X(NAME, ID, loopFunction)
+#define PROCESS_LIST \
+    X(MAIN_MENU,   0,   mainMenuLoop) \
+    X(FILE_PICKER, 1,   lfsFilePickerLoop) \
+    \
+    /* Settings (100-199) */ \
+    X(SETTINGS,              100, settingsMenuLoop) \
+    X(SETTINGS_CLOCK,        101, settingsClockLoop) \
+    X(SETTINGS_STATUS_BAR,   102, settingsStatusBarMenuLoop) \
+    X(BRIGHTNESS,            103, brightnessLoop) \
+    X(ROTATION,              104, rotationLoop) \
+    X(COLORS,                105, colorsLoop) \
+    X(FONTS,                 106, fontsLoop) \
+    X(STARTUP_SOUND,         107, toggleStartupSound) \
+    X(KB_GYRO,               108, toggleKbGyroLoop) \
+    X(TOGGLE_STATUS_BAR,     109, toggleStatusBarLoop) \
+    X(TOGGLE_STATUS_BAR_PID, 110, toggleStatusBarPidLoop) \
+    X(LANGUAGE,              111, languageLoop) \
+    \
+    /* Wi-Fi (200-299) */ \
+    X(WIFI,              200, wifiMenuLoop) \
+    X(WIFI_SCAN,         201, wifiScanLoop) \
+    X(WIFI_SELECTED,     202, selectedWifiMenuLoop) \
+    X(WIFI_INFO,         203, wifiInfoLoop) \
+    X(WIFI_DEAUTH,       204, wifiDeauthLoop) \
+    X(WIFI_ACCESS_POINT, 205, wifiApLoop) \
+    X(WIFI_CONNECT,      206, wifiConnectLoop) \
+    X(WIFI_DISCONNECT,   207, wifiDisconnectLoop) \
+    \
+    /* Bluetooth (300-399) */ \
+    X(BLUETOOTH,    300, bluetoothMenuLoop) \
+    X(BT_SCAN,      301, bluetoothScanLoop) \
+    X(BT_SELECTED,  302, selectedBluetoothMenuLoop) \
+    X(BT_INFO,      303, bluetoothInfoLoop) \
+    X(BT_FINDER,    304, bluetoothFinderLoop) \
+    X(BT_KEYBOARD,  305, bluetoothKeyboardLoop) \
+    X(BT_MOUSE,     306, bluetoothMouseLoop) \
+    X(BT_PRESENTER, 307, bluetoothPresenterLoop) \
+    X(BT_SHUTTER,   308, bluetoothShutterLoop) \
+    X(BAD_BLE,      309, badBleLoop) \
+    X(BAD_BLE_MENU, 310, badBleMenuLoop) \
+    \
+    /* NFC (400-499) */ \
+    X(NFC,       400, nfcMenuLoop) \
+    X(NFC_READ,  401, nfcReadLoop) \
+    X(NFC_WRITE, 402, nfcWriteLoop) \
+    \
+    /* Other (800-899) */ \
+    X(OTHER,              800, otherMenuLoop) \
+    X(CLOCK,              801, clockLoop) \
+    X(BATTERY,            802, batteryLoop) \
+    X(SOUND_LEVEL,        803, soundLevelLoop) \
+    X(FLASHLIGHT_MENU,    805, flashLightMenuLoop) \
+    X(FLASHLIGHT,         804, flashLightLoop) \
+    X(FLASHLIGHT_FLICKER, 806, flickerLoop) \
+    X(LEVEL_TOOL,         807, levelToolLoop) \
+    X(SYSTEM,             808, systemMenuLoop) \
+    X(SYSTEM_INFO,        809, systemInfoLoop) \
+    X(SHUTDOWN,           810, shutdownLoop) \
+    X(WEATHER,            811, weatherLoop) 
+
+namespace PID {
+    #define X(name, id, fn) const int name = id;
+    PROCESS_LIST
+    #undef X
+}

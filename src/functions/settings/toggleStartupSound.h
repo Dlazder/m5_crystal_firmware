@@ -3,23 +3,22 @@
 void toggleStartupSound() {
 	if (isSetup()) {
 		String lines[] = {
-			"Sound: " + String(getData("startupSound", startupSound) ? "enabled": "disabled"),
-			"press A"
+			String(L->TXT_SETTINGS_SOUND) + String(getData("startupSound", startupSound) ? L->TXT_ENABLED : L->TXT_DISABLED),
+			L->TXT_PRESS_A
 		};
-		centeredPrintRows(lines, 2, SMALL_TEXT);
+		centeredPrintRows(lines, 2, MEDIUM_TEXT);
 		updateTimer();
 	}
 
 	if (isBtnAWasPressed() && checkTimer(100)) {
-		DISP.clear();
 		startupSound = !getData("startupSound", startupSound);
 		setData("startupSound", startupSound);
 
 		String lines[] = {
-			"Sound: " + String(getData("startupSound", startupSound) ? "enabled": "disabled"),
-			"press A"
+			String(L->TXT_SETTINGS_SOUND) + String(getData("startupSound", startupSound) ? L->TXT_ENABLED : L->TXT_DISABLED),
+			L->TXT_PRESS_A
 		};
-		centeredPrintRows(lines, 2, SMALL_TEXT);
+		centeredPrintRows(lines, 2, MEDIUM_TEXT);
 	}
 
 	checkExit();

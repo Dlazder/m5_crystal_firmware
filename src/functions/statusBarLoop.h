@@ -7,7 +7,7 @@ void statusBarLoop() {
 	statusBarCanvas.clear();
 	statusBarCanvas.setTextColor(FGCOLOR, BGCOLOR);
 	statusBarCanvas.setCursor(5, 4);
-	statusBarCanvas.setTextSize(TINY_TEXT);
+	statusBarCanvas.setTextSize(SMALL_TEXT);
 	
 	// PID
 	if (getData("statusBarPid", statusBarPid)) {
@@ -26,7 +26,17 @@ void statusBarLoop() {
 	}
 	char batteryText[10];
 	sprintf(batteryText, "%d%%", battery);
-	int batteryTextWidth = DISP.textWidth(batteryText);
+	int batteryTextWidth = statusBarCanvas.textWidth(batteryText);
+
+	// WiFi indicator (14px tall, matching BT icon height)
+	if (WiFi.isConnected()) {
+		const int wcx = DISP.width() - batteryTextWidth - 20;
+		const int wcy = 14;
+		statusBarCanvas.fillCircle(wcx, wcy, 1, FGCOLOR);
+		statusBarCanvas.drawArc(wcx, wcy, 4,  3,  210, 330, FGCOLOR);
+		statusBarCanvas.drawArc(wcx, wcy, 7,  6,  210, 330, FGCOLOR);
+		statusBarCanvas.drawArc(wcx, wcy, 10, 9,  210, 330, FGCOLOR);
+	}
 
 	// Bluetooth indicator
 	if (bleCompositeBegan && bleKeyboard.isConnected()) {
@@ -35,7 +45,8 @@ void statusBarLoop() {
 		const float scale = h / svgH;
 		const int by = 2;
 		int bleIndicatorWidth = (int)(50.695f * scale) + 3;
-		int bx = DISP.width() - batteryTextWidth - bleIndicatorWidth - 10;
+		int wifiOffset = WiFi.isConnected() ? 26 : 0;
+		int bx = DISP.width() - batteryTextWidth - bleIndicatorWidth - 10 - wifiOffset;
 
 		auto px = [&](float x) { return bx + (int)(x * scale); };
 		auto py = [&](float y) { return by + (int)(y * scale); };
@@ -49,7 +60,7 @@ void statusBarLoop() {
 		statusBarCanvas.drawLine(px(28.649f), py(50.971f), px(12.112f), py(58.688f), FGCOLOR);
 	}
 
-	statusBarCanvas.setCursor(DISP.width() - batteryTextWidth, 4);
+	statusBarCanvas.setCursor(DISP.width() - batteryTextWidth - 5, 4);
 	statusBarCanvas.printf("%d%%", battery);
 
 	statusBarCanvas.drawLine(0, 19, DISP.width(), 19, FGCOLOR);

@@ -13,7 +13,7 @@ void shutdownLoop() {
 		};
 		int farewellCount = sizeof(farewells) / sizeof(farewells[0]);
 		int randomIndex = random(0, farewellCount);
-		centeredPrint(farewells[randomIndex], MEDIUM_TEXT);
+		centeredPrint(farewells[randomIndex], BIG_TEXT);
 		updateTimer();
 	}
 

@@ -46,17 +46,17 @@ void wifiApLoop() {
   if (isSetup()) {
     if (!isWebInterfaceEnabled) {
       WiFi.mode(WIFI_AP);
-      WiFi.softAP(wifiSsid, wifiPassword);
+      WiFi.softAP(wifiSsid, apWifiPassword);
       WiFi.softAPConfig(AP_GATEWAY, AP_GATEWAY, IPAddress(255, 255, 255, 0));
       webServerSetup();
       isWebInterfaceEnabled = true;
     }
-    DISP.setTextSize(SMALL_TEXT);
-    centeredPrint("WiFi Ap enabled", SMALL_TEXT);
+    DISP.setTextSize(MEDIUM_TEXT);
+    centeredPrint(L->TXT_WIFI_AP_ENABLED, MEDIUM_TEXT);
   }
   checkExit();
   if (isWebDataRequested()) {
-    String res = generateFunctionElement("Wi-Fi AP enabled", SMALL_TEXT, String("center"));
+    String res = generateFunctionElement(L->TXT_WIFI_AP_ENABLED, MEDIUM_TEXT, String("center"));
     webData = generateWebData("function", res);
   }
 }

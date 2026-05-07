@@ -3,10 +3,10 @@
 void toggleStatusBarLoop() {
 	if (isSetup()) {
 		String lines[] = {
-			"status bar: " + String(getData("statusBar", statusBar) ? "enabled" : "disabled"),
-			"press A"
+			String(L->TXT_SETTINGS_STATUS_BAR) + String(getData("statusBar", statusBar) ? L->TXT_ENABLED : L->TXT_DISABLED),
+			L->TXT_PRESS_A
 		};
-		centeredPrintRows(lines, 2, SMALL_TEXT);
+		centeredPrintRows(lines, 2, MEDIUM_TEXT);
 		updateTimer();
 	}
 
@@ -15,12 +15,11 @@ void toggleStatusBarLoop() {
 		setData("statusBar", statusBar);
 		DISP.clear();
 
-
 		String lines[] = {
-			"status bar: " + String(statusBar ? "enabled" : "disabled"),
-			"press A"
+			String(L->TXT_SETTINGS_STATUS_BAR) + String(statusBar ? L->TXT_ENABLED : L->TXT_DISABLED),
+			L->TXT_PRESS_A
 		};
-		centeredPrintRows(lines, 2, SMALL_TEXT);
+		centeredPrintRows(lines, 2, MEDIUM_TEXT);
 	}
 
 	checkExit();

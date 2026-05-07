@@ -1,4 +1,4 @@
-// pid 40
+// pid PID::BT_FINDER
 
 static bool bleScanDone = false;
 static int bleFoundRssi = -100;
@@ -23,12 +23,12 @@ void drawFinderScreen(int currentRssi) {
 	else color = TFT_RED;
 
 	canvas.clear();
-	canvas.setTextSize(SMALL_TEXT);
+	canvas.setTextSize(MEDIUM_TEXT);
 	canvas.setTextColor(FGCOLOR);
 	canvas.drawCenterString(bleName.substring(0, 14), DISP.width() / 2, getStatusBarHeight() + 4);
 	canvas.drawCenterString(bleAddress, DISP.width() / 2, getStatusBarHeight() + 4 + canvas.fontHeight() + 2);
 
-	canvas.setTextSize(BIG_TEXT);
+	canvas.setTextSize(HUGE_TEXT);
 	canvas.setTextColor(color);
 	String rssiStr = (currentRssi == -100) ? "n/a" : String(currentRssi);
 	canvas.drawCenterString(rssiStr, DISP.width() / 2, canvas.getCursorY());

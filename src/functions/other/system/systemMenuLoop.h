@@ -1,14 +1,14 @@
-// pid 30
-
-MENU systemMenu[] = {
-	{29, "back"},
-	{33, "shutdown"},
-	{34, "info"}
-};
-int systemMenuSize = sizeof(systemMenu) / sizeof(MENU);
-
+// pid PID::SYSTEM
 
 void systemMenuLoop() {
+	MENU systemMenu[] = {
+		{PID::OTHER,       L->MENU_BACK},
+		{PID::SHUTDOWN,    L->MENU_SYSTEM_SHUTDOWN},
+		{PID::SYSTEM_INFO, L->MENU_SYSTEM_INFO},
+		{PID::BATTERY,     L->MENU_SYSTEM_BATTERY_INFO},
+	};
+	int systemMenuSize = sizeof(systemMenu) / sizeof(MENU);
+
 	if (isSetup()) {
 		cursor = 0;
 		cursorOnTop();

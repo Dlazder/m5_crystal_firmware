@@ -13,12 +13,11 @@ bool isPN532Connected() {
 }
 
 void displayNotConnectedError() {
-	DISP.clear();
 	nfcModuleWasConnected = false;
 	String lines[] = {
 		"PN532: disconnected"
 	};
-	centeredPrintRows(lines, 1, SMALL_TEXT);
+	centeredPrintRows(lines, 1, MEDIUM_TEXT);
 	Serial.println("PN532: disconnected");
 	DEVICE.Power.setLed(1);
 	DEVICE.Speaker.tone(1000, 200);
@@ -39,9 +38,9 @@ void nfcReadLoop() {
 	if (isSetup()) {
 		String lines[] = {
 			"PN532: disconnected",
-			"Connecting...",
+			L->TXT_CONNECTING,
 		};
-		centeredPrintRows(lines, 2, SMALL_TEXT);
+		centeredPrintRows(lines, 2, MEDIUM_TEXT);
 
 		if (isPN532Connected()) {
 			nfc.begin();
@@ -49,9 +48,9 @@ void nfcReadLoop() {
 			if (versiondata) {
 				String lines[] = {
 					"PN532: connected",
-					"Scanning..."
+					L->TXT_SCANNING
 				};
-				centeredPrintRows(lines, 2, SMALL_TEXT);
+				centeredPrintRows(lines, 2, MEDIUM_TEXT);
 
 				Serial.println("PN532: connected");
 				Serial.printf("PN532 firmware version: %lu\n", versiondata);
@@ -79,13 +78,13 @@ void nfcReadLoop() {
 				nfcModuleWasConnected = true;
 				DEVICE.Power.setLed(0);
 				DEVICE.Speaker.tone(2000, 200);
-				
+
 				clearScreenWithSymbols();
 				String lines[] = {
 					"PN532: connected",
-					"Scanning..."
+					L->TXT_SCANNING
 				};
-				centeredPrintRows(lines, 2, SMALL_TEXT);
+				centeredPrintRows(lines, 2, MEDIUM_TEXT);
 				Serial.println("PN532: connected");
 			}
 		}
@@ -97,13 +96,13 @@ void nfcReadLoop() {
 
 		Serial.println("Scanning...");
 		success = nfc.readPassiveTargetID(PN532_MIFARE_ISO14443A, uid, &uidLength, 100);
-	
+
 		if (success) {
 			updateTimer();
 			String uidString = uidToString(uid, uidLength);
-	
+
 			Serial.printf("Tag found: %s\n", uidString.c_str());
-			centeredPrint(uidString.c_str(), SMALL_TEXT);
+			centeredPrint(uidString.c_str(), MEDIUM_TEXT);
 			DEVICE.Speaker.tone(2000, 100);
 
 			// Saving UID for writing

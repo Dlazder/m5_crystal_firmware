@@ -2,8 +2,8 @@
 
 void colorsLoop() {
 	if (isSetup()) {
-		String lines[] = {"color: " + String(colorsEntry[colorIndex]), "press A"};
-		centeredPrintRows(lines, 2, SMALL_TEXT);
+		String lines[] = {String(L->TXT_SETTINGS_COLOR) + String(colorsEntry[colorIndex]), L->TXT_PRESS_A};
+		centeredPrintRows(lines, 2, MEDIUM_TEXT);
 		updateTimer();
 	}
 	if (isBtnAWasPressed() && checkTimer(100)) {
@@ -12,12 +12,11 @@ void colorsLoop() {
 			colorIndex = 0;
 		}
 		Serial.printf("current colorIndex: %d\n", colorIndex);
-		
+
 		FGCOLOR = colors[colorIndex];
 		setData("colorIndex", colorIndex);
-		// setData("color", FGCOLOR);
-		String lines[] = {"color: " + String(colorsEntry[colorIndex]), "press A"};
-		centeredPrintRows(lines, 2, SMALL_TEXT);
+		String lines[] = {String(L->TXT_SETTINGS_COLOR) + String(colorsEntry[colorIndex]), L->TXT_PRESS_A};
+		centeredPrintRows(lines, 2, MEDIUM_TEXT);
 	}
 	checkExit();
 }

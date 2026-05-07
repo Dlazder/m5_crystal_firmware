@@ -1,17 +1,16 @@
-// pid 29
-
-MENU otherMenu[] = {
-	{0, "back"},
-	{30, "system"},
-	{1, "clock"},
-	{27, "sound level"},
-	{24, "flashlight"},
-	{20, "level tool"},
-	{2, "battery info"},
-};
-int otherMenuSize = sizeof(otherMenu) / sizeof(MENU);
+// pid PID::OTHER
 
 void otherMenuLoop() {
+	MENU otherMenu[] = {
+		{PID::MAIN_MENU,       L->MENU_BACK},
+		{PID::CLOCK,           L->MENU_OTHER_CLOCK},
+		{PID::SOUND_LEVEL,     L->MENU_OTHER_SOUND_LEVEL},
+		{PID::LEVEL_TOOL,      L->MENU_OTHER_LEVEL_TOOL},
+		{PID::FLASHLIGHT_MENU, L->MENU_OTHER_FLASHLIGHT},
+		{PID::SYSTEM,          L->MENU_OTHER_SYSTEM},
+	};
+	int otherMenuSize = sizeof(otherMenu) / sizeof(MENU);
+
 	if (isSetup()) {
 		cursor = 0;
 		cursorOnTop();

@@ -19,6 +19,7 @@ void loadPreferences() {
 	currentFontIndex = getData("fontIndex", currentFontIndex);
 	Serial.printf("Font: %s\n", fontNames[currentFontIndex]);
   DISP.setFont(systemFonts[currentFontIndex]);
+	canvas.setFont(systemFonts[currentFontIndex]);
 
 	colorIndex = getData("colorIndex", colorIndex);
   Serial.printf("Color: %s\n", colorsEntry[colorIndex]);
@@ -29,6 +30,10 @@ void loadPreferences() {
 
 	kbGyroEnabled = getData("kbGyro", kbGyroEnabled);
 	Serial.printf("KB gyro: %s\n", kbGyroEnabled ? "enabled" : "disabled");
+
+	languageIndex = getData("languageIndex", languageIndex);
+	setLocale(locales[languageIndex]);
+	Serial.printf("Language: %s\n", localeNames[languageIndex]);
 
 	Serial.println("Preferences loaded");
 }

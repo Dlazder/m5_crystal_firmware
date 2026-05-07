@@ -10,7 +10,7 @@ void wifiInfoLoop() {
 	};
 
 	if (isSetup()) {
-		centeredPrintRows(lines, 4, SMALL_TEXT);
+		centeredPrintRows(lines, 4, MEDIUM_TEXT);
 	}
 	checkExit();
 }

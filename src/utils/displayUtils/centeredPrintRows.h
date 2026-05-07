@@ -1,33 +1,19 @@
 void centeredPrintRows(String text[], int arraySize, float textSize) {
-	DISP.setTextColor(FGCOLOR, BGCOLOR);
-	int currentTextSize = DISP.getTextSizeX();
+	canvas.clear();
+	canvas.setTextColor(FGCOLOR, BGCOLOR);
+	canvas.setTextSize(textSize);
 
-	DISP.setTextSize(textSize);
+	int canvasHeight = canvas.height() - getStatusBarOffset();
+	int textHeight = arraySize * canvas.fontHeight();
+	int offsetY = (canvasHeight - textHeight) / 2;
 
-	int statusBarHeight = getStatusBarHeight();
-
-	int displayWidth = DISP.width();
-	int displayHeight = DISP.height();
-
-	int textHeight = arraySize * (DISP.fontHeight());
-
-	// calculate top indent
-	int offsetY = statusBarHeight + ((displayHeight - statusBarHeight) - textHeight) / 2;
-	DISP.setCursor(0, offsetY);
-	
-	clearScreenWithSymbols();
-
-	// restore size after clearScreenWithSymbols hardcodes SMALL_TEXT
-	DISP.setTextSize(textSize);
-	DISP.setCursor(0, offsetY);
 	for (int i = 0; i < arraySize; i++) {
-		int textWidth = DISP.textWidth(text[i].c_str());
-		int paddingX = (displayWidth - textWidth) / 2;
-		int cursorY = DISP.getCursorY();
-		DISP.setCursor(paddingX, cursorY);
-		DISP.println(text[i].c_str());
+		int textWidth = canvas.textWidth(text[i].c_str());
+		int x = (canvas.width() - textWidth) / 2;
+		int y = offsetY + i * canvas.fontHeight();
+		canvas.setCursor(x, y);
+		canvas.print(text[i].c_str());
 	}
 
-	
-	DISP.setTextSize(currentTextSize);
+	canvas.pushSprite(0, getStatusBarOffset());
 }

@@ -4,6 +4,7 @@
 #include "../functions/defaultLoop.h"
 #include "../functions/mainMenuLoop.h"
 #include "../functions/statusBarLoop.h"
+#include "../functions/lfsFilePickerLoop.h"
 
 
 // Settings functions
@@ -18,6 +19,7 @@
 #include "../functions/settings/colorsLoop.h"
 #include "../functions/settings/toggleStartupSound.h"
 #include "../functions/settings/toggleKbGyroLoop.h"
+#include "../functions/settings/languageLoop.h"
 
 
 // Wi-Fi functions
@@ -27,6 +29,9 @@
 #include "../functions/wifi/selectedWifiMenuLoop.h"
 #include "../functions/wifi/wifiInfoLoop.h"
 #include "../functions/wifi/wifiMenuLoop.h"
+#include "../functions/wifi/wifiConnectLoop.h"
+#include "../functions/wifi/weatherLoop.h"
+#include "../functions/wifi/wifiDisconnectLoop.h"
 
 
 // Bluetooth functions
@@ -39,6 +44,8 @@
 #include "../functions/bluetooth/selectedBluetoothMenuLoop.h"
 #include "../functions/bluetooth/bluetoothInfoLoop.h"
 #include "../functions/bluetooth/bluetoothFinderLoop.h"
+#include "../functions/bluetooth/badBleMenuLoop.h"
+#include "../functions/bluetooth/badBleLoop.h"
 
 
 // NFC functions
@@ -51,7 +58,6 @@
 #include "../functions/other/otherMenuLoop.h"
 #include "../functions/other/soundLevelLoop.h"
 #include "../functions/other/levelToolLoop.h"
-#include "../functions/other/batteryLoop.h"
 #include "../functions/other/clockLoop.h"
 // Flashlight
 #include "../functions/other/flashlight/flashLightMenuLoop.h"
@@ -61,3 +67,4 @@
 #include "../functions/other/system/systemInfoLoop.h"
 #include "../functions/other/system/systemMenuLoop.h"
 #include "../functions/other/system/shutdownLoop.h"
+#include "../functions/other/system/batteryLoop.h"

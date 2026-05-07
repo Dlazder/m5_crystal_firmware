@@ -1,4 +1,5 @@
 #include <stdint.h>
+#include "./processes.h"
 #include "./deauth_patch.h"
 #include "M5Unified.h"
 #include <WiFi.h>
@@ -8,6 +9,16 @@ DNSServer dnsServer;
 WebServer webServer(80);
 #include <string>
 using std::to_string;
+#include "version.h"
+#include "conf.h"
+
+// Localization
+#include "../system/locale/locale.h"
+
+const Locale* locales[] = { &LANG_EN, &LANG_ES, &LANG_IT, &LANG_ID, &LANG_RU, &LANG_UK, &LANG_DE };
+const char* localeNames[] = { "English", "Espanol", "Italiano", "Indonesia", "Русский", "Українська", "Deutsch" };
+int languageIndex = 0;
+int localesCount = sizeof(locales) / sizeof(locales[0]);
 
 // NFC PN532
 #include <Adafruit_PN532.h>
@@ -15,8 +26,6 @@ using std::to_string;
 Adafruit_PN532 nfc(G32, G33, &Wire);
 
 
-#include "conf.h"
-#include "version.h"
 
 // For storage utils
 #include <Preferences.h>
@@ -28,8 +37,8 @@ struct MENU {
 };
 
 int cursor = 0;
-int process = 0;
-int previousProcess = 0;
+int process = PID::MAIN_MENU;
+int previousProcess = PID::MAIN_MENU;
 bool isSwitching = true;
 int rotation = 1;
 
@@ -45,41 +54,26 @@ uint16_t colors[] = {TFT_WHITE, TFT_RED, TFT_ORANGE, TFT_YELLOW, TFT_GREEN, TFT_
 const char* colorsEntry[] = {"WHITE", "RED", "ORANGE", "YELLOW", "GREEN", "CYAN", "BLUE", "VIOLET", "MAGENTA"};
 int colorIndex = 0;
 
-float TINY_TEXT = 1.5;
-int SMALL_TEXT = 2;
-int MEDIUM_TEXT = 3;
-int BIG_TEXT = 4;
+int TINY_TEXT = 1;
+float SMALL_TEXT = 1.5;
+int MEDIUM_TEXT = 2;
+int BIG_TEXT = 3;
+int HUGE_TEXT = 4;
 
-int currentFontIndex = 0;
+// Fonts
+#include <U8g2lib.h>
+// static lgfx::U8g2font u8g2Font5x8(u8g2_font_5x8_t_cyrillic);
+static lgfx::U8g2font u8g2Font6x12(u8g2_font_6x12_t_cyrillic);
 
 const lgfx::IFont* systemFonts[] = {
-  &fonts::Font0,          // Basic 8x8
-  &fonts::lgfxJapanMincho_8,
-  &fonts::lgfxJapanMinchoP_8,
-  &fonts::lgfxJapanGothic_8,
-  &fonts::lgfxJapanGothicP_8,
-  // &fonts::Font2,          // 8x16
-  // &fonts::Font4,          // 8x16
-  // &fonts::Font6,          // 24x32
-  // &fonts::Font7,          // 24x48
-  // &fonts::Font8,          // 8x16
-  // &fonts::AsciiFont8x16,  // Classic 8x16
-  // &fonts::AsciiFont24x48  // Classic 24x48
+  // &fonts::Font0,          // Basic 8x8 ASCII
+  // &u8g2Font5x8,           // 5x8 Cyrillic
+  &u8g2Font6x12,          // 6x12 Cyrillic
 };
-
 const char* fontNames[] = {
-  "Default (Font0)",
-  "JapanMincho_8",
-  "JapanMinchoP_8",
-  "JapanGothic_8",
-  "JapanGothicP_8"
-  // "Font2 (8x16)",
-  // "Font4 (8x16 bold)",
-  // "Font6 (24x32)",
-  // "Font7 (24x48)",
-  // "Font8 (8x16 thin)",
-  // "Ascii 8x16",
-  // "Ascii 24x48"
+  // "Default",
+  // "5x8",
+  "6x12",
 };
 
 int brightnessMax = 255;
@@ -104,6 +98,8 @@ String mac;
 int channel;
 uint8_t* bssid;
 int rssi;
+String wifiPassword;
+int wifiScanIndex;
 
 
 // bluetooth

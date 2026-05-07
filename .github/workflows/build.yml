@@ -37,6 +37,7 @@ jobs:
           arduino-cli lib install "M5GFX"
           arduino-cli lib install "M5Unified"
           arduino-cli lib install "Adafruit PN532"
+          arduino-cli lib install "U8g2"
 
       - name: Install required library
         run: |

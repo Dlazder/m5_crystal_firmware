@@ -47,7 +47,7 @@ void wifiDeauthLoop() {
 			String(WiFi.RSSI(cursor - 2))
 		};
 
-		centeredPrintRows(lines, 2, SMALL_TEXT);
+		centeredPrintRows(lines, 2, MEDIUM_TEXT);
 
 		WiFi.mode(WIFI_AP);
 		WiFi.softAP(ssid, "", channel, 1, 4, false);

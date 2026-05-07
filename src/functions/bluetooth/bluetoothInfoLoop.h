@@ -1,4 +1,4 @@
-// pid 39
+// pid PID::BT_INFO
 
 void bluetoothInfoLoop() {
 
@@ -14,14 +14,14 @@ void bluetoothInfoLoop() {
 		txLine = "tx:" + String(bleTxPower) + "dBm " + distBuf;
 	}
 
-	String mfrLine = bleManufacturer.length() > 0 ? "mfr:" + String(bleManufacturer) : "mfr: n/a";
+	String mfrLine = bleManufacturer.length() > 0 ? "mfr:" + String(bleManufacturer) : String("mfr: ") + L->TXT_NA;
 	String rawLine = bleManufacturerRaw.length() > 0 ? "dat:" + bleManufacturerRaw : "";
 	String svcLine = bleServiceUUIDs.length() > 0 ? "svc:" + String(bleServiceUUIDs) : "";
 
 	// build array dynamically
 	String lines[8];
 	int count = 0;
-	lines[count++] = bleName.length() > 0 ? bleName : "unnamed";
+	lines[count++] = bleName.length() > 0 ? bleName : L->TXT_UNNAMED;
 	lines[count++] = bleAddress;
 	lines[count++] = mfrLine;
 	lines[count++] = "rssi: " + String(bleRssi);
@@ -31,8 +31,8 @@ void bluetoothInfoLoop() {
 	if (bleAppearance.length() > 0) lines[count++] = bleAppearance;
 
 	if (isSetup()) {
-		if (count >= 7) centeredPrintRows(lines, count, TINY_TEXT);
-		else centeredPrintRows(lines, count, SMALL_TEXT);
+		if (count >= 7) centeredPrintRows(lines, count, SMALL_TEXT);
+		else centeredPrintRows(lines, count, MEDIUM_TEXT);
 	}
 	checkExit();
 }

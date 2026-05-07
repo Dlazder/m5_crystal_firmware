@@ -1,4 +1,4 @@
-// pid 32
+// pid PID::BT_PRESENTER
 
 void bluetoothPresenterLoop() {
 	static bool isBleConnected = false;
@@ -8,20 +8,20 @@ void bluetoothPresenterLoop() {
 			bleKeyboard.begin();
 			bleCompositeBegan = true;
 		}
-		centeredPrint("Waiting connection", SMALL_TEXT);
+		centeredPrint(L->TXT_WAITING_CONNECTION, MEDIUM_TEXT);
 		updateTimer();
 	}
 
 	if (bleKeyboard.isConnected()) {
 		if (!isBleConnected) {
 			isBleConnected = true;
-			centeredPrint("Connected", SMALL_TEXT);
+			centeredPrint(L->TXT_CONNECTED, MEDIUM_TEXT);
 			DEVICE.Speaker.tone(2000, 200);
 		}
 	} else {
 		if (isBleConnected) {
 			isBleConnected = false;
-			centeredPrint("Not connected", SMALL_TEXT);
+			centeredPrint(L->TXT_NOT_CONNECTED, MEDIUM_TEXT);
 			DEVICE.Speaker.tone(2000, 200);
 		}
 	}
@@ -36,6 +36,6 @@ void bluetoothPresenterLoop() {
 
 	if (checkExit()) {
 		isBleConnected = false;
-		centeredPrint("Disconnecting...", SMALL_TEXT);
+		centeredPrint(L->TXT_DISCONNECTING, MEDIUM_TEXT);
 	}
 }

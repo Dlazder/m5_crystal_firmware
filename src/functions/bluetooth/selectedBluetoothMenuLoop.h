@@ -1,22 +1,22 @@
-// pid 38
-
-MENU selectedBluetoothMenu[] = {
-	{36, "back"},
-	{39, "info"},
-	{40, "find"},
-};
-int selectedBluetoothMenuSize = sizeof(selectedBluetoothMenu) / sizeof(MENU);
+// pid PID::BT_SELECTED
 
 void selectedBluetoothMenuLoop() {
+	MENU selectedBluetoothMenu[] = {
+		{PID::BT_SCAN,   L->MENU_BACK},
+		{PID::BT_INFO,   L->MENU_BT_INFO},
+		{PID::BT_FINDER, L->MENU_BT_FIND},
+	};
+	int selectedBluetoothMenuSize = sizeof(selectedBluetoothMenu) / sizeof(MENU);
+
 	if (isSetup()) {
-		if (previousProcess == 36) {
+		if (previousProcess == PID::BT_SCAN) {
 			int idx = cursor - 2;
 			BLEScanResults results = BLEDevice::getScan()->getResults();
 			BLEAdvertisedDevice device = results.getDevice(idx);
 			String devName = device.getName().c_str();
 			bleAddress = device.getAddress().toString().c_str();
 			bleRssi = device.getRSSI();
-			bleName = (device.haveName() && devName.length() > 0) ? devName : "unnamed";
+			bleName = (device.haveName() && devName.length() > 0) ? devName : L->TXT_UNNAMED;
 
 			bleManufacturer = "";
 			bleManufacturerRaw = "";
@@ -58,7 +58,6 @@ void selectedBluetoothMenuLoop() {
 							break;
 						}
 					}
-					// raw payload hex (up to 8 bytes after company ID)
 					String raw = "";
 					for (size_t i = 2; i < md.size() && i < 10; i++) {
 						char h[3];
@@ -69,22 +68,15 @@ void selectedBluetoothMenuLoop() {
 				}
 			}
 
-			if (device.haveTXPower()) {
-				bleTxPower = device.getTXPower();
-			}
+			if (device.haveTXPower()) bleTxPower = device.getTXPower();
+			if (device.haveAppearance()) bleAppearance = "app:0x" + String(device.getAppearance(), HEX);
 
-			if (device.haveAppearance()) {
-				bleAppearance = "app:0x" + String(device.getAppearance(), HEX);
-			}
-
-			// collect advertised service UUIDs (up to 4)
 			bleServiceUUIDs = "";
 			if (device.haveServiceUUID()) {
 				int count = device.getServiceUUIDCount();
 				for (int s = 0; s < count && s < 4; s++) {
 					BLEUUID uuid = device.getServiceUUID(s);
 					String uuidStr = uuid.toString().c_str();
-					// shorten 128-bit UUIDs to last 8 chars
 					if (uuidStr.length() > 8) uuidStr = uuidStr.substring(uuidStr.length() - 9);
 					if (bleServiceUUIDs.length() > 0) bleServiceUUIDs += " ";
 					bleServiceUUIDs += uuidStr;
@@ -96,6 +88,5 @@ void selectedBluetoothMenuLoop() {
 		cursorOnTop();
 		drawMenu(selectedBluetoothMenu, selectedBluetoothMenuSize);
 	}
-
 	menuLoop(selectedBluetoothMenu, selectedBluetoothMenuSize);
 }

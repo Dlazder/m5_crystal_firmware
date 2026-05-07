@@ -4,3 +4,4 @@ Status bar height: 30
 
 Check later:
 screen clearing in centeredPrintRows function
+sound level set text size

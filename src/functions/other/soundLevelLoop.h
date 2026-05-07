@@ -81,7 +81,7 @@ void soundLevelLoop() {
 	if (isSetup()) {
 		DEVICE.Mic.begin();
 		canvas.setTextColor(FGCOLOR);
-		canvas.setTextSize(SMALL_TEXT);
+		canvas.setTextSize(MEDIUM_TEXT);
 
 		statusBarHeight = statusBar ? 30 : 0;
 		barY = DISP.height() / 2 - (barH / 2) - statusBarHeight;

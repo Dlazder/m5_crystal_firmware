@@ -11,11 +11,11 @@ void batteryLoop() {
 	};
 
 	if (isSetup()) {
-		centeredPrintRows(lines, 2, MEDIUM_TEXT);
+		centeredPrintRows(lines, 2, BIG_TEXT);
 	}
 
 	if (checkTimer(2000)) {
-		centeredPrintRows(lines, 2, MEDIUM_TEXT);
+		centeredPrintRows(lines, 2, BIG_TEXT);
 	}
 	
 	checkExit();
@@ -23,6 +23,6 @@ void batteryLoop() {
 	if (isWebDataRequested()) {
 		char text[10];
 		sprintf(text, "%d%%", battery);
-		webData = generateWebData("function", generateFunctionElement(text, MEDIUM_TEXT, "center"));
+		webData = generateWebData("function", generateFunctionElement(text, BIG_TEXT, "center"));
 	}
 }
