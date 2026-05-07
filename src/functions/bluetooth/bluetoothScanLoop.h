@@ -11,7 +11,7 @@ void bluetoothScanLoop() {
 				bleScanMenu = nullptr;
 			}
 			cursor = 0;
-			centeredPrint(L->TXT_SCANNING, SMALL_TEXT);
+			centeredPrint(L->TXT_SCANNING, MEDIUM_TEXT);
 			Serial.println("BLE Scanning...");
 
 			BLEDevice::init("");

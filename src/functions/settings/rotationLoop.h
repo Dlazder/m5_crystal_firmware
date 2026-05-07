@@ -7,7 +7,7 @@ void rotationLoop() {
       "to change",
       L->TXT_SETTINGS_ROTATION
     };
-    centeredPrintRows(lines, 3, SMALL_TEXT);
+    centeredPrintRows(lines, 3, MEDIUM_TEXT);
     updateTimer();
   }
   if (isBtnAWasPressed() && checkTimer(100)) {
@@ -22,11 +22,11 @@ void rotationLoop() {
       "to change",
       L->TXT_SETTINGS_ROTATION
     };
-    centeredPrintRows(lines, 3, SMALL_TEXT);
+    centeredPrintRows(lines, 3, MEDIUM_TEXT);
   }
   checkExit(PID::SETTINGS);
   if (isWebDataRequested()) {
-    String res = generateFunctionElement("press A<br>to change<br>rotation", SMALL_TEXT, "center");
+    String res = generateFunctionElement("press A<br>to change<br>rotation", MEDIUM_TEXT, "center");
     webData = generateWebData("function", res);
   }
 }

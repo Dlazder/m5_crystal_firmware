@@ -7,7 +7,7 @@ void languageLoop() {
 			String(localeNames[languageIndex]),
 			L->TXT_PRESS_A
 		};
-		centeredPrintRows(lines, 3, SMALL_TEXT);
+		centeredPrintRows(lines, 3, MEDIUM_TEXT);
 		updateTimer();
 	}
 
@@ -24,7 +24,7 @@ void languageLoop() {
 			L->TXT_PRESS_A
 		};
 		DISP.clear();
-		centeredPrintRows(lines, 3, SMALL_TEXT);
+		centeredPrintRows(lines, 3, MEDIUM_TEXT);
 	}
 
 	checkExit(PID::SETTINGS);

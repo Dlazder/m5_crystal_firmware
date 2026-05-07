@@ -8,20 +8,20 @@ void bluetoothPresenterLoop() {
 			bleKeyboard.begin();
 			bleCompositeBegan = true;
 		}
-		centeredPrint(L->TXT_WAITING_CONNECTION, SMALL_TEXT);
+		centeredPrint(L->TXT_WAITING_CONNECTION, MEDIUM_TEXT);
 		updateTimer();
 	}
 
 	if (bleKeyboard.isConnected()) {
 		if (!isBleConnected) {
 			isBleConnected = true;
-			centeredPrint(L->TXT_CONNECTED, SMALL_TEXT);
+			centeredPrint(L->TXT_CONNECTED, MEDIUM_TEXT);
 			DEVICE.Speaker.tone(2000, 200);
 		}
 	} else {
 		if (isBleConnected) {
 			isBleConnected = false;
-			centeredPrint(L->TXT_NOT_CONNECTED, SMALL_TEXT);
+			centeredPrint(L->TXT_NOT_CONNECTED, MEDIUM_TEXT);
 			DEVICE.Speaker.tone(2000, 200);
 		}
 	}
@@ -36,6 +36,6 @@ void bluetoothPresenterLoop() {
 
 	if (checkExit()) {
 		isBleConnected = false;
-		centeredPrint(L->TXT_DISCONNECTING, SMALL_TEXT);
+		centeredPrint(L->TXT_DISCONNECTING, MEDIUM_TEXT);
 	}
 }

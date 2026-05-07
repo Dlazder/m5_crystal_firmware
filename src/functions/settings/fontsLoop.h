@@ -7,7 +7,7 @@ void fontsLoop() {
       String(L->TXT_SETTINGS_FONT) + String(fontNames[currentFontIndex]),
       L->TXT_PRESS_A
     };
-    centeredPrintRows(lines, 3, SMALL_TEXT);
+    centeredPrintRows(lines, 3, MEDIUM_TEXT);
     updateTimer();
   }
 
@@ -19,6 +19,7 @@ void fontsLoop() {
     Serial.printf("Current font index: %d (%s)\n", currentFontIndex, fontNames[currentFontIndex]);
 
     DISP.setFont(systemFonts[currentFontIndex]);
+    canvas.setFont(systemFonts[currentFontIndex]);
 
     setData("fontIndex", currentFontIndex);
 
@@ -28,7 +29,7 @@ void fontsLoop() {
       L->TXT_PRESS_A
     };
     DISP.clear();
-    centeredPrintRows(lines, 3, SMALL_TEXT);
+    centeredPrintRows(lines, 3, MEDIUM_TEXT);
   }
 
   checkExit(PID::SETTINGS);

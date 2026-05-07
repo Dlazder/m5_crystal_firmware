@@ -13,7 +13,7 @@ void systemInfoLoop() {
 		int textHeight = 4 * DISP.fontHeight();
 		int offsetY =  (DISP.height() - textHeight) / 2;
 		DISP.setTextColor(FGCOLOR);
-		DISP.setTextSize(2.5);
+		DISP.setTextSize(MEDIUM_TEXT);
 		DISP.setCursor(0, offsetY);
 
 		for (int i = 0; i < 4; i++) {

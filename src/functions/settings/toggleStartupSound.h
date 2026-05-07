@@ -6,7 +6,7 @@ void toggleStartupSound() {
 			String(L->TXT_SETTINGS_SOUND) + String(getData("startupSound", startupSound) ? L->TXT_ENABLED : L->TXT_DISABLED),
 			L->TXT_PRESS_A
 		};
-		centeredPrintRows(lines, 2, SMALL_TEXT);
+		centeredPrintRows(lines, 2, MEDIUM_TEXT);
 		updateTimer();
 	}
 
@@ -19,7 +19,7 @@ void toggleStartupSound() {
 			String(L->TXT_SETTINGS_SOUND) + String(getData("startupSound", startupSound) ? L->TXT_ENABLED : L->TXT_DISABLED),
 			L->TXT_PRESS_A
 		};
-		centeredPrintRows(lines, 2, SMALL_TEXT);
+		centeredPrintRows(lines, 2, MEDIUM_TEXT);
 	}
 
 	checkExit();

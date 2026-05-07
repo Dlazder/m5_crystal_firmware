@@ -22,7 +22,7 @@ void setup() {
 
   canvas.createSprite(DISP.width(), DISP.height());
   canvas.setTextColor(FGCOLOR);
-  canvas.setTextSize(SMALL_TEXT);
+  canvas.setTextSize(MEDIUM_TEXT);
 
   statusBarCanvas.createSprite(DISP.width(), 20);
   statusBarCanvas.setTextColor(FGCOLOR);

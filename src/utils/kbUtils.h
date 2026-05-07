@@ -43,7 +43,7 @@ void kbReset() {
 
 void drawKeyboardUi() {
 	canvas.clear();
-	canvas.setTextSize(SMALL_TEXT);
+	canvas.setTextSize(MEDIUM_TEXT);
 
 	int fontH = canvas.fontHeight();
 	int specH = fontH + 6;
@@ -57,9 +57,9 @@ void drawKeyboardUi() {
 	canvas.print(display + (kbCursorVisible ? "_" : " "));
 
 	// Buffer indicator
-	canvas.setTextSize(1);
+	canvas.setTextSize(TINY_TEXT);
 	canvas.drawRightString(String(display.length()) + "/63", canvas.width() - 2, 2);
-	canvas.setTextSize(SMALL_TEXT);
+	canvas.setTextSize(MEDIUM_TEXT);
 
 	// Special keys row
 	int specY = 2 + fontH + 2;

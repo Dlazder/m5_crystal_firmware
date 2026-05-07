@@ -31,8 +31,8 @@ void bluetoothInfoLoop() {
 	if (bleAppearance.length() > 0) lines[count++] = bleAppearance;
 
 	if (isSetup()) {
-		if (count >= 7) centeredPrintRows(lines, count, TINY_TEXT);
-		else centeredPrintRows(lines, count, SMALL_TEXT);
+		if (count >= 7) centeredPrintRows(lines, count, SMALL_TEXT);
+		else centeredPrintRows(lines, count, MEDIUM_TEXT);
 	}
 	checkExit();
 }

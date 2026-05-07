@@ -51,12 +51,12 @@ void wifiApLoop() {
       webServerSetup();
       isWebInterfaceEnabled = true;
     }
-    DISP.setTextSize(SMALL_TEXT);
-    centeredPrint(L->TXT_WIFI_AP_ENABLED, SMALL_TEXT);
+    DISP.setTextSize(MEDIUM_TEXT);
+    centeredPrint(L->TXT_WIFI_AP_ENABLED, MEDIUM_TEXT);
   }
   checkExit();
   if (isWebDataRequested()) {
-    String res = generateFunctionElement(L->TXT_WIFI_AP_ENABLED, SMALL_TEXT, String("center"));
+    String res = generateFunctionElement(L->TXT_WIFI_AP_ENABLED, MEDIUM_TEXT, String("center"));
     webData = generateWebData("function", res);
   }
 }

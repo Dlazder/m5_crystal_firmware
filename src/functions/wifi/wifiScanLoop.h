@@ -10,7 +10,7 @@ void wifiScanLoop() {
 				delete[] wifiScanMenu;
 			}
 			cursor = 0;
-			centeredPrint(L->TXT_SCANNING, SMALL_TEXT);
+			centeredPrint(L->TXT_SCANNING, MEDIUM_TEXT);
 			Serial.println("Scanning...");
 			wifiCount = WiFi.scanNetworks();
 			wifiScanMenu = new MENU[wifiCount + 2];

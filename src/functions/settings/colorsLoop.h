@@ -3,7 +3,7 @@
 void colorsLoop() {
 	if (isSetup()) {
 		String lines[] = {String(L->TXT_SETTINGS_COLOR) + String(colorsEntry[colorIndex]), L->TXT_PRESS_A};
-		centeredPrintRows(lines, 2, SMALL_TEXT);
+		centeredPrintRows(lines, 2, MEDIUM_TEXT);
 		updateTimer();
 	}
 	if (isBtnAWasPressed() && checkTimer(100)) {
@@ -16,7 +16,7 @@ void colorsLoop() {
 		FGCOLOR = colors[colorIndex];
 		setData("colorIndex", colorIndex);
 		String lines[] = {String(L->TXT_SETTINGS_COLOR) + String(colorsEntry[colorIndex]), L->TXT_PRESS_A};
-		centeredPrintRows(lines, 2, SMALL_TEXT);
+		centeredPrintRows(lines, 2, MEDIUM_TEXT);
 	}
 	checkExit();
 }

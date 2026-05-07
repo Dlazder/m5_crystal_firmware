@@ -13,8 +13,8 @@ using std::to_string;
 // Localization
 #include "../system/locale/locale.h"
 
-const Locale* locales[] = { &LANG_EN, &LANG_ES, &LANG_IT, &LANG_ID };
-const char* localeNames[] = { "English", "Espanol", "Italiano", "Indonesia" };
+const Locale* locales[] = { &LANG_EN, &LANG_ES, &LANG_IT, &LANG_ID, };
+const char* localeNames[] = { "English", "Espanol", "Italiano", "Indonesia", };
 int languageIndex = 0;
 int localesCount = sizeof(locales) / sizeof(locales[0]);
 
@@ -54,23 +54,30 @@ uint16_t colors[] = {TFT_WHITE, TFT_RED, TFT_ORANGE, TFT_YELLOW, TFT_GREEN, TFT_
 const char* colorsEntry[] = {"WHITE", "RED", "ORANGE", "YELLOW", "GREEN", "CYAN", "BLUE", "VIOLET", "MAGENTA"};
 int colorIndex = 0;
 
-float TINY_TEXT = 1.5;
-int SMALL_TEXT = 2;
-int MEDIUM_TEXT = 3;
-int BIG_TEXT = 4;
+int TINY_TEXT = 1;
+float SMALL_TEXT = 1.5;
+int MEDIUM_TEXT = 2;
+int BIG_TEXT = 3;
+int HUGE_TEXT = 4;
 
+// Fonts
+#include <U8g2lib.h>
 int currentFontIndex = 0;
+static lgfx::U8g2font u8g2Font5x8(u8g2_font_5x8_t_cyrillic);
+static lgfx::U8g2font u8g2Font6x12(u8g2_font_6x12_t_cyrillic);
+static lgfx::U8g2font u8g2Font6x13(u8g2_font_6x13_t_cyrillic);
 
 const lgfx::IFont* systemFonts[] = {
   &fonts::Font0,          // Basic 8x8 ASCII
-  // &u8g2FontUnicode,       // Terminus 11px Unicode (Cyrillic, Latin Extended)
-  &fonts::Font2,          // 8x16
+  // &u8g2Font5x8,           // 5x8 Cyrillic
+  &u8g2Font6x12,          // 6x12 Cyrillic
+  &u8g2Font6x13,          // 6x13 Cyrillic
 };
-
 const char* fontNames[] = {
-  "Default (Font0)",
-  // "Terminus 11px",
-  "Font2 (8x16)",
+  "Default",
+  // "5x8",
+  "6x12",
+  "6x13",
 };
 
 int brightnessMax = 255;

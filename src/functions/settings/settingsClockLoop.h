@@ -1,7 +1,7 @@
 // pid 35
 
 void drawclockSettingsUi(int currentState, int hours, int minutes) {
-	canvas.setTextSize(MEDIUM_TEXT);
+	canvas.setTextSize(BIG_TEXT);
 
 	int textWidth = canvas.textWidth("00:00");
 	int textHeight = canvas.fontHeight() * 2;

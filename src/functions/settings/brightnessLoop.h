@@ -6,7 +6,7 @@ void brightnessLoop() {
       String(L->TXT_SETTINGS_BRIGHTNESS) + String(brightness / brightnessDividor),
       L->TXT_PRESS_A
     };
-    centeredPrintRows(lines, 2, SMALL_TEXT);
+    centeredPrintRows(lines, 2, MEDIUM_TEXT);
     updateTimer();
   }
 
@@ -22,13 +22,13 @@ void brightnessLoop() {
       String(L->TXT_SETTINGS_BRIGHTNESS) + String(brightness / brightnessDividor),
       L->TXT_PRESS_A
     };
-    centeredPrintRows(lines, 2, SMALL_TEXT);
+    centeredPrintRows(lines, 2, MEDIUM_TEXT);
   }
   checkExit();
 
   if (isWebDataRequested()) {
     char text[50];
     sprintf(text, "brightness: %d", brightness / brightnessDividor);
-    webData = generateWebData("function", generateFunctionElement(text, SMALL_TEXT, "center"));
+    webData = generateWebData("function", generateFunctionElement(text, MEDIUM_TEXT, "center"));
   }
 }

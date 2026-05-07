@@ -132,7 +132,7 @@ void nfcWriteLoop() {
 			"PN532: disconnected",
 			L->TXT_CONNECTING,
 		};
-		centeredPrintRows(lines, 2, SMALL_TEXT);
+		centeredPrintRows(lines, 2, MEDIUM_TEXT);
 
 		// Check the stored UID
 		if (!hasValidUID) {
@@ -141,7 +141,7 @@ void nfcWriteLoop() {
 				L->TXT_NFC_NO_UID_STORED,
 				L->TXT_NFC_READ_TAG_FIRST
 			};
-			centeredPrintRows(lines, 2, SMALL_TEXT);
+			centeredPrintRows(lines, 2, MEDIUM_TEXT);
 			return;
 		}
 
@@ -151,7 +151,7 @@ void nfcWriteLoop() {
 				L->TXT_NFC_INVALID_UID,
 				L->TXT_NFC_UID_4BYTE_REQUIRED
 			};
-			centeredPrintRows(lines, 2, SMALL_TEXT);
+			centeredPrintRows(lines, 2, MEDIUM_TEXT);
 			return;
 		}
 
@@ -163,7 +163,7 @@ void nfcWriteLoop() {
 					"PN532: connected",
 					L->TXT_NFC_READY_TO_WRITE
 				};
-				centeredPrintRows(lines, 2, SMALL_TEXT);
+				centeredPrintRows(lines, 2, MEDIUM_TEXT);
 
 				Serial.println("PN532: connected");
 				Serial.printf("PN532 firmware version: %lu\n", versiondata);
@@ -201,7 +201,7 @@ void nfcWriteLoop() {
 					"UID: " + uidString,
 					L->TXT_NFC_READY_TO_WRITE
 				};
-				centeredPrintRows(lines, 3, SMALL_TEXT);
+				centeredPrintRows(lines, 3, MEDIUM_TEXT);
 				Serial.println("PN532: connected");
 			}
 		}
@@ -225,7 +225,7 @@ void nfcWriteLoop() {
 					L->TXT_NFC_WRITE_SUCCESS,
 					L->TXT_NFC_UID_WRITTEN
 				};
-				centeredPrintRows(lines, 2, SMALL_TEXT);
+				centeredPrintRows(lines, 2, MEDIUM_TEXT);
 
 				Serial.println("Write successful!");
 				DEVICE.Speaker.tone(2000, 200);
@@ -235,7 +235,7 @@ void nfcWriteLoop() {
 					L->TXT_NFC_WRITE_FAILED,
 					L->TXT_NFC_WRITE_ERROR
 				};
-				centeredPrintRows(lines, 2, SMALL_TEXT);
+				centeredPrintRows(lines, 2, MEDIUM_TEXT);
 				Serial.println("Write failed!");
 				DEVICE.Speaker.tone(1000, 200);
 			}

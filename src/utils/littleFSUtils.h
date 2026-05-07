@@ -38,7 +38,7 @@ void lfsClearMenu(MENU*& menu, int& count) {
 void lfsSetup(MENU*& menu, int& count, int backPid) {
 	lfsClearMenu(menu, count);
 
-	if (!lfsBegin()) { centeredPrint("LittleFS error", SMALL_TEXT); return; }
+	if (!lfsBegin()) { centeredPrint("LittleFS error", MEDIUM_TEXT); return; }
 
 	File root = LittleFS.open("/");
 	File f = root.openNextFile();
@@ -66,7 +66,7 @@ void lfsSetup(MENU*& menu, int& count, int backPid) {
 
 	cursor = 0;
 	cursorOnTop();
-	count > 0 ? drawMenu(menu, count + 1) : centeredPrint("No files", SMALL_TEXT);
+	count > 0 ? drawMenu(menu, count + 1) : centeredPrint("No files", MEDIUM_TEXT);
 }
 
 /**

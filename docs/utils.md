@@ -7,7 +7,7 @@
 <table>
 	<tr>
 		<td><code>centeredPrint</code><br>print text on center of the screen</td>
-		<td><code>centeredPrint("Hello world!", SMALL_TEXT);</code></td>
+		<td><code>centeredPrint("Hello world!", MEDIUM_TEXT);</code></td>
 	</tr>
 	<tr>
 		<td><code>centeredPrintRows</code><br>prints several lines in the center of the screen</td>
@@ -15,7 +15,7 @@
 			"Text 1",
 			"text 2"
 		};
-		centeredPrintRows(lines, 2, SMALL_TEXT);
+		centeredPrintRows(lines, 2, MEDIUM_TEXT);
 		</code></td>
 	</tr>
 	<tr>
@@ -159,11 +159,11 @@ void myLoop() {
 <!-- <table>
 <tr>
 		<td><code>isWebDataRequested</code><br>Checks whether a new line should be generated describing the current state of the interface. You will most likely need to pass the string "function" as the first argument. The second argument is a string that describes the contents of the interface.</td>
-		<td><code>if (isWebDataRequested()) {webData = generateWebData("function", generateFunctionElement("text", SMALL_TEXT, "center"));}</code></td>
+		<td><code>if (isWebDataRequested()) {webData = generateWebData("function", generateFunctionElement("text", MEDIUM_TEXT, "center"));}</code></td>
 	</tr>
 	<tr>
 		<td><code>generateFunctionElement</code><br>Creates and returns a string that describes the text parameters to be displayed inside the web interface. The first parameter is a line with text, the second is size, the third is centering.
 		The resulting strings can be combined.</td>
-		<td><code>generateFunctionElement("text", SMALL_TEXT, "center")<br> // return  "text,2,center;"</code></td>
+		<td><code>generateFunctionElement("text", MEDIUM_TEXT, "center")<br> // return  "text,2,center;"</code></td>
 	</tr>
 </table> -->
