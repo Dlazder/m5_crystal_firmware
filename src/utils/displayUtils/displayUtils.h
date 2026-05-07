@@ -5,7 +5,7 @@
  */
 void clearScreenWithSymbols() {
   DISP.setTextColor(FGCOLOR, BGCOLOR);
-  DISP.setTextSize(SMALL_TEXT);
+  DISP.setTextSize(MEDIUM_TEXT);
   for (int i = 0; i < 9; i++) {
     DISP.println("                    ");
   }
@@ -13,7 +13,7 @@ void clearScreenWithSymbols() {
 
 /**
  * print text on center of the screen
- * @param textSize [TINY_TEXT; SMALL_TEXT; MEDIUM_TEXT; BIG_TEXT] - (1; 2; 3; 4)
+ * @param textSize [SMALL_TEXT; MEDIUM_TEXT; BIG_TEXT; HUGE_TEXT] - (1; 2; 3; 4)
  * @param newLine if we printing second text row
  */
 void centeredPrint(String text, int textSize, bool newLine = false) {

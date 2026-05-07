@@ -1,70 +1,62 @@
 void drawScrollbar(int currentCursor, int totalItems, int visibleItems) {
 	static int SCROLLBAR_WIDTH = 3;
-	static int SCROLLBAR_X = DISP.width() - SCROLLBAR_WIDTH;
-	static int SCROLLBAR_Y = getStatusBarOffset();
-	static int SCROLLBAR_HEIGHT = DISP.height() - SCROLLBAR_Y;
+	int SCROLLBAR_X = canvas.width() - SCROLLBAR_WIDTH;
+	int SCROLLBAR_HEIGHT = canvas.height() - getStatusBarOffset();
 
-  if (totalItems <= visibleItems) {
-    DISP.fillRect(SCROLLBAR_X, SCROLLBAR_Y, SCROLLBAR_WIDTH, SCROLLBAR_HEIGHT, BGCOLOR);
-    return;
-  }
-  
-  int sliderHeight = (SCROLLBAR_HEIGHT * visibleItems) / totalItems;
-  if (sliderHeight < 6) sliderHeight = 6;
-  
-  int availableSpace = SCROLLBAR_HEIGHT - sliderHeight;
-  
-  int sliderY = SCROLLBAR_Y + (currentCursor * availableSpace) / (totalItems - 1);
-  
-  DISP.fillRect(SCROLLBAR_X, SCROLLBAR_Y, SCROLLBAR_WIDTH, SCROLLBAR_HEIGHT, BGCOLOR);  
-  DISP.fillRect(SCROLLBAR_X, sliderY, SCROLLBAR_WIDTH, sliderHeight, FGCOLOR);
+	if (totalItems <= visibleItems) {
+		canvas.fillRect(SCROLLBAR_X, 0, SCROLLBAR_WIDTH, SCROLLBAR_HEIGHT, BGCOLOR);
+		return;
+	}
+
+	int sliderHeight = (SCROLLBAR_HEIGHT * visibleItems) / totalItems;
+	if (sliderHeight < 6) sliderHeight = 6;
+
+	int availableSpace = SCROLLBAR_HEIGHT - sliderHeight;
+	int sliderY = (currentCursor * availableSpace) / (totalItems - 1);
+
+	canvas.fillRect(SCROLLBAR_X, 0, SCROLLBAR_WIDTH, SCROLLBAR_HEIGHT, BGCOLOR);
+	canvas.fillRect(SCROLLBAR_X, sliderY, SCROLLBAR_WIDTH, sliderHeight, FGCOLOR);
 }
 
 void drawMenu(MENU menu[], int size) {
-	DISP.setTextSize(2.8);
 	if (cursor == size) cursor = cursor % size;
 	if (cursor < 0) cursor = size - 1;
 	if (cursor > 2 && size <= 2) cursor = 0;
-	if (cursor > 2) {
 
-		for (int i = 0 + (cursor - 2); i < size; i++) {
-			cursor == i ? DISP.setTextColor(BGCOLOR, FGCOLOR) : DISP.setTextColor(FGCOLOR, BGCOLOR);
-			
-			DISP.printf(" %-14s\n", menu[i].name.c_str());
-		}
-		
-		clearScreenWithSymbols();
+	canvas.clear();
+	canvas.setTextSize(MEDIUM_TEXT);
+	canvas.setCursor(0, 0);
 
-	} else {
-		for (int i = 0; i < size; i++) {
-			cursor == i ? DISP.setTextColor(BGCOLOR, FGCOLOR) : DISP.setTextColor(FGCOLOR, BGCOLOR);
+	int start = (cursor > 2) ? (cursor - 2) : 0;
 
-			DISP.printf(" %-14s\n", menu[i].name.c_str());
-		}
-		clearScreenWithSymbols();
+	int lineHeight = canvas.fontHeight();
+	for (int i = start; i < size; i++) {
+		int y = (i - start) * lineHeight;
+		bool selected = (cursor == i);
+		canvas.fillRect(0, y, canvas.width(), lineHeight, selected ? FGCOLOR : BGCOLOR);
+		canvas.setTextColor(selected ? BGCOLOR : FGCOLOR, selected ? FGCOLOR : BGCOLOR);
+		canvas.setCursor(5, y);
+		canvas.print(menu[i].name.c_str());
 	}
+
 	drawScrollbar(cursor, size, 5);
+	canvas.pushSprite(0, getStatusBarOffset());
 }
 
 int selectedItem = 0;
 void menuLoop(MENU menu[], int size, bool updateSelectedItem = false) {
 	DEVICE.update();
 	if (isBtnBWasPressed() || isWebControlDownWasPressed()) {
-		cursorOnTop();
 		cursor++;
 		drawMenu(menu, size);
 	}
 	if (isBtnAWasPressed()) {
-		cursorOnTop();
-		clearScreenWithSymbols();
-		cursorOnTop();
 		changeProcess(menu[cursor].command);
 		if (updateSelectedItem) selectedItem = menu[cursor].command;
 		return;
 	}
 	if (isBtnPWRWasPressed() || isWebControlUpWasPressed()) {
 		cursor--;
-		cursorOnTop();
 		drawMenu(menu, size);
 	}
 	if (isWebDataRequested()) {
