@@ -3,7 +3,6 @@
 void systemInfoLoop() {
 
 	if (isSetup()) {
-		DISP.clear();
 		String lines[] = {
 			"Crystal",
 			"firmware",

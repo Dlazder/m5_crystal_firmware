@@ -95,7 +95,7 @@ const Locale LANG_UK = {
 	.TXT_NFC_READY_TO_WRITE      = "Готовий до запису...",
 
 	// Settings text
-	.TXT_SETTINGS_LANGUAGE       = "Мова:",
+	.TXT_SETTINGS_LANGUAGE       = "Мова: ",
 	.TXT_SETTINGS_BRIGHTNESS     = "яскравість: ",
 	.TXT_SETTINGS_COLOR          = "колір: ",
 	.TXT_SETTINGS_FONT           = "Шрифт:",

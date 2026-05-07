@@ -193,8 +193,6 @@ void nfcWriteLoop() {
 				DEVICE.Power.setLed(0);
 				DEVICE.Speaker.tone(2000, 200);
 
-				DISP.clear();
-
 				String uidString = uidToString(lastReadUID, lastReadUIDLength);
 				String lines[] = {
 					"PN532: connected",

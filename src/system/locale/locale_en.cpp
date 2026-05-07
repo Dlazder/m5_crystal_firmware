@@ -95,7 +95,7 @@ const Locale LANG_EN = {
 	.TXT_NFC_READY_TO_WRITE      = "Ready to write...",
 
 	// Settings text
-	.TXT_SETTINGS_LANGUAGE       = "Language:",
+	.TXT_SETTINGS_LANGUAGE       = "Language: ",
 	.TXT_SETTINGS_BRIGHTNESS     = "brightness: ",
 	.TXT_SETTINGS_COLOR          = "color: ",
 	.TXT_SETTINGS_FONT           = "Font:",

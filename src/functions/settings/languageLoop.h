@@ -3,11 +3,10 @@
 void languageLoop() {
 	if (isSetup()) {
 		String lines[] = {
-			L->TXT_SETTINGS_LANGUAGE,
-			String(localeNames[languageIndex]),
+			L->TXT_SETTINGS_LANGUAGE + String(localeNames[languageIndex]),
 			L->TXT_PRESS_A
 		};
-		centeredPrintRows(lines, 3, MEDIUM_TEXT);
+		centeredPrintRows(lines, 2, MEDIUM_TEXT);
 		updateTimer();
 	}
 
@@ -19,12 +18,10 @@ void languageLoop() {
 		setData("languageIndex", languageIndex);
 
 		String lines[] = {
-			L->TXT_SETTINGS_LANGUAGE,
-			String(localeNames[languageIndex]),
+			L->TXT_SETTINGS_LANGUAGE + String(localeNames[languageIndex]),
 			L->TXT_PRESS_A
 		};
-		DISP.clear();
-		centeredPrintRows(lines, 3, MEDIUM_TEXT);
+		centeredPrintRows(lines, 2, MEDIUM_TEXT);
 	}
 
 	checkExit(PID::SETTINGS);

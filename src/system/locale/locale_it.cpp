@@ -95,7 +95,7 @@ const Locale LANG_IT = {
     .TXT_NFC_READY_TO_WRITE       = "Pronto a scrivere...",
 
     // Settings text
-    .TXT_SETTINGS_LANGUAGE        = "Lingua:",
+    .TXT_SETTINGS_LANGUAGE        = "Lingua: ",
     .TXT_SETTINGS_BRIGHTNESS      = "luminosita: ",
     .TXT_SETTINGS_COLOR           = "colore: ",
     .TXT_SETTINGS_FONT            = "Carattere:",

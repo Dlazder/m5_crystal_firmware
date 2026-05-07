@@ -13,7 +13,6 @@ bool isPN532Connected() {
 }
 
 void displayNotConnectedError() {
-	DISP.clear();
 	nfcModuleWasConnected = false;
 	String lines[] = {
 		"PN532: disconnected"

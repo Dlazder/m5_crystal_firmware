@@ -95,7 +95,7 @@ const Locale LANG_RU = {
 	.TXT_NFC_READY_TO_WRITE      = "Готов к записи...",
 
 	// Settings text
-	.TXT_SETTINGS_LANGUAGE       = "язык:",
+	.TXT_SETTINGS_LANGUAGE       = "язык: ",
 	.TXT_SETTINGS_BRIGHTNESS     = "яркость: ",
 	.TXT_SETTINGS_COLOR          = "цвет: ",
 	.TXT_SETTINGS_FONT           = "шрифт:",

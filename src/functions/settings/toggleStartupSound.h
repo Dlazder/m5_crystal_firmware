@@ -11,7 +11,6 @@ void toggleStartupSound() {
 	}
 
 	if (isBtnAWasPressed() && checkTimer(100)) {
-		DISP.clear();
 		startupSound = !getData("startupSound", startupSound);
 		setData("startupSound", startupSound);
 
