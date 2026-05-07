@@ -11,6 +11,7 @@ const Locale LANG_UK = {
 	.MENU_WIFI_INFO              = "інфо",
 	.MENU_WIFI_DEAUTH            = "деаут",
 	.MENU_WIFI_CONNECT           = "підключити",
+	.MENU_WIFI_DISCONNECT        = "відключити wifi",
 	.MENU_WIFI_AP                = "Wi-Fi AP",
 	.MENU_WIFI_WEATHER           = "погода",
 

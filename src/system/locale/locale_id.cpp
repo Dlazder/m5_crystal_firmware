@@ -11,6 +11,7 @@ const Locale LANG_ID = {
     .MENU_WIFI_INFO               = "info",
     .MENU_WIFI_DEAUTH             = "deauth",
     .MENU_WIFI_CONNECT            = "hubungkan",
+    .MENU_WIFI_DISCONNECT         = "putuskan wifi",
     .MENU_WIFI_AP                 = "Wi-Fi AP",
     .MENU_WIFI_WEATHER            = "cuaca",
 

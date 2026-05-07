@@ -11,6 +11,7 @@ struct Locale {
 	const char* MENU_WIFI_INFO;
 	const char* MENU_WIFI_DEAUTH;
 	const char* MENU_WIFI_CONNECT;
+	const char* MENU_WIFI_DISCONNECT;
 	const char* MENU_WIFI_AP;
 	const char* MENU_WIFI_WEATHER;
 

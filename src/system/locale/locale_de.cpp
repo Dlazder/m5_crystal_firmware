@@ -11,6 +11,7 @@ const Locale LANG_DE = {
 	.MENU_WIFI_INFO              = "info",
 	.MENU_WIFI_DEAUTH            = "deauth",
 	.MENU_WIFI_CONNECT           = "verbinden",
+	.MENU_WIFI_DISCONNECT        = "wifi trennen",
 	.MENU_WIFI_AP                = "Wi-Fi AP",
 	.MENU_WIFI_WEATHER           = "wetter",
 
