@@ -13,8 +13,8 @@ using std::to_string;
 // Localization
 #include "../system/locale/locale.h"
 
-const Locale* locales[] = { &LANG_EN, &LANG_ES, &LANG_IT, &LANG_ID, };
-const char* localeNames[] = { "English", "Espanol", "Italiano", "Indonesia", };
+const Locale* locales[] = { &LANG_EN, &LANG_ES, &LANG_IT, &LANG_ID, &LANG_RU, &LANG_UK, &LANG_DE };
+const char* localeNames[] = { "English", "Espanol", "Italiano", "Indonesia", "Русский", "Українська", "Deutsch" };
 int languageIndex = 0;
 int localesCount = sizeof(locales) / sizeof(locales[0]);
 
@@ -63,7 +63,7 @@ int HUGE_TEXT = 4;
 // Fonts
 #include <U8g2lib.h>
 int currentFontIndex = 0;
-static lgfx::U8g2font u8g2Font5x8(u8g2_font_5x8_t_cyrillic);
+// static lgfx::U8g2font u8g2Font5x8(u8g2_font_5x8_t_cyrillic);
 static lgfx::U8g2font u8g2Font6x12(u8g2_font_6x12_t_cyrillic);
 static lgfx::U8g2font u8g2Font6x13(u8g2_font_6x13_t_cyrillic);
 
@@ -78,6 +78,7 @@ const char* fontNames[] = {
   // "5x8",
   "6x12",
   "6x13",
+  "Unifont 16px",
 };
 
 int brightnessMax = 255;

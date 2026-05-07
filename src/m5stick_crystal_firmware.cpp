@@ -1,7 +1,7 @@
 #include "./system/globals.h"
-#include "./system/showStartupScreen.h"
 #include "./system/utils.h"
 #include "./system/functions.h"
+#include "./system/showStartupScreen.h"
 #include "./system/switcher.h"
 #include "./system/loadPreferences.h"
 
@@ -11,6 +11,14 @@ void setup() {
   Serial.begin(115200);
   preferences.begin("storage", false);
   loadPreferences();
+
+  canvas.createSprite(DISP.width(), DISP.height());
+  canvas.setTextColor(FGCOLOR, BGCOLOR);
+  canvas.setTextSize(MEDIUM_TEXT);
+
+  statusBarCanvas.createSprite(DISP.width(), 20);
+  statusBarCanvas.setTextColor(FGCOLOR, BGCOLOR);
+
   showStartupScreen();
 
   Wire.begin(G32, G33);
@@ -19,13 +27,6 @@ void setup() {
   delay(1000);
   // When starting the firmware, the state of the pressed btnPWR is stuck, which is why the menu scrolls. We update the state of the buttons to avoid this.
   DEVICE.update();
-
-  canvas.createSprite(DISP.width(), DISP.height());
-  canvas.setTextColor(FGCOLOR);
-  canvas.setTextSize(MEDIUM_TEXT);
-
-  statusBarCanvas.createSprite(DISP.width(), 20);
-  statusBarCanvas.setTextColor(FGCOLOR);
 
   if (startupSound) {
     DEVICE.Speaker.tone(1500, 200);

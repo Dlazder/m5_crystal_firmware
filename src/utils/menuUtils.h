@@ -1,10 +1,10 @@
 void drawScrollbar(int currentCursor, int totalItems, int visibleItems) {
-	static int SCROLLBAR_WIDTH = 3;
+	static int SCROLLBAR_WIDTH = 5;
 	int SCROLLBAR_X = canvas.width() - SCROLLBAR_WIDTH;
 	int SCROLLBAR_HEIGHT = canvas.height() - getStatusBarOffset();
 
 	if (totalItems <= visibleItems) {
-		canvas.fillRect(SCROLLBAR_X, 0, SCROLLBAR_WIDTH, SCROLLBAR_HEIGHT, BGCOLOR);
+		// canvas.fillRect(SCROLLBAR_X, 0, SCROLLBAR_WIDTH, SCROLLBAR_HEIGHT, BGCOLOR);
 		return;
 	}
 

@@ -26,7 +26,7 @@ void statusBarLoop() {
 	}
 	char batteryText[10];
 	sprintf(batteryText, "%d%%", battery);
-	int batteryTextWidth = DISP.textWidth(batteryText);
+	int batteryTextWidth = statusBarCanvas.textWidth(batteryText);
 
 	// WiFi indicator (14px tall, matching BT icon height)
 	if (WiFi.isConnected()) {
@@ -60,7 +60,7 @@ void statusBarLoop() {
 		statusBarCanvas.drawLine(px(28.649f), py(50.971f), px(12.112f), py(58.688f), FGCOLOR);
 	}
 
-	statusBarCanvas.setCursor(DISP.width() - batteryTextWidth, 4);
+	statusBarCanvas.setCursor(DISP.width() - batteryTextWidth - 5, 4);
 	statusBarCanvas.printf("%d%%", battery);
 
 	statusBarCanvas.drawLine(0, 19, DISP.width(), 19, FGCOLOR);
