@@ -1,4 +1,4 @@
-// pid PID::BT_KEYBOARD
+// PID::BT_KEYBOARD
 
 void bluetoothKeyboardLoop() {
 	static bool isBleConnected = false;
@@ -41,7 +41,11 @@ void bluetoothKeyboardLoop() {
 			bleKeyboard.write(KEY_RETURN);
 		},
 		[](char ch) {
-			if (ch == '\b') bleKeyboard.write(KEY_BACKSPACE);
+			#ifdef CARDPUTER
+				if (ch == '\b') bleKeyboard.write(0xB2); // KEY_BACKSPACE from BleCombo, overridden by M5Cardputer header
+			#else
+				if (ch == '\b') bleKeyboard.write(KEY_BACKSPACE);
+			#endif
 			else bleKeyboard.write((uint8_t)ch);
 		}
 	);

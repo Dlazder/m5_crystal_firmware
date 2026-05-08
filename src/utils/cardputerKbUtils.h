@@ -5,19 +5,26 @@
 	bool kbDownPressed = false;
 	bool kbEnterPressed = false;
 	bool kbEscPressed = false;
+	bool kbDelPressed = false;
+	String kbWord = "";
 
 	void cardputerKbUpdate() {
 		M5Cardputer.update();
 		if (!M5Cardputer.Keyboard.isChange()) return;
+		if (!M5Cardputer.Keyboard.isPressed()) return;
 
-		auto& state = M5Cardputer.Keyboard.keysState();
+		Keyboard_Class::KeysState state = M5Cardputer.Keyboard.keysState();
 
+		if (state.del) { kbDelPressed = true; return; }
+		if (state.enter) { kbEnterPressed = true; return; }
+
+		kbWord = "";
 		for (char c : state.word) {
 			if (c == ';') kbUpPressed = true;
 			else if (c == '.') kbDownPressed = true;
 			else if (c == '`') kbEscPressed = true;
+			else kbWord += c;
 		}
-		if (state.enter) kbEnterPressed = true;
 	}
 #endif
 

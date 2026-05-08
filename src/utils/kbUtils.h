@@ -43,65 +43,73 @@ void kbReset() {
 void drawKeyboardUi() {
 	canvas.clear();
 	canvas.setTextSize(MEDIUM_TEXT);
-	// using the default font for correct display
-	canvas.setFont(&fonts::Font0);
 
-	int fontH = canvas.fontHeight();
-	int specH = fontH + 6;
-	int cellH = fontH + 1;
+	#ifdef CARDPUTER
+		canvas.setFont(systemFonts[currentFontIndex]);
+		canvas.setTextColor(FGCOLOR, BGCOLOR);
+		String display = String(kbBuf);
+		canvas.setCursor(4, 4);
+		canvas.print(display + (kbCursorVisible ? "_" : " "));
+		canvas.setTextSize(TINY_TEXT);
+		canvas.drawRightString(String(display.length()) + "/63", canvas.width() - 2, 2);
+		canvas.setTextSize(MEDIUM_TEXT);
+	#else
+		canvas.setFont(&fonts::Font0);
 
-	// Input line
-	canvas.setTextColor(FGCOLOR, BGCOLOR);
-	String display = String(kbBuf);
-	if (display.length() > 14) display = display.substring(display.length() - 14);
-	canvas.setCursor(4, 2);
-	canvas.print(display + (kbCursorVisible ? "_" : " "));
+		int fontH = canvas.fontHeight();
+		int specH = fontH + 6;
+		int cellH = fontH + 1;
 
-	// Buffer indicator
-	canvas.setTextSize(TINY_TEXT);
-	canvas.drawRightString(String(display.length()) + "/63", canvas.width() - 2, 2);
-	canvas.setTextSize(MEDIUM_TEXT);
+		canvas.setTextColor(FGCOLOR, BGCOLOR);
+		String display = String(kbBuf);
+		if (display.length() > 14) display = display.substring(display.length() - 14);
+		canvas.setCursor(4, 2);
+		canvas.print(display + (kbCursorVisible ? "_" : " "));
 
-	// Special keys row
-	int specY = 2 + fontH + 2;
-	int specW = canvas.width() / kbSpecialCount;
-	for (int i = 0; i < kbSpecialCount; i++) {
-		int x       = i * specW;
-		bool sel    = (kbRow == kbSpecialRow && kbCol == i);
-		bool active = (i == 1 && kbCapsOn);
-		if (sel || active) {
-			canvas.fillRect(x, specY, specW - 1, specH, FGCOLOR);
-			canvas.setTextColor(BGCOLOR, FGCOLOR);
-		} else {
-			canvas.drawRect(x, specY, specW - 1, specH, FGCOLOR);
-			canvas.setTextColor(FGCOLOR, BGCOLOR);
-		}
-		int labelW = canvas.textWidth(kbSpecialLabels[i]);
-		canvas.setCursor(x + (specW - labelW) / 2, specY + 3);
-		canvas.print(kbSpecialLabels[i]);
-	}
+		canvas.setTextSize(TINY_TEXT);
+		canvas.drawRightString(String(display.length()) + "/63", canvas.width() - 2, 2);
+		canvas.setTextSize(MEDIUM_TEXT);
 
-	// Keyboard grid
-	int startY = specY + specH + 2;
-	for (int r = 0; r < kbRowCount; r++) {
-		int cols  = kbColCounts[r];
-		int cellW = canvas.width() / cols;
-		int y     = startY + r * cellH;
-		for (int c = 0; c < cols; c++) {
-			int x    = c * cellW;
-			bool sel = (r + 1 == kbRow && c == kbCol);
-			if (sel) {
-				canvas.fillRect(x, y, cellW, cellH, FGCOLOR);
+		int specY = 2 + fontH + 2;
+		int specW = canvas.width() / kbSpecialCount;
+		for (int i = 0; i < kbSpecialCount; i++) {
+			int x       = i * specW;
+			bool sel    = (kbRow == kbSpecialRow && kbCol == i);
+			bool active = (i == 1 && kbCapsOn);
+			if (sel || active) {
+				canvas.fillRect(x, specY, specW - 1, specH, FGCOLOR);
 				canvas.setTextColor(BGCOLOR, FGCOLOR);
 			} else {
+				canvas.drawRect(x, specY, specW - 1, specH, FGCOLOR);
 				canvas.setTextColor(FGCOLOR, BGCOLOR);
 			}
-			char ch = kbCapsOn ? kbShifted[r][c] : kbNormal[r][c];
-			canvas.setCursor(x + (cellW - canvas.textWidth(String(ch))) / 2, y + 1);
-			canvas.print(ch);
+			int labelW = canvas.textWidth(kbSpecialLabels[i]);
+			canvas.setCursor(x + (specW - labelW) / 2, specY + 3);
+			canvas.print(kbSpecialLabels[i]);
 		}
-	}
-	canvas.setFont(systemFonts[currentFontIndex]);
+
+		int startY = specY + specH + 2;
+		for (int r = 0; r < kbRowCount; r++) {
+			int cols  = kbColCounts[r];
+			int cellW = canvas.width() / cols;
+			int y     = startY + r * cellH;
+			for (int c = 0; c < cols; c++) {
+				int x    = c * cellW;
+				bool sel = (r + 1 == kbRow && c == kbCol);
+				if (sel) {
+					canvas.fillRect(x, y, cellW, cellH, FGCOLOR);
+					canvas.setTextColor(BGCOLOR, FGCOLOR);
+				} else {
+					canvas.setTextColor(FGCOLOR, BGCOLOR);
+				}
+				char ch = kbCapsOn ? kbShifted[r][c] : kbNormal[r][c];
+				canvas.setCursor(x + (cellW - canvas.textWidth(String(ch))) / 2, y + 1);
+				canvas.print(ch);
+			}
+		}
+		canvas.setFont(systemFonts[currentFontIndex]);
+	#endif
+
 	canvas.pushSprite(0, getStatusBarHeight());
 }
 
@@ -114,13 +122,43 @@ bool keyboardLoop(
 	void (*onEnter)(const char* buf),
 	void (*onChar)(char ch)
 ) {
-	DEVICE.update();
 	kbBlinkCounter++;
 	if (kbBlinkCounter >= 100) {
 		kbBlinkCounter   = 0;
 		kbCursorVisible  = !kbCursorVisible;
 		drawKeyboardUi();
 	}
+
+	#ifdef CARDPUTER
+		cardputerKbUpdate();
+		{
+			bool changed = false;
+			if (kbDelPressed) {
+				kbDelPressed = false;
+				if (kbLen > 0) { kbLen--; kbBuf[kbLen] = '\0'; }
+				if (onChar) onChar('\b');
+				changed = true;
+			}
+			if (kbEnterPressed) {
+				kbEnterPressed = false;
+				onEnter(kbBuf);
+				return true;
+			}
+			if (kbEscPressed) {
+				kbEscPressed = false;
+				onExit();
+				return true;
+			}
+			for (char c : kbWord) {
+				if (kbLen < 63) { kbBuf[kbLen++] = c; kbBuf[kbLen] = '\0'; }
+				if (onChar) onChar(c);
+				changed = true;
+			}
+			kbWord = "";
+			if (changed) drawKeyboardUi();
+		}
+		return false;
+	#endif
 
 	// Gyro navigation
 	if (kbGyroEnabled) {
