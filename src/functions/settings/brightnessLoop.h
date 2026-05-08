@@ -10,7 +10,7 @@ void brightnessLoop() {
     updateTimer();
   }
 
-  if (isBtnAWasPressed() && checkTimer(100)) {
+  if ((isBtnAWasPressed() || isKbEnterPressed()) && checkTimer(100)) {
     brightness += brightnessDividor;
     if (brightness >= brightnessMax || brightness / brightnessDividor == 0) brightness = brightnessMin;
     setData("brightness", brightness);

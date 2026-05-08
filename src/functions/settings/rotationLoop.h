@@ -10,7 +10,7 @@ void rotationLoop() {
     centeredPrintRows(lines, 3, MEDIUM_TEXT);
     updateTimer();
   }
-  if (isBtnAWasPressed() && checkTimer(100)) {
+  if ((isBtnAWasPressed() || isKbEnterPressed()) && checkTimer(100)) {
     if (rotation == 1) {
       rotation = 3;
     } else rotation = 1;

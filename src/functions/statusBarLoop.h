@@ -15,9 +15,9 @@ void statusBarLoop() {
 	}
 	
 	// Clock
-	auto dt = DEVICE.Rtc.getDateTime();
+	auto dt = getDeviceTime();
 	char formatString[30];
-	sprintf(formatString, "%02d:%02d:%02d   ", dt.time.hours, dt.time.minutes, dt.time.seconds);
+	sprintf(formatString, "%02d:%02d:%02d   ", dt.hours, dt.minutes, dt.seconds);
 	statusBarCanvas.print(formatString);
 
 	// Battery

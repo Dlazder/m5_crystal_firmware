@@ -3,39 +3,39 @@ int btnBWasPressed = false;
 int btnPWRWasPressed = false;
 
 /**
- * Checks physical button B clicks (and clicks from the web interface)
+ * Checks physical button B clicks 
  */
 bool isBtnBWasPressed() {
   if (btnBWasPressed) {
     btnBWasPressed = false;
     return true;
-  } else if (DEVICE.BtnB.wasPressed()) {
-    return true;
-  } else return false;
+  }
+  if (DEVICE.BtnB.wasPressed()) return true;
+  return false;
 }
 
 /**
- * Checks physical button A clicks (and clicks from the web interface)
+ * Checks physical button A clicks
  */
 bool isBtnAWasPressed() {
   if (btnAWasPressed) {
     btnAWasPressed = false;
     return true;
-  } else if (DEVICE.BtnA.wasPressed()) {
-    return true;
-  } else return false;
+  }
+  if (DEVICE.BtnA.wasPressed()) return true;
+  return false;
 }
 
 /**
- * Checks a physical power button clicks (and clicks from the web interface)
- */ 
+ * Checks physical power button clicks
+ */
 bool isBtnPWRWasPressed() {
   if (btnPWRWasPressed) {
     btnPWRWasPressed = false;
     return true;
-  } else if (M5.BtnPWR.wasClicked()) {
-    return true;
-  } else return false;
+  }
+  if (M5.BtnPWR.wasClicked()) return true;
+  return false;
 }
 
 /**

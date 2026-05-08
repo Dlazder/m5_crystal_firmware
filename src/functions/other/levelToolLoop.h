@@ -6,14 +6,21 @@ bool levelToolSoundPlayed = false;
 
 void levelToolLoop() {
 
-	bool isStatusBarEnabled = statusBar;
-	int statusBarHeight = isStatusBarEnabled ? 30 : 0;
+	if (isSetup()) {
+		#ifdef CARDPUTER
+		DEVICE.Speaker.begin();
+		#endif
+	}
 
 	float accX, accY, accZ;
 	float angleRoll;
-	
+
 	DEVICE.Imu.getAccelData(&accX, &accY, &accZ);
-	angleRoll = atan2(accX, accY) * 180 / PI;
+	#ifdef CARDPUTER
+		angleRoll = -atan2(accY, accX) * 180 / PI;
+	#else
+		angleRoll = atan2(accX, accY) * 180 / PI;
+	#endif
 
 	// Exponential smoothing
 	if (filteredAngle == 0) {
@@ -23,11 +30,15 @@ void levelToolLoop() {
 	}
 	
 	int centerX = DISP.width() / 2;
-	int centerY = DISP.height() / 2 - statusBarHeight;
+	int centerY = DISP.height() / 2 - getStatusBarHeight();
 	int lineLength = 60;
 	
 	float angleRad = (filteredAngle + 90) * PI / 180;
-	int angle = abs(atan2(accY, accX) * 180 / PI);
+	#ifdef CARDPUTER
+		int angle = abs(atan2(accX, accY) * 180 / PI);
+	#else
+		int angle = abs(atan2(accY, accX) * 180 / PI);
+	#endif
 	
 	int x1 = centerX - (lineLength / 2) * cos(angleRad);
 	int y1 = centerY - (lineLength / 2) * sin(angleRad);
@@ -68,11 +79,14 @@ void levelToolLoop() {
 		levelToolSoundPlayed = false;
 	}
 	
-	canvas.drawCenterString(String(lastAngle).c_str(), centerX, 110 - statusBarHeight);
+	canvas.drawCenterString(String(lastAngle).c_str(), centerX, 110 - getStatusBarHeight());
 
-	canvas.pushSprite(0, statusBarHeight + 1);
+	canvas.pushSprite(0, getStatusBarHeight());
 	
 	if (checkExit()) {
 		DEVICE.Power.setLed(0);
+		#ifdef CARDPUTER
+		DEVICE.Speaker.end();
+		#endif
 	}
 }

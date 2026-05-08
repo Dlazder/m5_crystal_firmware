@@ -1,6 +1,7 @@
 // All files from the utils/ folder
 
 // 1st layer utilities
+#include "../utils/timeUtils.h"
 #include "../utils/statusBarUtils.h"
 #include "../utils/btnUtils.h"
 #include "../utils/displayUtils/displayUtils.h"
@@ -11,6 +12,7 @@
 #include "../utils/webResponseUtils.h"
 #include "../utils/storageUtils.h"
 #include "../utils/kbUtils.h"
+#include "../utils/cardputerKbUtils.h"
 // 2nd layer utilities
 #include "../utils/procManagmentUtils.h"
 #include "../utils/menuUtils.h"

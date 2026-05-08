@@ -11,7 +11,7 @@ void fontsLoop() {
     updateTimer();
   }
 
-  if (isBtnAWasPressed() && checkTimer(100)) {
+  if ((isBtnAWasPressed() || isKbEnterPressed()) && checkTimer(100)) {
     currentFontIndex++;
     if (currentFontIndex == sizeof(systemFonts) / sizeof(systemFonts[0])) {
       currentFontIndex = 0;

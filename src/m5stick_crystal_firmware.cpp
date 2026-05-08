@@ -62,6 +62,8 @@ void loop() {
   globalTimer = millis();
   #ifdef CARDPUTER
     cardputerKbUpdate();
+  #else
+    DEVICE.update();
   #endif
 
   if (statusBar) {

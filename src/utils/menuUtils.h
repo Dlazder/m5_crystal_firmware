@@ -47,16 +47,16 @@ void drawMenu(MENU menu[], int size) {
 int selectedItem = 0;
 void menuLoop(MENU menu[], int size, bool updateSelectedItem = false) {
 	DEVICE.update();
-	if (isBtnBWasPressed() || isWebControlDownWasPressed()) {
+	if (isBtnBWasPressed() || isKbDownPressed() || isWebControlDownWasPressed()) {
 		cursor++;
 		drawMenu(menu, size);
 	}
-	if (isBtnAWasPressed()) {
+	if (isBtnAWasPressed() || isKbEnterPressed()) {
 		changeProcess(menu[cursor].command);
 		if (updateSelectedItem) selectedItem = menu[cursor].command;
 		return;
 	}
-	if (isBtnPWRWasPressed() || isWebControlUpWasPressed()) {
+	if (isBtnPWRWasPressed() || isKbUpPressed() || isWebControlUpWasPressed()) {
 		cursor--;
 		drawMenu(menu, size);
 	}

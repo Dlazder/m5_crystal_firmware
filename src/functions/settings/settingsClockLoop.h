@@ -30,13 +30,11 @@ void settingsClockLoop() {
 	static int tempHours = 0;
 	static int tempMinutes = 0;
 	static int currentState = 0;
-	static auto dt = DEVICE.Rtc.getDateTime();
-
-
 	if (isSetup()) {
+		auto dt = getDeviceTime();
 		currentState = 0;
-		tempHours = dt.time.hours;
-		tempMinutes = dt.time.minutes;
+		tempHours = dt.hours;
+		tempMinutes = dt.minutes;
 		updateTimer();
 		drawclockSettingsUi(currentState, tempHours, tempMinutes);
 	}
@@ -55,10 +53,7 @@ void settingsClockLoop() {
 			tempMinutes = (tempMinutes + 1) % 60;
 			drawclockSettingsUi(currentState, tempHours, tempMinutes);
 		} else if (currentState == 2) {
-			dt.time.hours = tempHours;
-			dt.time.minutes = tempMinutes;
-			dt.time.seconds = 0;
-			DEVICE.Rtc.setDateTime(&dt);
+			setDeviceTime(tempHours, tempMinutes, 0);
 			changeProcess(PID::SETTINGS);
 		}
 	}
@@ -72,10 +67,7 @@ void settingsClockLoop() {
 			tempMinutes = (tempMinutes - 1) % 60;
 			drawclockSettingsUi(currentState, tempHours, tempMinutes);
 		} else if (currentState == 2) {
-			dt.time.hours = tempHours;
-			dt.time.minutes = tempMinutes;
-			dt.time.seconds = 0;
-			DEVICE.Rtc.setDateTime(&dt);
+			setDeviceTime(tempHours, tempMinutes, 0);
 			changeProcess(PID::SETTINGS);
 		}
 	}

@@ -6,11 +6,11 @@ void clockLoop() {
   }
 
   static int oldSeconds;
-  auto dt = DEVICE.Rtc.getDateTime();
+  auto dt = getDeviceTime();
   char formatString[30];
-  sprintf(formatString, "%02d:%02d:%02d", dt.time.hours, dt.time.minutes, dt.time.seconds);
-  if (dt.time.seconds != oldSeconds) {
-    oldSeconds = dt.time.seconds;
+  sprintf(formatString, "%02d:%02d:%02d", dt.hours, dt.minutes, dt.seconds);
+  if (dt.seconds != oldSeconds) {
+    oldSeconds = dt.seconds;
     canvas.clear();
     canvas.setTextSize(BIG_TEXT);
     canvas.drawCenterString(formatString, DISP.width() / 2, ((DISP.height() - getStatusBarHeight()) - DISP.fontHeight()) / 2);

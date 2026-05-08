@@ -10,7 +10,7 @@ void toggleStatusBarLoop() {
 		updateTimer();
 	}
 
-	if (isBtnAWasPressed() && checkTimer(100)) {
+	if ((isBtnAWasPressed() || isKbEnterPressed()) && checkTimer(100)) {
 		statusBar = !getData("statusBar", statusBar);
 		setData("statusBar", statusBar);
 		DISP.clear();
