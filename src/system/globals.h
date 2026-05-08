@@ -23,7 +23,11 @@ int localesCount = sizeof(locales) / sizeof(locales[0]);
 // NFC PN532
 #include <Adafruit_PN532.h>
 #include <Wire.h>
+#ifdef CARDPUTER
+Adafruit_PN532 nfc(SDA, SCL, &Wire);
+#else
 Adafruit_PN532 nfc(G32, G33, &Wire);
+#endif
 
 
 

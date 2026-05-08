@@ -7,7 +7,11 @@
 
 void setup() {
   auto cfg = M5.config();
-  DEVICE.begin(cfg);
+  #ifdef CARDPUTER
+    M5Cardputer.begin(cfg, true);
+  #else
+    DEVICE.begin(cfg);
+  #endif
   Serial.begin(115200);
   preferences.begin("storage", false);
   loadPreferences();
@@ -21,7 +25,11 @@ void setup() {
 
   showStartupScreen();
 
+#ifdef CARDPUTER
+  Wire.begin(SDA, SCL);
+#else
   Wire.begin(G32, G33);
+#endif
   Wire.setClock(10000);
   Wire.setTimeout(100);
   delay(1000);
@@ -52,6 +60,9 @@ void setup() {
 
 void loop() {
   globalTimer = millis();
+  #ifdef CARDPUTER
+    cardputerKbUpdate();
+  #endif
 
   if (statusBar) {
     statusBarLoop();
