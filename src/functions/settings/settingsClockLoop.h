@@ -40,35 +40,60 @@ void settingsClockLoop() {
 	}
 	
 	DEVICE.update();
-	if (isBtnBWasPressed() && checkTimer(100, true)) {
-		currentState = (currentState + 1) % 3;
-		drawclockSettingsUi(currentState, tempHours, tempMinutes);
-	}
 
-	if (isBtnAWasPressed() && checkTimer(100, true)) {
-		if (currentState == 0) {
-			tempHours = (tempHours + 1) % 24;
+	#ifdef CARDPUTER
+		if (isKbLeftPressed() && checkTimer(100, true)) {
+			currentState = (currentState + 2) % 3;
 			drawclockSettingsUi(currentState, tempHours, tempMinutes);
-		} else if (currentState == 1) {
-			tempMinutes = (tempMinutes + 1) % 60;
+		}
+		if (isKbRightPressed() && checkTimer(100, true)) {
+			currentState = (currentState + 1) % 3;
 			drawclockSettingsUi(currentState, tempHours, tempMinutes);
-		} else if (currentState == 2) {
+		}
+		if (isKbPlusPressed() && checkTimer(100, true)) {
+			if (currentState == 0) tempHours = (tempHours + 1) % 24;
+			else if (currentState == 1) tempMinutes = (tempMinutes + 1) % 60;
+			drawclockSettingsUi(currentState, tempHours, tempMinutes);
+		}
+		if (isKbMinusPressed() && checkTimer(100, true)) {
+			if (currentState == 0) tempHours = (tempHours + 23) % 24;
+			else if (currentState == 1) tempMinutes = (tempMinutes + 59) % 60;
+			drawclockSettingsUi(currentState, tempHours, tempMinutes);
+		}
+		if (isKbEnterPressed() && checkTimer(100, true)) {
 			setDeviceTime(tempHours, tempMinutes, 0);
 			changeProcess(PID::SETTINGS);
 		}
-	}
-
-
-	if (isBtnPWRWasPressed() && checkTimer(100, true)) {
-		if (currentState == 0) {
-			tempHours = (tempHours - 1) % 24;
+	#else
+		if (isBtnBWasPressed() && checkTimer(100, true)) {
+			currentState = (currentState + 1) % 3;
 			drawclockSettingsUi(currentState, tempHours, tempMinutes);
-		} else if (currentState == 1) {
-			tempMinutes = (tempMinutes - 1) % 60;
-			drawclockSettingsUi(currentState, tempHours, tempMinutes);
-		} else if (currentState == 2) {
-			setDeviceTime(tempHours, tempMinutes, 0);
-			changeProcess(PID::SETTINGS);
 		}
-	}
+
+		if ((isBtnAWasPressed() || isKbUpPressed()) && checkTimer(100, true)) {
+			if (currentState == 0) {
+				tempHours = (tempHours + 1) % 24;
+				drawclockSettingsUi(currentState, tempHours, tempMinutes);
+			} else if (currentState == 1) {
+				tempMinutes = (tempMinutes + 1) % 60;
+				drawclockSettingsUi(currentState, tempHours, tempMinutes);
+			} else if (currentState == 2) {
+				setDeviceTime(tempHours, tempMinutes, 0);
+				changeProcess(PID::SETTINGS);
+			}
+		}
+
+		if ((isBtnPWRWasPressed() || isKbDownPressed()) && checkTimer(100, true)) {
+			if (currentState == 0) {
+				tempHours = (tempHours + 23) % 24;
+				drawclockSettingsUi(currentState, tempHours, tempMinutes);
+			} else if (currentState == 1) {
+				tempMinutes = (tempMinutes + 59) % 60;
+				drawclockSettingsUi(currentState, tempHours, tempMinutes);
+			} else if (currentState == 2) {
+				setDeviceTime(tempHours, tempMinutes, 0);
+				changeProcess(PID::SETTINGS);
+			}
+		}
+	#endif
 }
