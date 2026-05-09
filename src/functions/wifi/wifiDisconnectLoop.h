@@ -16,7 +16,7 @@ void wifiDisconnectLoop() {
 		}
 	}
 
-	if (WiFi.isConnected() && isBtnAWasPressed() && checkTimer(100)) {
+	if (WiFi.isConnected() && (isBtnAWasPressed() || isKbEnterPressed()) && checkTimer(100)) {
 		WiFi.disconnect(true);
 		centeredPrint(L->TXT_DISCONNECTED, MEDIUM_TEXT);
 	}
