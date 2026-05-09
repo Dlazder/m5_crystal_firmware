@@ -1,0 +1,103 @@
+name: Build firmware (PlatformIO)
+
+on:
+  push:
+    branches: [main, develop]
+    tags: ['v*']
+  pull_request:
+    branches: [main]
+
+permissions:
+  contents: write
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    strategy:
+      matrix:
+        env: [m5stick-c-plus2, cardputer-adv]
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+
+      - name: Install PlatformIO
+        run: pip install platformio
+
+      - name: Get version
+        run: |
+          VERSION=$(grep FIRMWARE_VERSION src/system/version.h | cut -d '"' -f 2)
+          echo "VERSION=$VERSION" >> $GITHUB_ENV
+
+      - name: Build firmware (${{ matrix.env }})
+        run: pio run -e ${{ matrix.env }}
+
+      - name: Install esptool
+        run: pip install esptool
+
+      - name: Merge binaries (cardputer-adv)
+        if: matrix.env == 'cardputer-adv'
+        run: |
+          esptool.py --chip esp32s3 merge_bin \
+            --output .pio/build/${{ matrix.env }}/crystal_firmware_${{ matrix.env }}_v${{ env.VERSION }}.bin \
+            0x0000 .pio/build/${{ matrix.env }}/bootloader.bin \
+            0x8000 .pio/build/${{ matrix.env }}/partitions.bin \
+            0xe000 ~/.platformio/packages/framework-arduinoespressif32/tools/partitions/boot_app0.bin \
+            0x10000 .pio/build/${{ matrix.env }}/firmware.bin
+
+      - name: Merge binaries (m5stick-c-plus2)
+        if: matrix.env == 'm5stick-c-plus2'
+        run: |
+          esptool.py --chip esp32 merge_bin \
+            --output .pio/build/${{ matrix.env }}/crystal_firmware_${{ matrix.env }}_v${{ env.VERSION }}.bin \
+            0x1000 .pio/build/${{ matrix.env }}/bootloader.bin \
+            0x8000 .pio/build/${{ matrix.env }}/partitions.bin \
+            0xe000 ~/.platformio/packages/framework-arduinoespressif32/tools/partitions/boot_app0.bin \
+            0x10000 .pio/build/${{ matrix.env }}/firmware.bin
+
+      - name: Upload firmware artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: crystal_firmware_${{ matrix.env }}_v${{ env.VERSION }}
+          path: .pio/build/${{ matrix.env }}/crystal_firmware_${{ matrix.env }}_v${{ env.VERSION }}.bin
+          retention-days: 90
+
+  release:
+    needs: build
+    if: startsWith(github.ref, 'refs/tags/v') && needs.build.result == 'success'
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Get version
+        run: |
+          VERSION=$(grep FIRMWARE_VERSION src/system/version.h | cut -d '"' -f 2)
+          echo "VERSION=$VERSION" >> $GITHUB_ENV
+
+      - name: Download artifacts
+        uses: actions/download-artifact@v4
+        with:
+          pattern: crystal_firmware_*_v${{ env.VERSION }}
+          merge-multiple: true
+
+      - name: Create GitHub Release
+        uses: softprops/action-gh-release@v1
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        with:
+          tag_name: ${{ github.ref_name }}
+          name: Release ${{ github.ref_name }}
+          body: |
+            Build from commit: [${{ github.sha }}](https://github.com/${{ github.repository }}/commit/${{ github.sha }})
+          files: |
+            crystal_firmware_m5stick-c-plus2_v${{ env.VERSION }}.bin
+            crystal_firmware_cardputer-adv_v${{ env.VERSION }}.bin
+          generate_release_notes: true

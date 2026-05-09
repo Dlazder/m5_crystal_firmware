@@ -1,11 +1,8 @@
-name: Build firmware
+# DEPRECATED: use build_pio.yml instead
+name: Build firmware (Arduino-CLI)
 
 on:
-  push:
-    branches: [main, develop]
-    tags: ['v*']
-  pull_request:
-    branches: [main]
+  workflow_dispatch:
 
 permissions:
   contents: write 
