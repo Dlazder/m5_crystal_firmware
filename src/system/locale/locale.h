@@ -14,6 +14,7 @@ struct Locale {
 	const char* MENU_WIFI_DISCONNECT;
 	const char* MENU_WIFI_AP;
 	const char* MENU_WIFI_WEATHER;
+	const char* MENU_WIFI_SYNC_TIME;
 
 	// Bluetooth menu
 	const char* MENU_BT;
@@ -79,6 +80,9 @@ struct Locale {
 	const char* TXT_WIFI_SSID_NOT_FOUND;
 	const char* TXT_WIFI_TIMEOUT;
 	const char* TXT_WIFI_WRONG_PASSWORD;
+	const char* TXT_WIFI_SYNC_FAILED;
+	const char* TXT_WIFI_TIME_SYNCED;
+	const char* TXT_WIFI_NOT_CONNECTED;
 
 	// Bluetooth text
 	const char* TXT_BT_FILE_ERROR;

@@ -14,6 +14,7 @@ const Locale LANG_EN = {
 	.MENU_WIFI_DISCONNECT        = "disconnect wifi",
 	.MENU_WIFI_AP                = "Wi-Fi AP",
 	.MENU_WIFI_WEATHER           = "weather",
+	.MENU_WIFI_SYNC_TIME         = "sync time",
 
 	// Bluetooth menu
 	.MENU_BT                     = "Bluetooth",
@@ -78,6 +79,9 @@ const Locale LANG_EN = {
 	.TXT_WIFI_SSID_NOT_FOUND     = "SSID not found",
 	.TXT_WIFI_TIMEOUT            = "Timeout",
 	.TXT_WIFI_WRONG_PASSWORD     = "Wrong password",
+	.TXT_WIFI_SYNC_FAILED        = "Sync failed",
+	.TXT_WIFI_TIME_SYNCED        = "Time synced",
+	.TXT_WIFI_NOT_CONNECTED      = "No WiFi",
 
 	// Bluetooth text
 	.TXT_BT_FILE_ERROR           = "File error",

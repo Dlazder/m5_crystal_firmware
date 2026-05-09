@@ -32,6 +32,7 @@
 #include "../functions/wifi/wifiConnectLoop.h"
 #include "../functions/wifi/weatherLoop.h"
 #include "../functions/wifi/wifiDisconnectLoop.h"
+#include "../functions/wifi/wifiTimeSyncLoop.h"
 
 
 // Bluetooth functions

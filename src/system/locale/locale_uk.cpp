@@ -14,6 +14,7 @@ const Locale LANG_UK = {
 	.MENU_WIFI_DISCONNECT        = "відключити wifi",
 	.MENU_WIFI_AP                = "Wi-Fi AP",
 	.MENU_WIFI_WEATHER           = "погода",
+	.MENU_WIFI_SYNC_TIME         = "синхр. час",
 
 	// Bluetooth menu
 	.MENU_BT                     = "Bluetooth",
@@ -78,6 +79,9 @@ const Locale LANG_UK = {
 	.TXT_WIFI_SSID_NOT_FOUND     = "SSID не знайдено",
 	.TXT_WIFI_TIMEOUT            = "Таймаут",
 	.TXT_WIFI_WRONG_PASSWORD     = "Невірн. пароль",
+	.TXT_WIFI_SYNC_FAILED        = "Помилка синхр.",
+	.TXT_WIFI_TIME_SYNCED        = "Час синхронізовано",
+	.TXT_WIFI_NOT_CONNECTED      = "Нема Wi-Fi",
 
 	// Bluetooth text
 	.TXT_BT_FILE_ERROR           = "Помилка файлу",
