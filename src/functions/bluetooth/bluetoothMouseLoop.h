@@ -51,8 +51,13 @@ void bluetoothMouseLoop() {
 
 		DEVICE.Imu.getAccelData(&accX, &accY, &accZ);
 
+		#ifdef CARDPUTER
+		float rawMoveX = -accX;
+		float rawMoveY = accY;
+		#else
 		float rawMoveX = accY;
 		float rawMoveY = accX;
+		#endif
 
 		if (abs(rawMoveX) < DEADZONE) rawMoveX = 0;
 		if (abs(rawMoveY) < DEADZONE) rawMoveY = 0;
