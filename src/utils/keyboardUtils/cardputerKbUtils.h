@@ -1,4 +1,4 @@
-#ifdef CARDPUTER
+#if HAS_PHYSICAL_KB
 	#include <M5Cardputer.h>
 
 	bool kbUpPressed = false;
@@ -37,56 +37,56 @@
 #endif
 
 bool isKbUpPressed() {
-	#ifdef CARDPUTER
+	#if HAS_PHYSICAL_KB
 	if (kbUpPressed) { kbUpPressed = false; return true; }
 	#endif
 	return false;
 }
 
 bool isKbDownPressed() {
-	#ifdef CARDPUTER
+	#if HAS_PHYSICAL_KB
 	if (kbDownPressed) { kbDownPressed = false; return true; }
 	#endif
 	return false;
 }
 
 bool isKbEnterPressed() {
-	#ifdef CARDPUTER
+	#if HAS_PHYSICAL_KB
 	if (kbEnterPressed) { kbEnterPressed = false; return true; }
 	#endif
 	return false;
 }
 
 bool isKbEscPressed() {
-	#ifdef CARDPUTER
+	#if HAS_PHYSICAL_KB
 	if (kbEscPressed) { kbEscPressed = false; return true; }
 	#endif
 	return false;
 }
 
 bool isKbLeftPressed() {
-	#ifdef CARDPUTER
+	#if HAS_PHYSICAL_KB
 	if (kbLeftPressed) { kbLeftPressed = false; return true; }
 	#endif
 	return false;
 }
 
 bool isKbRightPressed() {
-	#ifdef CARDPUTER
+	#if HAS_PHYSICAL_KB
 	if (kbRightPressed) { kbRightPressed = false; return true; }
 	#endif
 	return false;
 }
 
 bool isKbPlusPressed() {
-	#ifdef CARDPUTER
+	#if HAS_PHYSICAL_KB
 	if (kbPlusPressed) { kbPlusPressed = false; return true; }
 	#endif
 	return false;
 }
 
 bool isKbMinusPressed() {
-	#ifdef CARDPUTER
+	#if HAS_PHYSICAL_KB
 	if (kbMinusPressed) { kbMinusPressed = false; return true; }
 	#endif
 	return false;

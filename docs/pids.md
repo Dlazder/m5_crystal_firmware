@@ -1,38 +1,61 @@
 # List of process IDs
 
-0. mainMenu
-1. clock
-2. battery info
-3. settingsMenu
-4. Wi-Fi AP
-5. brightness
-6. rotation
-7. colors
-8. Wi-Fi scan
-9. Wi-Fi network menu
-10. settings statusBar
-11. Wi-Fi deauth
-12. Wi-Fi info
-13. Wi-Fi Menu
-14. Bluetooth Menu
-15. Bluetooth camera shutter
-16. Toggle status bar
-17. Toggle PID in status bar
-18. REMOVED (toggle battery % in status bar)
-19. change fonts (beta)
-20. level tool
-21. NFC menu
-22. NFC read UID
-23. NFC write UID
-24. Flashlight menu
-25. Flashlight
-26. Flashlight flicker
-27. Sound level
-28. toggle startup sound setting
-29. "other" menu
-30. system menu
-31. Bluetooth mouse
-32. Bluetooth presenter
-33. shutdown
-34. system info
-35. clock settings
+0. MAIN_MENU
+1. FILE_PICKER
+
+Settings (100-199)
+100. SETTINGS
+101. SETTINGS_CLOCK
+102. SETTINGS_STATUS_BAR
+103. BRIGHTNESS
+104. ROTATION
+105. COLORS
+106. FONTS
+107. STARTUP_SOUND
+108. KB_GYRO
+109. TOGGLE_STATUS_BAR
+110. TOGGLE_STATUS_BAR_PID
+111. LANGUAGE
+
+Wi-Fi (200-299)
+200. WIFI
+201. WIFI_SCAN
+202. WIFI_SELECTED
+203. WIFI_INFO
+204. WIFI_DEAUTH
+205. WIFI_ACCESS_POINT
+206. WIFI_CONNECT
+207. WIFI_DISCONNECT
+208. WIFI_TIME_SYNC
+
+Bluetooth (300-399)
+300. BLUETOOTH
+301. BT_SCAN
+302. BT_SELECTED
+303. BT_INFO
+304. BT_FINDER
+305. BT_KEYBOARD
+306. BT_MOUSE
+307. BT_PRESENTER
+308. BT_SHUTTER
+309. BAD_BLE
+310. BAD_BLE_MENU
+
+NFC (400-499)
+400. NFC
+401. NFC_READ
+402. NFC_WRITE
+
+Other (800-899)
+800. OTHER
+801. CLOCK
+802. BATTERY
+803. SOUND_LEVEL
+805. FLASHLIGHT_MENU
+804. FLASHLIGHT
+806. FLASHLIGHT_FLICKER
+807. LEVEL_TOOL
+808. SYSTEM
+809. SYSTEM_INFO
+810. SHUTDOWN
+811. WEATHER

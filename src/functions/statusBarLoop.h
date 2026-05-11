@@ -15,7 +15,7 @@ void statusBarLoop() {
 	}
 	
 	// Clock
-	auto dt = getDeviceTime();
+	auto dt = deviceGetTime();
 	char formatString[30];
 	sprintf(formatString, "%02d:%02d:%02d   ", dt.hours, dt.minutes, dt.seconds);
 	statusBarCanvas.print(formatString);

@@ -7,7 +7,7 @@ void drawclockSettingsUi(int currentState, int hours, int minutes) {
 	int textHeight = canvas.fontHeight() * 2;
 	int x = canvas.width() / 2 - (textWidth / 2);
 	int y = ((canvas.height() - getStatusBarHeight()) - textHeight) / 2;
-	
+
 	canvas.clear();
 	canvas.setCursor(x, y);
 
@@ -22,7 +22,7 @@ void drawclockSettingsUi(int currentState, int hours, int minutes) {
 	canvas.println();
 	canvas.drawCenterString("OK", canvas.width() / 2, canvas.getCursorY());
 	canvas.setTextColor(FGCOLOR, BGCOLOR);
-	
+
 	canvas.pushSprite(0, getStatusBarHeight());
 }
 
@@ -31,17 +31,17 @@ void settingsClockLoop() {
 	static int tempMinutes = 0;
 	static int currentState = 0;
 	if (isSetup()) {
-		auto dt = getDeviceTime();
+		auto dt = deviceGetTime();
 		currentState = 0;
 		tempHours = dt.hours;
 		tempMinutes = dt.minutes;
 		updateTimer();
 		drawclockSettingsUi(currentState, tempHours, tempMinutes);
 	}
-	
+
 	DEVICE.update();
 
-	#ifdef CARDPUTER
+	#if HAS_PHYSICAL_KB
 		if (isKbLeftPressed() && checkTimer(100, true)) {
 			currentState = (currentState + 2) % 3;
 			drawclockSettingsUi(currentState, tempHours, tempMinutes);
@@ -61,7 +61,7 @@ void settingsClockLoop() {
 			drawclockSettingsUi(currentState, tempHours, tempMinutes);
 		}
 		if (isKbEnterPressed() && checkTimer(100, true)) {
-			setDeviceTime(tempHours, tempMinutes, 0);
+			deviceSetTime(tempHours, tempMinutes, 0);
 			changeProcess(PID::SETTINGS);
 		}
 	#else
@@ -78,7 +78,7 @@ void settingsClockLoop() {
 				tempMinutes = (tempMinutes + 1) % 60;
 				drawclockSettingsUi(currentState, tempHours, tempMinutes);
 			} else if (currentState == 2) {
-				setDeviceTime(tempHours, tempMinutes, 0);
+				deviceSetTime(tempHours, tempMinutes, 0);
 				changeProcess(PID::SETTINGS);
 			}
 		}
@@ -91,7 +91,7 @@ void settingsClockLoop() {
 				tempMinutes = (tempMinutes + 59) % 60;
 				drawclockSettingsUi(currentState, tempHours, tempMinutes);
 			} else if (currentState == 2) {
-				setDeviceTime(tempHours, tempMinutes, 0);
+				deviceSetTime(tempHours, tempMinutes, 0);
 				changeProcess(PID::SETTINGS);
 			}
 		}

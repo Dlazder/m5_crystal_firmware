@@ -23,11 +23,6 @@ int localesCount = sizeof(locales) / sizeof(locales[0]);
 // NFC PN532
 #include <Adafruit_PN532.h>
 #include <Wire.h>
-#ifdef CARDPUTER
-Adafruit_PN532 nfc(SDA, SCL, &Wire);
-#else
-Adafruit_PN532 nfc(G32, G33, &Wire);
-#endif
 
 
 
@@ -128,3 +123,8 @@ BleComboKeyboard bleKeyboard("M5 Crystal", "M5 Crystal");
 BleComboMouse bleMouse(&bleKeyboard);
 
 bool bleCompositeBegan = false;
+
+// Device abstraction — must come after BleCombo to avoid KEY_BACKSPACE redefinition
+// by M5Cardputer headers.
+#include "../devices/device.h"
+Adafruit_PN532 nfc(NFC_SDA, NFC_SCL, &Wire);

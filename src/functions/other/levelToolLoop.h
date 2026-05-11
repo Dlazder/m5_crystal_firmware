@@ -7,20 +7,14 @@ bool levelToolSoundPlayed = false;
 void levelToolLoop() {
 
 	if (isSetup()) {
-		#ifdef CARDPUTER
-		DEVICE.Speaker.begin();
-		#endif
+		deviceSpeakerBegin();
 	}
 
 	float accX, accY, accZ;
 	float angleRoll;
 
 	DEVICE.Imu.getAccelData(&accX, &accY, &accZ);
-	#ifdef CARDPUTER
-		angleRoll = -atan2(accY, accX) * 180 / PI;
-	#else
-		angleRoll = atan2(accX, accY) * 180 / PI;
-	#endif
+	angleRoll = IMU_LEVEL_ROLL(accX, accY);
 
 	// Exponential smoothing
 	if (filteredAngle == 0) {
@@ -34,11 +28,7 @@ void levelToolLoop() {
 	int lineLength = 60;
 	
 	float angleRad = (filteredAngle + 90) * PI / 180;
-	#ifdef CARDPUTER
-		int angle = abs(atan2(accX, accY) * 180 / PI);
-	#else
-		int angle = abs(atan2(accY, accX) * 180 / PI);
-	#endif
+	int angle = IMU_LEVEL_ANGLE(accX, accY);
 	
 	int x1 = centerX - (lineLength / 2) * cos(angleRad);
 	int y1 = centerY - (lineLength / 2) * sin(angleRad);
@@ -85,8 +75,6 @@ void levelToolLoop() {
 	
 	if (checkExit()) {
 		DEVICE.Power.setLed(0);
-		#ifdef CARDPUTER
-		DEVICE.Speaker.end();
-		#endif
+		deviceSpeakerEnd();
 	}
 }

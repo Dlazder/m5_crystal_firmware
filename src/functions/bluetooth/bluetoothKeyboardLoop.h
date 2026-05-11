@@ -41,11 +41,7 @@ void bluetoothKeyboardLoop() {
 			bleKeyboard.write(KEY_RETURN);
 		},
 		[](char ch) {
-			#ifdef CARDPUTER
-				if (ch == '\b') bleKeyboard.write(0xB2); // KEY_BACKSPACE from BleCombo, overridden by M5Cardputer header
-			#else
-				if (ch == '\b') bleKeyboard.write(KEY_BACKSPACE);
-			#endif
+			if (ch == '\b') bleKeyboard.write(BLE_KEY_BACKSPACE);
 			else bleKeyboard.write((uint8_t)ch);
 		}
 	);
