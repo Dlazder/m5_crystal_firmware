@@ -34,7 +34,7 @@ bool isBtnPWRWasPressed() {
     btnPWRWasPressed = false;
     return true;
   }
-  if (M5.BtnPWR.wasClicked()) return true;
+  if (DEVICE.BtnPWR.wasClicked()) return true;
   return false;
 }
 

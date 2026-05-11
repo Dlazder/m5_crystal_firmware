@@ -44,8 +44,7 @@ void drawMenu(MENU menu[], int size) {
 	canvas.pushSprite(0, getStatusBarOffset());
 }
 
-int selectedItem = 0;
-void menuLoop(MENU menu[], int size, bool updateSelectedItem = false) {
+void menuLoop(MENU menu[], int size) {
 	DEVICE.update();
 	if (isBtnBWasPressed() || isKbDownPressed() || isWebControlDownWasPressed()) {
 		cursor++;
@@ -53,7 +52,6 @@ void menuLoop(MENU menu[], int size, bool updateSelectedItem = false) {
 	}
 	if (isBtnAWasPressed() || isKbEnterPressed()) {
 		changeProcess(menu[cursor].command);
-		if (updateSelectedItem) selectedItem = menu[cursor].command;
 		return;
 	}
 	if (isBtnPWRWasPressed() || isKbUpPressed() || isWebControlUpWasPressed()) {
@@ -63,11 +61,4 @@ void menuLoop(MENU menu[], int size, bool updateSelectedItem = false) {
 	if (isWebDataRequested()) {
 		webData = generateWebData("menu", generateMenuString(menu, size));
 	}
-}
-
-bool isMenuItemSelected(int pid) {
-	if (pid == selectedItem) {
-		selectedItem = -1;
-		return true;
-	} else return false;
 }

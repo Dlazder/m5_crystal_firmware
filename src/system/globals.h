@@ -84,7 +84,7 @@ int brightnessMin = brightnessDividor;
 int globalTimer = millis();
 int globalPreviousTimer = 0;
 
-int isWebInterfaceEnabled = false;
+bool isWebInterfaceEnabled = false;
 
 
 bool webDataRequested = true;

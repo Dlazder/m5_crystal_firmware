@@ -4,8 +4,10 @@ int wifiCount = 0;
 MENU* wifiScanMenu = nullptr;
 void wifiScanLoop() {
 	if (isSetup()) {
-		if (wifiCount == 0 || isMenuItemSelected(PID::WIFI_SCAN)) {
-			// clear memory
+		// Scanning if:
+		// If wifiCount = 0 that means we are scanning for the first time or no networks was found last time
+		// If previous process was WIFI_SCAN that means we rescan networks.
+		if (wifiCount == 0 || previousProcess == PID::WIFI_SCAN) {
 			if (wifiScanMenu != nullptr) {
 				delete[] wifiScanMenu;
 			}
@@ -26,5 +28,5 @@ void wifiScanLoop() {
 		cursorOnTop();
 		drawMenu(wifiScanMenu, wifiCount + 2);
 	}
-	menuLoop(wifiScanMenu, wifiCount + 2, true);
+	menuLoop(wifiScanMenu, wifiCount + 2);
 }
