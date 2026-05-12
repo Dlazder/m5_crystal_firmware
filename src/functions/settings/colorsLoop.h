@@ -6,7 +6,7 @@ void colorsLoop() {
 		centeredPrintRows(lines, 2, MEDIUM_TEXT);
 		updateTimer();
 	}
-	if (isBtnAWasPressed() && checkTimer(100)) {
+	if ((isBtnAWasPressed() || isKbEnterPressed()) && checkTimer(100)) {
 		colorIndex++;
 		if (colorIndex == sizeof(colors) / sizeof(colors[0])) {
 			colorIndex = 0;

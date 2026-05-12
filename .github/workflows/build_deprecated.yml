@@ -1,11 +1,8 @@
-name: Build firmware
+# DEPRECATED: use build_pio.yml instead
+name: Build firmware (Arduino-CLI)
 
 on:
-  push:
-    branches: [main, develop]
-    tags: ['v*']
-  pull_request:
-    branches: [main]
+  workflow_dispatch:
 
 permissions:
   contents: write 
@@ -38,6 +35,7 @@ jobs:
           arduino-cli lib install "M5Unified"
           arduino-cli lib install "Adafruit PN532"
           arduino-cli lib install "U8g2"
+          arduino-cli lib install "NTPClient"
 
       - name: Install required library
         run: |

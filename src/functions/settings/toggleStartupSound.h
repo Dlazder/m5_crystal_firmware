@@ -10,7 +10,7 @@ void toggleStartupSound() {
 		updateTimer();
 	}
 
-	if (isBtnAWasPressed() && checkTimer(100)) {
+	if ((isBtnAWasPressed() || isKbEnterPressed()) && checkTimer(100)) {
 		startupSound = !getData("startupSound", startupSound);
 		setData("startupSound", startupSound);
 

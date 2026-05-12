@@ -1,4 +1,4 @@
-// pid PID::BT_KEYBOARD
+// PID::BT_KEYBOARD
 
 void bluetoothKeyboardLoop() {
 	static bool isBleConnected = false;
@@ -41,7 +41,7 @@ void bluetoothKeyboardLoop() {
 			bleKeyboard.write(KEY_RETURN);
 		},
 		[](char ch) {
-			if (ch == '\b') bleKeyboard.write(KEY_BACKSPACE);
+			if (ch == '\b') bleKeyboard.write(BLE_KEY_BACKSPACE);
 			else bleKeyboard.write((uint8_t)ch);
 		}
 	);

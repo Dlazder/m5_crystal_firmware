@@ -51,8 +51,8 @@ void bluetoothMouseLoop() {
 
 		DEVICE.Imu.getAccelData(&accX, &accY, &accZ);
 
-		float rawMoveX = accY;
-		float rawMoveY = accX;
+		float rawMoveX = IMU_MOUSE_X(accX, accY);
+		float rawMoveY = IMU_MOUSE_Y(accX, accY);
 
 		if (abs(rawMoveX) < DEADZONE) rawMoveX = 0;
 		if (abs(rawMoveY) < DEADZONE) rawMoveY = 0;

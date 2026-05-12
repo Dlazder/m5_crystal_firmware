@@ -14,6 +14,7 @@ const Locale LANG_RU = {
 	.MENU_WIFI_DISCONNECT        = "отключить wifi",
 	.MENU_WIFI_AP                = "Wi-Fi AP",
 	.MENU_WIFI_WEATHER           = "погода",
+	.MENU_WIFI_SYNC_TIME         = "синхр. время",
 
 	// Bluetooth menu
 	.MENU_BT                     = "Bluetooth",
@@ -24,7 +25,9 @@ const Locale LANG_RU = {
 	.MENU_BT_PRESENTER           = "презентер",
 	.MENU_BT_SHUTTER             = "затвор",
 	.MENU_BT_BAD_BLE             = "bad BLE",
-	.MENU_BT_RUN_SCRIPT          = "запуск",
+
+	// LittleFS menu
+	.MENU_LITTLEFS               = "littleFS",
 
 	// NFC menu
 	.MENU_NFC                    = "NFC",
@@ -78,6 +81,9 @@ const Locale LANG_RU = {
 	.TXT_WIFI_SSID_NOT_FOUND     = "SSID не найден",
 	.TXT_WIFI_TIMEOUT            = "Таймаут",
 	.TXT_WIFI_WRONG_PASSWORD     = "Неверн. пароль",
+	.TXT_WIFI_SYNC_FAILED        = "Ошибка синхр.",
+	.TXT_WIFI_TIME_SYNCED        = "Время синхр.",
+	.TXT_WIFI_NOT_CONNECTED      = "Нет Wi-Fi",
 
 	// Bluetooth text
 	.TXT_BT_FILE_ERROR           = "Ошибка файла",

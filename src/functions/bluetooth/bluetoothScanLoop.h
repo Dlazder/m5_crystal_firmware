@@ -5,7 +5,10 @@ MENU* bleScanMenu = nullptr;
 
 void bluetoothScanLoop() {
 	if (isSetup()) {
-		if (bleCount == 0 || isMenuItemSelected(PID::BT_SCAN)) {
+		// Scanning if:
+		// If bleCount = 0 that means we are scanning for the first time or no devices was found last time
+		// If previous process was BT_SCAN that means we rescan devices.
+		if (bleCount == 0 || previousProcess == PID::BT_SCAN) {
 			if (bleScanMenu != nullptr) {
 				delete[] bleScanMenu;
 				bleScanMenu = nullptr;
@@ -47,5 +50,5 @@ void bluetoothScanLoop() {
 		cursorOnTop();
 		drawMenu(bleScanMenu, bleCount + 2);
 	}
-	menuLoop(bleScanMenu, bleCount + 2, true);
+	menuLoop(bleScanMenu, bleCount + 2);
 }

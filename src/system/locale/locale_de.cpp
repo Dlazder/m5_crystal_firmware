@@ -14,6 +14,7 @@ const Locale LANG_DE = {
 	.MENU_WIFI_DISCONNECT        = "wifi trennen",
 	.MENU_WIFI_AP                = "Wi-Fi AP",
 	.MENU_WIFI_WEATHER           = "wetter",
+	.MENU_WIFI_SYNC_TIME         = "zeit sync",
 
 	// Bluetooth menu
 	.MENU_BT                     = "Bluetooth",
@@ -24,7 +25,9 @@ const Locale LANG_DE = {
 	.MENU_BT_PRESENTER           = "präsent.",
 	.MENU_BT_SHUTTER             = "auslöser",
 	.MENU_BT_BAD_BLE             = "bad BLE",
-	.MENU_BT_RUN_SCRIPT          = "skript",
+
+	// LittleFS menu
+	.MENU_LITTLEFS               = "littleFS",
 
 	// NFC menu
 	.MENU_NFC                    = "NFC",
@@ -78,6 +81,9 @@ const Locale LANG_DE = {
 	.TXT_WIFI_SSID_NOT_FOUND     = "SSID nicht gef.",
 	.TXT_WIFI_TIMEOUT            = "Zeitüberschr.",
 	.TXT_WIFI_WRONG_PASSWORD     = "Falsches Passwort",
+	.TXT_WIFI_SYNC_FAILED        = "Sync fehlgesch.",
+	.TXT_WIFI_TIME_SYNCED        = "Zeit synchronisiert",
+	.TXT_WIFI_NOT_CONNECTED      = "Kein WLAN",
 
 	// Bluetooth text
 	.TXT_BT_FILE_ERROR           = "Dateifehler",

@@ -6,14 +6,15 @@ bool levelToolSoundPlayed = false;
 
 void levelToolLoop() {
 
-	bool isStatusBarEnabled = statusBar;
-	int statusBarHeight = isStatusBarEnabled ? 30 : 0;
+	if (isSetup()) {
+		deviceSpeakerBegin();
+	}
 
 	float accX, accY, accZ;
 	float angleRoll;
-	
+
 	DEVICE.Imu.getAccelData(&accX, &accY, &accZ);
-	angleRoll = atan2(accX, accY) * 180 / PI;
+	angleRoll = IMU_LEVEL_ROLL(accX, accY);
 
 	// Exponential smoothing
 	if (filteredAngle == 0) {
@@ -23,11 +24,11 @@ void levelToolLoop() {
 	}
 	
 	int centerX = DISP.width() / 2;
-	int centerY = DISP.height() / 2 - statusBarHeight;
+	int centerY = DISP.height() / 2 - getStatusBarHeight();
 	int lineLength = 60;
 	
 	float angleRad = (filteredAngle + 90) * PI / 180;
-	int angle = abs(atan2(accY, accX) * 180 / PI);
+	int angle = IMU_LEVEL_ANGLE(accX, accY);
 	
 	int x1 = centerX - (lineLength / 2) * cos(angleRad);
 	int y1 = centerY - (lineLength / 2) * sin(angleRad);
@@ -44,7 +45,6 @@ void levelToolLoop() {
 	canvas.drawWideLine(x1, y1, x2, y2, 2, FGCOLOR);
 	
 	// Degree number with throthling + snap to zero
-	canvas.setCursor(0, 110);
 	if (checkTimer(100)) {
 		updateTimer();
 		if (angle < 0.8) {
@@ -68,11 +68,13 @@ void levelToolLoop() {
 		levelToolSoundPlayed = false;
 	}
 	
-	canvas.drawCenterString(String(lastAngle).c_str(), centerX, 110 - statusBarHeight);
+	canvas.setTextSize(MEDIUM_TEXT);
+	canvas.drawCenterString(String(lastAngle).c_str(), centerX, DISP.height() - getStatusBarHeight() - canvas.fontHeight() - 10);
 
-	canvas.pushSprite(0, statusBarHeight + 1);
+	canvas.pushSprite(0, getStatusBarHeight());
 	
 	if (checkExit()) {
 		DEVICE.Power.setLed(0);
+		deviceSpeakerEnd();
 	}
 }

@@ -25,13 +25,11 @@ void drawFinderScreen(int currentRssi) {
 	canvas.clear();
 	canvas.setTextSize(MEDIUM_TEXT);
 	canvas.setTextColor(FGCOLOR);
-	canvas.drawCenterString(bleName.substring(0, 14), DISP.width() / 2, getStatusBarHeight() + 4);
-	canvas.drawCenterString(bleAddress, DISP.width() / 2, getStatusBarHeight() + 4 + canvas.fontHeight() + 2);
-
-	canvas.setTextSize(HUGE_TEXT);
+	canvas.drawCenterString(bleName.substring(0, 14), DISP.width() / 2, getStatusBarHeight());
+	canvas.drawCenterString(bleAddress, DISP.width() / 2, canvas.getCursorY());
 	canvas.setTextColor(color);
 	String rssiStr = (currentRssi == -100) ? "n/a" : String(currentRssi);
-	canvas.drawCenterString(rssiStr, DISP.width() / 2, canvas.getCursorY());
+	canvas.drawCenterString(rssiStr, DISP.width() / 2, canvas.getCursorY() + canvas.fontHeight());
 	canvas.pushSprite(0, getStatusBarHeight());
 }
 

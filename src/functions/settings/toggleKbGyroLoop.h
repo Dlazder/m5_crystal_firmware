@@ -10,7 +10,7 @@ void toggleKbGyroLoop() {
 		updateTimer();
 	}
 
-	if (isBtnAWasPressed() && checkTimer(100)) {
+	if ((isBtnAWasPressed() || isKbEnterPressed()) && checkTimer(100)) {
 		kbGyroEnabled = !getData("kbGyro", kbGyroEnabled);
 		setData("kbGyro", kbGyroEnabled);
 

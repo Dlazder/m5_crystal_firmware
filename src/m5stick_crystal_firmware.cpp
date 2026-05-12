@@ -6,8 +6,7 @@
 #include "./system/loadPreferences.h"
 
 void setup() {
-  auto cfg = M5.config();
-  DEVICE.begin(cfg);
+  deviceInit();
   Serial.begin(115200);
   preferences.begin("storage", false);
   loadPreferences();
@@ -20,8 +19,6 @@ void setup() {
   statusBarCanvas.setTextColor(FGCOLOR, BGCOLOR);
 
   showStartupScreen();
-
-  Wire.begin(G32, G33);
   Wire.setClock(10000);
   Wire.setTimeout(100);
   delay(1000);
@@ -52,6 +49,7 @@ void setup() {
 
 void loop() {
   globalTimer = millis();
+  deviceUpdate();
 
   if (statusBar) {
     statusBarLoop();

@@ -14,6 +14,7 @@ const Locale LANG_ID = {
     .MENU_WIFI_DISCONNECT         = "putuskan wifi",
     .MENU_WIFI_AP                 = "Wi-Fi AP",
     .MENU_WIFI_WEATHER            = "cuaca",
+    .MENU_WIFI_SYNC_TIME          = "sinkron waktu",
 
     // Bluetooth menu
     .MENU_BT                      = "Bluetooth",
@@ -24,7 +25,9 @@ const Locale LANG_ID = {
     .MENU_BT_PRESENTER            = "presenter",
     .MENU_BT_SHUTTER              = "rana",
     .MENU_BT_BAD_BLE              = "bad BLE",
-    .MENU_BT_RUN_SCRIPT           = "jalankan",
+
+    // LittleFS menu
+    .MENU_LITTLEFS                = "littleFS",
 
     // NFC menu
     .MENU_NFC                     = "NFC",
@@ -78,6 +81,9 @@ const Locale LANG_ID = {
     .TXT_WIFI_SSID_NOT_FOUND      = "Jaringan tidak ada",
     .TXT_WIFI_TIMEOUT             = "Waktu habis",
     .TXT_WIFI_WRONG_PASSWORD      = "Kata sandi salah",
+    .TXT_WIFI_SYNC_FAILED         = "Sync gagal",
+    .TXT_WIFI_TIME_SYNCED         = "Waktu disinkronkan",
+    .TXT_WIFI_NOT_CONNECTED       = "Tidak ada WiFi",
 
     // Bluetooth text
     .TXT_BT_FILE_ERROR            = "Error file",

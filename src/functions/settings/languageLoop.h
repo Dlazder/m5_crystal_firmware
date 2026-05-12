@@ -10,7 +10,7 @@ void languageLoop() {
 		updateTimer();
 	}
 
-	if (isBtnAWasPressed() && checkTimer(100)) {
+	if ((isBtnAWasPressed() || isKbEnterPressed()) && checkTimer(100)) {
 		languageIndex++;
 		if (languageIndex >= localesCount) languageIndex = 0;
 

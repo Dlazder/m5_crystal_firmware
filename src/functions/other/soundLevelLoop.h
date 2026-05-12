@@ -147,7 +147,7 @@ void soundLevelLoop() {
 		snprintf(stats, sizeof(stats), "%d  AVG:%d MAX:%d", int(soundLevel), int(avgLevel), int(maxLevel));
 		canvas.drawCenterString(stats, DISP.width() / 2, barY - 16 - 10);
 
-		canvas.pushSprite(0, statusBarHeight + 1);
+		canvas.pushSprite(0, getStatusBarHeight());
 	}
 
 	if (isBtnAWasPressed()) {

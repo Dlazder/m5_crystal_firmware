@@ -4,8 +4,8 @@
  * @param proc [optional] process id (pid)
  */
 bool checkExit(int proc = previousProcess) {
-  DEVICE.update();
-  if (isBtnBWasPressed()) {
+  // DEVICE.update();
+  if (isBtnBWasPressed() || isKbEscPressed()) {
     btnAWasPressed = false;
     btnBWasPressed = false;
     process = proc;

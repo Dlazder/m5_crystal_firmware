@@ -23,7 +23,6 @@ int localesCount = sizeof(locales) / sizeof(locales[0]);
 // NFC PN532
 #include <Adafruit_PN532.h>
 #include <Wire.h>
-Adafruit_PN532 nfc(G32, G33, &Wire);
 
 
 
@@ -76,21 +75,20 @@ const char* fontNames[] = {
   "6x12",
 };
 
-int brightnessMax = 255;
-int brightnessStep = 10;
-int brightnessDividor = brightnessMax / brightnessStep;
-int brightness = 1*brightnessDividor;
-int brightnessMin = brightnessDividor;
-
 int globalTimer = millis();
 int globalPreviousTimer = 0;
 
-int isWebInterfaceEnabled = false;
-
-
+bool isWebInterfaceEnabled = false;
 bool webDataRequested = true;
 String webData = "";
 String webDataType = "";
+
+// Brightness
+int brightnessMax = 255;
+int brightnessStep = 10;
+int brightnessDividor = brightnessMax / brightnessStep;
+int brightness = defaultBrightnessLevel * brightnessDividor;
+int brightnessMin = brightnessDividor;
 
 // wifi deauth
 String ssid;
@@ -124,3 +122,8 @@ BleComboKeyboard bleKeyboard("M5 Crystal", "M5 Crystal");
 BleComboMouse bleMouse(&bleKeyboard);
 
 bool bleCompositeBegan = false;
+
+// Device abstraction — must come after BleCombo to avoid KEY_BACKSPACE redefinition
+// by M5Cardputer headers.
+#include "../devices/device.h"
+Adafruit_PN532 nfc(NFC_SDA, NFC_SCL, &Wire);
