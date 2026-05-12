@@ -75,21 +75,20 @@ const char* fontNames[] = {
   "6x12",
 };
 
-int brightnessMax = 255;
-int brightnessStep = 10;
-int brightnessDividor = brightnessMax / brightnessStep;
-int brightness = 1*brightnessDividor;
-int brightnessMin = brightnessDividor;
-
 int globalTimer = millis();
 int globalPreviousTimer = 0;
 
 bool isWebInterfaceEnabled = false;
-
-
 bool webDataRequested = true;
 String webData = "";
 String webDataType = "";
+
+// Brightness
+int brightnessMax = 255;
+int brightnessStep = 10;
+int brightnessDividor = brightnessMax / brightnessStep;
+int brightness = defaultBrightnessLevel * brightnessDividor;
+int brightnessMin = brightnessDividor;
 
 // wifi deauth
 String ssid;

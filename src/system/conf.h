@@ -19,3 +19,6 @@ bool kbGyroEnabled = true;
 
 
 int currentFontIndex = 0;
+
+// Default brightness level from 0 to 10
+int defaultBrightnessLevel = 3;

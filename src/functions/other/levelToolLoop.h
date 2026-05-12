@@ -45,7 +45,6 @@ void levelToolLoop() {
 	canvas.drawWideLine(x1, y1, x2, y2, 2, FGCOLOR);
 	
 	// Degree number with throthling + snap to zero
-	canvas.setCursor(0, 110);
 	if (checkTimer(100)) {
 		updateTimer();
 		if (angle < 0.8) {
@@ -69,7 +68,8 @@ void levelToolLoop() {
 		levelToolSoundPlayed = false;
 	}
 	
-	canvas.drawCenterString(String(lastAngle).c_str(), centerX, 110 - getStatusBarHeight());
+	canvas.setTextSize(MEDIUM_TEXT);
+	canvas.drawCenterString(String(lastAngle).c_str(), centerX, DISP.height() - getStatusBarHeight() - canvas.fontHeight() - 10);
 
 	canvas.pushSprite(0, getStatusBarHeight());
 	
