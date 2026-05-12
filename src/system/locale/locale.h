@@ -25,7 +25,9 @@ struct Locale {
 	const char* MENU_BT_PRESENTER;
 	const char* MENU_BT_SHUTTER;
 	const char* MENU_BT_BAD_BLE;
-	const char* MENU_BT_RUN_SCRIPT;
+
+	// LittleFS menu
+	const char* MENU_LITTLEFS;
 
 	// NFC menu
 	const char* MENU_NFC;

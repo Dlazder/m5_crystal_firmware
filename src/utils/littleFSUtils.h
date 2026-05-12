@@ -82,19 +82,19 @@ String lfsLoop(MENU menu[], int count, int backPid) {
 
 	DEVICE.update();
 
-	if (isBtnBWasPressed()) {
+	if (isBtnBWasPressed() || isKbDownPressed()) {
 		cursor++;
 		cursorOnTop();
 		drawMenu(menu, count + 1);
 	}
 
-	if (isBtnPWRWasPressed()) {
+	if (isBtnPWRWasPressed() || isKbUpPressed()) {
 		cursor--;
 		cursorOnTop();
 		drawMenu(menu, count + 1);
 	}
 
-	if (isBtnAWasPressed()) {
+	if (isBtnAWasPressed() || isKbEnterPressed()) {
 		if (cursor == 0) { changeProcess(backPid); return ""; }
 		return lfsFilePaths[cursor - 1];
 	}

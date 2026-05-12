@@ -25,7 +25,9 @@ const Locale LANG_DE = {
 	.MENU_BT_PRESENTER           = "präsent.",
 	.MENU_BT_SHUTTER             = "auslöser",
 	.MENU_BT_BAD_BLE             = "bad BLE",
-	.MENU_BT_RUN_SCRIPT          = "skript",
+
+	// LittleFS menu
+	.MENU_LITTLEFS               = "littleFS",
 
 	// NFC menu
 	.MENU_NFC                    = "NFC",

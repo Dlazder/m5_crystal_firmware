@@ -25,7 +25,9 @@ const Locale LANG_ID = {
     .MENU_BT_PRESENTER            = "presenter",
     .MENU_BT_SHUTTER              = "rana",
     .MENU_BT_BAD_BLE              = "bad BLE",
-    .MENU_BT_RUN_SCRIPT           = "jalankan",
+
+    // LittleFS menu
+    .MENU_LITTLEFS                = "littleFS",
 
     // NFC menu
     .MENU_NFC                     = "NFC",

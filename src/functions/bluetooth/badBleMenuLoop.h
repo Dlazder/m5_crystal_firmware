@@ -3,7 +3,7 @@
 void badBleMenuLoop() {
   MENU badBleMenu[] = {
     {PID::BLUETOOTH, L->MENU_BACK},
-    {PID::BAD_BLE,   L->MENU_BT_RUN_SCRIPT},
+    {PID::BAD_BLE,   L->MENU_LITTLEFS},
   };
   int badBleMenuSize = sizeof(badBleMenu) / sizeof(MENU);
 
