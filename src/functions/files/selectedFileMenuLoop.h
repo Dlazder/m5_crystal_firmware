@@ -4,8 +4,9 @@ int selectedFileSourcePid = PID::FILE_PICKER;
 
 void selectedFileMenuLoop() {
 	MENU selectedFileMenu[] = {
-		{PID::FILE_PICKER,   L->MENU_BACK},
-		{PID::FILE_DELETE,   L->MENU_FILES_DELETE},
+		{PID::FILE_PICKER, L->MENU_BACK},
+		{PID::FILE_INFO, L->MENU_FILES_INFO},
+		{PID::FILE_DELETE, L->MENU_FILES_DELETE},
 	};
 	int selectedFileMenuSize = sizeof(selectedFileMenu) / sizeof(MENU);
 	selectedFileMenu[0].command = selectedFileSourcePid;

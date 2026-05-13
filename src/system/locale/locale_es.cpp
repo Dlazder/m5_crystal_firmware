@@ -30,6 +30,7 @@ const Locale LANG_ES = {
 	.MENU_FILES = "archivos",
 	.MENU_FILES_SDCARD = "SD card",
 	.MENU_FILES_DELETE = "eliminar",
+	.MENU_FILES_INFO = "info",
 	.MENU_LITTLEFS = "littleFS",
 
 	// NFC menu

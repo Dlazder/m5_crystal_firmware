@@ -30,6 +30,7 @@ const Locale LANG_UK = {
 	.MENU_FILES                  = "файли",
 	.MENU_FILES_SDCARD           = "SD card",
 	.MENU_FILES_DELETE           = "видалити",
+	.MENU_FILES_INFO             = "інфо",
 	.MENU_LITTLEFS               = "littleFS",
 
 	// NFC menu

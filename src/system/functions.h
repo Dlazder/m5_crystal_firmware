@@ -61,6 +61,7 @@
 #include "../functions/files/selectedFileMenuLoop.h"
 #include "../functions/files/deleteFileLoop.h"
 #include "../functions/files/createFileLoop.h"
+#include "../functions/files/fileInfoLoop.h"
 
 // Others
 #include "../functions/other/otherMenuLoop.h"

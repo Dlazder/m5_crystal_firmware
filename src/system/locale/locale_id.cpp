@@ -30,6 +30,7 @@ const Locale LANG_ID = {
     .MENU_FILES                   = "berkas",
     .MENU_FILES_SDCARD            = "SD card",
     .MENU_FILES_DELETE            = "hapus",
+    .MENU_FILES_INFO              = "info",
     .MENU_LITTLEFS                = "littleFS",
 
     // NFC menu

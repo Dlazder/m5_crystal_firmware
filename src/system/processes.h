@@ -54,6 +54,7 @@
     X(FILE_PICKER_SD, 502, filePickerSDLoop) \
     X(FILE_DELETE, 503, deleteFileLoop) \
     X(FILE_CREATE, 504, createFileLoop) \
+    X(FILE_INFO,   505, fileInfoLoop) \
     \
     /* Other (800-899) */ \
     X(OTHER,              800, otherMenuLoop) \
