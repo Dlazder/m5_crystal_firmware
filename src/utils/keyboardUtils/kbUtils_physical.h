@@ -4,14 +4,23 @@
 void drawKeyboardUi() {
 	canvas.clear();
 	canvas.setTextSize(MEDIUM_TEXT);
-
 	canvas.setFont(systemFonts[currentFontIndex]);
 	canvas.setTextColor(FGCOLOR, BGCOLOR);
-	String display = String(kbBuf);
+
+	// Scroll window so cursor stays visible (max ~14 chars wide)
+	const int kbDisplayWidth = 14;
+	int scrollOffset = 0;
+	if (kbCursorPos > kbDisplayWidth - 1)
+		scrollOffset = kbCursorPos - (kbDisplayWidth - 1);
+
+	String before = String(kbBuf).substring(scrollOffset, kbCursorPos);
+	String after  = String(kbBuf).substring(kbCursorPos);
+
 	canvas.setCursor(4, 4);
-	canvas.print(display + (kbCursorVisible ? "_" : " "));
+	canvas.print(before + (kbCursorVisible ? "|" : " ") + after);
+
 	canvas.setTextSize(TINY_TEXT);
-	canvas.drawRightString(String(display.length()) + "/63", canvas.width() - 2, 2);
+	canvas.drawRightString(String(kbLen) + "/63", canvas.width() - 2, 2);
 	canvas.setTextSize(MEDIUM_TEXT);
 
 	canvas.pushSprite(0, getStatusBarHeight());
@@ -32,24 +41,46 @@ bool keyboardLoop(
 	cardputerKbUpdate();
 
 	bool changed = false;
+
+	if (kbCursorLeftPressed) {
+		kbCursorLeftPressed = false;
+		if (kbCursorPos > 0) kbCursorPos--;
+		changed = true;
+	}
+	if (kbCursorRightPressed) {
+		kbCursorRightPressed = false;
+		if (kbCursorPos < kbLen) kbCursorPos++;
+		changed = true;
+	}
 	if (kbDelPressed) {
 		kbDelPressed = false;
-		if (kbLen > 0) { kbLen--; kbBuf[kbLen] = '\0'; }
+		if (kbCursorPos > 0) {
+			memmove(kbBuf + kbCursorPos - 1, kbBuf + kbCursorPos, kbLen - kbCursorPos + 1);
+			kbLen--;
+			kbCursorPos--;
+		}
 		if (onChar) onChar('\b');
 		changed = true;
 	}
 	if (kbEnterPressed) {
 		kbEnterPressed = false;
+		kbEnd();
 		onEnter(kbBuf);
 		return true;
 	}
 	if (kbEscPressed) {
 		kbEscPressed = false;
+		kbEnd();
 		onExit();
 		return true;
 	}
 	for (char c : kbWord) {
-		if (kbLen < 63) { kbBuf[kbLen++] = c; kbBuf[kbLen] = '\0'; }
+		if (kbLen < 63) {
+			memmove(kbBuf + kbCursorPos + 1, kbBuf + kbCursorPos, kbLen - kbCursorPos + 1);
+			kbBuf[kbCursorPos] = c;
+			kbLen++;
+			kbCursorPos++;
+		}
 		if (onChar) onChar(c);
 		changed = true;
 	}
