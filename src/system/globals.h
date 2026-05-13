@@ -90,6 +90,9 @@ int brightnessDividor = brightnessMax / brightnessStep;
 int brightness = defaultBrightnessLevel * brightnessDividor;
 int brightnessMin = brightnessDividor;
 
+// files
+String selectedFilePath = "";
+
 // wifi deauth
 String ssid;
 String mac;

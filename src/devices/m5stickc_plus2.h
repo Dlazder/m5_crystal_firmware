@@ -7,6 +7,13 @@
 #define HAS_RTC            true
 #define HAS_PHYSICAL_KB    false
 #define HAS_SPEAKER        true
+#define HAS_SD             true
+
+// SD card SPI pins (standard ESP32 SPI2)
+#define SD_CS_PIN   4
+#define SD_CLK_PIN  18
+#define SD_MOSI_PIN 23
+#define SD_MISO_PIN 19
 
 // IMU axis mapping for mouse and level tool
 #define IMU_MOUSE_X(ax, ay)           ( (ay) )

@@ -1,0 +1,27 @@
+// PID::SELECTED_FILE_MENU
+
+int selectedFileSourcePid = PID::FILE_PICKER;
+
+void selectedFileMenuLoop() {
+	MENU selectedFileMenu[] = {
+		{PID::FILE_PICKER,   L->MENU_BACK},
+		{PID::FILE_DELETE,   L->MENU_FILES_DELETE},
+	};
+	int selectedFileMenuSize = sizeof(selectedFileMenu) / sizeof(MENU);
+	selectedFileMenu[0].command = selectedFileSourcePid;
+
+	if (isSetup()) {
+		if (previousProcess == PID::FILE_PICKER) {
+			selectedFilePath      = lfsFileFullPaths[cursor - 2];
+			selectedFileSourcePid = PID::FILE_PICKER;
+		} else if (previousProcess == PID::FILE_PICKER_SD) {
+			selectedFilePath      = sdFileFullPaths[cursor - 2];
+			selectedFileSourcePid = PID::FILE_PICKER_SD;
+		}
+		selectedFileMenu[0].command = selectedFileSourcePid;
+		cursor = 0;
+		cursorOnTop();
+		drawMenu(selectedFileMenu, selectedFileMenuSize);
+	}
+	menuLoop(selectedFileMenu, selectedFileMenuSize);
+}

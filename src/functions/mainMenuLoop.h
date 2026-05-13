@@ -6,6 +6,7 @@ void mainMenuLoop() {
 		{PID::BLUETOOTH, L->MENU_BT},
 		{PID::NFC,       L->MENU_NFC},
 		{PID::SETTINGS,  L->MENU_SETTINGS},
+		{PID::FILES_MENU, L->MENU_FILES},
 		{PID::OTHER,     L->MENU_OTHER},
 	};
 	int mainMenuSize = sizeof(mainMenu) / sizeof(MENU);

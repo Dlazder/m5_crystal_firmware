@@ -26,7 +26,10 @@ const Locale LANG_IT = {
     .MENU_BT_SHUTTER              = "otturatore",
     .MENU_BT_BAD_BLE              = "bad BLE",
 
-    // LittleFS menu
+    // Files menu
+    .MENU_FILES                   = "file",
+    .MENU_FILES_SDCARD            = "SD card",
+    .MENU_FILES_DELETE            = "elimina",
     .MENU_LITTLEFS                = "littleFS",
 
     // NFC menu

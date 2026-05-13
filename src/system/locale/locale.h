@@ -26,7 +26,10 @@ struct Locale {
 	const char* MENU_BT_SHUTTER;
 	const char* MENU_BT_BAD_BLE;
 
-	// LittleFS menu
+	// Files menu
+	const char* MENU_FILES;
+	const char* MENU_FILES_SDCARD;
+	const char* MENU_FILES_DELETE;
 	const char* MENU_LITTLEFS;
 
 	// NFC menu

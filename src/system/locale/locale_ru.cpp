@@ -26,7 +26,10 @@ const Locale LANG_RU = {
 	.MENU_BT_SHUTTER             = "затвор",
 	.MENU_BT_BAD_BLE             = "bad BLE",
 
-	// LittleFS menu
+	// Files menu
+	.MENU_FILES                  = "файлы",
+	.MENU_FILES_SDCARD           = "SD card",
+	.MENU_FILES_DELETE           = "удалить",
 	.MENU_LITTLEFS               = "littleFS",
 
 	// NFC menu

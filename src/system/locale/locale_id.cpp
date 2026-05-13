@@ -26,7 +26,10 @@ const Locale LANG_ID = {
     .MENU_BT_SHUTTER              = "rana",
     .MENU_BT_BAD_BLE              = "bad BLE",
 
-    // LittleFS menu
+    // Files menu
+    .MENU_FILES                   = "berkas",
+    .MENU_FILES_SDCARD            = "SD card",
+    .MENU_FILES_DELETE            = "hapus",
     .MENU_LITTLEFS                = "littleFS",
 
     // NFC menu

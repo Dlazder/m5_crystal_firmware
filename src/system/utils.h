@@ -17,4 +17,5 @@
 #include "../utils/menuUtils.h"
 // 3rd layer utilities
 #include "../utils/littleFSUtils.h"
+#include "../utils/sdUtils.h"
 #include "../utils/badBleUtils.h"
