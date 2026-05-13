@@ -13,10 +13,8 @@ void selectedFileMenuLoop() {
 
 	if (isSetup()) {
 		if (previousProcess == PID::FILE_PICKER) {
-			selectedFilePath      = lfsFileFullPaths[cursor - 2];
 			selectedFileSourcePid = PID::FILE_PICKER;
 		} else if (previousProcess == PID::FILE_PICKER_SD) {
-			selectedFilePath      = sdFileFullPaths[cursor - 2];
 			selectedFileSourcePid = PID::FILE_PICKER_SD;
 		}
 		selectedFileMenu[0].command = selectedFileSourcePid;

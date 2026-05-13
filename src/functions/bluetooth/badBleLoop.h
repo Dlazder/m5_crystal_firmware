@@ -10,14 +10,23 @@ void badBleLoop() {
 		scriptRunning = false;
 		scriptDone = false;
 
-		if (lfsSelectedFile == "") {
-			lfsOpenPicker(PID::BAD_BLE, PID::BAD_BLE_MENU);
+		if (selectedFilePath == "") {
+			if (previousProcess == PID::BAD_BLE_MENU && cursor == 2) {
+				// SD card selected
+				selectedFileSourcePid = PID::FILE_PICKER_SD;
+				changeProcess(PID::FILE_PICKER_SD);
+			} else {
+				// LittleFS selected (cursor == 1) or default
+				lfsReturnPid = PID::BAD_BLE;
+				lfsCancelPid = PID::BAD_BLE_MENU;
+				changeProcess(PID::FILE_PICKER);
+			}
 			return;
 		}
 
-		if (!badBleLoadFile(lfsSelectedFile)) {
+		if (!badBleLoadFile(selectedFilePath)) {
 			centeredPrint(L->TXT_BT_FILE_ERROR, MEDIUM_TEXT);
-			lfsSelectedFile = "";
+			selectedFilePath = "";
 			return;
 		}
 		if (!bleCompositeBegan) {
@@ -47,7 +56,7 @@ void badBleLoop() {
 	// Script phase
 	if (isBleConnected && !scriptDone) {
 		if (!scriptRunning && isBtnAWasPressed()) {
-			badBleLoadFile(lfsSelectedFile);
+			badBleLoadFile(selectedFilePath);
 			scriptRunning = true;
 			centeredPrint(L->TXT_BT_RUNNING, MEDIUM_TEXT);
 		}
@@ -69,6 +78,6 @@ void badBleLoop() {
 		isBleConnected = false;
 		scriptRunning = false;
 		scriptDone = false;
-		lfsSelectedFile = "";
+		selectedFilePath = "";
 	}
 }

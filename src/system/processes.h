@@ -3,7 +3,6 @@
 // Add new processes here: X(NAME, ID, loopFunction)
 #define PROCESS_LIST \
     X(MAIN_MENU,   0,   mainMenuLoop) \
-    X(FILE_PICKER, 1,   lfsFilePickerLoop) \
     \
     /* Settings (100-199) */ \
     X(SETTINGS,              100, settingsMenuLoop) \
@@ -48,13 +47,14 @@
     X(NFC_READ,  401, nfcReadLoop) \
     X(NFC_WRITE, 402, nfcWriteLoop) \
     \
-    /* Files */ \
-    X(FILES_MENU, 500, filesMenuLoop) \
-    X(SELECTED_FILE_MENU, 501, selectedFileMenuLoop) \
-    X(FILE_PICKER_SD, 502, filePickerSDLoop) \
-    X(FILE_DELETE, 503, deleteFileLoop) \
-    X(FILE_CREATE, 504, createFileLoop) \
-    X(FILE_INFO,   505, fileInfoLoop) \
+    /* Files (500-599) */ \
+    X(FILES_MENU,         500, filesMenuLoop) \
+    X(FILE_PICKER,        501, lfsFilePickerLoop) \
+    X(FILE_PICKER_SD,     502, filePickerSDLoop) \
+    X(SELECTED_FILE_MENU, 503, selectedFileMenuLoop) \
+    X(FILE_DELETE,        504, deleteFileLoop) \
+    X(FILE_CREATE,        505, createFileLoop) \
+    X(FILE_INFO,          506, fileInfoLoop) \
     \
     /* Other (800-899) */ \
     X(OTHER,              800, otherMenuLoop) \

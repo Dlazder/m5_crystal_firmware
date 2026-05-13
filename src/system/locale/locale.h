@@ -31,7 +31,7 @@ struct Locale {
 	const char* MENU_FILES_SDCARD;
 	const char* MENU_FILES_DELETE;
 	const char* MENU_FILES_INFO;
-	const char* MENU_LITTLEFS;
+	const char* MENU_FILES_LITTLEFS;
 
 	// NFC menu
 	const char* MENU_NFC;

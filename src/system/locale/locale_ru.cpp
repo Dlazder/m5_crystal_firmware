@@ -31,7 +31,7 @@ const Locale LANG_RU = {
 	.MENU_FILES_SDCARD           = "SD card",
 	.MENU_FILES_DELETE           = "удалить",
 	.MENU_FILES_INFO             = "инфо",
-	.MENU_LITTLEFS               = "littleFS",
+	.MENU_FILES_LITTLEFS               = "littleFS",
 
 	// NFC menu
 	.MENU_NFC                    = "NFC",

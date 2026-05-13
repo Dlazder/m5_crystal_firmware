@@ -57,6 +57,12 @@ void filePickerSDLoop() {
 		return;
 	}
 
+	if (cursor >= 2 && (isBtnAWasPressed() || isKbEnterPressed())) {
+		selectedFilePath = sdFileFullPaths[cursor - 2];
+		changeProcess(sdFileMenu[cursor].command);
+		return;
+	}
+
 	menuLoop(sdFileMenu, sdFileCount + 2);
 #else
 	if (isSetup()) {

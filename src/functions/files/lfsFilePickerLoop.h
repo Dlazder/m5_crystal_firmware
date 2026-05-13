@@ -23,7 +23,9 @@ void _lfsBuildMenu() {
 
 	lfsFileMenu = new MENU[lfsFileCount + 2];
 	lfsFileFullPaths = new String[lfsFileCount];
-	lfsFileMenu[0] = { PID::FILES_MENU,  L->MENU_BACK };
+	int backPid = (lfsCancelPid != 0) ? lfsCancelPid : PID::FILES_MENU;
+	int filePid = (lfsReturnPid != 0) ? lfsReturnPid : PID::SELECTED_FILE_MENU;
+	lfsFileMenu[0] = { backPid,          L->MENU_BACK };
 	lfsFileMenu[1] = { PID::FILE_CREATE, "create" };
 
 	root = LittleFS.open("/");
@@ -33,11 +35,13 @@ void _lfsBuildMenu() {
 		if (!f.isDirectory()) {
 			String name = String(f.name());
 			lfsFileFullPaths[idx - 2] = "/" + name;
-			lfsFileMenu[idx] = { PID::SELECTED_FILE_MENU, name.substring(0, 14) };
+			lfsFileMenu[idx] = { filePid, name.substring(0, 14) };
 			idx++;
 		}
 		f = root.openNextFile();
 	}
+	lfsReturnPid = 0;
+	lfsCancelPid = 0;
 }
 
 void lfsFilePickerLoop() {
@@ -51,6 +55,13 @@ void lfsFilePickerLoop() {
 
 	if (lfsFileMenu == nullptr) {
 		checkExit(PID::FILES_MENU);
+		return;
+	}
+
+	// Intercept file selection to populate selectedFilePath before switching
+	if (cursor >= 2 && (isBtnAWasPressed() || isKbEnterPressed())) {
+		selectedFilePath = lfsFileFullPaths[cursor - 2];
+		changeProcess(lfsFileMenu[cursor].command);
 		return;
 	}
 

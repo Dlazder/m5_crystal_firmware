@@ -35,6 +35,15 @@
 #include "../functions/wifi/wifiTimeSyncLoop.h"
 
 
+// Files
+#include "../functions/files/filesMenuLoop.h"
+#include "../functions/files/lfsFilePickerLoop.h"
+#include "../functions/files/filePickerSDLoop.h"
+#include "../functions/files/selectedFileMenuLoop.h"
+#include "../functions/files/deleteFileLoop.h"
+#include "../functions/files/createFileLoop.h"
+#include "../functions/files/fileInfoLoop.h"
+
 // Bluetooth functions
 #include "../functions/bluetooth/bluetoothMenuLoop.h"
 #include "../functions/bluetooth/bluetoothMouseLoop.h"
@@ -53,15 +62,6 @@
 #include "../functions/nfc/nfcMenuLoop.h"
 #include "../functions/nfc/nfcReadLoop.h"
 #include "../functions/nfc/nfcWriteLoop.h"
-
-// Files
-#include "../functions/files/filesMenuLoop.h"
-#include "../functions/files/lfsFilePickerLoop.h"
-#include "../functions/files/filePickerSDLoop.h"
-#include "../functions/files/selectedFileMenuLoop.h"
-#include "../functions/files/deleteFileLoop.h"
-#include "../functions/files/createFileLoop.h"
-#include "../functions/files/fileInfoLoop.h"
 
 // Others
 #include "../functions/other/otherMenuLoop.h"
