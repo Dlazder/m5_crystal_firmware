@@ -40,7 +40,6 @@
     X(BT_PRESENTER, 307, bluetoothPresenterLoop) \
     X(BT_SHUTTER,   308, bluetoothShutterLoop) \
     X(BAD_BLE,      309, badBleLoop) \
-    X(BAD_BLE_MENU, 310, badBleMenuLoop) \
     \
     /* NFC (400-499) */ \
     X(NFC,       400, nfcMenuLoop) \

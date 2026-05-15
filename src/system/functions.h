@@ -54,7 +54,6 @@
 #include "../functions/bluetooth/selectedBluetoothMenuLoop.h"
 #include "../functions/bluetooth/bluetoothInfoLoop.h"
 #include "../functions/bluetooth/bluetoothFinderLoop.h"
-#include "../functions/bluetooth/badBleMenuLoop.h"
 #include "../functions/bluetooth/badBleLoop.h"
 
 

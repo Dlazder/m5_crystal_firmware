@@ -9,24 +9,21 @@ void badBleLoop() {
 		isBleConnected = false;
 		scriptRunning = false;
 		scriptDone = false;
-
 		if (selectedFilePath == "") {
-			if (previousProcess == PID::BAD_BLE_MENU && cursor == 2) {
-				// SD card selected
-				selectedFileSourcePid = PID::FILE_PICKER_SD;
-				changeProcess(PID::FILE_PICKER_SD);
-			} else {
-				// LittleFS selected (cursor == 1) or default
-				lfsReturnPid = PID::BAD_BLE;
-				lfsCancelPid = PID::BAD_BLE_MENU;
-				changeProcess(PID::FILE_PICKER);
-			}
-			return;
+			filePickerSetup(PID::BLUETOOTH);
 		}
+	}
+
+	// File picker phase
+	if (fpActive) {
+		if (filePickerLoop()) return;
+
+		if (selectedFilePath == "") return; // cancelled, changeProcess already called
 
 		if (!badBleLoadFile(selectedFilePath)) {
 			centeredPrint(L->TXT_BT_FILE_ERROR, MEDIUM_TEXT);
 			selectedFilePath = "";
+			filePickerSetup(PID::BLUETOOTH);
 			return;
 		}
 		if (!bleCompositeBegan) {
@@ -35,9 +32,11 @@ void badBleLoop() {
 		}
 		centeredPrint(L->TXT_WAITING_CONNECTION, MEDIUM_TEXT);
 		updateTimer();
+		return;
 	}
 
-	// BLE phase
+	// BLE connection phase
+	DEVICE.update();
 	if (bleKeyboard.isConnected()) {
 		if (!isBleConnected) {
 			isBleConnected = true;
@@ -53,7 +52,7 @@ void badBleLoop() {
 		}
 	}
 
-	// Script phase
+	// Script execution phase
 	if (isBleConnected && !scriptDone) {
 		if (!scriptRunning && isBtnAWasPressed()) {
 			badBleLoadFile(selectedFilePath);
@@ -76,8 +75,9 @@ void badBleLoop() {
 
 	if (checkExit()) {
 		isBleConnected = false;
-		scriptRunning = false;
+		scriptRunning	= false;
 		scriptDone = false;
 		selectedFilePath = "";
+		fpActive = false;
 	}
 }
