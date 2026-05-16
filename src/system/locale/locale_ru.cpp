@@ -32,6 +32,7 @@ const Locale LANG_RU = {
 	.MENU_FILES_DELETE           = "удалить",
 	.MENU_FILES_INFO             = "инфо",
 	.MENU_FILES_RENAME           = "переим.",
+	.MENU_FILES_VIEW             = "просмотр",
 	.MENU_FILES_LITTLEFS               = "littleFS",
 
 	// NFC menu

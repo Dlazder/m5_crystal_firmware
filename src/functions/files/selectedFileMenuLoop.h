@@ -6,11 +6,11 @@ void selectedFileMenuLoop() {
 	MENU selectedFileMenu[] = {
 		{PID::FILE_PICKER, L->MENU_BACK},
 		{PID::FILE_INFO, L->MENU_FILES_INFO},
+		{PID::FILE_VIEW, L->MENU_FILES_VIEW},
 		{PID::FILE_RENAME, L->MENU_FILES_RENAME},
 		{PID::FILE_DELETE, L->MENU_FILES_DELETE},
 	};
 	int selectedFileMenuSize = sizeof(selectedFileMenu) / sizeof(MENU);
-	selectedFileMenu[0].command = selectedFileSourcePid;
 
 	if (isSetup()) {
 		if (previousProcess == PID::FILE_PICKER) {

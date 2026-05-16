@@ -32,6 +32,7 @@ const Locale LANG_IT = {
     .MENU_FILES_DELETE            = "elimina",
     .MENU_FILES_INFO              = "info",
     .MENU_FILES_RENAME            = "rinomina",
+    .MENU_FILES_VIEW              = "visualizza",
     .MENU_FILES_LITTLEFS                = "littleFS",
 
     // NFC menu
