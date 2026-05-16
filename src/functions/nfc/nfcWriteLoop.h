@@ -134,6 +134,8 @@ void nfcWriteLoop() {
 		};
 		centeredPrintRows(lines, 2, MEDIUM_TEXT);
 
+		Wire.begin(NFC_SDA, NFC_SCL);
+
 		// Check the stored UID
 		if (!hasValidUID) {
 			Serial.println("No UID stored for writing");

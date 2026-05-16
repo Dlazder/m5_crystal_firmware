@@ -42,6 +42,7 @@ void nfcReadLoop() {
 		};
 		centeredPrintRows(lines, 2, MEDIUM_TEXT);
 
+		Wire.begin(NFC_SDA, NFC_SCL);
 		if (isPN532Connected()) {
 			nfc.begin();
 			uint32_t versiondata = nfc.getFirmwareVersion();

@@ -54,7 +54,7 @@ void badBleLoop() {
 
 	// Script execution phase
 	if (isBleConnected && !scriptDone) {
-		if (!scriptRunning && isBtnAWasPressed()) {
+		if (!scriptRunning && isBtnAWasPressed() || (isKbEnterPressed())) {
 			badBleLoadFile(selectedFilePath);
 			scriptRunning = true;
 			centeredPrint(L->TXT_BT_RUNNING, MEDIUM_TEXT);
