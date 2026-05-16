@@ -17,7 +17,7 @@ void deleteFileLoop() {
 			ok = LittleFS.remove(selectedFilePath.c_str());
 		}
 
-		String result = ok ? "deleted" : "error";
+		const char* result = ok ? L->TXT_SUCCESS : L->TXT_ERROR;
 		centeredPrint(result, MEDIUM_TEXT);
 		delay(800);
 		selectedFilePath = "";

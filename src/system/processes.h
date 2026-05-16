@@ -54,6 +54,7 @@
     X(FILE_DELETE,        504, deleteFileLoop) \
     X(FILE_CREATE,        505, createFileLoop) \
     X(FILE_INFO,          506, fileInfoLoop) \
+    X(FILE_RENAME,        507, renameFileLoop) \
     \
     /* Other (800-899) */ \
     X(OTHER,              800, otherMenuLoop) \

@@ -43,6 +43,7 @@
 #include "../functions/files/deleteFileLoop.h"
 #include "../functions/files/createFileLoop.h"
 #include "../functions/files/fileInfoLoop.h"
+#include "../functions/files/renameFileLoop.h"
 
 // Bluetooth functions
 #include "../functions/bluetooth/bluetoothMenuLoop.h"

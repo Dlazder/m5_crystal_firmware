@@ -45,7 +45,6 @@ void drawMenu(MENU menu[], int size) {
 }
 
 void menuLoop(MENU menu[], int size) {
-	DEVICE.update();
 	if (isBtnBWasPressed() || isKbDownPressed() || isWebControlDownWasPressed()) {
 		cursor++;
 		drawMenu(menu, size);

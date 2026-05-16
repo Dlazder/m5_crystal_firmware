@@ -31,6 +31,7 @@ const Locale LANG_EN = {
 	.MENU_FILES_SDCARD           = "SD card",
 	.MENU_FILES_DELETE           = "delete",
 	.MENU_FILES_INFO             = "info",
+	.MENU_FILES_RENAME           = "rename",
 	.MENU_FILES_LITTLEFS               = "littleFS",
 
 	// NFC menu
@@ -77,6 +78,8 @@ const Locale LANG_EN = {
 	.TXT_WAITING_CONNECTION      = "Waiting connection",
 	.TXT_NOT_CONNECTED           = "Not connected",
 	.TXT_FAILED                  = "Failed",
+	.TXT_SUCCESS                 = "Success",
+	.TXT_ERROR                   = "Error",
 	.TXT_NA                      = "n/a",
 	.TXT_UNNAMED                 = "unnamed",
 
