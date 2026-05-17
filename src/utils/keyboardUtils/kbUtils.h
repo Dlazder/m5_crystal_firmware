@@ -27,6 +27,7 @@ const char* kbSpecialLabels[] = { "exit", "CAP", "ENT", "DEL", "SPC" };
 // Keyboard state
 char kbBuf[64];
 int  kbLen = 0;
+int  kbCursorPos = 0;
 int  kbRow = 0;
 int  kbCol = 0;
 bool kbCapsOn = false;
@@ -36,11 +37,21 @@ bool kbCursorVisible = true;
 void kbReset() {
 	kbBuf[0] = '\0';
 	kbLen = 0;
+	kbCursorPos = 0;
 	kbRow = 0;
 	kbCol = 0;
 	kbCapsOn = false;
 	kbBlinkCounter = 0;
 	kbCursorVisible = true;
+	#if HAS_PHYSICAL_KB
+	kbTextMode = true;
+	#endif
+}
+
+void kbEnd() {
+	#if HAS_PHYSICAL_KB
+	kbTextMode = false;
+	#endif
 }
 
 // drawKeyboardUi() and keyboardLoop() are implemented per-device:

@@ -26,8 +26,14 @@ const Locale LANG_IT = {
     .MENU_BT_SHUTTER              = "otturatore",
     .MENU_BT_BAD_BLE              = "bad BLE",
 
-    // LittleFS menu
-    .MENU_LITTLEFS                = "littleFS",
+    // Files menu
+    .MENU_FILES                   = "file",
+    .MENU_FILES_SDCARD            = "SD card",
+    .MENU_FILES_DELETE            = "elimina",
+    .MENU_FILES_INFO              = "info",
+    .MENU_FILES_RENAME            = "rinomina",
+    .MENU_FILES_VIEW              = "visualizza",
+    .MENU_FILES_LITTLEFS                = "littleFS",
 
     // NFC menu
     .MENU_NFC                     = "NFC",
@@ -73,6 +79,8 @@ const Locale LANG_IT = {
     .TXT_WAITING_CONNECTION       = "Attesa connessione",
     .TXT_NOT_CONNECTED            = "Non connesso",
     .TXT_FAILED                   = "Errore",
+    .TXT_SUCCESS                  = "Successo",
+    .TXT_ERROR                    = "Errore",
     .TXT_NA                       = "n/d",
     .TXT_UNNAMED                  = "senza nome",
 

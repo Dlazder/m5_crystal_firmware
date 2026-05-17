@@ -10,6 +10,9 @@
 	bool kbEnterPressed = false;
 	bool kbEscPressed = false;
 	bool kbDelPressed = false;
+	bool kbCursorLeftPressed = false;
+	bool kbCursorRightPressed = false;
+	bool kbTextMode = false;
 	String kbWord = "";
 
 	void cardputerKbUpdate() {
@@ -24,14 +27,21 @@
 
 		kbWord = "";
 		for (char c : state.word) {
-			if (c == ';') kbUpPressed = true;
-			else if (c == '.') kbDownPressed = true;
-			else if (c == '`') kbEscPressed = true;
-			else if (c == ',') kbLeftPressed = true;
-			else if (c == '/') kbRightPressed = true;
-			else if (c == '=' || c == '+') kbPlusPressed = true;
-			else if (c == '-') kbMinusPressed = true;
-			else kbWord += c;
+			if (kbTextMode) {
+				if (c == '`') kbEscPressed = true;
+				else if (state.fn && c == ',') kbCursorLeftPressed = true;
+				else if (state.fn && c == '/') kbCursorRightPressed = true;
+				else kbWord += c;
+			} else {
+				if (c == ';') kbUpPressed = true;
+				else if (c == '.') kbDownPressed = true;
+				else if (c == '`') kbEscPressed = true;
+				else if (c == ',') kbLeftPressed = true;
+				else if (c == '/') kbRightPressed = true;
+				else if (c == '=' || c == '+') kbPlusPressed = true;
+				else if (c == '-') kbMinusPressed = true;
+				else kbWord += c;
+			}
 		}
 	}
 #endif

@@ -9,15 +9,21 @@ void badBleLoop() {
 		isBleConnected = false;
 		scriptRunning = false;
 		scriptDone = false;
-
-		if (lfsSelectedFile == "") {
-			lfsOpenPicker(PID::BAD_BLE, PID::BAD_BLE_MENU);
-			return;
+		if (selectedFilePath == "") {
+			filePickerSetup(PID::BLUETOOTH);
 		}
+	}
 
-		if (!badBleLoadFile(lfsSelectedFile)) {
+	// File picker phase
+	if (fpActive) {
+		if (filePickerLoop()) return;
+
+		if (selectedFilePath == "") return; // cancelled, changeProcess already called
+
+		if (!badBleLoadFile(selectedFilePath)) {
 			centeredPrint(L->TXT_BT_FILE_ERROR, MEDIUM_TEXT);
-			lfsSelectedFile = "";
+			selectedFilePath = "";
+			filePickerSetup(PID::BLUETOOTH);
 			return;
 		}
 		if (!bleCompositeBegan) {
@@ -26,9 +32,11 @@ void badBleLoop() {
 		}
 		centeredPrint(L->TXT_WAITING_CONNECTION, MEDIUM_TEXT);
 		updateTimer();
+		return;
 	}
 
-	// BLE phase
+	// BLE connection phase
+	DEVICE.update();
 	if (bleKeyboard.isConnected()) {
 		if (!isBleConnected) {
 			isBleConnected = true;
@@ -44,10 +52,10 @@ void badBleLoop() {
 		}
 	}
 
-	// Script phase
+	// Script execution phase
 	if (isBleConnected && !scriptDone) {
-		if (!scriptRunning && isBtnAWasPressed()) {
-			badBleLoadFile(lfsSelectedFile);
+		if (!scriptRunning && isBtnAWasPressed() || (isKbEnterPressed())) {
+			badBleLoadFile(selectedFilePath);
 			scriptRunning = true;
 			centeredPrint(L->TXT_BT_RUNNING, MEDIUM_TEXT);
 		}
@@ -67,8 +75,9 @@ void badBleLoop() {
 
 	if (checkExit()) {
 		isBleConnected = false;
-		scriptRunning = false;
+		scriptRunning	= false;
 		scriptDone = false;
-		lfsSelectedFile = "";
+		selectedFilePath = "";
+		fpActive = false;
 	}
 }

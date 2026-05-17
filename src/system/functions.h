@@ -4,7 +4,7 @@
 #include "../functions/defaultLoop.h"
 #include "../functions/mainMenuLoop.h"
 #include "../functions/statusBarLoop.h"
-#include "../functions/lfsFilePickerLoop.h"
+// #include "../functions/lfsFilePickerLoop.h" // replaced by files/lfsFilePickerLoop.h
 
 
 // Settings functions
@@ -35,6 +35,17 @@
 #include "../functions/wifi/wifiTimeSyncLoop.h"
 
 
+// Files
+#include "../functions/files/filesMenuLoop.h"
+#include "../functions/files/lfsFilePickerLoop.h"
+#include "../functions/files/filePickerSDLoop.h"
+#include "../functions/files/selectedFileMenuLoop.h"
+#include "../functions/files/deleteFileLoop.h"
+#include "../functions/files/createFileLoop.h"
+#include "../functions/files/fileInfoLoop.h"
+#include "../functions/files/renameFileLoop.h"
+#include "../functions/files/readFileLoop.h"
+
 // Bluetooth functions
 #include "../functions/bluetooth/bluetoothMenuLoop.h"
 #include "../functions/bluetooth/bluetoothMouseLoop.h"
@@ -45,7 +56,6 @@
 #include "../functions/bluetooth/selectedBluetoothMenuLoop.h"
 #include "../functions/bluetooth/bluetoothInfoLoop.h"
 #include "../functions/bluetooth/bluetoothFinderLoop.h"
-#include "../functions/bluetooth/badBleMenuLoop.h"
 #include "../functions/bluetooth/badBleLoop.h"
 
 
@@ -53,7 +63,6 @@
 #include "../functions/nfc/nfcMenuLoop.h"
 #include "../functions/nfc/nfcReadLoop.h"
 #include "../functions/nfc/nfcWriteLoop.h"
-
 
 // Others
 #include "../functions/other/otherMenuLoop.h"

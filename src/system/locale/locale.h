@@ -26,8 +26,14 @@ struct Locale {
 	const char* MENU_BT_SHUTTER;
 	const char* MENU_BT_BAD_BLE;
 
-	// LittleFS menu
-	const char* MENU_LITTLEFS;
+	// Files menu
+	const char* MENU_FILES;
+	const char* MENU_FILES_SDCARD;
+	const char* MENU_FILES_DELETE;
+	const char* MENU_FILES_INFO;
+	const char* MENU_FILES_RENAME;
+	const char* MENU_FILES_VIEW;
+	const char* MENU_FILES_LITTLEFS;
 
 	// NFC menu
 	const char* MENU_NFC;
@@ -74,6 +80,8 @@ struct Locale {
 	const char* TXT_WAITING_CONNECTION;
 	const char* TXT_NOT_CONNECTED;
 	const char* TXT_FAILED;
+	const char* TXT_SUCCESS;
+	const char* TXT_ERROR;
 	const char* TXT_NA;
 	const char* TXT_UNNAMED;
 

@@ -26,8 +26,14 @@ const Locale LANG_UK = {
 	.MENU_BT_SHUTTER             = "затвор",
 	.MENU_BT_BAD_BLE             = "bad BLE",
 
-	// LittleFS menu
-	.MENU_LITTLEFS               = "littleFS",
+	// Files menu
+	.MENU_FILES                  = "файли",
+	.MENU_FILES_SDCARD           = "SD card",
+	.MENU_FILES_DELETE           = "видалити",
+	.MENU_FILES_INFO             = "інфо",
+	.MENU_FILES_RENAME           = "перейм.",
+	.MENU_FILES_VIEW             = "перегляд",
+	.MENU_FILES_LITTLEFS               = "littleFS",
 
 	// NFC menu
 	.MENU_NFC                    = "NFC",
@@ -73,6 +79,8 @@ const Locale LANG_UK = {
 	.TXT_WAITING_CONNECTION      = "Очікування...",
 	.TXT_NOT_CONNECTED           = "Не підключено",
 	.TXT_FAILED                  = "Помилка",
+	.TXT_SUCCESS                 = "Успішно",
+	.TXT_ERROR                   = "Помилка",
 	.TXT_NA                      = "н/д",
 	.TXT_UNNAMED                 = "без імені",
 

@@ -26,8 +26,14 @@ const Locale LANG_ID = {
     .MENU_BT_SHUTTER              = "rana",
     .MENU_BT_BAD_BLE              = "bad BLE",
 
-    // LittleFS menu
-    .MENU_LITTLEFS                = "littleFS",
+    // Files menu
+    .MENU_FILES                   = "berkas",
+    .MENU_FILES_SDCARD            = "SD card",
+    .MENU_FILES_DELETE            = "hapus",
+    .MENU_FILES_INFO              = "info",
+    .MENU_FILES_RENAME            = "ganti nama",
+    .MENU_FILES_VIEW              = "lihat",
+    .MENU_FILES_LITTLEFS                = "littleFS",
 
     // NFC menu
     .MENU_NFC                     = "NFC",
@@ -73,6 +79,8 @@ const Locale LANG_ID = {
     .TXT_WAITING_CONNECTION       = "Menunggu koneksi",
     .TXT_NOT_CONNECTED            = "Tidak terhubung",
     .TXT_FAILED                   = "Gagal",
+    .TXT_SUCCESS                  = "Berhasil",
+    .TXT_ERROR                    = "Error",
     .TXT_NA                       = "t/a",
     .TXT_UNNAMED                  = "tanpa nama",
 
