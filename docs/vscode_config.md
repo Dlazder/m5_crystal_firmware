@@ -1,5 +1,7 @@
 ## Example VS Code configuration
 
+If you are using the platformio extension you do not need this configuration
+
 *.vscode/settings.json*
 
 ```json
