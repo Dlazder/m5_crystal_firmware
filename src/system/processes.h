@@ -57,6 +57,10 @@
     X(FILE_RENAME,        507, renameFileLoop) \
     X(FILE_VIEW,          508, readFileLoop) \
     \
+    /* IR (600-699) */ \
+    X(IR,                 600, irMenuLoop) \
+    X(IR_READ,            601, irReadLoop) \
+    \
     /* Other (800-899) */ \
     X(OTHER,              800, otherMenuLoop) \
     X(CLOCK,              801, clockLoop) \

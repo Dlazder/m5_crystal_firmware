@@ -64,6 +64,11 @@
 #include "../functions/nfc/nfcReadLoop.h"
 #include "../functions/nfc/nfcWriteLoop.h"
 
+
+// IR functions
+#include "../functions/ir/irMenuLoop.h"
+#include "../functions/ir/irReadLoop.h"
+
 // Others
 #include "../functions/other/otherMenuLoop.h"
 #include "../functions/other/soundLevelLoop.h"

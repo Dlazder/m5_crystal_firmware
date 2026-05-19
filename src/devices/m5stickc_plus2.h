@@ -25,6 +25,9 @@
 #define NFC_SDA  G32
 #define NFC_SCL  G33
 
+// IR receiver pin (OUT of the module connected to G26)
+#define IR_RECEIVE_PIN  26
+
 // KEY_BACKSPACE value for BLE keyboard
 #define BLE_KEY_BACKSPACE  KEY_BACKSPACE
 
