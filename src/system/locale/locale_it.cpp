@@ -40,6 +40,19 @@ const Locale LANG_IT = {
     .MENU_NFC_READ_UID            = "leggi UID",
     .MENU_NFC_WRITE_UID           = "scrivi UID",
 
+    // IR menu
+    .MENU_IR                      = "IR",
+    .MENU_IR_READ                 = "leggi segnale",
+    .MENU_IR_SEND                 = "invia segnale",
+
+    // IR text
+    .TXT_IR_WAITING               = "In attesa...",
+    .TXT_IR_PRESS_A_SAVE          = "A per salvare",
+    .TXT_IR_PRESS_A_SEND          = "A per inviare",
+    .TXT_IR_SAVED                 = "Salvato",
+    .TXT_IR_SAVE_ERROR            = "Errore salvataggio",
+    .TXT_IR_PARSE_ERROR           = "Errore file",
+
     // Settings menu
     .MENU_SETTINGS                = "impostazioni",
     .MENU_SETTINGS_TIME           = "ora",

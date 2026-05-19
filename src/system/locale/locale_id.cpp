@@ -40,6 +40,19 @@ const Locale LANG_ID = {
     .MENU_NFC_READ_UID            = "baca UID",
     .MENU_NFC_WRITE_UID           = "tulis UID",
 
+    // IR menu
+    .MENU_IR                      = "IR",
+    .MENU_IR_READ                 = "baca sinyal",
+    .MENU_IR_SEND                 = "kirim sinyal",
+
+    // IR text
+    .TXT_IR_WAITING               = "Menunggu...",
+    .TXT_IR_PRESS_A_SAVE          = "A untuk simpan",
+    .TXT_IR_PRESS_A_SEND          = "A untuk kirim",
+    .TXT_IR_SAVED                 = "Tersimpan",
+    .TXT_IR_SAVE_ERROR            = "Gagal simpan",
+    .TXT_IR_PARSE_ERROR           = "Error file",
+
     // Settings menu
     .MENU_SETTINGS                = "pengaturan",
     .MENU_SETTINGS_TIME           = "waktu",

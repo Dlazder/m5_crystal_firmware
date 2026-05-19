@@ -40,6 +40,19 @@ const Locale LANG_RU = {
 	.MENU_NFC_READ_UID           = "читать UID",
 	.MENU_NFC_WRITE_UID          = "записать UID",
 
+	// IR menu
+	.MENU_IR                     = "IR",
+	.MENU_IR_READ                = "читать сигнал",
+	.MENU_IR_SEND                = "отправить сигнал",
+
+	// IR text
+	.TXT_IR_WAITING              = "Ожидание...",
+	.TXT_IR_PRESS_A_SAVE         = "A - сохранить",
+	.TXT_IR_PRESS_A_SEND         = "A - отправить",
+	.TXT_IR_SAVED                = "Сохранено",
+	.TXT_IR_SAVE_ERROR           = "Ошибка записи",
+	.TXT_IR_PARSE_ERROR          = "Ошибка файла",
+
 	// Settings menu
 	.MENU_SETTINGS               = "настройки",
 	.MENU_SETTINGS_TIME          = "время",

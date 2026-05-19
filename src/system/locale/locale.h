@@ -40,6 +40,19 @@ struct Locale {
 	const char* MENU_NFC_READ_UID;
 	const char* MENU_NFC_WRITE_UID;
 
+	// IR menu
+	const char* MENU_IR;
+	const char* MENU_IR_READ;
+	const char* MENU_IR_SEND;
+
+	// IR text
+	const char* TXT_IR_WAITING;
+	const char* TXT_IR_PRESS_A_SAVE;
+	const char* TXT_IR_PRESS_A_SEND;
+	const char* TXT_IR_SAVED;
+	const char* TXT_IR_SAVE_ERROR;
+	const char* TXT_IR_PARSE_ERROR;
+
 	// Settings menu
 	const char* MENU_SETTINGS;
 	const char* MENU_SETTINGS_TIME;

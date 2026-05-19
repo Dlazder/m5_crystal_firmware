@@ -60,6 +60,7 @@
     /* IR (600-699) */ \
     X(IR,                 600, irMenuLoop) \
     X(IR_READ,            601, irReadLoop) \
+    X(IR_SEND,            602, irSendLoop) \
     \
     /* Other (800-899) */ \
     X(OTHER,              800, otherMenuLoop) \

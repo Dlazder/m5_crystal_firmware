@@ -3,7 +3,8 @@
 void irMenuLoop() {
 	MENU irMenu[] = {
 		{PID::MAIN_MENU, L->MENU_BACK},
-		{PID::IR_READ, "read signal"},
+		{PID::IR_READ,   L->MENU_IR_READ},
+		{PID::IR_SEND,   L->MENU_IR_SEND},
 	};
 	int irMenuSize = sizeof(irMenu) / sizeof(MENU);
 
