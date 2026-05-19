@@ -67,6 +67,7 @@ void irSendLoop() {
 		irFileLoaded = false;
 		selectedFilePath = "";
 		filePickerSetup(PID::IR);
+		updateTimer();
 	}
 
 	// File picker phase
@@ -91,7 +92,7 @@ void irSendLoop() {
 	if (!irFileLoaded) return;
 
 	// Send on button A
-	if (isBtnAWasPressed()) {
+	if (isBtnAWasPressed() || isKbEnterPressed()) {
 		IrSender.begin(IR_SEND_PIN);
 
 		bool ok = true;

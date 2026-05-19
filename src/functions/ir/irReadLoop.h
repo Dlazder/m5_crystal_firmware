@@ -115,7 +115,7 @@ void irReadLoop() {
 		_irDrawUi();
 	}
 
-	if (isBtnAWasPressed() && irHasSignal) {
+	if ((isBtnAWasPressed() || isKbEnterPressed()) && irHasSignal) {
 		IrReceiver.end();
 		irReceiverStarted = false;
 		irKbActive = true;
