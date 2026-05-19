@@ -68,6 +68,7 @@ const Locale LANG_ES = {
 	.MENU_SETTINGS_FONT = "fuente",
 	.MENU_SETTINGS_KB_GYRO = "giroscopio",
 	.MENU_SETTINGS_LANGUAGE = "idioma",
+	.MENU_SETTINGS_DIMMING = "atenuar",
 
 	// Other menu
 	.MENU_OTHER = "otros",

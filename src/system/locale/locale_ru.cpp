@@ -68,6 +68,7 @@ const Locale LANG_RU = {
 	.MENU_SETTINGS_FONT          = "шрифт",
 	.MENU_SETTINGS_KB_GYRO       = "гиро клав.",
 	.MENU_SETTINGS_LANGUAGE      = "язык",
+	.MENU_SETTINGS_DIMMING       = "диммер",
 
 	// Other menu
 	.MENU_OTHER                  = "другое",

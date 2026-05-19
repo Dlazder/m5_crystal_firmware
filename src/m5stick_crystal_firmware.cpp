@@ -51,10 +51,12 @@ void loop() {
   globalTimer = millis();
   deviceUpdate();
 
+  dimmerUpdate();
+
   if (statusBar) {
     statusBarLoop();
   }
-  
+
   /* global process functions switcher */
   switcher();
 

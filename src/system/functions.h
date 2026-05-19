@@ -20,6 +20,7 @@
 #include "../functions/settings/toggleStartupSound.h"
 #include "../functions/settings/toggleKbGyroLoop.h"
 #include "../functions/settings/languageLoop.h"
+#include "../functions/settings/dimmingLoop.h"
 
 
 // Wi-Fi functions

@@ -68,6 +68,7 @@ const Locale LANG_EN = {
 	.MENU_SETTINGS_FONT          = "font",
 	.MENU_SETTINGS_KB_GYRO       = "keyboard gyro",
 	.MENU_SETTINGS_LANGUAGE      = "language",
+	.MENU_SETTINGS_DIMMING       = "dim screen",
 
 	// Other menu
 	.MENU_OTHER                  = "other",

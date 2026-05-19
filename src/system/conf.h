@@ -22,3 +22,6 @@ int currentFontIndex = 0;
 
 // Default brightness level from 0 to 10
 int defaultBrightnessLevel = 3;
+
+// Default screen dim timeout index (0 = OFF)
+int defaultDimTimeoutIndex = 1;

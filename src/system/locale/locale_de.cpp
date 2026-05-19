@@ -68,6 +68,7 @@ const Locale LANG_DE = {
 	.MENU_SETTINGS_FONT          = "schrift",
 	.MENU_SETTINGS_KB_GYRO       = "gyro tastatur",
 	.MENU_SETTINGS_LANGUAGE      = "sprache",
+	.MENU_SETTINGS_DIMMING       = "abdunkeln",
 
 	// Other menu
 	.MENU_OTHER                  = "sonstiges",

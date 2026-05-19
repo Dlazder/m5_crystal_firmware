@@ -68,6 +68,7 @@ const Locale LANG_ID = {
     .MENU_SETTINGS_FONT           = "font",
     .MENU_SETTINGS_KB_GYRO        = "giroskop",
     .MENU_SETTINGS_LANGUAGE       = "bahasa",
+    .MENU_SETTINGS_DIMMING        = "redupkan",
 
     // Other menu
     .MENU_OTHER                   = "lainnya",
