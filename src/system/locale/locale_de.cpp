@@ -44,6 +44,7 @@ const Locale LANG_DE = {
 	.MENU_IR                     = "IR",
 	.MENU_IR_READ                = "signal lesen",
 	.MENU_IR_SEND                = "signal senden",
+	.MENU_IR_TV_B_GONE           = "TV-B-Gone",
 
 	// IR text
 	.TXT_IR_WAITING              = "Warten...",
@@ -52,6 +53,8 @@ const Locale LANG_DE = {
 	.TXT_IR_SAVED                = "Gespeichert",
 	.TXT_IR_SAVE_ERROR           = "Speicherfehler",
 	.TXT_IR_PARSE_ERROR          = "Dateifehler",
+	.TXT_IR_TVB_RUNNING          = "Senden...",
+	.TXT_IR_TVB_DONE             = "Fertig!",
 
 	// Settings menu
 	.MENU_SETTINGS               = "einstellungen",

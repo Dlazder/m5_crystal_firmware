@@ -61,6 +61,7 @@
     X(IR,                 600, irMenuLoop) \
     X(IR_READ,            601, irReadLoop) \
     X(IR_SEND,            602, irSendLoop) \
+    X(IR_TV_B_GONE,       603, irTvBGoneLoop) \
     \
     /* Other (800-899) */ \
     X(OTHER,              800, otherMenuLoop) \

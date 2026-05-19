@@ -44,6 +44,7 @@ const Locale LANG_ID = {
     .MENU_IR                      = "IR",
     .MENU_IR_READ                 = "baca sinyal",
     .MENU_IR_SEND                 = "kirim sinyal",
+    .MENU_IR_TV_B_GONE            = "TV-B-Gone",
 
     // IR text
     .TXT_IR_WAITING               = "Menunggu...",
@@ -52,6 +53,8 @@ const Locale LANG_ID = {
     .TXT_IR_SAVED                 = "Tersimpan",
     .TXT_IR_SAVE_ERROR            = "Gagal simpan",
     .TXT_IR_PARSE_ERROR           = "Error file",
+    .TXT_IR_TVB_RUNNING           = "Mengirim...",
+    .TXT_IR_TVB_DONE              = "Selesai!",
 
     // Settings menu
     .MENU_SETTINGS                = "pengaturan",

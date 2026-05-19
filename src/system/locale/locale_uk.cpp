@@ -44,6 +44,7 @@ const Locale LANG_UK = {
 	.MENU_IR                     = "IR",
 	.MENU_IR_READ                = "читати сигнал",
 	.MENU_IR_SEND                = "надіслати сигнал",
+	.MENU_IR_TV_B_GONE           = "TV-B-Gone",
 
 	// IR text
 	.TXT_IR_WAITING              = "Очікування...",
@@ -52,6 +53,8 @@ const Locale LANG_UK = {
 	.TXT_IR_SAVED                = "Збережено",
 	.TXT_IR_SAVE_ERROR           = "Помилка запису",
 	.TXT_IR_PARSE_ERROR          = "Помилка файлу",
+	.TXT_IR_TVB_RUNNING          = "Надсилання...",
+	.TXT_IR_TVB_DONE             = "Готово!",
 
 	// Settings menu
 	.MENU_SETTINGS               = "налаштування",

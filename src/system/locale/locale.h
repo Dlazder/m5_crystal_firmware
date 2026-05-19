@@ -44,6 +44,7 @@ struct Locale {
 	const char* MENU_IR;
 	const char* MENU_IR_READ;
 	const char* MENU_IR_SEND;
+	const char* MENU_IR_TV_B_GONE;
 
 	// IR text
 	const char* TXT_IR_WAITING;
@@ -52,6 +53,8 @@ struct Locale {
 	const char* TXT_IR_SAVED;
 	const char* TXT_IR_SAVE_ERROR;
 	const char* TXT_IR_PARSE_ERROR;
+	const char* TXT_IR_TVB_RUNNING;
+	const char* TXT_IR_TVB_DONE;
 
 	// Settings menu
 	const char* MENU_SETTINGS;

@@ -69,6 +69,7 @@
 #include "../functions/ir/irMenuLoop.h"
 #include "../functions/ir/irReadLoop.h"
 #include "../functions/ir/irSendLoop.h"
+#include "../functions/ir/irTvBGoneLoop.h"
 
 // Others
 #include "../functions/other/otherMenuLoop.h"
