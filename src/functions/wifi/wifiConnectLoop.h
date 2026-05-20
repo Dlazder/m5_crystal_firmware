@@ -31,11 +31,13 @@ void wifiConnectLoop() {
 
 		if (WiFi.encryptionType(wifiScanIndex) == WIFI_AUTH_OPEN) {
 			wifiConnectPasswordDone = true;
+			kbEnd();
 			startWifiConnection("");
 		} else {
 			String saved = getDataString(wifiPasswordKey().c_str());
 			if (saved.length() > 0) {
 				wifiConnectPasswordDone = true;
+				kbEnd();
 				startWifiConnection(saved.c_str());
 			} else {
 				wifiPassword = "";
