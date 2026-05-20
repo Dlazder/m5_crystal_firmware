@@ -40,6 +40,22 @@ const Locale LANG_UK = {
 	.MENU_NFC_READ_UID           = "читати UID",
 	.MENU_NFC_WRITE_UID          = "записати UID",
 
+	// IR menu
+	.MENU_IR                     = "IR",
+	.MENU_IR_READ                = "читати сигнал",
+	.MENU_IR_SEND                = "надіслати сигнал",
+	.MENU_IR_TV_B_GONE           = "TV-B-Gone",
+
+	// IR text
+	.TXT_IR_WAITING              = "Очікування...",
+	.TXT_IR_PRESS_A_SAVE         = "A - зберегти",
+	.TXT_IR_PRESS_A_SEND         = "A - надіслати",
+	.TXT_IR_SAVED                = "Збережено",
+	.TXT_IR_SAVE_ERROR           = "Помилка запису",
+	.TXT_IR_PARSE_ERROR          = "Помилка файлу",
+	.TXT_IR_TVB_RUNNING          = "Надсилання...",
+	.TXT_IR_TVB_DONE             = "Готово!",
+
 	// Settings menu
 	.MENU_SETTINGS               = "налаштування",
 	.MENU_SETTINGS_TIME          = "час",
@@ -52,6 +68,7 @@ const Locale LANG_UK = {
 	.MENU_SETTINGS_FONT          = "шрифт",
 	.MENU_SETTINGS_KB_GYRO       = "гіро клав.",
 	.MENU_SETTINGS_LANGUAGE      = "мова",
+	.MENU_SETTINGS_DIMMING       = "димінг",
 
 	// Other menu
 	.MENU_OTHER                  = "інше",

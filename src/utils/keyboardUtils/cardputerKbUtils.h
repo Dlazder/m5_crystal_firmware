@@ -46,6 +46,15 @@
 	}
 #endif
 
+bool isAnyKbKeyPressed() {
+	#if HAS_PHYSICAL_KB
+	return kbUpPressed || kbDownPressed || kbLeftPressed || kbRightPressed ||
+		kbPlusPressed || kbMinusPressed || kbEnterPressed || kbEscPressed ||
+	  kbDelPressed || kbCursorLeftPressed || kbCursorRightPressed || kbWord.length() > 0;
+	#endif
+	return false;
+}
+
 bool isKbUpPressed() {
 	#if HAS_PHYSICAL_KB
 	if (kbUpPressed) { kbUpPressed = false; return true; }

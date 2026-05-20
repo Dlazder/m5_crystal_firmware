@@ -35,5 +35,9 @@ void loadPreferences() {
 	setLocale(locales[languageIndex]);
 	Serial.printf("Language: %s\n", localeNames[languageIndex]);
 
+	dimTimeoutIndex = getData("dimTimeout", dimTimeoutIndex);
+	screenDimTimeout = dimTimeouts[dimTimeoutIndex];
+	Serial.printf("Dim timeout index: %d\n", dimTimeoutIndex);
+
 	Serial.println("Preferences loaded");
 }

@@ -17,6 +17,7 @@
     X(TOGGLE_STATUS_BAR,     109, toggleStatusBarLoop) \
     X(TOGGLE_STATUS_BAR_PID, 110, toggleStatusBarPidLoop) \
     X(LANGUAGE,              111, languageLoop) \
+    X(DIMMING,               112, dimmingLoop) \
     \
     /* Wi-Fi (200-299) */ \
     X(WIFI,              200, wifiMenuLoop) \
@@ -56,6 +57,12 @@
     X(FILE_INFO,          506, fileInfoLoop) \
     X(FILE_RENAME,        507, renameFileLoop) \
     X(FILE_VIEW,          508, readFileLoop) \
+    \
+    /* IR (600-699) */ \
+    X(IR,                 600, irMenuLoop) \
+    X(IR_READ,            601, irReadLoop) \
+    X(IR_SEND,            602, irSendLoop) \
+    X(IR_TV_B_GONE,       603, irTvBGoneLoop) \
     \
     /* Other (800-899) */ \
     X(OTHER,              800, otherMenuLoop) \

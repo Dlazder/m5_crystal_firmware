@@ -90,6 +90,11 @@ int brightnessDividor = brightnessMax / brightnessStep;
 int brightness = defaultBrightnessLevel * brightnessDividor;
 int brightnessMin = brightnessDividor;
 
+// Screen dimming
+int screenDimTimeout = 0;
+bool screenIsDimmed = false;
+int dimmingPreviousTimer = 0;
+
 // files
 String selectedFilePath = "";
 

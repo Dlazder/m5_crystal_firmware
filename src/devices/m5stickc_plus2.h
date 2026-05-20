@@ -25,6 +25,11 @@
 #define NFC_SDA  G32
 #define NFC_SCL  G33
 
+// IR transmitter — built-in LED on M5StickC Plus 2
+#define IR_SEND_PIN 19
+// IR receiver pin (OUT of the module connected to G26)
+#define IR_RECEIVE_PIN 26
+
 // KEY_BACKSPACE value for BLE keyboard
 #define BLE_KEY_BACKSPACE  KEY_BACKSPACE
 

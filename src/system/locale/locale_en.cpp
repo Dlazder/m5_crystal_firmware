@@ -40,6 +40,22 @@ const Locale LANG_EN = {
 	.MENU_NFC_READ_UID           = "read UID",
 	.MENU_NFC_WRITE_UID          = "write UID",
 
+	// IR menu
+	.MENU_IR                     = "IR",
+	.MENU_IR_READ                = "read signal",
+	.MENU_IR_SEND                = "send signal",
+	.MENU_IR_TV_B_GONE           = "TV-B-Gone",
+
+	// IR text
+	.TXT_IR_WAITING              = "Waiting...",
+	.TXT_IR_PRESS_A_SAVE         = "press A to save",
+	.TXT_IR_PRESS_A_SEND         = "Press A to send",
+	.TXT_IR_SAVED                = "Saved to littleFS",
+	.TXT_IR_SAVE_ERROR           = "Save error",
+	.TXT_IR_PARSE_ERROR          = "Parse error",
+	.TXT_IR_TVB_RUNNING          = "Sending...",
+	.TXT_IR_TVB_DONE             = "Done!",
+
 	// Settings menu
 	.MENU_SETTINGS               = "settings",
 	.MENU_SETTINGS_TIME          = "time",
@@ -52,6 +68,7 @@ const Locale LANG_EN = {
 	.MENU_SETTINGS_FONT          = "font",
 	.MENU_SETTINGS_KB_GYRO       = "keyboard gyro",
 	.MENU_SETTINGS_LANGUAGE      = "language",
+	.MENU_SETTINGS_DIMMING       = "dim screen",
 
 	// Other menu
 	.MENU_OTHER                  = "other",

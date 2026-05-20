@@ -20,6 +20,7 @@
 #include "../functions/settings/toggleStartupSound.h"
 #include "../functions/settings/toggleKbGyroLoop.h"
 #include "../functions/settings/languageLoop.h"
+#include "../functions/settings/dimmingLoop.h"
 
 
 // Wi-Fi functions
@@ -63,6 +64,13 @@
 #include "../functions/nfc/nfcMenuLoop.h"
 #include "../functions/nfc/nfcReadLoop.h"
 #include "../functions/nfc/nfcWriteLoop.h"
+
+
+// IR functions
+#include "../functions/ir/irMenuLoop.h"
+#include "../functions/ir/irReadLoop.h"
+#include "../functions/ir/irSendLoop.h"
+#include "../functions/ir/irTvBGoneLoop.h"
 
 // Others
 #include "../functions/other/otherMenuLoop.h"

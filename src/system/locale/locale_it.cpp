@@ -40,6 +40,22 @@ const Locale LANG_IT = {
     .MENU_NFC_READ_UID            = "leggi UID",
     .MENU_NFC_WRITE_UID           = "scrivi UID",
 
+    // IR menu
+    .MENU_IR                      = "IR",
+    .MENU_IR_READ                 = "leggi segnale",
+    .MENU_IR_SEND                 = "invia segnale",
+    .MENU_IR_TV_B_GONE            = "TV-B-Gone",
+
+    // IR text
+    .TXT_IR_WAITING               = "In attesa...",
+    .TXT_IR_PRESS_A_SAVE          = "A per salvare",
+    .TXT_IR_PRESS_A_SEND          = "A per inviare",
+    .TXT_IR_SAVED                 = "Salvato",
+    .TXT_IR_SAVE_ERROR            = "Errore salvataggio",
+    .TXT_IR_PARSE_ERROR           = "Errore file",
+    .TXT_IR_TVB_RUNNING           = "Invio...",
+    .TXT_IR_TVB_DONE              = "Fatto!",
+
     // Settings menu
     .MENU_SETTINGS                = "impostazioni",
     .MENU_SETTINGS_TIME           = "ora",
@@ -52,6 +68,7 @@ const Locale LANG_IT = {
     .MENU_SETTINGS_FONT           = "carattere",
     .MENU_SETTINGS_KB_GYRO        = "giroscopio",
     .MENU_SETTINGS_LANGUAGE       = "lingua",
+    .MENU_SETTINGS_DIMMING        = "oscura",
 
     // Other menu
     .MENU_OTHER                   = "altro",

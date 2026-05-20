@@ -13,6 +13,7 @@
 #include "../utils/keyboardUtils/cardputerKbUtils.h"
 #include "../utils/keyboardUtils/kbUtils.h"
 // 2nd layer utilities
+#include "../utils/dimmerUtils.h"
 #include "../utils/procManagmentUtils.h"
 #include "../utils/menuUtils.h"
 // 3rd layer utilities

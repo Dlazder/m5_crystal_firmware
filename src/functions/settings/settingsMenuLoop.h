@@ -12,6 +12,7 @@ void settingsMenuLoop() {
 		// {PID::FONTS,               L->MENU_SETTINGS_FONT},
 		{PID::KB_GYRO,             L->MENU_SETTINGS_KB_GYRO},
 		{PID::LANGUAGE,            L->MENU_SETTINGS_LANGUAGE},
+		{PID::DIMMING,             L->MENU_SETTINGS_DIMMING},
 	};
 	int settingsMenuSize = sizeof(settingsMenu) / sizeof(MENU);
 

@@ -28,6 +28,11 @@
 #define NFC_SDA  SDA
 #define NFC_SCL  SCL
 
+// IR transmitter — built-in LED on G44
+#define IR_SEND_PIN 44
+// IR receiver — external module on G8 (SDA)
+#define IR_RECEIVE_PIN 8
+
 // KEY_BACKSPACE conflicts with M5Cardputer header — use raw HID value
 #define BLE_KEY_BACKSPACE  0xB2
 
