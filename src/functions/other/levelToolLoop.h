@@ -5,6 +5,11 @@ int lastAngle = 0;
 bool levelToolSoundPlayed = false;
 
 void levelToolLoop() {
+	if (!hasImu) {
+		if (isSetup()) centeredPrint("no gyroscope", MEDIUM_TEXT);
+		checkExit();
+		return;
+	}
 
 	if (isSetup()) {
 		deviceSpeakerBegin();

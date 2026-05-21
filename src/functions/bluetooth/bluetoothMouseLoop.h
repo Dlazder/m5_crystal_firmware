@@ -27,6 +27,11 @@ auto getSpeed = [](float value) -> int {
 };
 
 void bluetoothMouseLoop() {
+	if (!hasImu) {
+		if (isSetup()) centeredPrint("no gyroscope", MEDIUM_TEXT);
+		checkExit();
+		return;
+	}
 	static float smoothedX = 0;
 	static float smoothedY = 0;
 	static bool isBleConnected = false;

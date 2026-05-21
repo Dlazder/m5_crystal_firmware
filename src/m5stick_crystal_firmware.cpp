@@ -7,6 +7,7 @@
 
 void setup() {
   deviceInit();
+  hasImu = (DEVICE.Imu.getType() != m5::imu_none);
   Serial.begin(115200);
   preferences.begin("storage", false);
   loadPreferences();

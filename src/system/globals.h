@@ -35,6 +35,8 @@ struct MENU {
   String name;
 };
 
+bool hasImu = false;
+
 int cursor = 0;
 int process = PID::MAIN_MENU;
 int previousProcess = PID::MAIN_MENU;
