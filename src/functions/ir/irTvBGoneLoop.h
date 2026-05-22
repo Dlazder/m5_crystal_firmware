@@ -71,7 +71,7 @@ void irTvBGoneLoop() {
 		if (tvbIndex >= TVB_COUNT) {
 			tvbRunning = false;
 			tvbDone = true;
-			DEVICE.Speaker.tone(1500, 300);
+			soundSuccess();
 			String lines2[] = { "TV-B-Gone", L->TXT_IR_TVB_DONE };
 			centeredPrintRows(lines2, 2, MEDIUM_TEXT);
 		}

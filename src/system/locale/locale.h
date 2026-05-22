@@ -60,6 +60,7 @@ struct Locale {
 	const char* MENU_SETTINGS;
 	const char* MENU_SETTINGS_TIME;
 	const char* MENU_SETTINGS_BRIGHTNESS;
+	const char* MENU_SETTINGS_VOLUME;
 	const char* MENU_SETTINGS_ROTATION;
 	const char* MENU_SETTINGS_COLORS;
 	const char* MENU_SETTINGS_STATUS_BAR;
@@ -131,6 +132,7 @@ struct Locale {
 	// Settings text
 	const char* TXT_SETTINGS_LANGUAGE;
 	const char* TXT_SETTINGS_BRIGHTNESS;
+	const char* TXT_SETTINGS_VOLUME;
 	const char* TXT_SETTINGS_COLOR;
 	const char* TXT_SETTINGS_FONT;
 	const char* TXT_SETTINGS_ROTATION;

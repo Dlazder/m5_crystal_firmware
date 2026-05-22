@@ -193,7 +193,7 @@ void nfcWriteLoop() {
 			if (!nfcModuleWasConnected) {
 				nfcModuleWasConnected = true;
 				DEVICE.Power.setLed(0);
-				DEVICE.Speaker.tone(2000, 200);
+				soundSuccess();
 
 				String uidString = uidToString(lastReadUID, lastReadUIDLength);
 				String lines[] = {
@@ -228,7 +228,7 @@ void nfcWriteLoop() {
 				centeredPrintRows(lines, 2, MEDIUM_TEXT);
 
 				Serial.println("Write successful!");
-				DEVICE.Speaker.tone(2000, 200);
+				soundSuccess();
 			} else {
 				clearScreenWithSymbols();
 				String lines[] = {
@@ -237,7 +237,7 @@ void nfcWriteLoop() {
 				};
 				centeredPrintRows(lines, 2, MEDIUM_TEXT);
 				Serial.println("Write failed!");
-				DEVICE.Speaker.tone(1000, 200);
+				soundError();
 			}
 
 			updateTimer();

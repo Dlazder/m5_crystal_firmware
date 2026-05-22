@@ -119,7 +119,6 @@ void irSendLoop() {
 		if (ok) {
 			Serial.printf("IR: sent proto=%s addr=0x%04X cmd=0x%04X\n",
 				getProtocolString(irSendProtocol), irSendAddress, irSendCommand);
-			DEVICE.Speaker.tone(2000, 80);
 		} else {
 			centeredPrint("Unknown proto", MEDIUM_TEXT);
 			delay(800);

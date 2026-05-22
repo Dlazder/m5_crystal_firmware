@@ -12,6 +12,7 @@
 #include "../utils/storageUtils.h"
 #include "../utils/keyboardUtils/cardputerKbUtils.h"
 #include "../utils/keyboardUtils/kbUtils.h"
+#include "../utils/soundUtils.h"
 // 2nd layer utilities
 #include "../utils/dimmerUtils.h"
 #include "../utils/procManagmentUtils.h"

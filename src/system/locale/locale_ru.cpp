@@ -60,6 +60,7 @@ const Locale LANG_RU = {
 	.MENU_SETTINGS               = "настройки",
 	.MENU_SETTINGS_TIME          = "время",
 	.MENU_SETTINGS_BRIGHTNESS    = "яркость",
+	.MENU_SETTINGS_VOLUME        = "громкость",
 	.MENU_SETTINGS_ROTATION      = "поворот",
 	.MENU_SETTINGS_COLORS        = "цвета",
 	.MENU_SETTINGS_STATUS_BAR    = "статус бар",
@@ -130,6 +131,7 @@ const Locale LANG_RU = {
 	// Settings text
 	.TXT_SETTINGS_LANGUAGE       = "язык: ",
 	.TXT_SETTINGS_BRIGHTNESS     = "яркость: ",
+	.TXT_SETTINGS_VOLUME         = "громкость: ",
 	.TXT_SETTINGS_COLOR          = "цвет: ",
 	.TXT_SETTINGS_FONT           = "шрифт:",
 	.TXT_SETTINGS_ROTATION       = "ориентация экрана",

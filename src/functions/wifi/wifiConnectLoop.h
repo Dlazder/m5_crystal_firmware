@@ -75,9 +75,7 @@ void wifiConnectLoop() {
 			String ip = WiFi.localIP().toString();
 			String lines[] = { L->TXT_CONNECTED, ssid.substring(0, 16), ip };
 			centeredPrintRows(lines, 3, MEDIUM_TEXT);
-			DEVICE.Speaker.tone(2000, 100);
-			delay(50);
-			DEVICE.Speaker.tone(2500, 100);
+			soundSuccess();
 		} else if (status == WL_CONNECT_FAILED || status == WL_NO_SSID_AVAIL || timedOut) {
 			wifiConnectResultShown = true;
 			WiFi.disconnect(true);
@@ -89,7 +87,7 @@ void wifiConnectLoop() {
 
 			String lines[] = { L->TXT_FAILED, String(reason) };
 			centeredPrintRows(lines, 2, MEDIUM_TEXT);
-			DEVICE.Speaker.tone(500, 300);
+			soundError();
 		}
 	}
 

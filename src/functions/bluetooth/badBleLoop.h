@@ -41,14 +41,14 @@ void badBleLoop() {
 		if (!isBleConnected) {
 			isBleConnected = true;
 			centeredPrint(L->TXT_BT_PRESS_A_TO_RUN, MEDIUM_TEXT);
-			DEVICE.Speaker.tone(2000, 200);
+			soundSuccess();
 		}
 	} else {
 		if (isBleConnected) {
 			isBleConnected = false;
 			scriptRunning = false;
 			centeredPrint(L->TXT_DISCONNECTED, MEDIUM_TEXT);
-			DEVICE.Speaker.tone(2000, 200);
+			soundError();
 		}
 	}
 
@@ -68,7 +68,7 @@ void badBleLoop() {
 				scriptRunning = false;
 				scriptDone = true;
 				centeredPrint(L->TXT_BT_DONE, MEDIUM_TEXT);
-				DEVICE.Speaker.tone(3000, 300);
+				soundSuccess();
 			}
 		}
 	}

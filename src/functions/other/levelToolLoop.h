@@ -64,7 +64,7 @@ void levelToolLoop() {
 		canvas.setTextColor(TFT_GREEN);
 		DEVICE.Power.setLed(1);
 		if (!levelToolSoundPlayed) {
-			DEVICE.Speaker.tone(2000, 100);
+			soundBeep();
 			levelToolSoundPlayed = true;
 		}
 	} else {

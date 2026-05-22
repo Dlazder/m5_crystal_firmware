@@ -18,6 +18,7 @@
     X(TOGGLE_STATUS_BAR_PID, 110, toggleStatusBarPidLoop) \
     X(LANGUAGE,              111, languageLoop) \
     X(DIMMING,               112, dimmingLoop) \
+    X(VOLUME,                113, volumeLoop) \
     \
     /* Wi-Fi (200-299) */ \
     X(WIFI,              200, wifiMenuLoop) \

@@ -18,13 +18,13 @@ void bluetoothKeyboardLoop() {
 		if (!isBleConnected) {
 			isBleConnected = true;
 			drawKeyboardUi();
-			DEVICE.Speaker.tone(2000, 200);
+			soundSuccess();
 		}
 	} else {
 		if (isBleConnected) {
 			isBleConnected = false;
 			centeredPrint(L->TXT_NOT_CONNECTED, MEDIUM_TEXT);
-			DEVICE.Speaker.tone(2000, 200);
+			soundError();
 		}
 		checkExit();
 		return;

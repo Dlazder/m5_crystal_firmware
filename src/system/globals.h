@@ -92,6 +92,13 @@ int brightnessDividor = brightnessMax / brightnessStep;
 int brightness = defaultBrightnessLevel * brightnessDividor;
 int brightnessMin = brightnessDividor;
 
+// Volume
+int volumeMax = 255;
+int volumeStep = 10;
+int volumeDividor = volumeMax / volumeStep;
+int volume = defaultVolumeLevel * volumeDividor;
+int volumeMin = 0;
+
 // Screen dimming
 int screenDimTimeout = 0;
 bool screenIsDimmed = false;

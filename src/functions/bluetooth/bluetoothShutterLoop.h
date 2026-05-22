@@ -15,14 +15,14 @@ void bluetoothShutterLoop() {
 	if (bleKeyboard.isConnected()) {
 		if (!isBleConnected) {
 			centeredPrint(L->TXT_CONNECTED, MEDIUM_TEXT);
-			DEVICE.Speaker.tone(2000, 200);
+			soundSuccess();
 			isBleConnected = true;
 		}
 	} else {
 		if (isBleConnected) {
 			isBleConnected = false;
 			centeredPrint(L->TXT_NOT_CONNECTED, MEDIUM_TEXT);
-			DEVICE.Speaker.tone(2000, 200);
+			soundError();
 		}
 	}
 

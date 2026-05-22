@@ -20,7 +20,7 @@ void displayNotConnectedError() {
 	centeredPrintRows(lines, 1, MEDIUM_TEXT);
 	Serial.println("PN532: disconnected");
 	DEVICE.Power.setLed(1);
-	DEVICE.Speaker.tone(1000, 200);
+	soundError();
 }
 
 String uidToString(const uint8_t* uid, uint8_t uidLength) {
@@ -78,7 +78,7 @@ void nfcReadLoop() {
 			if (!nfcModuleWasConnected) {
 				nfcModuleWasConnected = true;
 				DEVICE.Power.setLed(0);
-				DEVICE.Speaker.tone(2000, 200);
+				soundSuccess();
 
 				clearScreenWithSymbols();
 				String lines[] = {
@@ -104,7 +104,7 @@ void nfcReadLoop() {
 
 			Serial.printf("Tag found: %s\n", uidString.c_str());
 			centeredPrint(uidString.c_str(), MEDIUM_TEXT);
-			DEVICE.Speaker.tone(2000, 100);
+			soundBeep();
 
 			// Saving UID for writing
 			memset(lastReadUID, 0, sizeof(lastReadUID));

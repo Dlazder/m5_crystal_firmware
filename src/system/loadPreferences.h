@@ -25,6 +25,10 @@ void loadPreferences() {
   Serial.printf("Color: %s\n", colorsEntry[colorIndex]);
   FGCOLOR = colors[colorIndex];
 
+	volume = getData("volume", volume);
+	Serial.printf("Volume: %d\n", volume / volumeDividor);
+	DEVICE.Speaker.setVolume(volume);
+
 	startupSound = getData("startupSound", startupSound);
   Serial.printf("Startup sound: %s\n", startupSound ? "enabled" : "disabled");
 

@@ -60,6 +60,7 @@ const Locale LANG_ID = {
     .MENU_SETTINGS                = "pengaturan",
     .MENU_SETTINGS_TIME           = "waktu",
     .MENU_SETTINGS_BRIGHTNESS     = "kecerahan",
+    .MENU_SETTINGS_VOLUME         = "volume",
     .MENU_SETTINGS_ROTATION       = "rotasi",
     .MENU_SETTINGS_COLORS         = "warna",
     .MENU_SETTINGS_STATUS_BAR     = "bilah status",
@@ -130,6 +131,7 @@ const Locale LANG_ID = {
     // Settings text
     .TXT_SETTINGS_LANGUAGE        = "Bahasa: ",
     .TXT_SETTINGS_BRIGHTNESS      = "kecerahan: ",
+    .TXT_SETTINGS_VOLUME          = "volume: ",
     .TXT_SETTINGS_COLOR           = "warna: ",
     .TXT_SETTINGS_FONT            = "Font:",
     .TXT_SETTINGS_ROTATION        = "rotasi",

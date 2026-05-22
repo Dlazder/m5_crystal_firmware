@@ -21,6 +21,7 @@
 #include "../functions/settings/toggleKbGyroLoop.h"
 #include "../functions/settings/languageLoop.h"
 #include "../functions/settings/dimmingLoop.h"
+#include "../functions/settings/volumeLoop.h"
 
 
 // Wi-Fi functions

@@ -50,7 +50,7 @@ void bluetoothMouseLoop() {
 	if (bleKeyboard.isConnected()) {
 		if (!isBleConnected) {
 			centeredPrint(L->TXT_CONNECTED, MEDIUM_TEXT);
-			DEVICE.Speaker.tone(2000, 200);
+			soundSuccess();
 			isBleConnected = true;
 		}
 
@@ -82,7 +82,7 @@ void bluetoothMouseLoop() {
 		if (isBleConnected) {
 			isBleConnected = false;
 			centeredPrint(L->TXT_NOT_CONNECTED, MEDIUM_TEXT);
-			DEVICE.Speaker.tone(2000, 200);
+			soundError();
 			smoothedX = 0;
 			smoothedY = 0;
 		}
