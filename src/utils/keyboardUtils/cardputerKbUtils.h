@@ -46,6 +46,23 @@
 	}
 #endif
 
+void clearKbFlags() {
+	#if HAS_PHYSICAL_KB
+	kbUpPressed = false;
+	kbDownPressed = false;
+	kbLeftPressed = false;
+	kbRightPressed = false;
+	kbPlusPressed = false;
+	kbMinusPressed = false;
+	kbEnterPressed = false;
+	kbEscPressed = false;
+	kbDelPressed = false;
+	kbCursorLeftPressed = false;
+	kbCursorRightPressed = false;
+	kbWord = "";
+	#endif
+}
+
 bool isAnyKbKeyPressed() {
 	#if HAS_PHYSICAL_KB
 	return kbUpPressed || kbDownPressed || kbLeftPressed || kbRightPressed ||
