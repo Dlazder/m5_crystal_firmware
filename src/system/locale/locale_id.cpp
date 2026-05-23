@@ -87,6 +87,8 @@ const Locale LANG_ID = {
 
     // Common text
     .TXT_PRESS_A                  = "tekan A",
+    .TXT_LEFT                     = "kiri",
+    .TXT_RIGHT                    = "kanan",
     .TXT_ENABLED                  = "aktif",
     .TXT_DISABLED                 = "nonaktif",
     .TXT_SCANNING                 = "Memindai...",

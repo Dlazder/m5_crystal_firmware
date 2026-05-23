@@ -1,4 +1,11 @@
-void centeredPrintRows(String text[], int arraySize, float textSize) {
+/**
+ * Draws centered rows of text onto the canvas.
+ * @param text      Array of strings to display.
+ * @param arraySize Number of elements in the array.
+ * @param textSize  Text size [TINY_TEXT; SMALL_TEXT; MEDIUM_TEXT; BIG_TEXT; HUGE_TEXT].
+ * @param manual    If true, skips pushSprite — use when a drawHint* call follows to avoid double push.
+ */
+void centeredPrintRows(String text[], int arraySize, float textSize, bool manual = false) {
 	canvas.clear();
 	canvas.setTextColor(FGCOLOR, BGCOLOR);
 	canvas.setTextSize(textSize);
@@ -15,5 +22,5 @@ void centeredPrintRows(String text[], int arraySize, float textSize) {
 		canvas.print(text[i].c_str());
 	}
 
-	canvas.pushSprite(0, getStatusBarOffset());
+	if (!manual) canvas.pushSprite(0, getStatusBarOffset());
 }

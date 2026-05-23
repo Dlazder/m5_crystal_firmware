@@ -87,6 +87,8 @@ const Locale LANG_EN = {
 
 	// Common text
 	.TXT_PRESS_A                 = "press A",
+	.TXT_LEFT                    = "left",
+	.TXT_RIGHT                   = "right",
 	.TXT_ENABLED                 = "enabled",
 	.TXT_DISABLED                = "disabled",
 	.TXT_SCANNING                = "Scanning...",

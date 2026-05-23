@@ -7,7 +7,7 @@ void loadPreferences() {
 
 	brightness = getData("brightness", brightness);
 	Serial.printf("Brightness: %d\n", brightness);
-  DISP.setBrightness(brightness);
+	DISP.setBrightness(brightnessToHw(brightness));
 
 	statusBar = getData("statusBar", statusBar);
 	Serial.printf("Status bar: %s\n", statusBar ? "enabled" : "disabled");

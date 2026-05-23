@@ -87,6 +87,8 @@ const Locale LANG_RU = {
 
 	// Common text
 	.TXT_PRESS_A                 = "нажмите A",
+	.TXT_LEFT                    = "влево",
+	.TXT_RIGHT                   = "вправо",
 	.TXT_ENABLED                 = "включено",
 	.TXT_DISABLED                = "выключено",
 	.TXT_SCANNING                = "Сканирование...",

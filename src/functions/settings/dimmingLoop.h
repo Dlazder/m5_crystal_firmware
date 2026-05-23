@@ -32,7 +32,7 @@ void dimmingLoop() {
 		setData("dimTimeout", dimTimeoutIndex);
 
 		if (screenIsDimmed) {
-			DISP.setBrightness(brightness);
+			DISP.setBrightness(brightnessToHw(brightness));
 			screenIsDimmed = false;
 		}
 		updateTimer(&dimmingPreviousTimer);

@@ -85,12 +85,12 @@ bool webDataRequested = true;
 String webData = "";
 String webDataType = "";
 
-// Brightness
-int brightnessMax = 255;
-int brightnessStep = 10;
-int brightnessDividor = brightnessMax / brightnessStep;
-int brightness = defaultBrightnessLevel * brightnessDividor;
-int brightnessMin = brightnessDividor;
+// Brightness (stored as a step value 1–10)
+int brightness = defaultBrightnessLevel;
+static const int BRIGHTNESS_STEPS   = 10;
+static const int BRIGHTNESS_HW_MAX  = 255;
+static const int BRIGHTNESS_HW_STEP = BRIGHTNESS_HW_MAX / BRIGHTNESS_STEPS;
+inline int brightnessToHw(int step) { return step * BRIGHTNESS_HW_STEP; }
 
 // Volume
 int volumeMax = 255;

@@ -87,6 +87,8 @@ const Locale LANG_ES = {
 
 	// Common text
 	.TXT_PRESS_A = "pulsa A",
+	.TXT_LEFT    = "izquierda",
+	.TXT_RIGHT   = "derecha",
 	.TXT_ENABLED = "activado",
 	.TXT_DISABLED = "desactivado",
 	.TXT_SCANNING = "Buscando...",

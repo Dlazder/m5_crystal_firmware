@@ -88,6 +88,8 @@ struct Locale {
 
 	// Common text
 	const char* TXT_PRESS_A;
+	const char* TXT_LEFT;
+	const char* TXT_RIGHT;
 	const char* TXT_ENABLED;
 	const char* TXT_DISABLED;
 	const char* TXT_SCANNING;

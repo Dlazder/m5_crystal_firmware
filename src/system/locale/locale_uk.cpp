@@ -87,6 +87,8 @@ const Locale LANG_UK = {
 
 	// Common text
 	.TXT_PRESS_A                 = "натисніть A",
+	.TXT_LEFT                    = "вліво",
+	.TXT_RIGHT                   = "вправо",
 	.TXT_ENABLED                 = "увімкнено",
 	.TXT_DISABLED                = "вимкнено",
 	.TXT_SCANNING                = "Сканування...",

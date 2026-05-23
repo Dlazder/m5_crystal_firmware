@@ -2,7 +2,7 @@ void dimmerUpdate() {
 	bool anyInput = isBtnAWasPressed() || isBtnBWasPressed() || isBtnPWRWasPressed() || isAnyKbKeyPressed();
 	if (anyInput) {
 		if (screenIsDimmed) {
-			DISP.setBrightness(brightness);
+			DISP.setBrightness(brightnessToHw(brightness));
 			screenIsDimmed = false;
 		}
 		updateTimer(&dimmingPreviousTimer);

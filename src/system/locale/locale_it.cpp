@@ -87,6 +87,8 @@ const Locale LANG_IT = {
 
     // Common text
     .TXT_PRESS_A                  = "premi A",
+    .TXT_LEFT                     = "sinistra",
+    .TXT_RIGHT                    = "destra",
     .TXT_ENABLED                  = "attivo",
     .TXT_DISABLED                 = "disattivo",
     .TXT_SCANNING                 = "Scansione...",
