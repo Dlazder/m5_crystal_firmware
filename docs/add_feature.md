@@ -1,14 +1,14 @@
 ## How to add a new feature?
 
 Add a menu item wherever you want.
-You must specify the name and number of the process that will be launched. You can take the first one available. Check the [process id list](./pids.md).
+You must specify the name and process id that will be launched. Add the process to the `src/system/processes.h`.
 
 *functions/mainMenuLoop.h*
 
 ```cpp
 MENU mainMenu[] = {
-	// other items ...
-	{40, "Hello world!"},
+  // other items ...
+  {PID::HELLO_WORLD, "Hello world"},
 };
 ```
 
@@ -20,17 +20,17 @@ After that, create a function for the process, let's create a new file for this 
 
 ```cpp
 void helloWorldLoop() {
-	if (isSetup()) {
-		centeredPrint("Hello world!", MEDIUM_TEXT);
-	}
-	checkExit(0);
+  if (isSetup()) {
+    centeredPrint("Hello world!", MEDIUM_TEXT);
+    soundSuccess();
+  }
+
+  checkExit();
 }
 ```
 
-In this code, we used functions, one of the “utilities”, necessary to make the code easier and cleaner. They are all located inside files in the utils directory.
-Some utilities are already described in the [utilities documentation](./utils.md).
-
-<br>
+In this code, we used functions, one of the “utilities”, necessary to make the code easier and cleaner. They are all located in `src/utils/`.
+Utilities described in the [utilities documentation](./utils.md).
 
 Add an include of this function next to the others.
 
@@ -39,17 +39,6 @@ Add an include of this function next to the others.
 ```cpp
 // other includes...
 #include "../functions/helloWorldLoop.h"
-```
-
-Finally, add your process to the processEntries array.
-
-*system/switcher.h*
-
-```cpp
-const ProcessEntry processEntries[] = {
-	// ...
-	{40, helloWorldLoop},
-}
 ```
 
 ## ✨ Result

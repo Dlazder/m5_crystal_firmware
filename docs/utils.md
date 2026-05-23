@@ -102,55 +102,152 @@
 ### *Basic menu usage example*
 
 ```cpp
-MENU exampleMenu[] = {
-	{1, "clock"},
-	{3, "settings"},
-	{13, "Wi-Fi"},
-	{14, "Bluetooth"},
-	{20, "level tool"},
-	{2, "Battery info"},
-};
-int mainMenuSize = sizeof(mainMenu) / sizeof(MENU);
+void exampleMenuLoop() {
+	MENU exampleMenu[] = {
+		{PID::CLOCK,     "clock"},
+		{PID::SETTINGS,  "settings"},
+		{PID::WIFI,      "Wi-Fi"},
+		{PID::BLUETOOTH, "Bluetooth"},
+	};
+	int exampleMenuSize = sizeof(exampleMenu) / sizeof(MENU);
 
-void mainMenuLoop() {
 	if (isSetup()) {
 		cursorOnTop();
-		drawMenu(mainMenu, mainMenuSize);
+		drawMenu(exampleMenu, exampleMenuSize);
 	}
-	menuLoop(mainMenu, mainMenuSize);
+	menuLoop(exampleMenu, exampleMenuSize);
 }
 ```
 
 
-## LittleFS utils
+## File picker utils
 
-*Utilities for working with the LittleFS filesystem. Use these to browse and select files stored on the device.*
+*Utilities for browsing and selecting files stored on the device (LittleFS or SD card).*
 
 <table>
 	<tr>
-		<td><code>lfsPickFile</code><br>Redirects to the file picker process (PID 44) if no file is selected yet. Returns <code>true</code> if redirected. Use with <code>return</code> to stop setup until a file is chosen.</td>
-		<td><code>if (lfsPickFile()) return;</code></td>
+		<td><code>filePickerSetup(cancelPid)</code><br>Opens the file picker. Shows a source selection menu (LittleFS / SD card). <code>cancelPid</code> is the process to return to if the user cancels.</td>
+		<td><code>filePickerSetup(PID::MY_PROCESS);</code></td>
 	</tr>
 	<tr>
-		<td><code>lfsSelectedFile</code><br>Global variable. Contains the full path of the file selected in the picker (e.g. <code>"/notepad.txt"</code>). Empty string if no file has been selected.</td>
-		<td><code>if (lfsSelectedFile != "") { ... }</code></td>
+		<td><code>filePickerLoop()</code><br>Handles file picker input. Call every loop tick while <code>fpActive</code> is true. Returns <code>true</code> while the picker is still running. On selection sets <code>selectedFilePath</code>; on cancel switches process to <code>cancelPid</code>.</td>
+		<td><code>if (fpActive) { if (filePickerLoop()) return; }</code></td>
+	</tr>
+	<tr>
+		<td><code>fpActive</code><br>Global flag. <code>true</code> while the file picker is open.</td>
+		<td><code>if (fpActive) { ... }</code></td>
+	</tr>
+	<tr>
+		<td><code>selectedFilePath</code><br>Global variable. Contains the full path of the selected file (e.g. <code>"/script.txt"</code>). Empty string if no file has been selected.</td>
+		<td><code>if (selectedFilePath != "") { ... }</code></td>
 	</tr>
 </table>
 
-### *Basic LittleFS usage example*
+### *Basic file picker usage example*
 
 ```cpp
 void myLoop() {
 	if (isSetup()) {
-		lfsSelectedFile = "";
+		filePickerSetup(PID::MAIN_MENU);
 	}
 
-	if (lfsPickFile()) return; // goes to picker, comes back here after selection
+	// File picker phase
+	if (fpActive) {
+		if (filePickerLoop()) return;
+		if (selectedFilePath == "") return; // cancelled
+	}
 
-	// lfsSelectedFile now contains the chosen path
-	File f = LittleFS.open(lfsSelectedFile, "r");
+	// selectedFilePath is now set — open and work with the file
+	File f = LittleFS.open(selectedFilePath, "r");
 }
 ```
+
+## Keyboard utils
+
+*On-screen keyboard for text input. On devices with a physical keyboard — uses it directly; on others — navigated by buttons or gyroscope.*
+
+<table>
+	<tr>
+		<td><code>kbReset</code><br>Clears the input buffer and resets all keyboard state. Call in setup before showing the keyboard.</td>
+		<td><code>kbReset();</code></td>
+	</tr>
+	<tr>
+		<td><code>kbEnd</code><br>Exits text input mode. Call when the keyboard is no longer needed (e.g. after the user confirms input).</td>
+		<td><code>kbEnd();</code></td>
+	</tr>
+	<tr>
+		<td><code>drawKeyboardUi</code><br>Renders the keyboard on screen. Call once in setup to show it initially.</td>
+		<td><code>drawKeyboardUi();</code></td>
+	</tr>
+	<tr>
+		<td><code>keyboardLoop(onExit, onEnter, onChar)</code><br>Handles keyboard input. Call every loop tick while the keyboard is active. Returns <code>true</code> when the user confirms or exits.<br><br>
+		<b>onExit</b> — called when the user cancels (exit key).<br>
+		<b>onEnter</b> — called with the final <code>const char* buf</code> when the user confirms.<br>
+		<b>onChar</b> — called on each character typed (can be <code>nullptr</code>).</td>
+		<td><code>if (keyboardLoop(onExit, onEnter, nullptr)) return;</code></td>
+	</tr>
+</table>
+
+### *Basic keyboard usage example*
+
+```cpp
+static bool inputDone = false;
+static String inputResult = "";
+
+void myLoop() {
+	if (isSetup()) {
+		inputDone = false;
+		kbReset();
+		drawKeyboardUi();
+	}
+
+	if (!inputDone) {
+		if (keyboardLoop(
+			[]() { changeProcess(PID::MAIN_MENU); }, // onExit — cancel
+			[](const char* buf) {                    // onEnter — confirm
+				inputResult = String(buf);
+				inputDone = true;
+				kbEnd();
+			},
+			nullptr
+		)) return;
+		return;
+	}
+
+	// inputResult now contains the typed text
+}
+```
+
+## Sound utils
+
+*Ready-made sound signals for common events. All functions play a short melody via the built-in speaker.*
+
+<table>
+	<tr>
+		<td><code>soundStartup</code><br>Plays the startup melody (three ascending tones). Respects the <code>startupSound</code> setting — silent if disabled.</td>
+		<td><code>soundStartup();</code></td>
+	</tr>
+	<tr>
+		<td><code>soundConnected</code><br>Two ascending tones. Use when a connection is established (Wi-Fi, Bluetooth, etc.).</td>
+		<td><code>soundConnected();</code></td>
+	</tr>
+	<tr>
+		<td><code>soundDisconnected</code><br>Two descending tones. Use when a connection is lost.</td>
+		<td><code>soundDisconnected();</code></td>
+	</tr>
+	<tr>
+		<td><code>soundSuccess</code><br>Two ascending tones. Use to confirm a successful operation.</td>
+		<td><code>soundSuccess();</code></td>
+	</tr>
+	<tr>
+		<td><code>soundError</code><br>Two low descending tones. Use to signal an error or failure.</td>
+		<td><code>soundError();</code></td>
+	</tr>
+	<tr>
+		<td><code>soundBeep</code><br>Single short beep. Use for UI feedback (button press, selection, etc.).</td>
+		<td><code>soundBeep();</code></td>
+	</tr>
+</table>
 
 ## Web interface utils
 
