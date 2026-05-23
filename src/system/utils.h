@@ -7,6 +7,7 @@
 #include "../utils/displayUtils/centeredPrintRows.h"
 #include "../utils/displayUtils/progressBar.h"
 #include "../utils/displayUtils/drawHints.h"
+#include "../utils/displayUtils/drawStartupScreen.h"
 #include "../utils/timerUtils.h"
 #include "../utils/webServerUtils.h"
 #include "../utils/webControlUtils.h"

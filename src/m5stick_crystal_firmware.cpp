@@ -1,7 +1,6 @@
 #include "./system/globals.h"
 #include "./system/utils.h"
 #include "./system/functions.h"
-#include "./system/showStartupScreen.h"
 #include "./system/switcher.h"
 #include "./system/loadPreferences.h"
 
@@ -19,7 +18,8 @@ void setup() {
   statusBarCanvas.createSprite(DISP.width(), 20);
   statusBarCanvas.setTextColor(FGCOLOR, BGCOLOR);
 
-  showStartupScreen();
+  DEVICE.Speaker.begin();
+  drawStartupScreen();
   Wire.setClock(10000);
   Wire.setTimeout(100);
   delay(1000);
