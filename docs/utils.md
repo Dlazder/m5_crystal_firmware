@@ -18,12 +18,6 @@
 		centeredPrintRows(lines, 2, MEDIUM_TEXT);
 		</code></td>
 	</tr>
-	<tr>
-		<td><code>cursorOnTop</code><br>Places the cursor at the top of the accessible area
- * (depending on the presence of the status bar)</td>
-		<td><code>cursorOnTop();
-		</code></td>
-	</tr>
 </table>
 
 ## Button utils
@@ -112,7 +106,6 @@ void exampleMenuLoop() {
 	int exampleMenuSize = sizeof(exampleMenu) / sizeof(MENU);
 
 	if (isSetup()) {
-		cursorOnTop();
 		drawMenu(exampleMenu, exampleMenuSize);
 	}
 	menuLoop(exampleMenu, exampleMenuSize);

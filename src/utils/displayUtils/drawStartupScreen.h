@@ -61,6 +61,7 @@ int _drawLogo(int originY) {
 void drawStartupScreen() {
 	bool statusBarOld = statusBar;
 	statusBar = false;
+	recreateCanvas();
 
 	int W = canvas.width();
 	int H = canvas.height();
@@ -88,4 +89,5 @@ void drawStartupScreen() {
 	canvas.pushSprite(0, 0);
 
 	statusBar = statusBarOld;
+	recreateCanvas();
 }

@@ -2,7 +2,7 @@
 
 void _volumeDraw() {
 	static const int barHeight = 20;
-	int visibleHeight = canvas.height() - getStatusBarOffset();
+	int visibleHeight = canvas.height();
 	int centerY = visibleHeight / 2 - barHeight / 2;
 	canvas.clear();
 	drawProgressBar(volume / volumeDividor, volumeStep, centerY);

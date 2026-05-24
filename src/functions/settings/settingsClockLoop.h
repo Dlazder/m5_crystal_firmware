@@ -6,7 +6,7 @@ void drawclockSettingsUi(int currentState, int hours, int minutes) {
 	int textWidth = canvas.textWidth("00:00");
 	int textHeight = canvas.fontHeight() * 2;
 	int x = canvas.width() / 2 - (textWidth / 2);
-	int y = ((canvas.height() - getStatusBarHeight()) - textHeight) / 2;
+	int y = (canvas.height() - textHeight) / 2;
 
 	canvas.clear();
 	canvas.setCursor(x, y);

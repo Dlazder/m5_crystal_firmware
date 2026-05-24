@@ -220,7 +220,6 @@ void nfcWriteLoop() {
 			bool writeSuccess = writeNewUID(lastReadUID, lastReadUIDLength);
 
 			if (writeSuccess) {
-				clearScreenWithSymbols();
 				String lines[] = {
 					L->TXT_NFC_WRITE_SUCCESS,
 					L->TXT_NFC_UID_WRITTEN
@@ -230,7 +229,6 @@ void nfcWriteLoop() {
 				Serial.println("Write successful!");
 				soundSuccess();
 			} else {
-				clearScreenWithSymbols();
 				String lines[] = {
 					L->TXT_NFC_WRITE_FAILED,
 					L->TXT_NFC_WRITE_ERROR

@@ -62,12 +62,10 @@ float getSoundLevel() {
 }
 
 void soundLevelLoop() {
-	static int statusBarHeight = statusBar ? 30 : 0;
 	static int barX = 0;
 	static int barY;
 	static int barW = DISP.width();
 	static int barH = 20;
-	
 
 	// Graph
 	static const int GRAPH_POINTS = 80;
@@ -75,7 +73,7 @@ void soundLevelLoop() {
 	static int historyIndex = 0;
 	static int historySize = 0;
 	static int graphH = 50;
-	static int graphY = DISP.height() - statusBarHeight - graphH;
+	static int graphY = 0;
 	static int frameCount = 0;
 
 	if (isSetup()) {
@@ -83,8 +81,7 @@ void soundLevelLoop() {
 		canvas.setTextColor(FGCOLOR);
 		canvas.setTextSize(MEDIUM_TEXT);
 
-		statusBarHeight = statusBar ? 30 : 0;
-		barY = DISP.height() / 2 - (barH / 2) - statusBarHeight;
+		graphY = canvas.height() - graphH;
 		barY = graphY - barH;
 
 		// Clear graph data
@@ -114,7 +111,7 @@ void soundLevelLoop() {
 		canvas.drawLine(barX, barY, barW, barY, FGCOLOR);
 
 		// Graph
-		canvas.drawLine(0, graphY, DISP.width(), graphY, FGCOLOR);
+		canvas.drawLine(0, graphY, canvas.width(), graphY, FGCOLOR);
 		if (historySize > 1) {
 			int startIndex = historyIndex - historySize;
 			if (startIndex < 0) startIndex += GRAPH_POINTS;
@@ -145,7 +142,7 @@ void soundLevelLoop() {
 		
 		char stats[32];
 		snprintf(stats, sizeof(stats), "%d  AVG:%d MAX:%d", int(soundLevel), int(avgLevel), int(maxLevel));
-		canvas.drawCenterString(stats, DISP.width() / 2, barY - 16 - 10);
+		canvas.drawCenterString(stats, canvas.width() / 2, barY - 16 - 10);
 
 		canvas.pushSprite(0, getStatusBarHeight());
 	}

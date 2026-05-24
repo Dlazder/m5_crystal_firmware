@@ -3,11 +3,6 @@
 // 1st layer utilities
 #include "../utils/statusBarUtils.h"
 #include "../utils/btnUtils.h"
-#include "../utils/displayUtils/displayUtils.h"
-#include "../utils/displayUtils/centeredPrintRows.h"
-#include "../utils/displayUtils/progressBar.h"
-#include "../utils/displayUtils/drawHints.h"
-#include "../utils/displayUtils/drawStartupScreen.h"
 #include "../utils/timerUtils.h"
 #include "../utils/webServerUtils.h"
 #include "../utils/webControlUtils.h"
@@ -17,6 +12,7 @@
 #include "../utils/keyboardUtils/kbUtils.h"
 #include "../utils/soundUtils.h"
 // 2nd layer utilities
+#include "../utils/displayUtils/displayUtils.h"
 #include "../utils/dimmerUtils.h"
 #include "../utils/procManagmentUtils.h"
 #include "../utils/menuUtils.h"

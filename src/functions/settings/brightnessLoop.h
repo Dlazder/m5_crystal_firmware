@@ -2,7 +2,7 @@
 
 void _brightnessDraw() {
   static const int barHeight = 20;
-  int visibleHeight = canvas.height() - getStatusBarOffset();
+  int visibleHeight = canvas.height();
   int centerY = visibleHeight / 2 - barHeight / 2;
   canvas.clear();
   drawProgressBar(brightness, BRIGHTNESS_STEPS, centerY);

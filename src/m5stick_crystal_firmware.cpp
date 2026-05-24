@@ -11,7 +11,7 @@ void setup() {
   preferences.begin("storage", false);
   loadPreferences();
 
-  canvas.createSprite(DISP.width(), DISP.height());
+  canvas.createSprite(DISP.width(), DISP.height() - getStatusBarHeight());
   canvas.setTextColor(FGCOLOR, BGCOLOR);
   canvas.setTextSize(MEDIUM_TEXT);
 
@@ -37,7 +37,6 @@ void setup() {
   WiFi.mode(WIFI_STA);
   WiFi.disconnect(false);
 
-  cursorOnTop();
   DISP.clear();
 }
 

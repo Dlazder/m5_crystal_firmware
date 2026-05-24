@@ -20,7 +20,6 @@ void selectedFileMenuLoop() {
 		}
 		selectedFileMenu[0].command = selectedFileSourcePid;
 		cursor = 0;
-		cursorOnTop();
 		drawMenu(selectedFileMenu, selectedFileMenuSize);
 	}
 	menuLoop(selectedFileMenu, selectedFileMenuSize);

@@ -10,8 +10,6 @@ bool checkExit(int proc = previousProcess) {
     btnBWasPressed = false;
     process = proc;
     Serial.printf("Switching to %d process\n", process);
-    DISP.clear();
-    cursorOnTop();
     isSwitching = true;
     return true;
   }

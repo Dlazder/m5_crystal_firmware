@@ -11,7 +11,6 @@ void wifiMenuLoop() {
 	int wifiMenuSize = sizeof(wifiMenu) / sizeof(MENU);
 
 	if (isSetup()) {
-		cursorOnTop();
 		drawMenu(wifiMenu, wifiMenuSize);
 	}
 	menuLoop(wifiMenu, wifiMenuSize);

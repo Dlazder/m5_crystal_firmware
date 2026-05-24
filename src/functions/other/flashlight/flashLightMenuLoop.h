@@ -12,7 +12,6 @@ void flashLightMenuLoop() {
 
 	if (isSetup()) {
 		cursor = 0;
-		cursorOnTop();
 		drawMenu(flashLightMenu, flashLightMenuSize);
 	}
 	menuLoop(flashLightMenu, flashLightMenuSize);

@@ -10,7 +10,7 @@ void centeredPrintRows(String text[], int arraySize, float textSize, bool manual
 	canvas.setTextColor(FGCOLOR, BGCOLOR);
 	canvas.setTextSize(textSize);
 
-	int canvasHeight = canvas.height() - getStatusBarOffset();
+	int canvasHeight = canvas.height();
 	int textHeight = arraySize * canvas.fontHeight();
 	int offsetY = (canvasHeight - textHeight) / 2;
 
@@ -22,5 +22,5 @@ void centeredPrintRows(String text[], int arraySize, float textSize, bool manual
 		canvas.print(text[i].c_str());
 	}
 
-	if (!manual) canvas.pushSprite(0, getStatusBarOffset());
+	if (!manual) canvas.pushSprite(0, getStatusBarHeight());
 }

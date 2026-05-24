@@ -13,6 +13,7 @@ void toggleStatusBarLoop() {
 	if ((isBtnAWasPressed() || isKbEnterPressed()) && checkTimer(100)) {
 		statusBar = !getData("statusBar", statusBar);
 		setData("statusBar", statusBar);
+		recreateCanvas();
 		DISP.clear();
 
 		String lines[] = {

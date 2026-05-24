@@ -10,7 +10,6 @@ void nfcMenuLoop() {
 
 	if (isSetup()) {
 		cursor = 0;
-		cursorOnTop();
 		drawMenu(nfcMenu, nfcMenuSize);
 	}
 	menuLoop(nfcMenu, nfcMenuSize);

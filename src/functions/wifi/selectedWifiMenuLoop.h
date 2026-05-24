@@ -19,7 +19,6 @@ void selectedWifiMenuLoop() {
 			rssi = WiFi.RSSI(wifiScanIndex);
 			cursor = 0;
 		}
-		cursorOnTop();
 		drawMenu(selectedWifiMenu, selectedWifiMenuSize);
 	}
 	menuLoop(selectedWifiMenu, selectedWifiMenuSize);

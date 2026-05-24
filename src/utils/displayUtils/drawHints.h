@@ -5,11 +5,11 @@ void _drawHintText(const char* hint) {
 
 	int textWidth = canvas.textWidth(hint);
 	int x = (canvas.width() - textWidth) / 2;
-	int y = canvas.height() - getStatusBarOffset() - canvas.fontHeight() - 2;
+	int y = canvas.height() - canvas.fontHeight() - 2;
 
 	canvas.setCursor(x, y);
 	canvas.print(hint);
-	canvas.pushSprite(0, getStatusBarOffset());
+	canvas.pushSprite(0, getStatusBarHeight());
 
 	canvas.setTextColor(FGCOLOR, BGCOLOR);
 }

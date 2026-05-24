@@ -39,9 +39,6 @@ void wsl_bypasser_send_deauth_frame(const uint8_t* bssid, int chan) {
 
 void wifiDeauthLoop() {
 	if (isSetup()) {
-		cursorOnTop();
-		clearScreenWithSymbols();
-
 		String lines[] = {
 			ssid,
 			String(WiFi.RSSI(cursor - 2))

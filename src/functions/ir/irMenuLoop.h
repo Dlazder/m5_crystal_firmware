@@ -11,7 +11,6 @@ void irMenuLoop() {
 
 	if (isSetup()) {
 		cursor = 0;
-		cursorOnTop();
 		drawMenu(irMenu, irMenuSize);
 	}
 	menuLoop(irMenu, irMenuSize);

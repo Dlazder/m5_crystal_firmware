@@ -80,7 +80,6 @@ void nfcReadLoop() {
 				DEVICE.Power.setLed(0);
 				soundSuccess();
 
-				clearScreenWithSymbols();
 				String lines[] = {
 					"PN532: connected",
 					L->TXT_SCANNING

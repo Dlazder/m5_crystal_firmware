@@ -19,7 +19,6 @@ void filePickerSetup(int cancelPid) {
 	_fpSourceMenu[1] = { 0, L->MENU_FILES_LITTLEFS };
 	_fpSourceMenu[2] = { 0, L->MENU_FILES_SDCARD };
 	cursor = 0;
-	cursorOnTop();
 	drawMenu(_fpSourceMenu, 3);
 }
 
@@ -119,7 +118,6 @@ bool filePickerLoop() {
 			}
 			_fpSourceSelected = true;
 			cursor = 0;
-			cursorOnTop();
 			drawMenu(_fpMenu, _fpCount + 1);
 		}
 		return true;
@@ -137,7 +135,6 @@ bool filePickerLoop() {
 			_fpFree();
 			_fpSourceSelected = false;
 			cursor = 0;
-			cursorOnTop();
 			drawMenu(_fpSourceMenu, 3);
 			return true;
 		}

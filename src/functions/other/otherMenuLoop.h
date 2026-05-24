@@ -13,7 +13,6 @@ void otherMenuLoop() {
 
 	if (isSetup()) {
 		cursor = 0;
-		cursorOnTop();
 		drawMenu(otherMenu, otherMenuSize);
 	}
 	menuLoop(otherMenu, otherMenuSize);
