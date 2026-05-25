@@ -7,7 +7,8 @@ void statusBarLoop() {
 	statusBarCanvas.clear();
 	statusBarCanvas.setTextColor(FGCOLOR, BGCOLOR);
 	statusBarCanvas.setCursor(5, 4);
-	statusBarCanvas.setTextSize(SMALL_TEXT);
+	// note: hardcode the text size value so that modifiers do not affect the text size when changing the font
+	statusBarCanvas.setTextSize(1.5);
 	
 	// PID
 	if (getData("statusBarPid", statusBarPid)) {

@@ -16,10 +16,8 @@ void fontsLoop() {
     if (currentFontIndex == sizeof(systemFonts) / sizeof(systemFonts[0])) {
       currentFontIndex = 0;
     }
-    Serial.printf("Current font index: %d (%s)\n", currentFontIndex, fontNames[currentFontIndex]);
-
-    DISP.setFont(systemFonts[currentFontIndex]);
-    canvas.setFont(systemFonts[currentFontIndex]);
+    applyFont(currentFontIndex);
+    Serial.printf("Font: %d (%s)\n", currentFontIndex, fontNames[currentFontIndex]);
 
     setData("fontIndex", currentFontIndex);
 

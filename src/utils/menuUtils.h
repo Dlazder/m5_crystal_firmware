@@ -24,7 +24,7 @@ void drawMenu(MENU menu[], int size) {
 
 	canvas.clear();
 	// Custom text size for perfect placement of menu items
-	canvas.setTextSize(1.8);
+	canvas.setTextSize(MENU_TEXT);
 	canvas.setCursor(0, 0);
 
 	int start = (cursor > 2) ? (cursor - 2) : 0;

@@ -18,8 +18,7 @@ void loadPreferences() {
 
 	currentFontIndex = getData("fontIndex", currentFontIndex);
 	Serial.printf("Font: %s\n", fontNames[currentFontIndex]);
-  DISP.setFont(systemFonts[currentFontIndex]);
-	canvas.setFont(systemFonts[currentFontIndex]);
+  applyFont(currentFontIndex);
 
 	colorIndex = getData("colorIndex", colorIndex);
   Serial.printf("Color: %s\n", colorsEntry[colorIndex]);
