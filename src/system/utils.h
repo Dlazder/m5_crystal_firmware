@@ -21,3 +21,4 @@
 #include "../utils/sdUtils.h"
 #include "../utils/filePickerUtils.h"
 #include "../utils/badBleUtils.h"
+#include "../utils/bleUtils.h"

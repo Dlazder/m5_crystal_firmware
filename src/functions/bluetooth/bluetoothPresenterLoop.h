@@ -3,28 +3,12 @@
 void bluetoothPresenterLoop() {
 	static bool isBleConnected = false;
 
-	if (isSetup()) {
-		if (!bleCompositeBegan) {
-			bleKeyboard.begin();
-			bleCompositeBegan = true;
-		}
-		centeredPrint(L->TXT_WAITING_CONNECTION, MEDIUM_TEXT);
-		updateTimer();
-	}
+	if (isSetup()) bleConnect();
 
-	if (bleKeyboard.isConnected()) {
-		if (!isBleConnected) {
-			isBleConnected = true;
-			centeredPrint(L->TXT_CONNECTED, MEDIUM_TEXT);
-			soundSuccess();
-		}
-	} else {
-		if (isBleConnected) {
-			isBleConnected = false;
-			centeredPrint(L->TXT_NOT_CONNECTED, MEDIUM_TEXT);
-			soundError();
-		}
-	}
+	bleHandleConnection(isBleConnected,
+		[]() { centeredPrint(L->TXT_CONNECTED, MEDIUM_TEXT); soundSuccess(); },
+		[]() { centeredPrint(L->TXT_NOT_CONNECTED, MEDIUM_TEXT); soundError(); }
+	);
 
 	if (isBtnAWasPressed() && checkTimer(100, true)) {
 		bleKeyboard.write(KEY_RIGHT_ARROW);

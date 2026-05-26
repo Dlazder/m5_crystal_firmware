@@ -170,7 +170,6 @@ BleComboMouse bleMouse(&bleKeyboard);
 
 bool bleCompositeBegan = false;
 
-// Device abstraction — must come after BleCombo to avoid KEY_BACKSPACE redefinition
-// by M5Cardputer headers.
+// Device abstraction — must come after BleCombo to avoid KEY_BACKSPACE redefinition by M5Cardputer headers.
 #include "../devices/device.h"
 Adafruit_PN532 nfc(NFC_SDA, NFC_SCL, &Wire);

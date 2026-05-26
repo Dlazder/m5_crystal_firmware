@@ -4,33 +4,17 @@ void bluetoothKeyboardLoop() {
 	static bool isBleConnected = false;
 
 	if (isSetup()) {
-		if (!bleCompositeBegan) {
-			bleKeyboard.begin();
-			bleCompositeBegan = true;
-		}
 		kbReset();
 		isBleConnected = false;
-		centeredPrint(L->TXT_WAITING_CONNECTION, MEDIUM_TEXT);
-		updateTimer();
+		bleConnect();
 	}
 
-	if (bleKeyboard.isConnected()) {
-		if (!isBleConnected) {
-			isBleConnected = true;
-			drawKeyboardUi();
-			soundSuccess();
-		}
-	} else {
-		if (isBleConnected) {
-			isBleConnected = false;
-			centeredPrint(L->TXT_NOT_CONNECTED, MEDIUM_TEXT);
-			soundError();
-		}
-		checkExit();
-		return;
-	}
+	bleHandleConnection(isBleConnected,
+		[]() { drawKeyboardUi(); soundSuccess(); },
+		[]() { centeredPrint(L->TXT_NOT_CONNECTED, MEDIUM_TEXT); soundError(); }
+	);
 
-	if (!isBleConnected) checkExit();
+	if (!isBleConnected) { checkExit(); return; }
 
 	keyboardLoop(
 		[]() {

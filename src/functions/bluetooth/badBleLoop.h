@@ -26,31 +26,16 @@ void badBleLoop() {
 			filePickerSetup(PID::BLUETOOTH);
 			return;
 		}
-		if (!bleCompositeBegan) {
-			bleKeyboard.begin();
-			bleCompositeBegan = true;
-		}
-		centeredPrint(L->TXT_WAITING_CONNECTION, MEDIUM_TEXT);
-		updateTimer();
+		bleConnect();
 		return;
 	}
 
 	// BLE connection phase
 	DEVICE.update();
-	if (bleKeyboard.isConnected()) {
-		if (!isBleConnected) {
-			isBleConnected = true;
-			centeredPrint(L->TXT_BT_PRESS_A_TO_RUN, MEDIUM_TEXT);
-			soundSuccess();
-		}
-	} else {
-		if (isBleConnected) {
-			isBleConnected = false;
-			scriptRunning = false;
-			centeredPrint(L->TXT_DISCONNECTED, MEDIUM_TEXT);
-			soundError();
-		}
-	}
+	bleHandleConnection(isBleConnected,
+		[]() { centeredPrint(L->TXT_BT_PRESS_A_TO_RUN, MEDIUM_TEXT); soundSuccess(); },
+		[]() { scriptRunning = false; centeredPrint(L->TXT_DISCONNECTED, MEDIUM_TEXT); soundError(); }
+	);
 
 	// Script execution phase
 	if (isBleConnected && !scriptDone) {
