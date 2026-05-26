@@ -14,6 +14,17 @@ void _drawHintText(const char* hint) {
 	canvas.setTextColor(FGCOLOR, BGCOLOR);
 }
 
+// Hint for clock settings: select field and adjust value
+void drawHintClock() {
+	#if HAS_PHYSICAL_KB
+		String hint = String(L->TXT_LEFT) + "/" + String(L->TXT_RIGHT) + ": " + String(L->TXT_SELECT) + "   +/-: " + String(L->TXT_ADJUST);
+		_drawHintText(hint.c_str());
+	#else
+		String hint = String("B: ") + String(L->TXT_SELECT) + "   A/PWR: " + String(L->TXT_ADJUST);
+		_drawHintText(hint.c_str());
+	#endif
+}
+
 // Hint for cycling through a range of values (brightness, color, font, etc.)
 // StickC Plus2: "press A"   Cardputer: "left / right"
 void drawHintRange() {
