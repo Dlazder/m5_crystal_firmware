@@ -14,6 +14,18 @@ void _drawHintText(const char* hint) {
 	canvas.setTextColor(FGCOLOR, BGCOLOR);
 }
 
+// Hint for single-action toggle (rotation, etc.)
+// StickC Plus2: "A: switch"   Cardputer: "enter: switch"
+void drawHintSwitch() {
+	#if HAS_PHYSICAL_KB
+		String hint = String("enter: ") + String(L->TXT_SWITCH);
+		_drawHintText(hint.c_str());
+	#else
+		String hint = String("A: ") + String(L->TXT_SWITCH);
+		_drawHintText(hint.c_str());
+	#endif
+}
+
 // Hint for clock settings: select field and adjust value
 void drawHintClock() {
 	#if HAS_PHYSICAL_KB

@@ -91,6 +91,7 @@ const Locale LANG_EN = {
 	.TXT_RIGHT                   = "right",
 	.TXT_SELECT                  = "select",
 	.TXT_ADJUST                  = "adjust",
+	.TXT_SWITCH                  = "switch",
 	.TXT_ENABLED                 = "enabled",
 	.TXT_DISABLED                = "disabled",
 	.TXT_SCANNING                = "Scanning...",

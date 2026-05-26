@@ -2,12 +2,8 @@
 
 void rotationLoop() {
   if (isSetup()) {
-    String lines[] = {
-      L->TXT_PRESS_A,
-      "to change",
-      L->TXT_SETTINGS_ROTATION
-    };
-    centeredPrintRows(lines, 3, MEDIUM_TEXT);
+    centeredPrint(L->TXT_SETTINGS_ROTATION, MEDIUM_TEXT, true);
+    drawHintSwitch();
     updateTimer();
   }
   if ((isBtnAWasPressed() || isKbEnterPressed()) && checkTimer(100)) {
@@ -17,12 +13,8 @@ void rotationLoop() {
     setData("rotation", rotation);
     DISP.setRotation(rotation);
     DISP.clear();
-    String lines[] = {
-      L->TXT_PRESS_A,
-      "to change",
-      L->TXT_SETTINGS_ROTATION
-    };
-    centeredPrintRows(lines, 3, MEDIUM_TEXT);
+    centeredPrint(L->TXT_SETTINGS_ROTATION, MEDIUM_TEXT, true);
+    drawHintSwitch();
   }
   checkExit(PID::SETTINGS);
   if (isWebDataRequested()) {

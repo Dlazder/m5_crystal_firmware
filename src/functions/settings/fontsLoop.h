@@ -5,9 +5,9 @@ void fontsLoop() {
     String lines[] = {
       "(beta)",
       String(L->TXT_SETTINGS_FONT) + String(fontNames[currentFontIndex]),
-      L->TXT_PRESS_A
     };
-    centeredPrintRows(lines, 3, MEDIUM_TEXT);
+    centeredPrintRows(lines, 2, MEDIUM_TEXT, true);
+    drawHintSwitch();
     updateTimer();
   }
 
@@ -24,10 +24,10 @@ void fontsLoop() {
     String lines[] = {
       "(beta)",
       String(L->TXT_SETTINGS_FONT) + String(fontNames[currentFontIndex]),
-      L->TXT_PRESS_A
     };
     DISP.clear();
-    centeredPrintRows(lines, 3, MEDIUM_TEXT);
+    centeredPrintRows(lines, 2, MEDIUM_TEXT, true);
+    drawHintSwitch();
   }
 
   checkExit(PID::SETTINGS);

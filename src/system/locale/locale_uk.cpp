@@ -91,6 +91,7 @@ const Locale LANG_UK = {
 	.TXT_RIGHT                   = "вправо",
 	.TXT_SELECT                  = "вибір",
 	.TXT_ADJUST                  = "змінити",
+	.TXT_SWITCH                  = "перемкнути",
 	.TXT_ENABLED                 = "увімкнено",
 	.TXT_DISABLED                = "вимкнено",
 	.TXT_SCANNING                = "Сканування...",

@@ -2,11 +2,8 @@
 
 void languageLoop() {
 	if (isSetup()) {
-		String lines[] = {
-			L->TXT_SETTINGS_LANGUAGE + String(localeNames[languageIndex]),
-			L->TXT_PRESS_A
-		};
-		centeredPrintRows(lines, 2, MEDIUM_TEXT);
+		centeredPrint(String(L->TXT_SETTINGS_LANGUAGE) + String(localeNames[languageIndex]), MEDIUM_TEXT, true);
+		drawHintSwitch();
 		updateTimer();
 	}
 
@@ -17,11 +14,8 @@ void languageLoop() {
 		setLocale(locales[languageIndex]);
 		setData("languageIndex", languageIndex);
 
-		String lines[] = {
-			L->TXT_SETTINGS_LANGUAGE + String(localeNames[languageIndex]),
-			L->TXT_PRESS_A
-		};
-		centeredPrintRows(lines, 2, MEDIUM_TEXT);
+		centeredPrint(String(L->TXT_SETTINGS_LANGUAGE) + String(localeNames[languageIndex]), MEDIUM_TEXT, true);
+		drawHintSwitch();
 	}
 
 	checkExit(PID::SETTINGS);

@@ -91,6 +91,7 @@ const Locale LANG_RU = {
 	.TXT_RIGHT                   = "вправо",
 	.TXT_SELECT                  = "выбор",
 	.TXT_ADJUST                  = "изменить",
+	.TXT_SWITCH                  = "переключить",
 	.TXT_ENABLED                 = "включено",
 	.TXT_DISABLED                = "выключено",
 	.TXT_SCANNING                = "Сканирование...",

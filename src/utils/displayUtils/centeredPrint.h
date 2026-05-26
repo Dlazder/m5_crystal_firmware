@@ -2,7 +2,7 @@
  * print text on center of the screen
  * @param textSize [SMALL_TEXT; MEDIUM_TEXT; BIG_TEXT; HUGE_TEXT] - (1; 2; 3; 4)
  */
-void centeredPrint(String text, int textSize, bool newLine = false) {
+void centeredPrint(String text, float textSize, bool manual = false) {
   if (text.length() == 0) return;
 
   canvas.clear();
@@ -16,5 +16,5 @@ void centeredPrint(String text, int textSize, bool newLine = false) {
 
   canvas.setCursor(offsetX, offsetY);
   canvas.println(text.c_str());
-  canvas.pushSprite(0, getStatusBarHeight());
+  if (!manual) canvas.pushSprite(0, getStatusBarHeight());
 }

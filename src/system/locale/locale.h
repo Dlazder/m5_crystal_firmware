@@ -92,6 +92,7 @@ struct Locale {
 	const char* TXT_RIGHT;
 	const char* TXT_SELECT;
 	const char* TXT_ADJUST;
+	const char* TXT_SWITCH;
 	const char* TXT_ENABLED;
 	const char* TXT_DISABLED;
 	const char* TXT_SCANNING;

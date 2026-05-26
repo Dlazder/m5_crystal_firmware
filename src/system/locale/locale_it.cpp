@@ -91,6 +91,7 @@ const Locale LANG_IT = {
     .TXT_RIGHT                    = "destra",
     .TXT_SELECT                   = "seleziona",
     .TXT_ADJUST                   = "regola",
+    .TXT_SWITCH                   = "cambia",
     .TXT_ENABLED                  = "attivo",
     .TXT_DISABLED                 = "disattivo",
     .TXT_SCANNING                 = "Scansione...",

@@ -91,6 +91,7 @@ const Locale LANG_ES = {
 	.TXT_RIGHT   = "derecha",
 	.TXT_SELECT  = "seleccionar",
 	.TXT_ADJUST  = "ajustar",
+	.TXT_SWITCH  = "cambiar",
 	.TXT_ENABLED = "activado",
 	.TXT_DISABLED = "desactivado",
 	.TXT_SCANNING = "Buscando...",

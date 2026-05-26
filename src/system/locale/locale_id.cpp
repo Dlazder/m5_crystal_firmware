@@ -91,6 +91,7 @@ const Locale LANG_ID = {
     .TXT_RIGHT                    = "kanan",
     .TXT_SELECT                   = "pilih",
     .TXT_ADJUST                   = "atur",
+    .TXT_SWITCH                   = "ganti",
     .TXT_ENABLED                  = "aktif",
     .TXT_DISABLED                 = "nonaktif",
     .TXT_SCANNING                 = "Memindai...",
