@@ -14,6 +14,14 @@ void _drawHintText(const char* hint) {
 	canvas.setTextColor(FGCOLOR, BGCOLOR);
 }
 
+void drawHintCustom(const char* hint_keyboard, const char* hint_buttons) {
+	#if HAS_PHYSICAL_KB
+		_drawHintText(hint_keyboard);
+	#else
+		_drawHintText(hint_buttons);
+	#endif
+}
+
 // Hint for single-action toggle (rotation, etc.)
 // StickC Plus2: "A: switch"   Cardputer: "enter: switch"
 void drawHintSwitch() {
@@ -37,7 +45,7 @@ void drawHintClock() {
 	#endif
 }
 
-// Hint for cycling through a range of values (brightness, color, font, etc.)
+// Hint for cycling through a range of values (brightness, color, volume, etc.)
 // StickC Plus2: "press A"   Cardputer: "left / right"
 void drawHintRange() {
 #if HAS_PHYSICAL_KB

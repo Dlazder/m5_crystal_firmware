@@ -16,9 +16,9 @@ void _irDrawUi() {
 		irLastProtocol,
 		"Addr: 0x" + String(irLastAddress, HEX),
 		"Cmd: 0x" + String(irLastCommand, HEX),
-		L->TXT_IR_PRESS_A_SAVE,
 	};
-	centeredPrintRows(lines, 4, MEDIUM_TEXT);
+	centeredPrintRows(lines, 3, MEDIUM_TEXT);
+	drawHintCustom("enter: save", "A: save");
 }
 
 void _irSaveToLFS(const char* filename) {
