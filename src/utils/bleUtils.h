@@ -1,21 +1,24 @@
+bool bleConnected = false;
+
 void bleConnect() {
 	if (!bleCompositeBegan) {
 		bleKeyboard.begin();
 		bleCompositeBegan = true;
 	}
+	bleConnected = false;
 	centeredPrint(L->TXT_WAITING_CONNECTION, MEDIUM_TEXT);
 	updateTimer();
 }
 
-void bleHandleConnection(bool& connected, std::function<void()> onConnect, std::function<void()> onDisconnect) {
+void bleHandleConnection(void (*onConnect)(), void (*onDisconnect)()) {
 	if (bleKeyboard.isConnected()) {
-		if (!connected) {
-			connected = true;
+		if (!bleConnected) {
+			bleConnected = true;
 			onConnect();
 		}
 	} else {
-		if (connected) {
-			connected = false;
+		if (bleConnected) {
+			bleConnected = false;
 			onDisconnect();
 		}
 	}

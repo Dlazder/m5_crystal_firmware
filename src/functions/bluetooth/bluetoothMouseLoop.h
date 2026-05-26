@@ -34,12 +34,11 @@ void bluetoothMouseLoop() {
 	}
 	static float smoothedX = 0;
 	static float smoothedY = 0;
-	static bool isBleConnected = false;
 
 	float accX, accY, accZ;
 	if (isSetup()) bleConnect();
 
-	bleHandleConnection(isBleConnected,
+	bleHandleConnection(
 		[]() { centeredPrint(L->TXT_CONNECTED, MEDIUM_TEXT); soundSuccess(); },
 		[]() {
 			centeredPrint(L->TXT_NOT_CONNECTED, MEDIUM_TEXT);
@@ -49,7 +48,7 @@ void bluetoothMouseLoop() {
 		}
 	);
 
-	if (isBleConnected) {
+	if (bleConnected) {
 		DEVICE.Imu.getAccelData(&accX, &accY, &accZ);
 
 		float rawMoveX = IMU_MOUSE_X(accX, accY);
@@ -86,7 +85,7 @@ void bluetoothMouseLoop() {
 	}
 
 	if (checkExit()) {
-		isBleConnected = false;
+		bleConnected = false;
 		smoothedX = 0;
 		smoothedY = 0;
 		centeredPrint(L->TXT_DISCONNECTING, MEDIUM_TEXT);

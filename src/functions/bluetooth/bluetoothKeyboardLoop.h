@@ -1,20 +1,17 @@
 // PID::BT_KEYBOARD
 
 void bluetoothKeyboardLoop() {
-	static bool isBleConnected = false;
-
 	if (isSetup()) {
 		kbReset();
-		isBleConnected = false;
 		bleConnect();
 	}
 
-	bleHandleConnection(isBleConnected,
+	bleHandleConnection(
 		[]() { drawKeyboardUi(); soundSuccess(); },
 		[]() { centeredPrint(L->TXT_NOT_CONNECTED, MEDIUM_TEXT); soundError(); }
 	);
 
-	if (!isBleConnected) { checkExit(); return; }
+	if (!bleConnected) { checkExit(); return; }
 
 	keyboardLoop(
 		[]() {

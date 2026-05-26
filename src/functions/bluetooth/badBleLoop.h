@@ -1,12 +1,11 @@
 // pid PID::BAD_BLE
 
 void badBleLoop() {
-	static bool isBleConnected = false;
 	static bool scriptRunning = false;
 	static bool scriptDone = false;
 
 	if (isSetup()) {
-		isBleConnected = false;
+		bleConnected = false;
 		scriptRunning = false;
 		scriptDone = false;
 		if (selectedFilePath == "") {
@@ -32,13 +31,13 @@ void badBleLoop() {
 
 	// BLE connection phase
 	DEVICE.update();
-	bleHandleConnection(isBleConnected,
+	bleHandleConnection(
 		[]() { centeredPrint(L->TXT_BT_PRESS_A_TO_RUN, MEDIUM_TEXT); soundSuccess(); },
 		[]() { scriptRunning = false; centeredPrint(L->TXT_DISCONNECTED, MEDIUM_TEXT); soundError(); }
 	);
 
 	// Script execution phase
-	if (isBleConnected && !scriptDone) {
+	if (bleConnected && !scriptDone) {
 		if (!scriptRunning && isBtnAWasPressed() || (isKbEnterPressed())) {
 			badBleLoadFile(selectedFilePath);
 			scriptRunning = true;
@@ -59,7 +58,7 @@ void badBleLoop() {
 	}
 
 	if (checkExit()) {
-		isBleConnected = false;
+		bleConnected = false;
 		scriptRunning	= false;
 		scriptDone = false;
 		selectedFilePath = "";

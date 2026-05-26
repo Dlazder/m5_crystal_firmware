@@ -1,11 +1,9 @@
 // pid PID::BT_SHUTTER
 
 void bluetoothShutterLoop() {
-	static bool isBleConnected = false;
-
 	if (isSetup()) bleConnect();
 
-	bleHandleConnection(isBleConnected,
+	bleHandleConnection(
 		[]() { centeredPrint(L->TXT_CONNECTED, MEDIUM_TEXT); soundSuccess(); },
 		[]() { centeredPrint(L->TXT_NOT_CONNECTED, MEDIUM_TEXT); soundError(); }
 	);
@@ -15,7 +13,7 @@ void bluetoothShutterLoop() {
 	}
 
 	if (checkExit()) {
-		isBleConnected = false;
+		bleConnected = false;
 		centeredPrint(L->TXT_DISCONNECTING, MEDIUM_TEXT);
 	}
 }
