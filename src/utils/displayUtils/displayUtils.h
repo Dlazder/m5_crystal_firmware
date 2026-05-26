@@ -4,3 +4,4 @@
 #include "progressBar.h"
 #include "drawHints.h"
 #include "drawStartupScreen.h"
+#include "drawSpinner.h"
