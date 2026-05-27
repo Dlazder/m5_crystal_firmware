@@ -41,14 +41,14 @@ int _drawLogo(int originY) {
 	};
 
 	for (int i = 0; i < numOutline; i++) {
-		canvas.clear();
+		// canvas.clear();
 		drawLines(outline, numOutline, i + 1);
 		canvas.pushSprite(0, 0);
 		delay(70);
 	}
 
 	for (int i = 0; i < numInner; i++) {
-		canvas.clear();
+		// canvas.clear();
 		drawLines(outline, numOutline, numOutline);
 		drawLines(inner, numInner, i + 1);
 		canvas.pushSprite(0, 0);
@@ -75,9 +75,8 @@ void drawStartupScreen() {
 	canvas.setTextColor(FGCOLOR, BGCOLOR);
 	canvas.setTextSize(MEDIUM_TEXT);
 
-	int by = _drawLogo(originY);
 	int textBlockH = 3 * canvas.fontHeight();
-	int textStartY = by + (H - by - textBlockH) / 2;
+	int textStartY = (H / 2) + (H / 2 - textBlockH) / 2;
 
 	String labels[] = { "Crystal", "firmware", "v" + String(FIRMWARE_VERSION) };
 	for (int i = 0; i < 3; i++) {
@@ -87,6 +86,8 @@ void drawStartupScreen() {
 	}
 
 	canvas.pushSprite(0, 0);
+
+	_drawLogo(originY);
 
 	statusBar = statusBarOld;
 	recreateCanvas();
