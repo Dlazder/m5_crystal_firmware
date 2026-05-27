@@ -10,6 +10,8 @@
 	bool kbEnterPressed = false;
 	bool kbEscPressed = false;
 	bool kbDelPressed = false;
+	bool kbCursorUpPressed = false;
+	bool kbCursorDownPressed = false;
 	bool kbCursorLeftPressed = false;
 	bool kbCursorRightPressed = false;
 	bool kbTextMode = false;
@@ -29,8 +31,10 @@
 		for (char c : state.word) {
 			if (kbTextMode) {
 				if (c == '`') kbEscPressed = true;
-				else if (state.fn && c == ',') kbCursorLeftPressed = true;
-				else if (state.fn && c == '/') kbCursorRightPressed = true;
+				else if (c == ';' && !state.fn) kbCursorUpPressed = true;
+				else if (c == '.' && !state.fn) kbCursorDownPressed = true;
+				else if (c == ',' && !state.fn) kbCursorLeftPressed = true;
+				else if (c == '/' && !state.fn) kbCursorRightPressed = true;
 				else kbWord += c;
 			} else {
 				if (c == ';') kbUpPressed = true;
@@ -57,6 +61,8 @@ void clearKbFlags() {
 	kbEnterPressed = false;
 	kbEscPressed = false;
 	kbDelPressed = false;
+	kbCursorUpPressed = false;
+	kbCursorDownPressed = false;
 	kbCursorLeftPressed = false;
 	kbCursorRightPressed = false;
 	kbWord = "";
@@ -124,6 +130,20 @@ bool isKbPlusPressed() {
 bool isKbMinusPressed() {
 	#if HAS_PHYSICAL_KB
 	if (kbMinusPressed) { kbMinusPressed = false; return true; }
+	#endif
+	return false;
+}
+
+bool isKbCursorUpPressed() {
+	#if HAS_PHYSICAL_KB
+	if (kbCursorUpPressed) { kbCursorUpPressed = false; return true; }
+	#endif
+	return false;
+}
+
+bool isKbCursorDownPressed() {
+	#if HAS_PHYSICAL_KB
+	if (kbCursorDownPressed) { kbCursorDownPressed = false; return true; }
 	#endif
 	return false;
 }

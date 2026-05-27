@@ -33,6 +33,7 @@ const Locale LANG_UK = {
 	.MENU_FILES_INFO             = "інфо",
 	.MENU_FILES_RENAME           = "перейм.",
 	.MENU_FILES_VIEW             = "перегляд",
+	.MENU_FILES_EDIT             = "редагувати",
 	.MENU_FILES_LITTLEFS               = "littleFS",
 
 	// NFC menu

@@ -33,6 +33,7 @@ struct Locale {
 	const char* MENU_FILES_INFO;
 	const char* MENU_FILES_RENAME;
 	const char* MENU_FILES_VIEW;
+	const char* MENU_FILES_EDIT;
 	const char* MENU_FILES_LITTLEFS;
 
 	// NFC menu

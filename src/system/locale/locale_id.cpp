@@ -33,6 +33,7 @@ const Locale LANG_ID = {
     .MENU_FILES_INFO              = "info",
     .MENU_FILES_RENAME            = "ganti nama",
     .MENU_FILES_VIEW              = "lihat",
+    .MENU_FILES_EDIT              = "edit",
     .MENU_FILES_LITTLEFS                = "littleFS",
 
     // NFC menu

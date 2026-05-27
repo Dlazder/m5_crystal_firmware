@@ -58,6 +58,7 @@
     X(FILE_INFO,          506, fileInfoLoop) \
     X(FILE_RENAME,        507, renameFileLoop) \
     X(FILE_VIEW,          508, readFileLoop) \
+    X(FILE_EDIT,          509, editFileLoop) \
     \
     /* IR (600-699) */ \
     X(IR,                 600, irMenuLoop) \
