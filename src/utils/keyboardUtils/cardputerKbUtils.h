@@ -78,6 +78,7 @@ bool isAnyKbKeyPressed() {
 	return false;
 }
 
+// Menu navigation — active when kbTextMode = false (;  .  ,  /)
 bool isKbUpPressed() {
 	#if HAS_PHYSICAL_KB
 	if (kbUpPressed) { kbUpPressed = false; return true; }
@@ -134,6 +135,7 @@ bool isKbMinusPressed() {
 	return false;
 }
 
+// Text cursor movement — active when kbTextMode = true (same keys, different context)
 bool isKbCursorUpPressed() {
 	#if HAS_PHYSICAL_KB
 	if (kbCursorUpPressed) { kbCursorUpPressed = false; return true; }
@@ -144,6 +146,20 @@ bool isKbCursorUpPressed() {
 bool isKbCursorDownPressed() {
 	#if HAS_PHYSICAL_KB
 	if (kbCursorDownPressed) { kbCursorDownPressed = false; return true; }
+	#endif
+	return false;
+}
+
+bool isKbCursorLeftPressed() {
+	#if HAS_PHYSICAL_KB
+	if (kbCursorLeftPressed) { kbCursorLeftPressed = false; return true; }
+	#endif
+	return false;
+}
+
+bool isKbCursorRightPressed() {
+	#if HAS_PHYSICAL_KB
+	if (kbCursorRightPressed) { kbCursorRightPressed = false; return true; }
 	#endif
 	return false;
 }

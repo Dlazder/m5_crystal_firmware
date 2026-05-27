@@ -273,8 +273,7 @@ void editFileLoop() {
         changed = true;
     }
 
-    if (kbCursorUpPressed) {
-        kbCursorUpPressed = false;
+    if (isKbCursorUpPressed()) {
         if (_efCursorLine > 0) {
             _efCursorLine--;
             _efCursorCol = min(_efCursorCol, (int)_efLines[_efCursorLine].length());
@@ -282,8 +281,7 @@ void editFileLoop() {
         changed = true;
     }
 
-    if (kbCursorDownPressed) {
-        kbCursorDownPressed = false;
+    if (isKbCursorDownPressed()) {
         if (_efCursorLine < _efTotalLines - 1) {
             _efCursorLine++;
             _efCursorCol = min(_efCursorCol, (int)_efLines[_efCursorLine].length());
@@ -291,8 +289,7 @@ void editFileLoop() {
         changed = true;
     }
 
-    if (kbCursorLeftPressed) {
-        kbCursorLeftPressed = false;
+    if (isKbCursorLeftPressed()) {
         if (_efCursorCol > 0) {
             _efCursorCol--;
         } else if (_efCursorLine > 0) {
@@ -302,8 +299,7 @@ void editFileLoop() {
         changed = true;
     }
 
-    if (kbCursorRightPressed) {
-        kbCursorRightPressed = false;
+    if (isKbCursorRightPressed()) {
         if (_efCursorCol < (int)_efLines[_efCursorLine].length()) {
             _efCursorCol++;
         } else if (_efCursorLine < _efTotalLines - 1) {

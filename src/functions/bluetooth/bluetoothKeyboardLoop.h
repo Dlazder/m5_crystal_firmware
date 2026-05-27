@@ -13,10 +13,10 @@ void bluetoothKeyboardLoop() {
 
 	if (!bleConnected) { checkExit(); return; }
 
-	if (kbCursorUpPressed)    { kbCursorUpPressed    = false; bleKeyboard.write(KEY_UP_ARROW); }
-	if (kbCursorDownPressed)  { kbCursorDownPressed  = false; bleKeyboard.write(KEY_DOWN_ARROW); }
-	if (kbCursorLeftPressed)  { kbCursorLeftPressed  = false; bleKeyboard.write(KEY_LEFT_ARROW); }
-	if (kbCursorRightPressed) { kbCursorRightPressed = false; bleKeyboard.write(KEY_RIGHT_ARROW); }
+	if (isKbCursorUpPressed()) bleKeyboard.write(KEY_UP_ARROW);
+	if (isKbCursorDownPressed()) bleKeyboard.write(KEY_DOWN_ARROW);
+	if (isKbCursorLeftPressed()) bleKeyboard.write(KEY_LEFT_ARROW);
+	if (isKbCursorRightPressed()) bleKeyboard.write(KEY_RIGHT_ARROW);
 
 	keyboardLoop(
 		[]() {
