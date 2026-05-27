@@ -5,6 +5,11 @@ int lastAngle = 0;
 bool levelToolSoundPlayed = false;
 
 void levelToolLoop() {
+	if (!hasImu) {
+		if (isSetup()) centeredPrint("no gyroscope", MEDIUM_TEXT);
+		checkExit();
+		return;
+	}
 
 	if (isSetup()) {
 		deviceSpeakerBegin();
@@ -24,7 +29,7 @@ void levelToolLoop() {
 	}
 	
 	int centerX = DISP.width() / 2;
-	int centerY = DISP.height() / 2 - getStatusBarHeight();
+	int centerY = canvas.height() / 2;
 	int lineLength = 60;
 	
 	float angleRad = (filteredAngle + 90) * PI / 180;
@@ -59,7 +64,7 @@ void levelToolLoop() {
 		canvas.setTextColor(TFT_GREEN);
 		DEVICE.Power.setLed(1);
 		if (!levelToolSoundPlayed) {
-			DEVICE.Speaker.tone(2000, 100);
+			soundBeep();
 			levelToolSoundPlayed = true;
 		}
 	} else {
@@ -69,7 +74,7 @@ void levelToolLoop() {
 	}
 	
 	canvas.setTextSize(MEDIUM_TEXT);
-	canvas.drawCenterString(String(lastAngle).c_str(), centerX, DISP.height() - getStatusBarHeight() - canvas.fontHeight() - 10);
+	canvas.drawCenterString(String(lastAngle).c_str(), centerX, canvas.height() - canvas.fontHeight() - 10);
 
 	canvas.pushSprite(0, getStatusBarHeight());
 	

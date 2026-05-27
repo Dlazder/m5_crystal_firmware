@@ -10,6 +10,8 @@
 	bool kbEnterPressed = false;
 	bool kbEscPressed = false;
 	bool kbDelPressed = false;
+	bool kbCursorUpPressed = false;
+	bool kbCursorDownPressed = false;
 	bool kbCursorLeftPressed = false;
 	bool kbCursorRightPressed = false;
 	bool kbTextMode = false;
@@ -29,8 +31,10 @@
 		for (char c : state.word) {
 			if (kbTextMode) {
 				if (c == '`') kbEscPressed = true;
-				else if (state.fn && c == ',') kbCursorLeftPressed = true;
-				else if (state.fn && c == '/') kbCursorRightPressed = true;
+				else if (c == ';' && !state.fn) kbCursorUpPressed = true;
+				else if (c == '.' && !state.fn) kbCursorDownPressed = true;
+				else if (c == ',' && !state.fn) kbCursorLeftPressed = true;
+				else if (c == '/' && !state.fn) kbCursorRightPressed = true;
 				else kbWord += c;
 			} else {
 				if (c == ';') kbUpPressed = true;
@@ -46,6 +50,25 @@
 	}
 #endif
 
+void clearKbFlags() {
+	#if HAS_PHYSICAL_KB
+	kbUpPressed = false;
+	kbDownPressed = false;
+	kbLeftPressed = false;
+	kbRightPressed = false;
+	kbPlusPressed = false;
+	kbMinusPressed = false;
+	kbEnterPressed = false;
+	kbEscPressed = false;
+	kbDelPressed = false;
+	kbCursorUpPressed = false;
+	kbCursorDownPressed = false;
+	kbCursorLeftPressed = false;
+	kbCursorRightPressed = false;
+	kbWord = "";
+	#endif
+}
+
 bool isAnyKbKeyPressed() {
 	#if HAS_PHYSICAL_KB
 	return kbUpPressed || kbDownPressed || kbLeftPressed || kbRightPressed ||
@@ -55,6 +78,7 @@ bool isAnyKbKeyPressed() {
 	return false;
 }
 
+// Menu navigation — active when kbTextMode = false (;  .  ,  /)
 bool isKbUpPressed() {
 	#if HAS_PHYSICAL_KB
 	if (kbUpPressed) { kbUpPressed = false; return true; }
@@ -107,6 +131,35 @@ bool isKbPlusPressed() {
 bool isKbMinusPressed() {
 	#if HAS_PHYSICAL_KB
 	if (kbMinusPressed) { kbMinusPressed = false; return true; }
+	#endif
+	return false;
+}
+
+// Text cursor movement — active when kbTextMode = true (same keys, different context)
+bool isKbCursorUpPressed() {
+	#if HAS_PHYSICAL_KB
+	if (kbCursorUpPressed) { kbCursorUpPressed = false; return true; }
+	#endif
+	return false;
+}
+
+bool isKbCursorDownPressed() {
+	#if HAS_PHYSICAL_KB
+	if (kbCursorDownPressed) { kbCursorDownPressed = false; return true; }
+	#endif
+	return false;
+}
+
+bool isKbCursorLeftPressed() {
+	#if HAS_PHYSICAL_KB
+	if (kbCursorLeftPressed) { kbCursorLeftPressed = false; return true; }
+	#endif
+	return false;
+}
+
+bool isKbCursorRightPressed() {
+	#if HAS_PHYSICAL_KB
+	if (kbCursorRightPressed) { kbCursorRightPressed = false; return true; }
 	#endif
 	return false;
 }

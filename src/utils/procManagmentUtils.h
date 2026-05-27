@@ -4,14 +4,12 @@
  * @param proc [optional] process id (pid)
  */
 bool checkExit(int proc = previousProcess) {
-  // DEVICE.update();
   if (isBtnBWasPressed() || isKbEscPressed()) {
+    clearKbFlags();
     btnAWasPressed = false;
     btnBWasPressed = false;
     process = proc;
     Serial.printf("Switching to %d process\n", process);
-    DISP.clear();
-    cursorOnTop();
     isSwitching = true;
     return true;
   }
@@ -38,5 +36,8 @@ void changeProcess(int proc) {
   previousProcess = process;
   process = proc;
   isSwitching = true;
+  clearKbFlags();
+  btnAWasPressed = false;
+  btnBWasPressed = false;
   Serial.printf("Switching to %d process\n", process);
 }

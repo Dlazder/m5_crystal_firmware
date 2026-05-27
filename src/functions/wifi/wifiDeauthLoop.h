@@ -39,26 +39,20 @@ void wsl_bypasser_send_deauth_frame(const uint8_t* bssid, int chan) {
 
 void wifiDeauthLoop() {
 	if (isSetup()) {
-		cursorOnTop();
-		clearScreenWithSymbols();
-
-		String lines[] = {
-			ssid,
-			String(WiFi.RSSI(cursor - 2))
-		};
-
-		centeredPrintRows(lines, 2, MEDIUM_TEXT);
-
 		WiFi.mode(WIFI_AP);
 		WiFi.softAP(ssid, "", channel, 1, 4, false);
-		IPAddress ip = WiFi.softAPIP();
 		memcpy(deauth_frame, deauth_frame_default, sizeof(deauth_frame_default));
 	}
-	
+
+	String lines[] = {
+		ssid,
+		"Deauthing..."
+	};
+	centeredPrintRows(lines, 2, MEDIUM_TEXT, true);
+	drawSpinner();
+	canvas.pushSprite(0, getStatusBarHeight());
+
 	wsl_bypasser_send_deauth_frame(bssid, channel);
-	
-	// wsl_bypasser_send_raw_frame(deauth_frame, sizeof(deauth_frame_default));
-	
-	
+
 	checkExit();
 }

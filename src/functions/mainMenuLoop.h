@@ -13,7 +13,6 @@ void mainMenuLoop() {
 	int mainMenuSize = sizeof(mainMenu) / sizeof(MENU);
 
 	if (isSetup()) {
-		cursorOnTop();
 		drawMenu(mainMenu, mainMenuSize);
 	}
 	menuLoop(mainMenu, mainMenuSize);

@@ -10,7 +10,6 @@ void filesMenuLoop() {
 
 	if (isSetup()) {
 		cursor = 0;
-		cursorOnTop();
 		drawMenu(filesMenu, filesMenuSize);
 	}
 	menuLoop(filesMenu, filesMenuSize);

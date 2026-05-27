@@ -6,7 +6,7 @@ void drawclockSettingsUi(int currentState, int hours, int minutes) {
 	int textWidth = canvas.textWidth("00:00");
 	int textHeight = canvas.fontHeight() * 2;
 	int x = canvas.width() / 2 - (textWidth / 2);
-	int y = ((canvas.height() - getStatusBarHeight()) - textHeight) / 2;
+	int y = (canvas.height() - textHeight) / 2;
 
 	canvas.clear();
 	canvas.setCursor(x, y);
@@ -18,10 +18,15 @@ void drawclockSettingsUi(int currentState, int hours, int minutes) {
 	if (currentState == 1) canvas.setTextColor(BGCOLOR, FGCOLOR);
 	canvas.printf("%02d", minutes);
 	canvas.setTextColor(FGCOLOR, BGCOLOR);
-	if (currentState == 2) canvas.setTextColor(BGCOLOR, FGCOLOR);
-	canvas.println();
-	canvas.drawCenterString("OK", canvas.width() / 2, canvas.getCursorY());
-	canvas.setTextColor(FGCOLOR, BGCOLOR);
+
+	#if !HAS_PHYSICAL_KB
+		if (currentState == 2) canvas.setTextColor(BGCOLOR, FGCOLOR);
+		canvas.println();
+		canvas.drawCenterString("OK", canvas.width() / 2, canvas.getCursorY());
+		canvas.setTextColor(FGCOLOR, BGCOLOR);
+	#endif
+
+	drawHintClock();
 
 	canvas.pushSprite(0, getStatusBarHeight());
 }
@@ -43,11 +48,11 @@ void settingsClockLoop() {
 
 	#if HAS_PHYSICAL_KB
 		if (isKbLeftPressed() && checkTimer(100, true)) {
-			currentState = (currentState + 2) % 3;
+			currentState = (currentState + 1) % 2;
 			drawclockSettingsUi(currentState, tempHours, tempMinutes);
 		}
 		if (isKbRightPressed() && checkTimer(100, true)) {
-			currentState = (currentState + 1) % 3;
+			currentState = (currentState + 1) % 2;
 			drawclockSettingsUi(currentState, tempHours, tempMinutes);
 		}
 		if (isKbPlusPressed() && checkTimer(100, true)) {
@@ -63,6 +68,9 @@ void settingsClockLoop() {
 		if (isKbEnterPressed() && checkTimer(100, true)) {
 			deviceSetTime(tempHours, tempMinutes, 0);
 			changeProcess(PID::SETTINGS);
+		}
+		if (checkExit()) {
+			deviceSetTime(tempHours, tempMinutes, 0);
 		}
 	#else
 		if (isBtnBWasPressed() && checkTimer(100, true)) {

@@ -65,7 +65,6 @@ void lfsSetup(MENU*& menu, int& count, int backPid) {
 	}
 
 	cursor = 0;
-	cursorOnTop();
 	count > 0 ? drawMenu(menu, count + 1) : centeredPrint("No files", MEDIUM_TEXT);
 }
 
@@ -84,13 +83,11 @@ String lfsLoop(MENU menu[], int count, int backPid) {
 
 	if (isBtnBWasPressed() || isKbDownPressed()) {
 		cursor++;
-		cursorOnTop();
 		drawMenu(menu, count + 1);
 	}
 
 	if (isBtnPWRWasPressed() || isKbUpPressed()) {
 		cursor--;
-		cursorOnTop();
 		drawMenu(menu, count + 1);
 	}
 

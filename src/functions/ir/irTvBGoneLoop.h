@@ -38,8 +38,8 @@ void irTvBGoneLoop() {
 
 		IrSender.begin(IR_SEND_PIN);
 
-		String lines[] = { "TV-B-Gone", L->TXT_PRESS_A };
-		centeredPrintRows(lines, 2, MEDIUM_TEXT);
+		centeredPrint("TV-B-Gone", MEDIUM_TEXT, true);
+		drawHintCustom("enter: start", "A: start");
 	}
 
 	if (tvbDone) {
@@ -51,8 +51,8 @@ void irTvBGoneLoop() {
 	if (isBtnAWasPressed() || isKbEnterPressed()) {
 		if (tvbRunning) {
 			tvbRunning = false;
-			String lines[] = { "TV-B-Gone", L->TXT_PRESS_A };
-			centeredPrintRows(lines, 2, MEDIUM_TEXT);
+			centeredPrint("TV-B-Gone", MEDIUM_TEXT, true);
+			drawHintCustom("enter: start", "A: start");
 		} else {
 			tvbIndex = 0;
 			tvbRunning = true;
@@ -64,14 +64,15 @@ void irTvBGoneLoop() {
 		_tvbSendCurrent();
 
 		String progress = String(tvbIndex + 1) + " / " + String(TVB_COUNT);
-		String lines[] = { "TV-B-Gone", L->TXT_IR_TVB_RUNNING, progress };
-		centeredPrintRows(lines, 3, MEDIUM_TEXT);
+		String lines[] = { "TV-B-Gone", progress };
+		centeredPrintRows(lines, 2, MEDIUM_TEXT, true);
+		drawHintCustom("enter: stop", "A: stop");
 
 		tvbIndex++;
 		if (tvbIndex >= TVB_COUNT) {
 			tvbRunning = false;
 			tvbDone = true;
-			DEVICE.Speaker.tone(1500, 300);
+			soundSuccess();
 			String lines2[] = { "TV-B-Gone", L->TXT_IR_TVB_DONE };
 			centeredPrintRows(lines2, 2, MEDIUM_TEXT);
 		}

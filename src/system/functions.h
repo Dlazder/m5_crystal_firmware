@@ -21,6 +21,7 @@
 #include "../functions/settings/toggleKbGyroLoop.h"
 #include "../functions/settings/languageLoop.h"
 #include "../functions/settings/dimmingLoop.h"
+#include "../functions/settings/volumeLoop.h"
 
 
 // Wi-Fi functions
@@ -46,6 +47,7 @@
 #include "../functions/files/fileInfoLoop.h"
 #include "../functions/files/renameFileLoop.h"
 #include "../functions/files/readFileLoop.h"
+#include "../functions/files/editFileLoop.h"
 
 // Bluetooth functions
 #include "../functions/bluetooth/bluetoothMenuLoop.h"

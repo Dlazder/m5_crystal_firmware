@@ -16,9 +16,9 @@ void _irDrawUi() {
 		irLastProtocol,
 		"Addr: 0x" + String(irLastAddress, HEX),
 		"Cmd: 0x" + String(irLastCommand, HEX),
-		L->TXT_IR_PRESS_A_SAVE,
 	};
-	centeredPrintRows(lines, 4, MEDIUM_TEXT);
+	centeredPrintRows(lines, 3, MEDIUM_TEXT);
+	drawHintCustom("enter: save", "A: save");
 }
 
 void _irSaveToLFS(const char* filename) {
@@ -111,7 +111,7 @@ void irReadLoop() {
 		Serial.printf("IR: proto=%s addr=0x%04X cmd=0x%04X raw=0x%08lX\n",
 			irLastProtocol.c_str(), irLastAddress, irLastCommand, (unsigned long)irLastRaw);
 
-		DEVICE.Speaker.tone(2000, 80);
+		soundBeep();
 		_irDrawUi();
 	}
 

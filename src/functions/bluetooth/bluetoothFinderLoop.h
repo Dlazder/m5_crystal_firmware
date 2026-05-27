@@ -25,7 +25,7 @@ void drawFinderScreen(int currentRssi) {
 	canvas.clear();
 	canvas.setTextSize(MEDIUM_TEXT);
 	canvas.setTextColor(FGCOLOR);
-	canvas.drawCenterString(bleName.substring(0, 14), DISP.width() / 2, getStatusBarHeight());
+	canvas.drawCenterString(bleName.substring(0, 14), DISP.width() / 2, 0);
 	canvas.drawCenterString(bleAddress, DISP.width() / 2, canvas.getCursorY());
 	canvas.setTextColor(color);
 	String rssiStr = (currentRssi == -100) ? "n/a" : String(currentRssi);

@@ -7,7 +7,7 @@ void loadPreferences() {
 
 	brightness = getData("brightness", brightness);
 	Serial.printf("Brightness: %d\n", brightness);
-  DISP.setBrightness(brightness);
+	DISP.setBrightness(brightnessToHw(brightness));
 
 	statusBar = getData("statusBar", statusBar);
 	Serial.printf("Status bar: %s\n", statusBar ? "enabled" : "disabled");
@@ -18,12 +18,15 @@ void loadPreferences() {
 
 	currentFontIndex = getData("fontIndex", currentFontIndex);
 	Serial.printf("Font: %s\n", fontNames[currentFontIndex]);
-  DISP.setFont(systemFonts[currentFontIndex]);
-	canvas.setFont(systemFonts[currentFontIndex]);
+  applyFont(currentFontIndex);
 
 	colorIndex = getData("colorIndex", colorIndex);
   Serial.printf("Color: %s\n", colorsEntry[colorIndex]);
   FGCOLOR = colors[colorIndex];
+
+	volume = getData("volume", volume);
+	Serial.printf("Volume: %d\n", volume / volumeDividor);
+	DEVICE.Speaker.setVolume(volume);
 
 	startupSound = getData("startupSound", startupSound);
   Serial.printf("Startup sound: %s\n", startupSound ? "enabled" : "disabled");

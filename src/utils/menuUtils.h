@@ -1,20 +1,19 @@
 void drawScrollbar(int currentCursor, int totalItems, int visibleItems) {
 	static int SCROLLBAR_WIDTH = 5;
 	int SCROLLBAR_X = canvas.width() - SCROLLBAR_WIDTH;
-	int SCROLLBAR_HEIGHT = canvas.height() - getStatusBarOffset();
 
 	if (totalItems <= visibleItems) {
-		// canvas.fillRect(SCROLLBAR_X, 0, SCROLLBAR_WIDTH, SCROLLBAR_HEIGHT, BGCOLOR);
+		// canvas.fillRect(SCROLLBAR_X, 0, SCROLLBAR_WIDTH, canvas.height(), BGCOLOR);
 		return;
 	}
 
-	int sliderHeight = (SCROLLBAR_HEIGHT * visibleItems) / totalItems;
+	int sliderHeight = (canvas.height() * visibleItems) / totalItems;
 	if (sliderHeight < 6) sliderHeight = 6;
 
-	int availableSpace = SCROLLBAR_HEIGHT - sliderHeight;
+	int availableSpace = canvas.height() - sliderHeight;
 	int sliderY = (currentCursor * availableSpace) / (totalItems - 1);
 
-	canvas.fillRect(SCROLLBAR_X, 0, SCROLLBAR_WIDTH, SCROLLBAR_HEIGHT, BGCOLOR);
+	canvas.fillRect(SCROLLBAR_X, 0, SCROLLBAR_WIDTH, canvas.height(), BGCOLOR);
 	canvas.fillRect(SCROLLBAR_X, sliderY, SCROLLBAR_WIDTH, sliderHeight, FGCOLOR);
 }
 
@@ -25,7 +24,7 @@ void drawMenu(MENU menu[], int size) {
 
 	canvas.clear();
 	// Custom text size for perfect placement of menu items
-	canvas.setTextSize(1.8);
+	canvas.setTextSize(MENU_TEXT);
 	canvas.setCursor(0, 0);
 
 	int start = (cursor > 2) ? (cursor - 2) : 0;

@@ -10,7 +10,6 @@ void settingsStatusBarMenuLoop() {
 
 	if (isSetup()) {
 		if (previousProcess == PID::SETTINGS) cursor = 0;
-		cursorOnTop();
 		drawMenu(settingsStatusBarMenu, settingsStatusBarMenuSize);
 	}
 	menuLoop(settingsStatusBarMenu, settingsStatusBarMenuSize);

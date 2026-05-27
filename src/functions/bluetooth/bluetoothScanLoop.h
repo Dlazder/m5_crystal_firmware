@@ -47,7 +47,6 @@ void bluetoothScanLoop() {
 				bleScanMenu[i + 2].command = PID::BT_SELECTED;
 			}
 		}
-		cursorOnTop();
 		drawMenu(bleScanMenu, bleCount + 2);
 	}
 	menuLoop(bleScanMenu, bleCount + 2);

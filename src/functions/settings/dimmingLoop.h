@@ -18,11 +18,8 @@ String _getDimLabel() {
 
 void dimmingLoop() {
 	if (isSetup()) {
-		String lines[] = {
-			String(L->MENU_SETTINGS_DIMMING) + String(": ") + _getDimLabel(),
-			L->TXT_PRESS_A
-		};
-		centeredPrintRows(lines, 2, MEDIUM_TEXT);
+		centeredPrint(String(L->MENU_SETTINGS_DIMMING) + String(": ") + _getDimLabel(), MEDIUM_TEXT, true);
+		drawHintSwitch();
 		updateTimer();
 	}
 
@@ -32,16 +29,13 @@ void dimmingLoop() {
 		setData("dimTimeout", dimTimeoutIndex);
 
 		if (screenIsDimmed) {
-			DISP.setBrightness(brightness);
+			DISP.setBrightness(brightnessToHw(brightness));
 			screenIsDimmed = false;
 		}
 		updateTimer(&dimmingPreviousTimer);
 
-		String lines[] = {
-			String(L->MENU_SETTINGS_DIMMING) + String(": ") + _getDimLabel(),
-			L->TXT_PRESS_A
-		};
-		centeredPrintRows(lines, 2, MEDIUM_TEXT);
+		centeredPrint(String(L->MENU_SETTINGS_DIMMING) + String(": ") + _getDimLabel(), MEDIUM_TEXT, true);
+		drawHintSwitch();
 	}
 
 	checkExit();

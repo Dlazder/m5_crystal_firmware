@@ -25,7 +25,6 @@ void wifiScanLoop() {
 				wifiScanMenu[i + 2].command = PID::WIFI_SELECTED;
 			}
 		}
-		cursorOnTop();
 		drawMenu(wifiScanMenu, wifiCount + 2);
 	}
 	menuLoop(wifiScanMenu, wifiCount + 2);

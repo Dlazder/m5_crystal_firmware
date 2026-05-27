@@ -14,7 +14,6 @@ void bluetoothMenuLoop() {
 
 	if (isSetup()) {
 		cursor = 0;
-		cursorOnTop();
 		drawMenu(bluetoothMenu, bluetoothMenuSize);
 	}
 	menuLoop(bluetoothMenu, bluetoothMenuSize);

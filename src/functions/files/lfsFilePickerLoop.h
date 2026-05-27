@@ -49,7 +49,6 @@ void lfsFilePickerLoop() {
 		cursor = 0;
 		_lfsBuildMenu();
 		if (lfsFileMenu == nullptr) return;
-		cursorOnTop();
 		drawMenu(lfsFileMenu, lfsFileCount + 2);
 	}
 

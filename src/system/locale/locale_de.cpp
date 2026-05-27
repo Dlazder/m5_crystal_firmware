@@ -33,6 +33,7 @@ const Locale LANG_DE = {
 	.MENU_FILES_INFO             = "info",
 	.MENU_FILES_RENAME           = "umbenennen",
 	.MENU_FILES_VIEW             = "ansehen",
+	.MENU_FILES_EDIT             = "bearbeiten",
 	.MENU_FILES_LITTLEFS               = "littleFS",
 
 	// NFC menu
@@ -60,6 +61,7 @@ const Locale LANG_DE = {
 	.MENU_SETTINGS               = "einstellungen",
 	.MENU_SETTINGS_TIME          = "uhrzeit",
 	.MENU_SETTINGS_BRIGHTNESS    = "helligkeit",
+	.MENU_SETTINGS_VOLUME        = "lautstärke",
 	.MENU_SETTINGS_ROTATION      = "drehung",
 	.MENU_SETTINGS_COLORS        = "farben",
 	.MENU_SETTINGS_STATUS_BAR    = "statusleiste",
@@ -86,6 +88,11 @@ const Locale LANG_DE = {
 
 	// Common text
 	.TXT_PRESS_A                 = "A drücken",
+	.TXT_LEFT                    = "links",
+	.TXT_RIGHT                   = "rechts",
+	.TXT_SELECT                  = "wählen",
+	.TXT_ADJUST                  = "anpassen",
+	.TXT_SWITCH                  = "wechseln",
 	.TXT_ENABLED                 = "aktiviert",
 	.TXT_DISABLED                = "deaktiviert",
 	.TXT_SCANNING                = "Scannen...",
@@ -130,6 +137,7 @@ const Locale LANG_DE = {
 	// Settings text
 	.TXT_SETTINGS_LANGUAGE       = "Sprache: ",
 	.TXT_SETTINGS_BRIGHTNESS     = "helligkeit: ",
+	.TXT_SETTINGS_VOLUME         = "lautstärke: ",
 	.TXT_SETTINGS_COLOR          = "farbe: ",
 	.TXT_SETTINGS_FONT           = "Schrift:",
 	.TXT_SETTINGS_ROTATION       = "drehung",

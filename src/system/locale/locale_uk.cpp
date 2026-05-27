@@ -33,6 +33,7 @@ const Locale LANG_UK = {
 	.MENU_FILES_INFO             = "інфо",
 	.MENU_FILES_RENAME           = "перейм.",
 	.MENU_FILES_VIEW             = "перегляд",
+	.MENU_FILES_EDIT             = "редагувати",
 	.MENU_FILES_LITTLEFS               = "littleFS",
 
 	// NFC menu
@@ -60,6 +61,7 @@ const Locale LANG_UK = {
 	.MENU_SETTINGS               = "налаштування",
 	.MENU_SETTINGS_TIME          = "час",
 	.MENU_SETTINGS_BRIGHTNESS    = "яскравість",
+	.MENU_SETTINGS_VOLUME        = "гучність",
 	.MENU_SETTINGS_ROTATION      = "поворот",
 	.MENU_SETTINGS_COLORS        = "кольори",
 	.MENU_SETTINGS_STATUS_BAR    = "стат. рядок",
@@ -86,6 +88,11 @@ const Locale LANG_UK = {
 
 	// Common text
 	.TXT_PRESS_A                 = "натисніть A",
+	.TXT_LEFT                    = "вліво",
+	.TXT_RIGHT                   = "вправо",
+	.TXT_SELECT                  = "вибір",
+	.TXT_ADJUST                  = "змінити",
+	.TXT_SWITCH                  = "перемкнути",
 	.TXT_ENABLED                 = "увімкнено",
 	.TXT_DISABLED                = "вимкнено",
 	.TXT_SCANNING                = "Сканування...",
@@ -130,6 +137,7 @@ const Locale LANG_UK = {
 	// Settings text
 	.TXT_SETTINGS_LANGUAGE       = "Мова: ",
 	.TXT_SETTINGS_BRIGHTNESS     = "яскравість: ",
+	.TXT_SETTINGS_VOLUME         = "гучність: ",
 	.TXT_SETTINGS_COLOR          = "колір: ",
 	.TXT_SETTINGS_FONT           = "Шрифт:",
 	.TXT_SETTINGS_ROTATION       = "поворот",

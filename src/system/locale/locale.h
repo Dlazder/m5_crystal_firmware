@@ -33,6 +33,7 @@ struct Locale {
 	const char* MENU_FILES_INFO;
 	const char* MENU_FILES_RENAME;
 	const char* MENU_FILES_VIEW;
+	const char* MENU_FILES_EDIT;
 	const char* MENU_FILES_LITTLEFS;
 
 	// NFC menu
@@ -60,6 +61,7 @@ struct Locale {
 	const char* MENU_SETTINGS;
 	const char* MENU_SETTINGS_TIME;
 	const char* MENU_SETTINGS_BRIGHTNESS;
+	const char* MENU_SETTINGS_VOLUME;
 	const char* MENU_SETTINGS_ROTATION;
 	const char* MENU_SETTINGS_COLORS;
 	const char* MENU_SETTINGS_STATUS_BAR;
@@ -87,6 +89,11 @@ struct Locale {
 
 	// Common text
 	const char* TXT_PRESS_A;
+	const char* TXT_LEFT;
+	const char* TXT_RIGHT;
+	const char* TXT_SELECT;
+	const char* TXT_ADJUST;
+	const char* TXT_SWITCH;
 	const char* TXT_ENABLED;
 	const char* TXT_DISABLED;
 	const char* TXT_SCANNING;
@@ -131,6 +138,7 @@ struct Locale {
 	// Settings text
 	const char* TXT_SETTINGS_LANGUAGE;
 	const char* TXT_SETTINGS_BRIGHTNESS;
+	const char* TXT_SETTINGS_VOLUME;
 	const char* TXT_SETTINGS_COLOR;
 	const char* TXT_SETTINGS_FONT;
 	const char* TXT_SETTINGS_ROTATION;

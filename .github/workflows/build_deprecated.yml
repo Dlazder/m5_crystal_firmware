@@ -15,7 +15,7 @@ jobs:
 
     steps:
       - name: Checkout code
-        uses: actions/checkout@v4
+        uses: actions/checkout@v6.0.2
 
       - name: Install Arduino CLI
         uses: arduino/setup-arduino-cli@v2
@@ -71,7 +71,7 @@ jobs:
           ls build
 
       - name: Upload firmware artifact
-        uses: actions/upload-artifact@v4
+        uses: actions/upload-artifact@v7.0.1
         with:
           name: crystal_firmware_v${{ env.VERSION }}
           path: build/crystal_firmware_v${{ env.VERSION }}.bin
@@ -83,7 +83,7 @@ jobs:
 
     steps:
       - name: Download build artifact
-        uses: actions/download-artifact@v4
+        uses: actions/download-artifact@v8.0.1
         with:
           name: crystal_firmware_v${{ needs.build.outputs.version }}
 
@@ -92,7 +92,7 @@ jobs:
         run: ls -la
 
       - name: Create GitHub Release
-        uses: softprops/action-gh-release@v1
+        uses: softprops/action-gh-release@v3.0.0
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:

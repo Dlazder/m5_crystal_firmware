@@ -57,9 +57,9 @@ void _irShowLoaded() {
 		String(getProtocolString(irSendProtocol)),
 		"Addr: 0x" + String(irSendAddress, HEX),
 		"Cmd: 0x" + String(irSendCommand, HEX),
-		L->TXT_IR_PRESS_A_SEND,
 	};
-	centeredPrintRows(lines, 4, MEDIUM_TEXT);
+	centeredPrintRows(lines, 3, MEDIUM_TEXT, true);
+	drawHintCustom("enter: send", "A: send");
 }
 
 void irSendLoop() {
@@ -119,9 +119,10 @@ void irSendLoop() {
 		if (ok) {
 			Serial.printf("IR: sent proto=%s addr=0x%04X cmd=0x%04X\n",
 				getProtocolString(irSendProtocol), irSendAddress, irSendCommand);
-			DEVICE.Speaker.tone(2000, 80);
+				soundBeep();
 		} else {
 			centeredPrint("Unknown proto", MEDIUM_TEXT);
+			soundError();
 			delay(800);
 		}
 

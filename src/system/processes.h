@@ -18,6 +18,7 @@
     X(TOGGLE_STATUS_BAR_PID, 110, toggleStatusBarPidLoop) \
     X(LANGUAGE,              111, languageLoop) \
     X(DIMMING,               112, dimmingLoop) \
+    X(VOLUME,                113, volumeLoop) \
     \
     /* Wi-Fi (200-299) */ \
     X(WIFI,              200, wifiMenuLoop) \
@@ -57,6 +58,7 @@
     X(FILE_INFO,          506, fileInfoLoop) \
     X(FILE_RENAME,        507, renameFileLoop) \
     X(FILE_VIEW,          508, readFileLoop) \
+    X(FILE_EDIT,          509, editFileLoop) \
     \
     /* IR (600-699) */ \
     X(IR,                 600, irMenuLoop) \

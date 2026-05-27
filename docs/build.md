@@ -80,6 +80,8 @@ arduino-cli lib install M5GFX M5Unified "Adafruit PN532" U8g2 NTPClient
 arduino-cli lib install --git-url https://github.com/blackketter/ESP32-BLE-Combo.git
 ```
 
+#### Run correct script from *deauth_prerequisites/* folder
+
 #### Compile (This may take a few minutes)
 
 ```bash

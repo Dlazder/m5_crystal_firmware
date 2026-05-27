@@ -7,6 +7,7 @@ void selectedFileMenuLoop() {
 		{PID::FILE_PICKER, L->MENU_BACK},
 		{PID::FILE_INFO, L->MENU_FILES_INFO},
 		{PID::FILE_VIEW, L->MENU_FILES_VIEW},
+		{PID::FILE_EDIT, L->MENU_FILES_EDIT},
 		{PID::FILE_RENAME, L->MENU_FILES_RENAME},
 		{PID::FILE_DELETE, L->MENU_FILES_DELETE},
 	};
@@ -20,7 +21,6 @@ void selectedFileMenuLoop() {
 		}
 		selectedFileMenu[0].command = selectedFileSourcePid;
 		cursor = 0;
-		cursorOnTop();
 		drawMenu(selectedFileMenu, selectedFileMenuSize);
 	}
 	menuLoop(selectedFileMenu, selectedFileMenuSize);

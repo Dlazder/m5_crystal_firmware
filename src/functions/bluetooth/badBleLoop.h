@@ -1,12 +1,11 @@
 // pid PID::BAD_BLE
 
 void badBleLoop() {
-	static bool isBleConnected = false;
 	static bool scriptRunning = false;
 	static bool scriptDone = false;
 
 	if (isSetup()) {
-		isBleConnected = false;
+		bleConnected = false;
 		scriptRunning = false;
 		scriptDone = false;
 		if (selectedFilePath == "") {
@@ -26,34 +25,19 @@ void badBleLoop() {
 			filePickerSetup(PID::BLUETOOTH);
 			return;
 		}
-		if (!bleCompositeBegan) {
-			bleKeyboard.begin();
-			bleCompositeBegan = true;
-		}
-		centeredPrint(L->TXT_WAITING_CONNECTION, MEDIUM_TEXT);
-		updateTimer();
+		bleConnect();
 		return;
 	}
 
 	// BLE connection phase
 	DEVICE.update();
-	if (bleKeyboard.isConnected()) {
-		if (!isBleConnected) {
-			isBleConnected = true;
-			centeredPrint(L->TXT_BT_PRESS_A_TO_RUN, MEDIUM_TEXT);
-			DEVICE.Speaker.tone(2000, 200);
-		}
-	} else {
-		if (isBleConnected) {
-			isBleConnected = false;
-			scriptRunning = false;
-			centeredPrint(L->TXT_DISCONNECTED, MEDIUM_TEXT);
-			DEVICE.Speaker.tone(2000, 200);
-		}
-	}
+	bleHandleConnection(
+		[]() { centeredPrint(L->TXT_BT_PRESS_A_TO_RUN, MEDIUM_TEXT); soundSuccess(); },
+		[]() { scriptRunning = false; centeredPrint(L->TXT_DISCONNECTED, MEDIUM_TEXT); soundError(); }
+	);
 
 	// Script execution phase
-	if (isBleConnected && !scriptDone) {
+	if (bleConnected && !scriptDone) {
 		if (!scriptRunning && isBtnAWasPressed() || (isKbEnterPressed())) {
 			badBleLoadFile(selectedFilePath);
 			scriptRunning = true;
@@ -68,13 +52,13 @@ void badBleLoop() {
 				scriptRunning = false;
 				scriptDone = true;
 				centeredPrint(L->TXT_BT_DONE, MEDIUM_TEXT);
-				DEVICE.Speaker.tone(3000, 300);
+				soundSuccess();
 			}
 		}
 	}
 
 	if (checkExit()) {
-		isBleConnected = false;
+		bleConnected = false;
 		scriptRunning	= false;
 		scriptDone = false;
 		selectedFilePath = "";

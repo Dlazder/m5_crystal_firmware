@@ -1,38 +1,32 @@
 #include "./system/globals.h"
 #include "./system/utils.h"
 #include "./system/functions.h"
-#include "./system/showStartupScreen.h"
 #include "./system/switcher.h"
 #include "./system/loadPreferences.h"
 
 void setup() {
   deviceInit();
+  hasImu = (DEVICE.Imu.getType() != m5::imu_none);
   Serial.begin(115200);
   preferences.begin("storage", false);
   loadPreferences();
 
-  canvas.createSprite(DISP.width(), DISP.height());
+  canvas.createSprite(DISP.width(), DISP.height() - getStatusBarHeight());
   canvas.setTextColor(FGCOLOR, BGCOLOR);
   canvas.setTextSize(MEDIUM_TEXT);
 
   statusBarCanvas.createSprite(DISP.width(), 20);
   statusBarCanvas.setTextColor(FGCOLOR, BGCOLOR);
 
-  showStartupScreen();
+  DEVICE.Speaker.begin();
+  drawStartupScreen();
   Wire.setClock(10000);
   Wire.setTimeout(100);
   delay(1000);
   // When starting the firmware, the state of the pressed btnPWR is stuck, which is why the menu scrolls. We update the state of the buttons to avoid this.
   DEVICE.update();
 
-  if (startupSound) {
-    DEVICE.Speaker.tone(1500, 200);
-    delay(200);
-    DEVICE.Speaker.tone(2000, 200);
-    delay(200);
-    DEVICE.Speaker.tone(2500, 200);
-    delay(200);
-  }
+  soundStartup();
 
   // Warm up speaker DMA buffers before WiFi takes memory.
   DEVICE.Speaker.begin();
@@ -43,7 +37,6 @@ void setup() {
   WiFi.mode(WIFI_STA);
   WiFi.disconnect(false);
 
-  cursorOnTop();
   DISP.clear();
 }
 

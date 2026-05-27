@@ -85,7 +85,6 @@ void selectedBluetoothMenuLoop() {
 
 			cursor = 0;
 		}
-		cursorOnTop();
 		drawMenu(selectedBluetoothMenu, selectedBluetoothMenuSize);
 	}
 	menuLoop(selectedBluetoothMenu, selectedBluetoothMenuSize);

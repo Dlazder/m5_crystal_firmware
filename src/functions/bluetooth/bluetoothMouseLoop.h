@@ -27,28 +27,28 @@ auto getSpeed = [](float value) -> int {
 };
 
 void bluetoothMouseLoop() {
+	if (!hasImu) {
+		if (isSetup()) centeredPrint("no gyroscope", MEDIUM_TEXT);
+		checkExit();
+		return;
+	}
 	static float smoothedX = 0;
 	static float smoothedY = 0;
-	static bool isBleConnected = false;
 
 	float accX, accY, accZ;
-	if (isSetup()) {
-		updateTimer();
-		if (!bleCompositeBegan) {
-			bleKeyboard.begin();
-			bleCompositeBegan = true;
-		}
-		centeredPrint(L->TXT_WAITING_CONNECTION, MEDIUM_TEXT);
-		updateTimer();
-	}
+	if (isSetup()) bleConnect();
 
-	if (bleKeyboard.isConnected()) {
-		if (!isBleConnected) {
-			centeredPrint(L->TXT_CONNECTED, MEDIUM_TEXT);
-			DEVICE.Speaker.tone(2000, 200);
-			isBleConnected = true;
+	bleHandleConnection(
+		[]() { centeredPrint(L->TXT_CONNECTED, MEDIUM_TEXT); soundSuccess(); },
+		[]() {
+			centeredPrint(L->TXT_NOT_CONNECTED, MEDIUM_TEXT);
+			soundError();
+			smoothedX = 0;
+			smoothedY = 0;
 		}
+	);
 
+	if (bleConnected) {
 		DEVICE.Imu.getAccelData(&accX, &accY, &accZ);
 
 		float rawMoveX = IMU_MOUSE_X(accX, accY);
@@ -72,15 +72,6 @@ void bluetoothMouseLoop() {
 		if (deltaX != 0 || deltaY != 0) {
 			bleMouse.move(deltaX, deltaY);
 		}
-
-	} else {
-		if (isBleConnected) {
-			isBleConnected = false;
-			centeredPrint(L->TXT_NOT_CONNECTED, MEDIUM_TEXT);
-			DEVICE.Speaker.tone(2000, 200);
-			smoothedX = 0;
-			smoothedY = 0;
-		}
 	}
 
 	if (isBtnPWRWasPressed() && checkTimer(100, true)) {
@@ -94,7 +85,7 @@ void bluetoothMouseLoop() {
 	}
 
 	if (checkExit()) {
-		isBleConnected = false;
+		bleConnected = false;
 		smoothedX = 0;
 		smoothedY = 0;
 		centeredPrint(L->TXT_DISCONNECTING, MEDIUM_TEXT);

@@ -48,7 +48,6 @@ void filePickerSDLoop() {
 		cursor = 0;
 		_sdBuildMenu();
 		if (sdFileMenu == nullptr) return;
-		cursorOnTop();
 		drawMenu(sdFileMenu, sdFileCount + 2);
 	}
 

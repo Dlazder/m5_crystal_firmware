@@ -38,8 +38,6 @@ bool keyboardLoop(
 		drawKeyboardUi();
 	}
 
-	cardputerKbUpdate();
-
 	bool changed = false;
 
 	if (kbCursorLeftPressed) {
