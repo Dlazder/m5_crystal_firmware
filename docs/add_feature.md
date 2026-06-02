@@ -1,4 +1,4 @@
-## How to add a new feature?
+# How to add a new feature?
 
 Add a menu item wherever you want.
 You must specify the name and process id that will be launched. Add the process to the `src/system/processes.h`.

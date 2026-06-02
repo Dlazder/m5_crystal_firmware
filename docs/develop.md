@@ -1,5 +1,13 @@
 # M5 Crystal Firmware — Developer Guide
 
+## Display
+
+| Parameter | Value |
+| - | - |
+| Display width | 240 px |
+| Display height | 135 px |
+| Status bar height | 20 px |
+
 ## Fonts and text sizes
 
 | Variable | Base multiplier |
