@@ -1,11 +1,12 @@
-// Returns the bottom Y coordinate of the logo after drawing.
-int _drawLogo(int originY) {
-	int W = canvas.width();
-	int cx = W / 2;
+// Total number of line segments the crystal logo is composed of.
+#define CRYSTAL_SEGMENTS 11
 
-	float scaleX = (float)(W * 33 / 100) / 18.0f;
+// Non-blocking: draws the first `segments` line segments of the crystal logo at
+// (originX, originY) using the given horizontal scale. Pass CRYSTAL_SEGMENTS
+// (or more) to draw the whole logo. Does not clear or push the sprite; the
+// caller owns the animation loop and pushSprite. Returns the bottom Y of the logo.
+int _drawLogoSegment(int originX, int originY, float scaleX, int segments) {
 	float scaleY = scaleX * 0.7f;
-	int originX = cx - (int)(12.0f * scaleX);
 
 	auto sx = [&](float v) { return originX + (int)(v * scaleX); };
 	auto sy = [&](float v) { return originY + (int)(v * scaleY); };
@@ -16,14 +17,13 @@ int _drawLogo(int originY) {
 
 	struct Line { int x0, y0, x1, y1; };
 
-	Line outline[] = {
+	// outline (5) followed by inner (6) = CRYSTAL_SEGMENTS
+	Line lines[] = {
 		{ x7, ty, x17, ty },
 		{ x17, ty, x21, gy },
 		{ x21, gy, x12, by },
 		{ x12, by, x3, gy },
 		{ x3, gy, x7, ty },
-	};
-	Line inner[] = {
 		{ x10, ty, x7, gy },
 		{ x7, gy, x12, by },
 		{ x12, by, x17, gy },
@@ -32,28 +32,9 @@ int _drawLogo(int originY) {
 		{ x3, gy, x21, gy },
 	};
 
-	int numOutline = sizeof(outline) / sizeof(outline[0]);
-	int numInner = sizeof(inner) / sizeof(inner[0]);
-
-	auto drawLines = [&](Line* arr, int n, int drawn) {
-		for (int i = 0; i < drawn; i++)
-			canvas.drawLine(arr[i].x0, arr[i].y0, arr[i].x1, arr[i].y1, FGCOLOR);
-	};
-
-	for (int i = 0; i < numOutline; i++) {
-		// canvas.clear();
-		drawLines(outline, numOutline, i + 1);
-		canvas.pushSprite(0, 0);
-		delay(70);
-	}
-
-	for (int i = 0; i < numInner; i++) {
-		// canvas.clear();
-		drawLines(outline, numOutline, numOutline);
-		drawLines(inner, numInner, i + 1);
-		canvas.pushSprite(0, 0);
-		delay(70);
-	}
+	if (segments > CRYSTAL_SEGMENTS) segments = CRYSTAL_SEGMENTS;
+	for (int i = 0; i < segments; i++)
+		canvas.drawLine(lines[i].x0, lines[i].y0, lines[i].x1, lines[i].y1, FGCOLOR);
 
 	return by;
 }
@@ -78,16 +59,20 @@ void drawStartupScreen() {
 	int textBlockH = 3 * canvas.fontHeight();
 	int textStartY = (H / 2) + (H / 2 - textBlockH) / 2;
 
+	int originX = W / 2 - (int)(12.0f * scaleX);
+
 	String labels[] = { "Crystal", "firmware", "v" + String(FIRMWARE_VERSION) };
-	for (int i = 0; i < 3; i++) {
-		int tw = canvas.textWidth(labels[i].c_str());
-		canvas.setCursor((W - tw) / 2, textStartY + i * canvas.fontHeight());
-		canvas.print(labels[i].c_str());
+	for (int seg = 1; seg <= CRYSTAL_SEGMENTS; seg++) {
+		canvas.clear();
+		_drawLogoSegment(originX, originY, scaleX, seg);
+		for (int i = 0; i < 3; i++) {
+			int tw = canvas.textWidth(labels[i].c_str());
+			canvas.setCursor((W - tw) / 2, textStartY + i * canvas.fontHeight());
+			canvas.print(labels[i].c_str());
+		}
+		canvas.pushSprite(0, 0);
+		delay(70);
 	}
-
-	canvas.pushSprite(0, 0);
-
-	_drawLogo(originY);
 
 	statusBar = statusBarOld;
 	recreateCanvas();
