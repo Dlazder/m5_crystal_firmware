@@ -19,12 +19,13 @@ void badBleLoop() {
 
 		if (selectedFilePath == "") return; // cancelled, changeProcess already called
 
-		if (!badBleLoadFile(selectedFilePath)) {
+		if (!readFileString(selectedFilePath, badBleScriptBuffer)) {
 			centeredPrint(L->TXT_BT_FILE_ERROR, MEDIUM_TEXT);
 			selectedFilePath = "";
 			filePickerSetup(PID::BLUETOOTH);
 			return;
 		}
+		badBleSetScript(badBleScriptBuffer.c_str());
 		bleConnect();
 		return;
 	}
@@ -39,7 +40,8 @@ void badBleLoop() {
 	// Script execution phase
 	if (bleConnected && !scriptDone) {
 		if (!scriptRunning && isBtnAWasPressed() || (isKbEnterPressed())) {
-			badBleLoadFile(selectedFilePath);
+			readFileString(selectedFilePath, badBleScriptBuffer);
+			badBleSetScript(badBleScriptBuffer.c_str());
 			scriptRunning = true;
 			centeredPrint(L->TXT_BT_RUNNING, MEDIUM_TEXT);
 		}

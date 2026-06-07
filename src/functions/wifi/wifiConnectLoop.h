@@ -19,9 +19,6 @@ static void startWifiConnection(const char* password) {
 	centeredPrint(L->TXT_CONNECTING, MEDIUM_TEXT);
 }
 
-static String wifiPasswordKey() {
-	return "w:" + ssid.substring(0, 13);
-}
 
 void wifiConnectLoop() {
 	if (isSetup()) {

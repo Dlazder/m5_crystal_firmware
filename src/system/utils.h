@@ -20,5 +20,6 @@
 #include "../utils/littleFSUtils.h"
 #include "../utils/sdUtils.h"
 #include "../utils/filePickerUtils.h"
+#include "../utils/wifiUtils.h"
 #include "../utils/badBleUtils.h"
 #include "../utils/bleUtils.h"

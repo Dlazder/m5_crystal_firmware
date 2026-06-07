@@ -15,6 +15,7 @@ const Locale LANG_ES = {
 	.MENU_WIFI_AP= "Wi-Fi AP",
 	.MENU_WIFI_WEATHER = "clima",
 	.MENU_WIFI_SYNC_TIME = "sincronizar hora",
+	.MENU_WIFI_WPA_BF = "wpa fuerza bruta",
 
 	// Bluetooth menu
 	.MENU_BT = "Bluetooth",
@@ -116,6 +117,8 @@ const Locale LANG_ES = {
 	.TXT_WIFI_SYNC_FAILED = "Sync fallido",
 	.TXT_WIFI_TIME_SYNCED = "Hora sincronizada",
 	.TXT_WIFI_NOT_CONNECTED = "Sin WiFi",
+	.TXT_WIFI_BF_LOADED = "Cargado: %d",
+	.TXT_WIFI_BF_DONE = "Intentado: %d",
 
 	// Bluetooth text
 	.TXT_BT_FILE_ERROR = "Error de archivo",
