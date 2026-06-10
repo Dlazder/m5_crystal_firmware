@@ -16,18 +16,11 @@ void badBleSetScript(const char* script) {
 }
 
 /**
- * Loads a DuckyScript file from LittleFS and sets it as the active script.
+ * Loads a DuckyScript file and sets it as the active script.
+ * Uses fpSelectedSd to decide between SD and LittleFS.
  * @param path  full path to the file (e.g. "/notepad.txt")
  * @return true if loaded successfully, false if file could not be opened
  */
-bool badBleLoadFile(String path) {
-  File f = LittleFS.open(path, "r");
-  if (!f) return false;
-  badBleScriptBuffer = f.readString();
-  f.close();
-  badBleSetScript(badBleScriptBuffer.c_str());
-  return true;
-}
 
 /**
  * Returns true if the parser is currently waiting for a DELAY command to expire.

@@ -34,7 +34,7 @@ void _sdBuildMenu() {
 		if (!f.isDirectory()) {
 			String name = String(f.name());
 			sdFileFullPaths[idx - 2] = "/" + name;
-			sdFileMenu[idx] = { PID::SELECTED_FILE_MENU, name.substring(0, 14) };
+			sdFileMenu[idx] = { PID::SELECTED_FILE_MENU, name };
 			idx++;
 		}
 		f = root.openNextFile();

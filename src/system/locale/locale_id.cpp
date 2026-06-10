@@ -15,6 +15,8 @@ const Locale LANG_ID = {
     .MENU_WIFI_AP                 = "Wi-Fi AP",
     .MENU_WIFI_WEATHER            = "cuaca",
     .MENU_WIFI_SYNC_TIME          = "sinkron waktu",
+    .MENU_WIFI_WPA_BF             = "wpa bruteforce",
+    .MENU_WIFI_WPA_BF_ALL         = "wpa bf semua net",
 
     // Bluetooth menu
     .MENU_BT                      = "Bluetooth",
@@ -116,6 +118,11 @@ const Locale LANG_ID = {
     .TXT_WIFI_SYNC_FAILED         = "Sync gagal",
     .TXT_WIFI_TIME_SYNCED         = "Waktu disinkronkan",
     .TXT_WIFI_NOT_CONNECTED       = "Tidak ada WiFi",
+    .TXT_WIFI_BF_LOADED           = "Dimuat: %d",
+    .TXT_WIFI_BF_DONE             = "Dicoba: %d",
+    .TXT_WIFI_BF_ALL_NETS         = "Jaringan: %d",
+    .TXT_WIFI_BF_ALL_CRACKED      = "Berhasil: %d/%d",
+    .TXT_WIFI_NO_NETWORKS         = "Tidak ada jaringan",
 
     // Bluetooth text
     .TXT_BT_FILE_ERROR            = "Error file",

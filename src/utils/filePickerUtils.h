@@ -1,4 +1,5 @@
 bool fpActive = false;
+bool fpSelectedSd = false;
 
 static int _fpCancel = 0;
 static bool _fpSourceSelected = false;
@@ -44,7 +45,7 @@ static bool _fpBuildLfs() {
 		if (!f.isDirectory()) {
 			String name = String(f.name());
 			_fpPaths[i - 1] = "/" + name;
-			_fpMenu[i] = { 0, name.substring(0, 14) };
+			_fpMenu[i] = { 0, name };
 			i++;
 		}
 	}
@@ -72,7 +73,7 @@ static bool _fpBuildSd() {
 		if (!f.isDirectory()) {
 			String name = String(f.name());
 			_fpPaths[i - 1] = "/" + name;
-			_fpMenu[i] = { 0, name.substring(0, 14) };
+			_fpMenu[i] = { 0, name };
 			i++;
 		}
 	}
@@ -104,7 +105,8 @@ bool filePickerLoop() {
 				return false;
 			}
 			// cursor 1 = LittleFS, cursor 2 = SD
-			bool ok = (cursor == 2)
+			fpSelectedSd = (cursor == 2);
+			bool ok = fpSelectedSd
 			#if HAS_SD
 				? _fpBuildSd()
 			#else
@@ -142,5 +144,82 @@ bool filePickerLoop() {
 		_fpFree(); fpActive = false; return false;
 	}
 
+	return true;
+}
+
+/**
+ * Reads a file into a single String.
+ * Uses fpSelectedSd to decide between SD and LittleFS.
+ *
+ * @param path  Full path to the file (e.g. "/script.txt")
+ * @param out   Set to file contents on success.
+ * @return true on success, false if the file could not be opened or is empty.
+ */
+bool readFileString(const String& path, String& out) {
+	out = "";
+	File f;
+	#if HAS_SD
+		if (fpSelectedSd) {
+			if (!sdBegin()) return false;
+			f = SD.open(path.c_str());
+		} else {
+	#endif
+			if (!lfsBegin()) return false;
+			f = LittleFS.open(path.c_str());
+	#if HAS_SD
+		}
+	#endif
+	if (!f) return false;
+	out = f.readString();
+	f.close();
+	return out.length() > 0;
+}
+
+/**
+ * Reads a text file line-by-line into a dynamically allocated String array.
+ * Uses fpSelectedSd to decide between SD and LittleFS.
+ *
+ * @param path      Full path to the file (e.g. "/wordlist.txt")
+ * @param outLines  Set to a newly allocated String[] on success; caller must delete[].
+ * @param outCount  Set to the number of lines on success.
+ * @return true on success, false if the file could not be opened or is empty.
+ */
+bool readFileLines(const String& path, String*& outLines, int& outCount) {
+	outLines = nullptr;
+	outCount = 0;
+
+	File f;
+	#if HAS_SD
+		if (fpSelectedSd) {
+			if (!sdBegin()) return false;
+			f = SD.open(path.c_str());
+		} else {
+	#endif
+			if (!lfsBegin()) return false;
+			f = LittleFS.open(path.c_str());
+	#if HAS_SD
+		}
+	#endif
+	if (!f) return false;
+
+	int count = 0;
+	while (f.available()) {
+		String line = f.readStringUntil('\n');
+		line.trim();
+		if (line.length() > 0) count++;
+	}
+	if (count == 0) { f.close(); return false; }
+
+	outLines = new String[count];
+	outCount = count;
+
+	f.seek(0);
+	int i = 0;
+	while (f.available() && i < count) {
+		String line = f.readStringUntil('\n');
+		line.trim();
+		if (line.length() > 0) outLines[i++] = line;
+	}
+	f.close();
 	return true;
 }

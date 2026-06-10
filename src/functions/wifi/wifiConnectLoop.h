@@ -19,9 +19,6 @@ static void startWifiConnection(const char* password) {
 	centeredPrint(L->TXT_CONNECTING, MEDIUM_TEXT);
 }
 
-static String wifiPasswordKey() {
-	return "w:" + ssid.substring(0, 13);
-}
 
 void wifiConnectLoop() {
 	if (isSetup()) {
@@ -34,7 +31,7 @@ void wifiConnectLoop() {
 			kbEnd();
 			startWifiConnection("");
 		} else {
-			String saved = getDataString(wifiPasswordKey().c_str());
+			String saved = loadWifiPassword(ssid);
 			if (saved.length() > 0) {
 				wifiConnectPasswordDone = true;
 				kbEnd();
@@ -71,7 +68,7 @@ void wifiConnectLoop() {
 		if (status == WL_CONNECTED) {
 			wifiConnectResultShown = true;
 			if (wifiPassword.length() > 0)
-				setDataString(wifiPasswordKey().c_str(), wifiPassword.c_str());
+				saveWifiPassword(ssid, wifiPassword);
 			String ip = WiFi.localIP().toString();
 			String lines[] = { L->TXT_CONNECTED, ssid.substring(0, 16), ip };
 			centeredPrintRows(lines, 3, MEDIUM_TEXT);

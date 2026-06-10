@@ -35,6 +35,8 @@
 #include "../functions/wifi/weatherLoop.h"
 #include "../functions/wifi/wifiDisconnectLoop.h"
 #include "../functions/wifi/wifiTimeSyncLoop.h"
+#include "../functions/wifi/wifiBruteforceLoop.h"
+#include "../functions/wifi/wifiBruteforceAllLoop.h"
 
 
 // Files
