@@ -23,3 +23,4 @@
 #include "../utils/wifiUtils/wifiStorageUtils.h"
 #include "../utils/badBleUtils.h"
 #include "../utils/bleUtils.h"
+#include "../utils/screenshotUtils.h"

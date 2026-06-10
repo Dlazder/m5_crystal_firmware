@@ -44,6 +44,17 @@ void loop() {
   globalTimer = millis();
   deviceUpdate();
 
+  // Serial command handler
+  if (Serial.available()) {
+    String cmd = Serial.readStringUntil('\n');
+    cmd.trim();
+    if (cmd == "/screenshot") {
+      takeScreenshot();
+    } else {
+      Serial.println("Command not found!");
+    }
+  }
+
   dimmerUpdate();
 
   if (statusBar) {
