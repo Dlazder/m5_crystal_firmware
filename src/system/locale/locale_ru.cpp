@@ -16,6 +16,7 @@ const Locale LANG_RU = {
 	.MENU_WIFI_WEATHER           = "погода",
 	.MENU_WIFI_SYNC_TIME         = "синхр. время",
 	.MENU_WIFI_WPA_BF            = "wpa брутфорс",
+	.MENU_WIFI_WPA_BF_ALL        = "wpa бф все сети",
 
 	// Bluetooth menu
 	.MENU_BT                     = "Bluetooth",
@@ -119,6 +120,9 @@ const Locale LANG_RU = {
 	.TXT_WIFI_NOT_CONNECTED      = "Нет Wi-Fi",
 	.TXT_WIFI_BF_LOADED          = "Загружено: %d",
 	.TXT_WIFI_BF_DONE            = "Проверено: %d",
+	.TXT_WIFI_BF_ALL_NETS        = "Сетей: %d",
+	.TXT_WIFI_BF_ALL_CRACKED     = "Взломано: %d/%d",
+	.TXT_WIFI_NO_NETWORKS        = "Нет сетей",
 
 	// Bluetooth text
 	.TXT_BT_FILE_ERROR           = "Ошибка файла",

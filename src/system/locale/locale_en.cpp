@@ -16,6 +16,7 @@ const Locale LANG_EN = {
 	.MENU_WIFI_WEATHER           = "weather",
 	.MENU_WIFI_SYNC_TIME         = "sync time",
 	.MENU_WIFI_WPA_BF            = "wpa bruteforce",
+	.MENU_WIFI_WPA_BF_ALL        = "wpa bf all nets",
 
 	// Bluetooth menu
 	.MENU_BT                     = "Bluetooth",
@@ -119,6 +120,9 @@ const Locale LANG_EN = {
 	.TXT_WIFI_NOT_CONNECTED      = "No WiFi",
 	.TXT_WIFI_BF_LOADED          = "Loaded: %d",
 	.TXT_WIFI_BF_DONE            = "Tried: %d",
+	.TXT_WIFI_BF_ALL_NETS        = "Nets: %d",
+	.TXT_WIFI_BF_ALL_CRACKED     = "Cracked: %d/%d",
+	.TXT_WIFI_NO_NETWORKS        = "No networks",
 
 	// Bluetooth text
 	.TXT_BT_FILE_ERROR           = "File error",

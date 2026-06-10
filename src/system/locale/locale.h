@@ -16,6 +16,7 @@ struct Locale {
 	const char* MENU_WIFI_WEATHER;
 	const char* MENU_WIFI_SYNC_TIME;
 	const char* MENU_WIFI_WPA_BF;
+	const char* MENU_WIFI_WPA_BF_ALL;
 
 	// Bluetooth menu
 	const char* MENU_BT;
@@ -118,8 +119,11 @@ struct Locale {
 	const char* TXT_WIFI_SYNC_FAILED;
 	const char* TXT_WIFI_TIME_SYNCED;
 	const char* TXT_WIFI_NOT_CONNECTED;
-	const char* TXT_WIFI_BF_LOADED;  // printf format: "Loaded: %d"
-	const char* TXT_WIFI_BF_DONE;    // printf format: "Tried: %d"
+	const char* TXT_WIFI_BF_LOADED;      // printf format: "Loaded: %d"
+	const char* TXT_WIFI_BF_DONE;        // printf format: "Tried: %d"
+	const char* TXT_WIFI_BF_ALL_NETS;    // printf format: "Nets: %d"
+	const char* TXT_WIFI_BF_ALL_CRACKED; // printf format: "Cracked: %d/%d"
+	const char* TXT_WIFI_NO_NETWORKS;
 
 	// Bluetooth text
 	const char* TXT_BT_FILE_ERROR;
