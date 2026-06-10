@@ -45,7 +45,7 @@ static bool _fpBuildLfs() {
 		if (!f.isDirectory()) {
 			String name = String(f.name());
 			_fpPaths[i - 1] = "/" + name;
-			_fpMenu[i] = { 0, name.substring(0, 14) };
+			_fpMenu[i] = { 0, name };
 			i++;
 		}
 	}
@@ -73,7 +73,7 @@ static bool _fpBuildSd() {
 		if (!f.isDirectory()) {
 			String name = String(f.name());
 			_fpPaths[i - 1] = "/" + name;
-			_fpMenu[i] = { 0, name.substring(0, 14) };
+			_fpMenu[i] = { 0, name };
 			i++;
 		}
 	}

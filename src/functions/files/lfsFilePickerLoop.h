@@ -35,7 +35,7 @@ void _lfsBuildMenu() {
 		if (!f.isDirectory()) {
 			String name = String(f.name());
 			lfsFileFullPaths[idx - 2] = "/" + name;
-			lfsFileMenu[idx] = { filePid, name.substring(0, 14) };
+			lfsFileMenu[idx] = { filePid, name };
 			idx++;
 		}
 		f = root.openNextFile();

@@ -17,6 +17,8 @@ void drawScrollbar(int currentCursor, int totalItems, int visibleItems) {
 	canvas.fillRect(SCROLLBAR_X, sliderY, SCROLLBAR_WIDTH, sliderHeight, FGCOLOR);
 }
 
+const int MENU_LABEL_MAX_CHARS = 18;
+
 void drawMenu(MENU menu[], int size) {
 	if (cursor == size) cursor = cursor % size;
 	if (cursor < 0) cursor = size - 1;
@@ -36,7 +38,7 @@ void drawMenu(MENU menu[], int size) {
 		canvas.fillRect(0, y, canvas.width(), lineHeight, selected ? FGCOLOR : BGCOLOR);
 		canvas.setTextColor(selected ? BGCOLOR : FGCOLOR, selected ? FGCOLOR : BGCOLOR);
 		canvas.setCursor(5, y);
-		canvas.print(menu[i].name.c_str());
+		canvas.print(menu[i].name.substring(0, MENU_LABEL_MAX_CHARS).c_str());
 	}
 
 	drawScrollbar(cursor, size, 5);

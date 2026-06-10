@@ -12,7 +12,7 @@ int lfsCancelPid = 0;
  */
 bool lfsBegin() {
 	if (lfsBegun) return true;
-	lfsBegun = LittleFS.begin(false);
+	lfsBegun = LittleFS.begin(true);
 	return lfsBegun;
 }
 
@@ -58,7 +58,7 @@ void lfsSetup(MENU*& menu, int& count, int backPid) {
 		if (!f.isDirectory()) {
 			String name = String(f.name());
 			lfsFilePaths[idx - 1] = "/" + name;
-			menu[idx] = { PID::FILE_PICKER, name.substring(0, 14) };
+			menu[idx] = { PID::FILE_PICKER, name };
 			idx++;
 		}
 		f = root.openNextFile();
