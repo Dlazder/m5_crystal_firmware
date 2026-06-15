@@ -11,7 +11,10 @@ void bluetoothKeyboardLoop() {
 		[]() { centeredPrint(L->TXT_NOT_CONNECTED, MEDIUM_TEXT); soundError(); }
 	);
 
-	if (!bleConnected) { checkExit(); return; }
+	if (!bleConnected) {
+		if (checkExit()) kbEnd();
+		return;
+	}
 
 	if (isKbCursorUpPressed()) bleKeyboard.write(KEY_UP_ARROW);
 	if (isKbCursorDownPressed()) bleKeyboard.write(KEY_DOWN_ARROW);
@@ -20,6 +23,7 @@ void bluetoothKeyboardLoop() {
 
 	keyboardLoop(
 		[]() {
+			kbEnd();
 			DISP.clear();
 			changeProcess(PID::BLUETOOTH);
 		},
