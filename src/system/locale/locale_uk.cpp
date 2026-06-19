@@ -82,6 +82,7 @@ const Locale LANG_UK = {
 	.MENU_OTHER_FLASHLIGHT       = "ліхтарик",
 	.MENU_OTHER_FLICKER          = "мигання",
 	.MENU_OTHER_LEVEL_TOOL       = "рівень",
+	.MENU_OTHER_BAD_USB          = "bad USB",
 	
 	// System menu
 	.MENU_SYSTEM_INFO            = "інфо",

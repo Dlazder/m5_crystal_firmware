@@ -3,12 +3,12 @@
 void otherMenuLoop() {
 	MENU otherMenu[] = {
 		{PID::MAIN_MENU,       L->MENU_BACK},
+		{PID::BAD_USB,         L->MENU_OTHER_BAD_USB},
 		{PID::CLOCK,           L->MENU_OTHER_CLOCK},
 		{PID::SOUND_LEVEL,     L->MENU_OTHER_SOUND_LEVEL},
 		{PID::LEVEL_TOOL,      L->MENU_OTHER_LEVEL_TOOL},
 		{PID::FLASHLIGHT_MENU, L->MENU_OTHER_FLASHLIGHT},
 		{PID::SYSTEM,          L->MENU_OTHER_SYSTEM},
-		{PID::BAD_USB,         "bad USB"}
 	};
 	int otherMenuSize = sizeof(otherMenu) / sizeof(MENU);
 

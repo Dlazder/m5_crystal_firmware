@@ -82,6 +82,7 @@ const Locale LANG_IT = {
     .MENU_OTHER_FLASHLIGHT        = "torcia",
     .MENU_OTHER_FLICKER           = "sfarfallio",
     .MENU_OTHER_LEVEL_TOOL        = "livella",
+    .MENU_OTHER_BAD_USB           = "bad USB",
 
     // System menu
     .MENU_SYSTEM_INFO             = "info",
