@@ -3,6 +3,7 @@
 #include "./system/functions.h"
 #include "./system/switcher.h"
 #include "./system/loadPreferences.h"
+#include "./system/serialCommandHandler.h"
 
 void setup() {
   deviceInit();
@@ -44,16 +45,7 @@ void loop() {
   globalTimer = millis();
   deviceUpdate();
 
-  // Serial command handler
-  if (Serial.available()) {
-    String cmd = Serial.readStringUntil('\n');
-    cmd.trim();
-    if (cmd == "/screenshot") {
-      takeScreenshot();
-    } else {
-      Serial.println("Command not found!");
-    }
-  }
+  handleSerialCommands();
 
   dimmerUpdate();
 
