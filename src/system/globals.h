@@ -53,7 +53,6 @@ uint16_t BGCOLOR=TFT_BLACK;
 uint16_t FGCOLOR=TFT_WHITE;
 uint16_t colors[] = {TFT_WHITE, TFT_RED, TFT_ORANGE, TFT_YELLOW, TFT_GREEN, TFT_CYAN, TFT_BLUE, TFT_VIOLET, TFT_MAGENTA};
 const char* colorsEntry[] = {"WHITE", "RED", "ORANGE", "YELLOW", "GREEN", "CYAN", "BLUE", "VIOLET", "MAGENTA"};
-int colorIndex = 0;
 
 // Text sizes — scaled by applyFont() to normalize line height across fonts
 float TINY_TEXT        = 1.0f;
