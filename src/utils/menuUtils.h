@@ -15,6 +15,8 @@ void drawScrollbar(int currentCursor, int totalItems, int visibleItems) {
 
 	canvas.fillRect(SCROLLBAR_X, 0, SCROLLBAR_WIDTH, canvas.height(), BGCOLOR);
 	canvas.fillRect(SCROLLBAR_X, sliderY, SCROLLBAR_WIDTH, sliderHeight, FGCOLOR);
+	// canvas.fillRect(SCROLLBAR_X, 0, 1, canvas.height(), FGCOLOR);
+	// canvas.fillRect(SCROLLBAR_X + 1, 0, 1, canvas.height(), BGCOLOR);
 }
 
 const int MENU_LABEL_MAX_CHARS = 18;

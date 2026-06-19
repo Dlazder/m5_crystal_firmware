@@ -1,26 +1,29 @@
-const char* badBleScriptPtr = nullptr;
-int badBleScriptPos = 0;
 unsigned long badBleDelayUntil = 0;
 
-
-String badBleScriptBuffer = "";
+// Script lines loaded via readFileLines and the index of the line to run next.
+// Used to render the script on screen with the current line highlighted.
+String* badBleLines = nullptr;
+int badBleLineCount = 0;
+int badBleCurrentLine = 0;
 
 /**
- * Sets the script to execute and resets the parser state.
- * @param script null-terminated DuckyScript string
+ * Frees the loaded script lines.
  */
-void badBleSetScript(const char* script) {
-  badBleScriptPtr  = script;
-  badBleScriptPos  = 0;
-  badBleDelayUntil = 0;
+void badBleFreeLines() {
+  if (badBleLines != nullptr) { delete[] badBleLines; badBleLines = nullptr; }
+  badBleLineCount = 0;
+  badBleCurrentLine = 0;
 }
 
 /**
- * Loads a DuckyScript file and sets it as the active script.
- * Uses fpSelectedSd to decide between SD and LittleFS.
- * @param path  full path to the file (e.g. "/notepad.txt")
- * @return true if loaded successfully, false if file could not be opened
+ * Loads the selected script file and resets execution state to the first line.
+ * @return true if loaded successfully, false if the file could not be read.
  */
+bool badBleSetScript() {
+  badBleDelayUntil = 0;
+  badBleFreeLines();
+  return readFileLines(selectedFilePath, badBleLines, badBleLineCount);
+}
 
 /**
  * Returns true if the parser is currently waiting for a DELAY command to expire.
@@ -77,20 +80,11 @@ uint8_t badBleResolveKey(String name) {
  * @return true if there are more lines to execute, false when script is finished
  */
 bool badBleNextLine() {
-  if (!badBleScriptPtr) return false;
-  int len = strlen(badBleScriptPtr);
+  if (badBleLines == nullptr || badBleCurrentLine >= badBleLineCount) return false;
 
-  while (badBleScriptPos < len && (badBleScriptPtr[badBleScriptPos] == '\n' || badBleScriptPtr[badBleScriptPos] == '\r'))
-    badBleScriptPos++;
-
-  if (badBleScriptPos >= len) return false;
-
-  int lineStart = badBleScriptPos;
-  while (badBleScriptPos < len && badBleScriptPtr[badBleScriptPos] != '\n' && badBleScriptPtr[badBleScriptPos] != '\r')
-    badBleScriptPos++;
-
-  String line = String(badBleScriptPtr).substring(lineStart, badBleScriptPos);
-  line.trim();
+  // The line about to run; badBleCurrentLine drives the on-screen highlight.
+  String line = badBleLines[badBleCurrentLine];
+  badBleCurrentLine++;
 
   if (line.length() == 0 || line.startsWith("REM") || line.startsWith("//"))
     return true;
