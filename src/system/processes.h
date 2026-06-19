@@ -80,7 +80,8 @@
     X(SYSTEM,             808, systemMenuLoop) \
     X(SYSTEM_INFO,        809, systemInfoLoop) \
     X(SHUTDOWN,           810, shutdownLoop) \
-    X(WEATHER,            811, weatherLoop) 
+    X(WEATHER,            811, weatherLoop) \
+    X(BAD_USB,            812, badUsbLoop)
 
 namespace PID {
     #define X(name, id, fn) const int name = id;

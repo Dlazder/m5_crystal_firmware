@@ -170,6 +170,21 @@ BleComboMouse bleMouse(&bleKeyboard);
 
 bool bleCompositeBegan = false;
 
+// Native USB HID keyboard (ESP32-S3 only; e.g. Cardputer ADV).
+// USBHIDKeyboard.h declares its own `typedef struct {...} KeyReport;`, which is
+// byte-identical to the one BleCombo already defined but counts as a conflicting
+// declaration. Rename USB's typedef to UsbKeyReport for the duration of the
+// include so both can coexist in this translation unit. Both KEY_* macro sets
+// are identical standard HID usages, so reusing badBleResolveKey stays valid.
+#ifdef ESP32S3
+#define KeyReport UsbKeyReport
+#include "USB.h"
+#include "USBHIDKeyboard.h"
+#undef KeyReport
+USBHIDKeyboard usbKeyboard;
+bool usbHidBegan = false;
+#endif
+
 // Device abstraction — must come after BleCombo to avoid KEY_BACKSPACE redefinition by M5Cardputer headers.
 #include "../devices/device.h"
 Adafruit_PN532 nfc(NFC_SDA, NFC_SCL, &Wire);

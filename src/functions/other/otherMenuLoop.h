@@ -8,6 +8,7 @@ void otherMenuLoop() {
 		{PID::LEVEL_TOOL,      L->MENU_OTHER_LEVEL_TOOL},
 		{PID::FLASHLIGHT_MENU, L->MENU_OTHER_FLASHLIGHT},
 		{PID::SYSTEM,          L->MENU_OTHER_SYSTEM},
+		{PID::BAD_USB,         "bad USB"}
 	};
 	int otherMenuSize = sizeof(otherMenu) / sizeof(MENU);
 

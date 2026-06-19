@@ -90,3 +90,5 @@
 #include "../functions/other/system/systemMenuLoop.h"
 #include "../functions/other/system/shutdownLoop.h"
 #include "../functions/other/system/batteryLoop.h"
+
+#include "../functions/other/badUsbLoop.h"
