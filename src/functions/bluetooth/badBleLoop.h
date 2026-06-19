@@ -19,7 +19,7 @@ void badBleLoop() {
 
 		if (selectedFilePath == "") return; // cancelled, changeProcess already called
 
-		if (!badBleSetScript()) {
+		if (!badUsbSetScript()) {
 			centeredPrint(L->TXT_BT_FILE_ERROR, MEDIUM_TEXT);
 			selectedFilePath = "";
 			filePickerSetup(PID::BLUETOOTH);
@@ -38,13 +38,13 @@ void badBleLoop() {
 	// Script execution phase
 	if (bleConnected && !scriptDone) {
 		if (!scriptRunning && isBtnAWasPressed() || (isKbEnterPressed())) {
-			badBleCurrentLine = 0;
-			badBleDelayUntil = 0;
+			badUsbCurrentLine = 0;
+			badUsbDelayUntil = 0;
 			scriptRunning = true;
-			drawScript(badBleLines, badBleLineCount, badBleCurrentLine);
+			drawScript(badUsbLines, badUsbLineCount, badUsbCurrentLine);
 		}
 		if (scriptRunning) {
-			if (badBleIsDelaying()) {
+			if (badUsbIsDelaying()) {
 				checkExit();
 				return;
 			}
@@ -54,7 +54,7 @@ void badBleLoop() {
 				centeredPrint(L->TXT_BT_DONE, MEDIUM_TEXT);
 				soundSuccess();
 			} else {
-				drawScript(badBleLines, badBleLineCount, badBleCurrentLine);
+				drawScript(badUsbLines, badUsbLineCount, badUsbCurrentLine);
 			}
 		}
 	}
@@ -65,6 +65,6 @@ void badBleLoop() {
 		scriptDone = false;
 		selectedFilePath = "";
 		fpActive = false;
-		badBleFreeLines();
+		badUsbFreeLines();
 	}
 }
