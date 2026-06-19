@@ -83,6 +83,10 @@ struct Locale {
 	const char* MENU_OTHER_FLICKER;
 	const char* MENU_OTHER_LEVEL_TOOL;
 
+	// USB menu
+	const char* MENU_USB;
+	const char* MENU_USB_BAD_USB;
+
 	// System menu
 	const char* MENU_SYSTEM_INFO;
 	const char* MENU_SYSTEM_SHUTDOWN;

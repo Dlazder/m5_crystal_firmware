@@ -14,5 +14,6 @@ void flashLightLoop() {
 
 	if (checkExit()) {
 		statusBar = flashLightStatusBarWasEnabled;
+		canvas.clear();
 	}
 }

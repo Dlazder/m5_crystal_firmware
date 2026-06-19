@@ -83,6 +83,10 @@ const Locale LANG_IT = {
     .MENU_OTHER_FLICKER           = "sfarfallio",
     .MENU_OTHER_LEVEL_TOOL        = "livella",
 
+    // USB menu
+    .MENU_USB                     = "USB",
+    .MENU_USB_BAD_USB             = "bad USB",
+
     // System menu
     .MENU_SYSTEM_INFO             = "info",
     .MENU_SYSTEM_SHUTDOWN         = "spegni",

@@ -53,7 +53,6 @@ uint16_t BGCOLOR=TFT_BLACK;
 uint16_t FGCOLOR=TFT_WHITE;
 uint16_t colors[] = {TFT_WHITE, TFT_RED, TFT_ORANGE, TFT_YELLOW, TFT_GREEN, TFT_CYAN, TFT_BLUE, TFT_VIOLET, TFT_MAGENTA};
 const char* colorsEntry[] = {"WHITE", "RED", "ORANGE", "YELLOW", "GREEN", "CYAN", "BLUE", "VIOLET", "MAGENTA"};
-int colorIndex = 0;
 
 // Text sizes — scaled by applyFont() to normalize line height across fonts
 float TINY_TEXT        = 1.0f;
@@ -169,6 +168,21 @@ BleComboKeyboard bleKeyboard("M5 Crystal", "M5 Crystal");
 BleComboMouse bleMouse(&bleKeyboard);
 
 bool bleCompositeBegan = false;
+
+// Native USB HID keyboard (ESP32-S3 only; e.g. Cardputer ADV).
+// USBHIDKeyboard.h declares its own `typedef struct {...} KeyReport;`, which is
+// byte-identical to the one BleCombo already defined but counts as a conflicting
+// declaration. Rename USB's typedef to UsbKeyReport for the duration of the
+// include so both can coexist in this translation unit. Both KEY_* macro sets
+// are identical standard HID usages, so reusing badUsbResolveKey stays valid.
+#ifdef ESP32S3
+#define KeyReport UsbKeyReport
+#include "USB.h"
+#include "USBHIDKeyboard.h"
+#undef KeyReport
+USBHIDKeyboard usbKeyboard;
+bool usbHidBegan = false;
+#endif
 
 // Device abstraction — must come after BleCombo to avoid KEY_BACKSPACE redefinition by M5Cardputer headers.
 #include "../devices/device.h"

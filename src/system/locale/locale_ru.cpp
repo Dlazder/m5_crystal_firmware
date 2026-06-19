@@ -83,6 +83,10 @@ const Locale LANG_RU = {
 	.MENU_OTHER_FLICKER          = "мигание",
 	.MENU_OTHER_LEVEL_TOOL       = "уровень",
 
+	// USB menu
+	.MENU_USB                    = "USB",
+	.MENU_USB_BAD_USB            = "bad USB",
+
 	// System menu
 	.MENU_SYSTEM_INFO            = "инфо",
 	.MENU_SYSTEM_SHUTDOWN        = "выключить",

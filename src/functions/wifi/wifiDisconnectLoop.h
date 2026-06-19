@@ -9,10 +9,9 @@ void wifiDisconnectLoop() {
 		} else {
 			String lines[] = {
 				L->TXT_CONNECTED,
-				L->TXT_PRESS_A,
-				"To disconnect"
 			};
-			centeredPrintRows(lines, 3, MEDIUM_TEXT);
+			centeredPrintRows(lines, 1, MEDIUM_TEXT, true);
+			drawHintCustom("enter: disconnect", "A: disconnect");
 		}
 	}
 

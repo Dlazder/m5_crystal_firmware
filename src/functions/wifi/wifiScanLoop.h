@@ -21,7 +21,7 @@ void wifiScanLoop() {
 			wifiScanMenu[1].name = L->MENU_RESCAN;
 			wifiScanMenu[1].command = PID::WIFI_SCAN;
 			for (int i = 0; i < wifiCount; i++) {
-				wifiScanMenu[i + 2].name = WiFi.SSID(i).substring(0, 14);
+				wifiScanMenu[i + 2].name = WiFi.SSID(i);
 				wifiScanMenu[i + 2].command = PID::WIFI_SELECTED;
 			}
 		}

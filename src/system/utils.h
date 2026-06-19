@@ -21,5 +21,7 @@
 #include "../utils/sdUtils.h"
 #include "../utils/filePickerUtils.h"
 #include "../utils/wifiUtils/wifiStorageUtils.h"
-#include "../utils/badBleUtils.h"
+#include "../utils/badUsbUtils.h"
 #include "../utils/bleUtils.h"
+
+#include "../utils/commandUtils/screenshotCommand.h"

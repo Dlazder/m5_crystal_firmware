@@ -1,0 +1,6 @@
+REM Open a website in the default browser
+DELAY 500
+COMBO GUI r
+DELAY 600
+STRING https://github.com/Dlazder/m5_crystal_firmware
+KEY ENTER

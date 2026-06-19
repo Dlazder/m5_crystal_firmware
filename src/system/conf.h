@@ -17,6 +17,8 @@ bool startupSound = false;
 // keyboard gyro mode
 bool kbGyroEnabled = true;
 
+// Current color index
+int colorIndex = 2;
 
 int currentFontIndex = 0;
 

@@ -1,0 +1,9 @@
+REM Open Command Prompt and echo a message
+DELAY 500
+COMBO GUI r
+DELAY 500
+STRING cmd
+KEY ENTER
+DELAY 1000
+STRING echo Hello from M5 Crystal firmware!
+KEY ENTER

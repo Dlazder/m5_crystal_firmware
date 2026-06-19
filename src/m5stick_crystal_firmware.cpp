@@ -3,6 +3,7 @@
 #include "./system/functions.h"
 #include "./system/switcher.h"
 #include "./system/loadPreferences.h"
+#include "./system/serialCommandHandler.h"
 
 void setup() {
   deviceInit();
@@ -43,6 +44,8 @@ void setup() {
 void loop() {
   globalTimer = millis();
   deviceUpdate();
+
+  handleSerialCommands();
 
   dimmerUpdate();
 

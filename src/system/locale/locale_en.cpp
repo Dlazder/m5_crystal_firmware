@@ -83,6 +83,10 @@ const Locale LANG_EN = {
 	.MENU_OTHER_FLICKER          = "flicker",
 	.MENU_OTHER_LEVEL_TOOL       = "level tool",
 
+	// USB menu
+	.MENU_USB                    = "USB",
+	.MENU_USB_BAD_USB            = "bad USB",
+
 	// System menu
 	.MENU_SYSTEM_INFO            = "info",
 	.MENU_SYSTEM_SHUTDOWN        = "shutdown",

@@ -5,3 +5,4 @@
 #include "drawHints.h"
 #include "drawStartupScreen.h"
 #include "drawSpinner.h"
+#include "drawScript.h"

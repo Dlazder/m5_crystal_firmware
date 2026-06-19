@@ -76,6 +76,12 @@
 #include "../functions/ir/irSendLoop.h"
 #include "../functions/ir/irTvBGoneLoop.h"
 
+
+// USB
+#include "../functions/usb/usbMenuLoop.h"
+#include "../functions/usb/badUsbLoop.h"
+
+
 // Others
 #include "../functions/other/otherMenuLoop.h"
 #include "../functions/other/soundLevelLoop.h"
