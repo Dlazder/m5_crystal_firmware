@@ -82,7 +82,10 @@ const Locale LANG_DE = {
 	.MENU_OTHER_FLASHLIGHT       = "taschenlampe",
 	.MENU_OTHER_FLICKER          = "flackern",
 	.MENU_OTHER_LEVEL_TOOL       = "wasserwaage",
-	.MENU_OTHER_BAD_USB          = "bad USB",
+
+	// USB menu
+	.MENU_USB                    = "USB",
+	.MENU_USB_BAD_USB            = "bad USB",
 
 	// System menu
 	.MENU_SYSTEM_INFO            = "info",

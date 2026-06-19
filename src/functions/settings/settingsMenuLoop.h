@@ -18,7 +18,6 @@ void settingsMenuLoop() {
 	int settingsMenuSize = sizeof(settingsMenu) / sizeof(MENU);
 
 	if (isSetup()) {
-		DISP.setTextSize(MEDIUM_TEXT);
 		if (previousProcess == PID::MAIN_MENU) cursor = 0;
 		drawMenu(settingsMenu, settingsMenuSize);
 	}

@@ -68,6 +68,8 @@
     X(IR_SEND,            602, irSendLoop) \
     X(IR_TV_B_GONE,       603, irTvBGoneLoop) \
     \
+    X(USB,                700, usbMenuLoop) \
+    X(BAD_USB,            701, badUsbLoop) \
     /* Other (800-899) */ \
     X(OTHER,              800, otherMenuLoop) \
     X(CLOCK,              801, clockLoop) \
@@ -81,7 +83,6 @@
     X(SYSTEM_INFO,        809, systemInfoLoop) \
     X(SHUTDOWN,           810, shutdownLoop) \
     X(WEATHER,            811, weatherLoop) \
-    X(BAD_USB,            812, badUsbLoop)
 
 namespace PID {
     #define X(name, id, fn) const int name = id;

@@ -82,7 +82,10 @@ struct Locale {
 	const char* MENU_OTHER_FLASHLIGHT;
 	const char* MENU_OTHER_FLICKER;
 	const char* MENU_OTHER_LEVEL_TOOL;
-	const char* MENU_OTHER_BAD_USB;
+
+	// USB menu
+	const char* MENU_USB;
+	const char* MENU_USB_BAD_USB;
 
 	// System menu
 	const char* MENU_SYSTEM_INFO;

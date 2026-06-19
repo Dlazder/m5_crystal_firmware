@@ -82,7 +82,10 @@ const Locale LANG_ES = {
 	.MENU_OTHER_FLASHLIGHT = "linterna",
 	.MENU_OTHER_FLICKER = "parpadeo",
 	.MENU_OTHER_LEVEL_TOOL = "nivel",
-	.MENU_OTHER_BAD_USB = "bad USB",
+
+	// USB menu
+	.MENU_USB = "USB",
+	.MENU_USB_BAD_USB = "bad USB",
 
 	// System menu
 	.MENU_SYSTEM_INFO = "info",
