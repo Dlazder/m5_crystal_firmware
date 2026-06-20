@@ -88,6 +88,8 @@ const Locale LANG_UK = {
 	.MENU_USB                    = "USB",
 	.MENU_USB_BAD_USB            = "bad USB",
 	.MENU_USB_MOUSE_JIGGLER      = "посмикувач миші",
+	.MENU_USB_MOUSE              = "аеромиша",
+	.MENU_USB_KEYBOARD           = "клавіатура",
 	
 	// System menu
 	.MENU_SYSTEM_INFO            = "інфо",
@@ -136,6 +138,9 @@ const Locale LANG_UK = {
 	.TXT_BT_PRESS_A_TO_RUN       = "A - запустити",
 	.TXT_BT_RUNNING              = "Виконання...",
 	.TXT_BT_DONE                 = "Готово!",
+
+	// USB text
+	.TXT_USB_HID_UNSOPPORTED     = "USB HID не підтримується",
 
 	// NFC text
 	.TXT_NFC_NO_UID_STORED       = "UID не збережено",

@@ -88,6 +88,8 @@ const Locale LANG_ID = {
     .MENU_USB                     = "USB",
     .MENU_USB_BAD_USB             = "bad USB",
     .MENU_USB_MOUSE_JIGGLER       = "mouse jiggler",
+    .MENU_USB_MOUSE               = "air mouse",
+    .MENU_USB_KEYBOARD            = "keyboard",
 
     // System menu
     .MENU_SYSTEM_INFO             = "info",
@@ -136,6 +138,9 @@ const Locale LANG_ID = {
     .TXT_BT_PRESS_A_TO_RUN        = "Tekan A untuk jalan",
     .TXT_BT_RUNNING               = "Berjalan...",
     .TXT_BT_DONE                  = "Selesai!",
+
+    // USB text
+    .TXT_USB_HID_UNSOPPORTED      = "USB HID tidak didukung",
 
     // NFC text
     .TXT_NFC_NO_UID_STORED        = "Tidak ada UID",

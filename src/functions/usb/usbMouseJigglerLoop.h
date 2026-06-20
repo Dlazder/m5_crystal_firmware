@@ -52,7 +52,7 @@ void usbMouseJigglerLoop() {
 
 void usbMouseJigglerLoop() {
 	if (isSetup()) {
-		centeredPrint(L->TXT_BT_FILE_ERROR, MEDIUM_TEXT);
+		centeredPrint(L->TXT_USB_HID_UNSOPPORTED, MEDIUM_TEXT);
 	}
 	checkExit();
 }

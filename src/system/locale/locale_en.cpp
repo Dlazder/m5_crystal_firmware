@@ -88,6 +88,8 @@ const Locale LANG_EN = {
 	.MENU_USB                    = "USB",
 	.MENU_USB_BAD_USB            = "bad USB",
 	.MENU_USB_MOUSE_JIGGLER      = "mouse jiggler",
+	.MENU_USB_MOUSE              = "air mouse",
+	.MENU_USB_KEYBOARD           = "keyboard",
 
 	// System menu
 	.MENU_SYSTEM_INFO            = "info",
@@ -136,6 +138,9 @@ const Locale LANG_EN = {
 	.TXT_BT_PRESS_A_TO_RUN       = "Press A to run",
 	.TXT_BT_RUNNING              = "Running...",
 	.TXT_BT_DONE                 = "Done!",
+
+	// USB text
+	.TXT_USB_HID_UNSOPPORTED     = "USB HID not supported",
 
 	// NFC text
 	.TXT_NFC_NO_UID_STORED       = "No UID stored",
