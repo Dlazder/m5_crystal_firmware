@@ -44,6 +44,7 @@
     X(BT_PRESENTER, 307, bluetoothPresenterLoop) \
     X(BT_SHUTTER,   308, bluetoothShutterLoop) \
     X(BAD_BLE,      309, badBleLoop) \
+    X(BT_MOUSE_JIGGLER, 310, bluetoothMouseJigglerLoop) \
     \
     /* NFC (400-499) */ \
     X(NFC,       400, nfcMenuLoop) \
@@ -70,6 +71,7 @@
     \
     X(USB,                700, usbMenuLoop) \
     X(BAD_USB,            701, badUsbLoop) \
+    X(USB_MOUSE_JIGGLER,  702, usbMouseJigglerLoop) \
     /* Other (800-899) */ \
     X(OTHER,              800, otherMenuLoop) \
     X(CLOCK,              801, clockLoop) \

@@ -24,6 +24,7 @@ const Locale LANG_RU = {
 	.MENU_BT_FIND                = "поиск",
 	.MENU_BT_KEYBOARD            = "клавиатура",
 	.MENU_BT_AIR_MOUSE           = "air mouse",
+	.MENU_BT_MOUSE_JIGGLER       = "подергиватель мыши",
 	.MENU_BT_PRESENTER           = "презентер",
 	.MENU_BT_SHUTTER             = "затвор",
 	.MENU_BT_BAD_BLE             = "bad BLE",
@@ -86,6 +87,7 @@ const Locale LANG_RU = {
 	// USB menu
 	.MENU_USB                    = "USB",
 	.MENU_USB_BAD_USB            = "bad USB",
+	.MENU_USB_MOUSE_JIGGLER      = "подергиватель мыши",
 
 	// System menu
 	.MENU_SYSTEM_INFO            = "инфо",
@@ -107,6 +109,7 @@ const Locale LANG_RU = {
 	.TXT_DISCONNECTED            = "Отключено",
 	.TXT_DISCONNECTING           = "Отключение...",
 	.TXT_WAITING_CONNECTION      = "Ожидание...",
+	.TXT_WORKING                 = "Работает",
 	.TXT_NOT_CONNECTED           = "Не подключено",
 	.TXT_FAILED                  = "Ошибка",
 	.TXT_SUCCESS                 = "Успешно",

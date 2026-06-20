@@ -24,6 +24,7 @@ struct Locale {
 	const char* MENU_BT_FIND;
 	const char* MENU_BT_KEYBOARD;
 	const char* MENU_BT_AIR_MOUSE;
+	const char* MENU_BT_MOUSE_JIGGLER;
 	const char* MENU_BT_PRESENTER;
 	const char* MENU_BT_SHUTTER;
 	const char* MENU_BT_BAD_BLE;
@@ -86,6 +87,7 @@ struct Locale {
 	// USB menu
 	const char* MENU_USB;
 	const char* MENU_USB_BAD_USB;
+	const char* MENU_USB_MOUSE_JIGGLER;
 
 	// System menu
 	const char* MENU_SYSTEM_INFO;
@@ -108,6 +110,7 @@ struct Locale {
 	const char* TXT_DISCONNECTED;
 	const char* TXT_DISCONNECTING;
 	const char* TXT_WAITING_CONNECTION;
+	const char* TXT_WORKING;
 	const char* TXT_NOT_CONNECTED;
 	const char* TXT_FAILED;
 	const char* TXT_SUCCESS;

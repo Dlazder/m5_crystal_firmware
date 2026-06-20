@@ -179,8 +179,10 @@ bool bleCompositeBegan = false;
 #define KeyReport UsbKeyReport
 #include "USB.h"
 #include "USBHIDKeyboard.h"
+#include "USBHIDMouse.h"
 #undef KeyReport
 USBHIDKeyboard usbKeyboard;
+USBHIDMouse usbMouse;
 bool usbHidBegan = false;
 #endif
 

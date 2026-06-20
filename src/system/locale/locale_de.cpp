@@ -24,6 +24,7 @@ const Locale LANG_DE = {
 	.MENU_BT_FIND                = "suchen",
 	.MENU_BT_KEYBOARD            = "tastatur",
 	.MENU_BT_AIR_MOUSE           = "air mouse",
+	.MENU_BT_MOUSE_JIGGLER       = "Maus-Jiggler",
 	.MENU_BT_PRESENTER           = "präsent.",
 	.MENU_BT_SHUTTER             = "auslöser",
 	.MENU_BT_BAD_BLE             = "bad BLE",
@@ -86,6 +87,7 @@ const Locale LANG_DE = {
 	// USB menu
 	.MENU_USB                    = "USB",
 	.MENU_USB_BAD_USB            = "bad USB",
+	.MENU_USB_MOUSE_JIGGLER      = "Maus-Jiggler",
 
 	// System menu
 	.MENU_SYSTEM_INFO            = "info",
@@ -107,6 +109,7 @@ const Locale LANG_DE = {
 	.TXT_DISCONNECTED            = "Getrennt",
 	.TXT_DISCONNECTING           = "Trennen...",
 	.TXT_WAITING_CONNECTION      = "Warten...",
+	.TXT_WORKING                 = "Arbeitet",
 	.TXT_NOT_CONNECTED           = "Nicht verbunden",
 	.TXT_FAILED                  = "Fehlgeschlagen",
 	.TXT_SUCCESS                 = "Erfolg",

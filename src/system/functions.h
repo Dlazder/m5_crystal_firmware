@@ -62,6 +62,7 @@
 #include "../functions/bluetooth/bluetoothInfoLoop.h"
 #include "../functions/bluetooth/bluetoothFinderLoop.h"
 #include "../functions/bluetooth/badBleLoop.h"
+#include "../functions/bluetooth/bluetoothMouseJigglerLoop.h"
 
 
 // NFC functions
@@ -80,6 +81,7 @@
 // USB
 #include "../functions/usb/usbMenuLoop.h"
 #include "../functions/usb/badUsbLoop.h"
+#include "../functions/usb/usbMouseJigglerLoop.h"
 
 
 // Others

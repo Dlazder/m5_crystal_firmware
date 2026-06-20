@@ -24,6 +24,7 @@ const Locale LANG_UK = {
 	.MENU_BT_FIND                = "пошук",
 	.MENU_BT_KEYBOARD            = "клавіатура",
 	.MENU_BT_AIR_MOUSE           = "air mouse",
+	.MENU_BT_MOUSE_JIGGLER       = "посмикувач миші",
 	.MENU_BT_PRESENTER           = "презентер",
 	.MENU_BT_SHUTTER             = "затвор",
 	.MENU_BT_BAD_BLE             = "bad BLE",
@@ -86,6 +87,7 @@ const Locale LANG_UK = {
 	// USB menu
 	.MENU_USB                    = "USB",
 	.MENU_USB_BAD_USB            = "bad USB",
+	.MENU_USB_MOUSE_JIGGLER      = "посмикувач миші",
 	
 	// System menu
 	.MENU_SYSTEM_INFO            = "інфо",
@@ -107,6 +109,7 @@ const Locale LANG_UK = {
 	.TXT_DISCONNECTED            = "Відключено",
 	.TXT_DISCONNECTING           = "Відключення...",
 	.TXT_WAITING_CONNECTION      = "Очікування...",
+	.TXT_WORKING                 = "Працює",
 	.TXT_NOT_CONNECTED           = "Не підключено",
 	.TXT_FAILED                  = "Помилка",
 	.TXT_SUCCESS                 = "Успішно",
