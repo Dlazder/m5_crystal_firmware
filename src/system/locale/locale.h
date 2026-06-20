@@ -17,6 +17,7 @@ struct Locale {
 	const char* MENU_WIFI_SYNC_TIME;
 	const char* MENU_WIFI_WPA_BF;
 	const char* MENU_WIFI_WPA_BF_ALL;
+	const char* MENU_WIFI_DEAUTH_ALL;
 
 	// Bluetooth menu
 	const char* MENU_BT;

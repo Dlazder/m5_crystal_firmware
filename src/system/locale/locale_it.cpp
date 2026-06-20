@@ -17,6 +17,7 @@ const Locale LANG_IT = {
     .MENU_WIFI_SYNC_TIME          = "sincronizza ora",
     .MENU_WIFI_WPA_BF             = "wpa bruteforce",
     .MENU_WIFI_WPA_BF_ALL         = "wpa bf tutte reti",
+    .MENU_WIFI_DEAUTH_ALL         = "deauth tutte",
 
     // Bluetooth menu
     .MENU_BT                      = "Bluetooth",

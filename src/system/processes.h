@@ -32,6 +32,7 @@
     X(WIFI_TIME_SYNC,    208, wifiTimeSyncLoop) \
     X(WIFI_WPA_BF,       209, wifiBruteforceLoop) \
     X(WIFI_WPA_BF_ALL,   210, wifiBruteforceAllLoop) \
+    X(WIFI_DEAUTH_ALL,   211, wifiDeauthAllLoop) \
     \
     /* Bluetooth (300-399) */ \
     X(BLUETOOTH,    300, bluetoothMenuLoop) \

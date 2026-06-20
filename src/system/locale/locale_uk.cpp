@@ -17,6 +17,7 @@ const Locale LANG_UK = {
 	.MENU_WIFI_SYNC_TIME         = "синхр. час",
 	.MENU_WIFI_WPA_BF            = "wpa брутфорс",
 	.MENU_WIFI_WPA_BF_ALL        = "wpa бф всі мережі",
+	.MENU_WIFI_DEAUTH_ALL        = "деаут всі",
 
 	// Bluetooth menu
 	.MENU_BT                     = "Bluetooth",
