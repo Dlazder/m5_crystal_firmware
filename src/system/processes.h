@@ -74,6 +74,7 @@
     X(USB_MOUSE_JIGGLER,  702, usbMouseJigglerLoop) \
     X(USB_MOUSE,          703, usbMouseLoop) \
     X(USB_KEYBOARD,       704, usbKeyboardLoop) \
+    X(USB_STORAGE,        705, usbStorageLoop) \
     /* Other (800-899) */ \
     X(OTHER,              800, otherMenuLoop) \
     X(CLOCK,              801, clockLoop) \

@@ -90,6 +90,7 @@ const Locale LANG_ID = {
     .MENU_USB_MOUSE_JIGGLER       = "mouse jiggler",
     .MENU_USB_MOUSE               = "air mouse",
     .MENU_USB_KEYBOARD            = "keyboard",
+    .MENU_USB_STORAGE             = "penyimpanan",
 
     // System menu
     .MENU_SYSTEM_INFO             = "info",
@@ -141,6 +142,9 @@ const Locale LANG_ID = {
 
     // USB text
     .TXT_USB_HID_UNSOPPORTED      = "USB HID tidak didukung",
+    .TXT_USB_STORAGE_NO_SD        = "Tidak ada kartu SD",
+    .TXT_USB_STORAGE_ACTIVE       = "Penyimpanan USB aktif",
+    .TXT_USB_STORAGE_HINT         = "Keluarkan untuk keluar",
 
     // NFC text
     .TXT_NFC_NO_UID_STORED        = "Tidak ada UID",

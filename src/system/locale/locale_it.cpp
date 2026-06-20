@@ -90,6 +90,7 @@ const Locale LANG_IT = {
     .MENU_USB_MOUSE_JIGGLER       = "mouse jiggler",
     .MENU_USB_MOUSE               = "air mouse",
     .MENU_USB_KEYBOARD            = "tastiera",
+    .MENU_USB_STORAGE             = "archiviazione",
 
     // System menu
     .MENU_SYSTEM_INFO             = "info",
@@ -141,6 +142,9 @@ const Locale LANG_IT = {
 
     // USB text
     .TXT_USB_HID_UNSOPPORTED      = "USB HID non supportato",
+    .TXT_USB_STORAGE_NO_SD        = "Nessuna scheda SD",
+    .TXT_USB_STORAGE_ACTIVE       = "Archiviazione USB attiva",
+    .TXT_USB_STORAGE_HINT         = "Espelli per uscire",
 
     // NFC text
     .TXT_NFC_NO_UID_STORED        = "Nessun UID salvato",

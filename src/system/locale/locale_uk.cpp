@@ -90,6 +90,7 @@ const Locale LANG_UK = {
 	.MENU_USB_MOUSE_JIGGLER      = "посмикувач миші",
 	.MENU_USB_MOUSE              = "аеромиша",
 	.MENU_USB_KEYBOARD           = "клавіатура",
+	.MENU_USB_STORAGE            = "накопичувач",
 	
 	// System menu
 	.MENU_SYSTEM_INFO            = "інфо",
@@ -141,6 +142,9 @@ const Locale LANG_UK = {
 
 	// USB text
 	.TXT_USB_HID_UNSOPPORTED     = "USB HID не підтримується",
+	.TXT_USB_STORAGE_NO_SD       = "Немає SD карти",
+	.TXT_USB_STORAGE_ACTIVE      = "USB накопичувач активний",
+	.TXT_USB_STORAGE_HINT        = "Витягніть для виходу",
 
 	// NFC text
 	.TXT_NFC_NO_UID_STORED       = "UID не збережено",

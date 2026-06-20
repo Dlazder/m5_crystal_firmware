@@ -90,6 +90,7 @@ struct Locale {
 	const char* MENU_USB_MOUSE_JIGGLER;
 	const char* MENU_USB_MOUSE;
 	const char* MENU_USB_KEYBOARD;
+	const char* MENU_USB_STORAGE;
 
 	// System menu
 	const char* MENU_SYSTEM_INFO;
@@ -142,6 +143,9 @@ struct Locale {
 
 	// USB text
 	const char* TXT_USB_HID_UNSOPPORTED;
+	const char* TXT_USB_STORAGE_NO_SD;
+	const char* TXT_USB_STORAGE_ACTIVE;
+	const char* TXT_USB_STORAGE_HINT;
 
 	// NFC text
 	const char* TXT_NFC_NO_UID_STORED;

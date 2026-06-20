@@ -90,6 +90,7 @@ const Locale LANG_RU = {
 	.MENU_USB_MOUSE_JIGGLER      = "подергиватель мыши",
 	.MENU_USB_MOUSE              = "аэромышь",
 	.MENU_USB_KEYBOARD           = "клавиатура",
+	.MENU_USB_STORAGE            = "накопитель",
 
 	// System menu
 	.MENU_SYSTEM_INFO            = "инфо",
@@ -141,6 +142,9 @@ const Locale LANG_RU = {
 
 	// USB text
 	.TXT_USB_HID_UNSOPPORTED     = "USB HID не поддерживается",
+	.TXT_USB_STORAGE_NO_SD       = "Нет SD карты",
+	.TXT_USB_STORAGE_ACTIVE      = "USB накопитель активен",
+	.TXT_USB_STORAGE_HINT        = "Извлеките для выхода",
 
 	// NFC text
 	.TXT_NFC_NO_UID_STORED       = "UID не сохранён",

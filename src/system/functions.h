@@ -84,6 +84,7 @@
 #include "../functions/usb/usbMouseJigglerLoop.h"
 #include "../functions/usb/usbMouseLoop.h"
 #include "../functions/usb/usbKeyboardLoop.h"
+#include "../functions/usb/usbStorageLoop.h"
 
 
 // Others
