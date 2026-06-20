@@ -28,6 +28,7 @@ struct Locale {
 	const char* MENU_BT_PRESENTER;
 	const char* MENU_BT_SHUTTER;
 	const char* MENU_BT_BAD_BLE;
+	const char* MENU_BT_SNIFFER;
 
 	// Files menu
 	const char* MENU_FILES;

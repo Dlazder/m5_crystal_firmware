@@ -28,6 +28,7 @@ const Locale LANG_IT = {
     .MENU_BT_PRESENTER            = "presentatore",
     .MENU_BT_SHUTTER              = "otturatore",
     .MENU_BT_BAD_BLE              = "bad BLE",
+    .MENU_BT_SNIFFER              = "sniffer BLE",
 
     // Files menu
     .MENU_FILES                   = "file",

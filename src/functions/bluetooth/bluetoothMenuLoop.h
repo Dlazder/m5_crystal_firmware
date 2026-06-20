@@ -4,6 +4,7 @@ void bluetoothMenuLoop() {
 	MENU bluetoothMenu[] = {
 		{PID::MAIN_MENU,    L->MENU_BACK},
 		{PID::BT_SCAN,      L->MENU_SCAN},
+		{PID::BT_SNIFFER,   L->MENU_BT_SNIFFER},
 		{PID::BAD_BLE,      L->MENU_BT_BAD_BLE},
 		{PID::BT_KEYBOARD,  L->MENU_BT_KEYBOARD},
 		{PID::BT_MOUSE,     L->MENU_BT_AIR_MOUSE},
