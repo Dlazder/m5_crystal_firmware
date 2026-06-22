@@ -12,7 +12,9 @@ Connect the PN532 module to the GROVE port. Switch the module to **I2C mode**.
 
 <img src="../images/NFC_I2C.png" width="200" alt="PN532 I2C mode"/>
 
-| M5Stick GROVE | PN532 |
+### M5StickC Plus 2
+
+| M5StickCPlus2 GROVE | PN532 |
 | - | - |
 | G | GND |
 | 5V | VCC |
@@ -21,7 +23,14 @@ Connect the PN532 module to the GROVE port. Switch the module to **I2C mode**.
 
 <img src="../images/NFC_connection_example.png" alt="PN532 connection example"/>
 
-Cardputer: later
+### Cardputer-ADV
+
+| Cardputer-ADV GROVE | PN532 |
+| - | - |
+| GND | GND |
+| 5V | VCC |
+| G2 | SDA |
+| G1 | SCL |
 
 ## SD Card
 

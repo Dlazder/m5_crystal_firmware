@@ -24,9 +24,9 @@
 #define IMU_LEVEL_ROLL(ax, ay)        ( -atan2((ay), (ax)) * 180 / PI )
 #define IMU_LEVEL_ANGLE(ax, ay)       ( abs(atan2((ax), (ay)) * 180 / PI) )
 
-// NFC I2C pins (Cardputer uses default SDA/SCL)
-#define NFC_SDA  SDA
-#define NFC_SCL  SCL
+// NFC I2C pins (Cardputer GROVE port — G2=SDA, G1=SCL)
+#define NFC_SDA  2
+#define NFC_SCL  1
 
 // IR transmitter — built-in LED on G44
 #define IR_SEND_PIN 44
