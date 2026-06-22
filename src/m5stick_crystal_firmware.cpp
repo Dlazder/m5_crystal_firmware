@@ -9,6 +9,7 @@ void setup() {
   deviceInit();
   hasImu = (DEVICE.Imu.getType() != m5::imu_none);
   Serial.begin(115200);
+  Serial.printf("[DEBUG] Detected board type: %d\n", (int)DEVICE.getBoard());
   preferences.begin("storage", false);
   loadPreferences();
 
