@@ -25,3 +25,4 @@
 #include "../utils/bleUtils.h"
 
 #include "../utils/commandUtils/screenshotCommand.h"
+#include "../utils/commandUtils/info.h"
