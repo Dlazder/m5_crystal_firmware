@@ -6,6 +6,8 @@ void handleSerialCommands() {
 
   if (cmd == "/screenshot") {
     screenshotCommand();
+  } else if (cmd == "/info") {
+    infoCommand();
   } else {
     Serial.println("Command not found!");
   }

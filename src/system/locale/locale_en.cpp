@@ -17,6 +17,7 @@ const Locale LANG_EN = {
 	.MENU_WIFI_SYNC_TIME         = "sync time",
 	.MENU_WIFI_WPA_BF            = "wpa bruteforce",
 	.MENU_WIFI_WPA_BF_ALL        = "wpa bf all nets",
+	.MENU_WIFI_DEAUTH_ALL        = "deauth all",
 
 	// Bluetooth menu
 	.MENU_BT                     = "Bluetooth",
@@ -24,9 +25,11 @@ const Locale LANG_EN = {
 	.MENU_BT_FIND                = "find",
 	.MENU_BT_KEYBOARD            = "keyboard",
 	.MENU_BT_AIR_MOUSE           = "air mouse",
+	.MENU_BT_MOUSE_JIGGLER       = "mouse jiggler",
 	.MENU_BT_PRESENTER           = "presenter",
 	.MENU_BT_SHUTTER             = "shutter",
 	.MENU_BT_BAD_BLE             = "bad BLE",
+	.MENU_BT_SNIFFER             = "BLE sniffer",
 
 	// Files menu
 	.MENU_FILES                  = "files",
@@ -86,6 +89,10 @@ const Locale LANG_EN = {
 	// USB menu
 	.MENU_USB                    = "USB",
 	.MENU_USB_BAD_USB            = "bad USB",
+	.MENU_USB_MOUSE_JIGGLER      = "mouse jiggler",
+	.MENU_USB_MOUSE              = "air mouse",
+	.MENU_USB_KEYBOARD           = "keyboard",
+	.MENU_USB_STORAGE            = "storage",
 
 	// System menu
 	.MENU_SYSTEM_INFO            = "info",
@@ -107,6 +114,7 @@ const Locale LANG_EN = {
 	.TXT_DISCONNECTED            = "Disconnected",
 	.TXT_DISCONNECTING           = "Disconnecting...",
 	.TXT_WAITING_CONNECTION      = "Waiting connection",
+	.TXT_WORKING                 = "Working",
 	.TXT_NOT_CONNECTED           = "Not connected",
 	.TXT_FAILED                  = "Failed",
 	.TXT_SUCCESS                 = "Success",
@@ -133,6 +141,12 @@ const Locale LANG_EN = {
 	.TXT_BT_PRESS_A_TO_RUN       = "Press A to run",
 	.TXT_BT_RUNNING              = "Running...",
 	.TXT_BT_DONE                 = "Done!",
+
+	// USB text
+	.TXT_USB_HID_UNSOPPORTED     = "USB HID not supported",
+	.TXT_USB_STORAGE_NO_SD       = "No SD card",
+	.TXT_USB_STORAGE_ACTIVE      = "USB storage active",
+	.TXT_USB_STORAGE_HINT        = "Eject to exit",
 
 	// NFC text
 	.TXT_NFC_NO_UID_STORED       = "No UID stored",

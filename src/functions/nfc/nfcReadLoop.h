@@ -42,6 +42,11 @@ void nfcReadLoop() {
 		};
 		centeredPrintRows(lines, 2, MEDIUM_TEXT);
 
+		// End any existing I2C session (e.g. internal bus brought up by the
+		// device init) so the bus is re-bound to the NFC GROVE pins. On ESP32
+		// Arduino core 2.x a repeated Wire.begin() with new pins is ignored
+		// unless the bus is released first.
+		Wire.end();
 		Wire.begin(NFC_SDA, NFC_SCL);
 		if (isPN532Connected()) {
 			nfc.begin();

@@ -17,6 +17,7 @@ const Locale LANG_ID = {
     .MENU_WIFI_SYNC_TIME          = "sinkron waktu",
     .MENU_WIFI_WPA_BF             = "wpa bruteforce",
     .MENU_WIFI_WPA_BF_ALL         = "wpa bf semua net",
+    .MENU_WIFI_DEAUTH_ALL         = "deauth semua",
 
     // Bluetooth menu
     .MENU_BT                      = "Bluetooth",
@@ -24,9 +25,11 @@ const Locale LANG_ID = {
     .MENU_BT_FIND                 = "cari",
     .MENU_BT_KEYBOARD             = "keyboard",
     .MENU_BT_AIR_MOUSE            = "air mouse",
+    .MENU_BT_MOUSE_JIGGLER        = "mouse jiggler",
     .MENU_BT_PRESENTER            = "presenter",
     .MENU_BT_SHUTTER              = "rana",
     .MENU_BT_BAD_BLE              = "bad BLE",
+    .MENU_BT_SNIFFER              = "sniffer BLE",
 
     // Files menu
     .MENU_FILES                   = "berkas",
@@ -86,6 +89,10 @@ const Locale LANG_ID = {
     // USB menu
     .MENU_USB                     = "USB",
     .MENU_USB_BAD_USB             = "bad USB",
+    .MENU_USB_MOUSE_JIGGLER       = "mouse jiggler",
+    .MENU_USB_MOUSE               = "air mouse",
+    .MENU_USB_KEYBOARD            = "keyboard",
+    .MENU_USB_STORAGE             = "penyimpanan",
 
     // System menu
     .MENU_SYSTEM_INFO             = "info",
@@ -107,6 +114,7 @@ const Locale LANG_ID = {
     .TXT_DISCONNECTED             = "Terputus",
     .TXT_DISCONNECTING            = "Memutus...",
     .TXT_WAITING_CONNECTION       = "Menunggu koneksi",
+    .TXT_WORKING                  = "Bekerja",
     .TXT_NOT_CONNECTED            = "Tidak terhubung",
     .TXT_FAILED                   = "Gagal",
     .TXT_SUCCESS                  = "Berhasil",
@@ -133,6 +141,12 @@ const Locale LANG_ID = {
     .TXT_BT_PRESS_A_TO_RUN        = "Tekan A untuk jalan",
     .TXT_BT_RUNNING               = "Berjalan...",
     .TXT_BT_DONE                  = "Selesai!",
+
+    // USB text
+    .TXT_USB_HID_UNSOPPORTED      = "USB HID tidak didukung",
+    .TXT_USB_STORAGE_NO_SD        = "Tidak ada kartu SD",
+    .TXT_USB_STORAGE_ACTIVE       = "Penyimpanan USB aktif",
+    .TXT_USB_STORAGE_HINT         = "Keluarkan untuk keluar",
 
     // NFC text
     .TXT_NFC_NO_UID_STORED        = "Tidak ada UID",

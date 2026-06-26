@@ -17,6 +17,7 @@ const Locale LANG_UK = {
 	.MENU_WIFI_SYNC_TIME         = "синхр. час",
 	.MENU_WIFI_WPA_BF            = "wpa брутфорс",
 	.MENU_WIFI_WPA_BF_ALL        = "wpa бф всі мережі",
+	.MENU_WIFI_DEAUTH_ALL        = "деаут всі",
 
 	// Bluetooth menu
 	.MENU_BT                     = "Bluetooth",
@@ -24,9 +25,11 @@ const Locale LANG_UK = {
 	.MENU_BT_FIND                = "пошук",
 	.MENU_BT_KEYBOARD            = "клавіатура",
 	.MENU_BT_AIR_MOUSE           = "air mouse",
+	.MENU_BT_MOUSE_JIGGLER       = "посмикувач миші",
 	.MENU_BT_PRESENTER           = "презентер",
 	.MENU_BT_SHUTTER             = "затвор",
 	.MENU_BT_BAD_BLE             = "bad BLE",
+	.MENU_BT_SNIFFER             = "BLE сніфер",
 
 	// Files menu
 	.MENU_FILES                  = "файли",
@@ -86,6 +89,10 @@ const Locale LANG_UK = {
 	// USB menu
 	.MENU_USB                    = "USB",
 	.MENU_USB_BAD_USB            = "bad USB",
+	.MENU_USB_MOUSE_JIGGLER      = "посмикувач миші",
+	.MENU_USB_MOUSE              = "аеромиша",
+	.MENU_USB_KEYBOARD           = "клавіатура",
+	.MENU_USB_STORAGE            = "накопичувач",
 	
 	// System menu
 	.MENU_SYSTEM_INFO            = "інфо",
@@ -107,6 +114,7 @@ const Locale LANG_UK = {
 	.TXT_DISCONNECTED            = "Відключено",
 	.TXT_DISCONNECTING           = "Відключення...",
 	.TXT_WAITING_CONNECTION      = "Очікування...",
+	.TXT_WORKING                 = "Працює",
 	.TXT_NOT_CONNECTED           = "Не підключено",
 	.TXT_FAILED                  = "Помилка",
 	.TXT_SUCCESS                 = "Успішно",
@@ -133,6 +141,12 @@ const Locale LANG_UK = {
 	.TXT_BT_PRESS_A_TO_RUN       = "A - запустити",
 	.TXT_BT_RUNNING              = "Виконання...",
 	.TXT_BT_DONE                 = "Готово!",
+
+	// USB text
+	.TXT_USB_HID_UNSOPPORTED     = "USB HID не підтримується",
+	.TXT_USB_STORAGE_NO_SD       = "Немає SD карти",
+	.TXT_USB_STORAGE_ACTIVE      = "USB накопичувач активний",
+	.TXT_USB_STORAGE_HINT        = "Витягніть для виходу",
 
 	// NFC text
 	.TXT_NFC_NO_UID_STORED       = "UID не збережено",

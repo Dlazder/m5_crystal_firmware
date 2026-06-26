@@ -134,6 +134,8 @@ void nfcWriteLoop() {
 		};
 		centeredPrintRows(lines, 2, MEDIUM_TEXT);
 
+		// See nfcReadLoop: release the bus before re-binding to GROVE pins.
+		Wire.end();
 		Wire.begin(NFC_SDA, NFC_SCL);
 
 		// Check the stored UID

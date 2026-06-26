@@ -17,6 +17,7 @@ const Locale LANG_RU = {
 	.MENU_WIFI_SYNC_TIME         = "синхр. время",
 	.MENU_WIFI_WPA_BF            = "wpa брутфорс",
 	.MENU_WIFI_WPA_BF_ALL        = "wpa бф все сети",
+	.MENU_WIFI_DEAUTH_ALL        = "деаут все",
 
 	// Bluetooth menu
 	.MENU_BT                     = "Bluetooth",
@@ -24,9 +25,11 @@ const Locale LANG_RU = {
 	.MENU_BT_FIND                = "поиск",
 	.MENU_BT_KEYBOARD            = "клавиатура",
 	.MENU_BT_AIR_MOUSE           = "air mouse",
+	.MENU_BT_MOUSE_JIGGLER       = "подергиватель мыши",
 	.MENU_BT_PRESENTER           = "презентер",
 	.MENU_BT_SHUTTER             = "затвор",
 	.MENU_BT_BAD_BLE             = "bad BLE",
+	.MENU_BT_SNIFFER             = "BLE сниффер",
 
 	// Files menu
 	.MENU_FILES                  = "файлы",
@@ -86,6 +89,10 @@ const Locale LANG_RU = {
 	// USB menu
 	.MENU_USB                    = "USB",
 	.MENU_USB_BAD_USB            = "bad USB",
+	.MENU_USB_MOUSE_JIGGLER      = "подергиватель мыши",
+	.MENU_USB_MOUSE              = "аэромышь",
+	.MENU_USB_KEYBOARD           = "клавиатура",
+	.MENU_USB_STORAGE            = "накопитель",
 
 	// System menu
 	.MENU_SYSTEM_INFO            = "инфо",
@@ -107,6 +114,7 @@ const Locale LANG_RU = {
 	.TXT_DISCONNECTED            = "Отключено",
 	.TXT_DISCONNECTING           = "Отключение...",
 	.TXT_WAITING_CONNECTION      = "Ожидание...",
+	.TXT_WORKING                 = "Работает",
 	.TXT_NOT_CONNECTED           = "Не подключено",
 	.TXT_FAILED                  = "Ошибка",
 	.TXT_SUCCESS                 = "Успешно",
@@ -133,6 +141,12 @@ const Locale LANG_RU = {
 	.TXT_BT_PRESS_A_TO_RUN       = "A - запустить",
 	.TXT_BT_RUNNING              = "Выполнение...",
 	.TXT_BT_DONE                 = "Готово!",
+
+	// USB text
+	.TXT_USB_HID_UNSOPPORTED     = "USB HID не поддерживается",
+	.TXT_USB_STORAGE_NO_SD       = "Нет SD карты",
+	.TXT_USB_STORAGE_ACTIVE      = "USB накопитель активен",
+	.TXT_USB_STORAGE_HINT        = "Извлеките для выхода",
 
 	// NFC text
 	.TXT_NFC_NO_UID_STORED       = "UID не сохранён",

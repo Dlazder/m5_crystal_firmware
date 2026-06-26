@@ -9,6 +9,8 @@ void setup() {
   deviceInit();
   hasImu = (DEVICE.Imu.getType() != m5::imu_none);
   Serial.begin(115200);
+  Serial.printf("[DEBUG] Detected board: %d (14=M5Cardputer, 24=M5CardputerADV)\n", (int)DEVICE.getBoard());
+  Serial.printf("[DEBUG] SDA=%d  SCL=%d\n", SDA, SCL);
   preferences.begin("storage", false);
   loadPreferences();
 

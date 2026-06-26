@@ -32,6 +32,7 @@
     X(WIFI_TIME_SYNC,    208, wifiTimeSyncLoop) \
     X(WIFI_WPA_BF,       209, wifiBruteforceLoop) \
     X(WIFI_WPA_BF_ALL,   210, wifiBruteforceAllLoop) \
+    X(WIFI_DEAUTH_ALL,   211, wifiDeauthAllLoop) \
     \
     /* Bluetooth (300-399) */ \
     X(BLUETOOTH,    300, bluetoothMenuLoop) \
@@ -44,6 +45,8 @@
     X(BT_PRESENTER, 307, bluetoothPresenterLoop) \
     X(BT_SHUTTER,   308, bluetoothShutterLoop) \
     X(BAD_BLE,      309, badBleLoop) \
+    X(BT_MOUSE_JIGGLER, 310, bluetoothMouseJigglerLoop) \
+    X(BT_SNIFFER,       311, bluetoothSnifferLoop) \
     \
     /* NFC (400-499) */ \
     X(NFC,       400, nfcMenuLoop) \
@@ -70,6 +73,10 @@
     \
     X(USB,                700, usbMenuLoop) \
     X(BAD_USB,            701, badUsbLoop) \
+    X(USB_MOUSE_JIGGLER,  702, usbMouseJigglerLoop) \
+    X(USB_MOUSE,          703, usbMouseLoop) \
+    X(USB_KEYBOARD,       704, usbKeyboardLoop) \
+    X(USB_STORAGE,        705, usbStorageLoop) \
     /* Other (800-899) */ \
     X(OTHER,              800, otherMenuLoop) \
     X(CLOCK,              801, clockLoop) \

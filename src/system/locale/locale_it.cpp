@@ -17,6 +17,7 @@ const Locale LANG_IT = {
     .MENU_WIFI_SYNC_TIME          = "sincronizza ora",
     .MENU_WIFI_WPA_BF             = "wpa bruteforce",
     .MENU_WIFI_WPA_BF_ALL         = "wpa bf tutte reti",
+    .MENU_WIFI_DEAUTH_ALL         = "deauth tutte",
 
     // Bluetooth menu
     .MENU_BT                      = "Bluetooth",
@@ -24,9 +25,11 @@ const Locale LANG_IT = {
     .MENU_BT_FIND                 = "trova",
     .MENU_BT_KEYBOARD             = "tastiera",
     .MENU_BT_AIR_MOUSE            = "air mouse",
+    .MENU_BT_MOUSE_JIGGLER        = "mouse jiggler",
     .MENU_BT_PRESENTER            = "presentatore",
     .MENU_BT_SHUTTER              = "otturatore",
     .MENU_BT_BAD_BLE              = "bad BLE",
+    .MENU_BT_SNIFFER              = "sniffer BLE",
 
     // Files menu
     .MENU_FILES                   = "file",
@@ -86,6 +89,10 @@ const Locale LANG_IT = {
     // USB menu
     .MENU_USB                     = "USB",
     .MENU_USB_BAD_USB             = "bad USB",
+    .MENU_USB_MOUSE_JIGGLER       = "mouse jiggler",
+    .MENU_USB_MOUSE               = "air mouse",
+    .MENU_USB_KEYBOARD            = "tastiera",
+    .MENU_USB_STORAGE             = "archiviazione",
 
     // System menu
     .MENU_SYSTEM_INFO             = "info",
@@ -107,6 +114,7 @@ const Locale LANG_IT = {
     .TXT_DISCONNECTED             = "Disconnesso",
     .TXT_DISCONNECTING            = "Disconnessione...",
     .TXT_WAITING_CONNECTION       = "Attesa connessione",
+    .TXT_WORKING                  = "In esecuzione",
     .TXT_NOT_CONNECTED            = "Non connesso",
     .TXT_FAILED                   = "Errore",
     .TXT_SUCCESS                  = "Successo",
@@ -133,6 +141,12 @@ const Locale LANG_IT = {
     .TXT_BT_PRESS_A_TO_RUN        = "Premi A per eseguire",
     .TXT_BT_RUNNING               = "Esecuzione...",
     .TXT_BT_DONE                  = "Fatto!",
+
+    // USB text
+    .TXT_USB_HID_UNSOPPORTED      = "USB HID non supportato",
+    .TXT_USB_STORAGE_NO_SD        = "Nessuna scheda SD",
+    .TXT_USB_STORAGE_ACTIVE       = "Archiviazione USB attiva",
+    .TXT_USB_STORAGE_HINT         = "Espelli per uscire",
 
     // NFC text
     .TXT_NFC_NO_UID_STORED        = "Nessun UID salvato",

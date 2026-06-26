@@ -17,6 +17,7 @@ struct Locale {
 	const char* MENU_WIFI_SYNC_TIME;
 	const char* MENU_WIFI_WPA_BF;
 	const char* MENU_WIFI_WPA_BF_ALL;
+	const char* MENU_WIFI_DEAUTH_ALL;
 
 	// Bluetooth menu
 	const char* MENU_BT;
@@ -24,9 +25,11 @@ struct Locale {
 	const char* MENU_BT_FIND;
 	const char* MENU_BT_KEYBOARD;
 	const char* MENU_BT_AIR_MOUSE;
+	const char* MENU_BT_MOUSE_JIGGLER;
 	const char* MENU_BT_PRESENTER;
 	const char* MENU_BT_SHUTTER;
 	const char* MENU_BT_BAD_BLE;
+	const char* MENU_BT_SNIFFER;
 
 	// Files menu
 	const char* MENU_FILES;
@@ -86,6 +89,10 @@ struct Locale {
 	// USB menu
 	const char* MENU_USB;
 	const char* MENU_USB_BAD_USB;
+	const char* MENU_USB_MOUSE_JIGGLER;
+	const char* MENU_USB_MOUSE;
+	const char* MENU_USB_KEYBOARD;
+	const char* MENU_USB_STORAGE;
 
 	// System menu
 	const char* MENU_SYSTEM_INFO;
@@ -108,6 +115,7 @@ struct Locale {
 	const char* TXT_DISCONNECTED;
 	const char* TXT_DISCONNECTING;
 	const char* TXT_WAITING_CONNECTION;
+	const char* TXT_WORKING;
 	const char* TXT_NOT_CONNECTED;
 	const char* TXT_FAILED;
 	const char* TXT_SUCCESS;
@@ -134,6 +142,12 @@ struct Locale {
 	const char* TXT_BT_PRESS_A_TO_RUN;
 	const char* TXT_BT_RUNNING;
 	const char* TXT_BT_DONE;
+
+	// USB text
+	const char* TXT_USB_HID_UNSOPPORTED;
+	const char* TXT_USB_STORAGE_NO_SD;
+	const char* TXT_USB_STORAGE_ACTIVE;
+	const char* TXT_USB_STORAGE_HINT;
 
 	// NFC text
 	const char* TXT_NFC_NO_UID_STORED;

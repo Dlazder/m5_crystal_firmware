@@ -37,6 +37,7 @@
 #include "../functions/wifi/wifiTimeSyncLoop.h"
 #include "../functions/wifi/wifiBruteforceLoop.h"
 #include "../functions/wifi/wifiBruteforceAllLoop.h"
+#include "../functions/wifi/wifiDeauthAllLoop.h"
 
 
 // Files
@@ -61,7 +62,9 @@
 #include "../functions/bluetooth/selectedBluetoothMenuLoop.h"
 #include "../functions/bluetooth/bluetoothInfoLoop.h"
 #include "../functions/bluetooth/bluetoothFinderLoop.h"
+#include "../functions/bluetooth/bluetoothSnifferLoop.h"
 #include "../functions/bluetooth/badBleLoop.h"
+#include "../functions/bluetooth/bluetoothMouseJigglerLoop.h"
 
 
 // NFC functions
@@ -80,6 +83,10 @@
 // USB
 #include "../functions/usb/usbMenuLoop.h"
 #include "../functions/usb/badUsbLoop.h"
+#include "../functions/usb/usbMouseJigglerLoop.h"
+#include "../functions/usb/usbMouseLoop.h"
+#include "../functions/usb/usbKeyboardLoop.h"
+#include "../functions/usb/usbStorageLoop.h"
 
 
 // Others

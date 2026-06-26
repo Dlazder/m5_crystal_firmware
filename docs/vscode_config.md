@@ -1,6 +1,8 @@
 ## Example VS Code configuration
 
-If you are using the platformio extension you do not need this configuration
+If you are using the platformio extension, just use the command "platofrmio: rebuild intellisense index".
+
+In case of using arduino-cli, use this configuration as an example.
 
 *.vscode/settings.json*
 
