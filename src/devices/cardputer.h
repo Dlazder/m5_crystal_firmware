@@ -40,7 +40,16 @@
 inline void deviceInit() {
     auto cfg = DEVICE.config();
     M5Cardputer.begin(cfg, true);
-    Wire.begin(SDA, SCL);
+    // Wire.begin(SDA, SCL) expands to Wire.begin(8, 9) on the esp32s3 variant.
+    // On original Cardputer:  GPIO8/GPIO9 are 74HC138 (keyboard matrix), not I2C.
+    //    Using them as I2C breaks keyboard scanning → use GROVE pins (GPIO1/GPIO2).
+    // On Cardputer-ADV:       GPIO8/GPIO9 are SYS I2C (where the GROVE port is wired).
+    //    Wire.begin(8, 9) is correct there.
+    if (DEVICE.getBoard() == m5::board_t::board_M5Cardputer) {
+        Wire.begin(2, 1);   // original Cardputer — GROVE I2C on GPIO2(SDA)/GPIO1(SCL)
+    } else {
+        Wire.begin(SDA, SCL); // Cardputer-ADV and others — SYS I2C GPIO8(SDA)/GPIO9(SCL)
+    }
 }
 
 // cardputerKbUpdate() is defined in utils/cardputerKbUtils.h, included after this file.
