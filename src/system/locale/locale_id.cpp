@@ -18,6 +18,7 @@ const Locale LANG_ID = {
     .MENU_WIFI_WPA_BF             = "wpa bruteforce",
     .MENU_WIFI_WPA_BF_ALL         = "wpa bf semua net",
     .MENU_WIFI_DEAUTH_ALL         = "deauth semua",
+    .MENU_WIFI_EVIL_PORTAL       = "evil portal",
 
     // Bluetooth menu
     .MENU_BT                      = "Bluetooth",
@@ -135,6 +136,8 @@ const Locale LANG_ID = {
     .TXT_WIFI_BF_ALL_NETS         = "Jaringan: %d",
     .TXT_WIFI_BF_ALL_CRACKED      = "Berhasil: %d/%d",
     .TXT_WIFI_NO_NETWORKS         = "Tidak ada jaringan",
+    .TXT_WIFI_EVIL_PORTAL_RUNNING     = "Evil Portal aktif",
+    .TXT_WIFI_EVIL_PORTAL_CRED_CAPTURED = "Creds ditangkap!",
 
     // Bluetooth text
     .TXT_BT_FILE_ERROR            = "Error file",

@@ -18,6 +18,7 @@ struct Locale {
 	const char* MENU_WIFI_WPA_BF;
 	const char* MENU_WIFI_WPA_BF_ALL;
 	const char* MENU_WIFI_DEAUTH_ALL;
+	const char* MENU_WIFI_EVIL_PORTAL;
 
 	// Bluetooth menu
 	const char* MENU_BT;
@@ -136,6 +137,8 @@ struct Locale {
 	const char* TXT_WIFI_BF_ALL_NETS;    // printf format: "Nets: %d"
 	const char* TXT_WIFI_BF_ALL_CRACKED; // printf format: "Cracked: %d/%d"
 	const char* TXT_WIFI_NO_NETWORKS;
+	const char* TXT_WIFI_EVIL_PORTAL_RUNNING;
+	const char* TXT_WIFI_EVIL_PORTAL_CRED_CAPTURED;
 
 	// Bluetooth text
 	const char* TXT_BT_FILE_ERROR;

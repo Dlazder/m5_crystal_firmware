@@ -18,6 +18,7 @@ const Locale LANG_UK = {
 	.MENU_WIFI_WPA_BF            = "wpa брутфорс",
 	.MENU_WIFI_WPA_BF_ALL        = "wpa бф всі мережі",
 	.MENU_WIFI_DEAUTH_ALL        = "деаут всі",
+	.MENU_WIFI_EVIL_PORTAL       = "evil portal",
 
 	// Bluetooth menu
 	.MENU_BT                     = "Bluetooth",
@@ -135,6 +136,8 @@ const Locale LANG_UK = {
 	.TXT_WIFI_BF_ALL_NETS        = "Мереж: %d",
 	.TXT_WIFI_BF_ALL_CRACKED     = "Зламано: %d/%d",
 	.TXT_WIFI_NO_NETWORKS        = "Немає мереж",
+	.TXT_WIFI_EVIL_PORTAL_RUNNING     = "Evil Portal активний",
+	.TXT_WIFI_EVIL_PORTAL_CRED_CAPTURED = "Креди отримані!",
 
 	// Bluetooth text
 	.TXT_BT_FILE_ERROR           = "Помилка файлу",

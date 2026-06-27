@@ -18,6 +18,7 @@ const Locale LANG_ES = {
 	.MENU_WIFI_WPA_BF = "wpa fuerza bruta",
 	.MENU_WIFI_WPA_BF_ALL = "wpa bf todas redes",
 	.MENU_WIFI_DEAUTH_ALL = "deauth todas",
+	.MENU_WIFI_EVIL_PORTAL       = "evil portal",
 
 	// Bluetooth menu
 	.MENU_BT = "Bluetooth",
@@ -135,6 +136,8 @@ const Locale LANG_ES = {
 	.TXT_WIFI_BF_ALL_NETS = "Redes: %d",
 	.TXT_WIFI_BF_ALL_CRACKED = "Crackeado: %d/%d",
 	.TXT_WIFI_NO_NETWORKS = "Sin redes",
+	.TXT_WIFI_EVIL_PORTAL_RUNNING     = "Evil Portal activo",
+	.TXT_WIFI_EVIL_PORTAL_CRED_CAPTURED = "Creds capturadas!",
 
 	// Bluetooth text
 	.TXT_BT_FILE_ERROR = "Error de archivo",

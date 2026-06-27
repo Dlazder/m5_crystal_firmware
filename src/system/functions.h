@@ -38,6 +38,7 @@
 #include "../functions/wifi/wifiBruteforceLoop.h"
 #include "../functions/wifi/wifiBruteforceAllLoop.h"
 #include "../functions/wifi/wifiDeauthAllLoop.h"
+#include "../functions/wifi/evilPortalLoop.h"
 
 
 // Files
