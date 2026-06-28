@@ -7,6 +7,7 @@ void selectedWifiMenuLoop() {
 		{PID::WIFI_DEAUTH,      L->MENU_WIFI_DEAUTH},
 		{PID::WIFI_CONNECT,     L->MENU_WIFI_CONNECT},
 		{PID::WIFI_WPA_BF,  L->MENU_WIFI_WPA_BF},
+		{PID::EVIL_TWIN,    L->MENU_WIFI_EVIL_TWIN},
 	};
 	int selectedWifiMenuSize = sizeof(selectedWifiMenu) / sizeof(selectedWifiMenu[0]);
 

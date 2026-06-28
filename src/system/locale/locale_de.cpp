@@ -19,6 +19,7 @@ const Locale LANG_DE = {
 	.MENU_WIFI_WPA_BF_ALL        = "wpa bf all nets",
 	.MENU_WIFI_DEAUTH_ALL        = "deauth all",
 	.MENU_WIFI_EVIL_PORTAL       = "evil portal",
+	.MENU_WIFI_EVIL_TWIN         = "evil twin",
 
 	// Bluetooth menu
 	.MENU_BT                     = "Bluetooth",
@@ -138,6 +139,7 @@ const Locale LANG_DE = {
 	.TXT_WIFI_NO_NETWORKS        = "Keine Netze",
 	.TXT_WIFI_EVIL_PORTAL_RUNNING     = "Evil Portal aktiv",
 	.TXT_WIFI_EVIL_PORTAL_CRED_CAPTURED = "Creds erfasst!",
+	.TXT_WIFI_EVIL_TWIN_RUNNING     = "Evil Twin aktiv",
 
 	// Bluetooth text
 	.TXT_BT_FILE_ERROR           = "Dateifehler",
