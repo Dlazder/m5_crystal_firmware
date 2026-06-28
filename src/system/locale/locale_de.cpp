@@ -78,6 +78,7 @@ const Locale LANG_DE = {
 	.MENU_SETTINGS_KB_GYRO       = "gyro tastatur",
 	.MENU_SETTINGS_LANGUAGE      = "sprache",
 	.MENU_SETTINGS_DIMMING       = "abdunkeln",
+	.MENU_SETTINGS_WEBSERVER_FS  = "WebServer FS",
 
 	// Other menu
 	.MENU_OTHER                  = "sonstiges",
@@ -175,4 +176,5 @@ const Locale LANG_DE = {
 	.TXT_SETTINGS_STATUS_BAR     = "statusleiste: ",
 	.TXT_SETTINGS_PID            = "PID: ",
 	.TXT_SETTINGS_KB_GYRO        = "gyro tastatur: ",
+	.TXT_SETTINGS_WEBSERVER_FS   = "WebServer FS: ",
 };

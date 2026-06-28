@@ -116,6 +116,7 @@ int globalTimer = millis();
 int globalPreviousTimer = 0;
 
 bool isWebInterfaceEnabled = false;
+bool webServerFs = false;
 bool webDataRequested = true;
 String webData = "";
 String webDataType = "";

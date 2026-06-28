@@ -42,5 +42,8 @@ void loadPreferences() {
 	screenDimTimeout = dimTimeouts[dimTimeoutIndex];
 	Serial.printf("Dim timeout index: %d\n", dimTimeoutIndex);
 
+	webServerFs = getData("webServerFs", webServerFs);
+	Serial.printf("WebServer FS: %s\n", webServerFs ? "enabled" : "disabled");
+
 	Serial.println("Preferences loaded");
 }

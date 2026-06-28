@@ -22,6 +22,7 @@
 #include "../functions/settings/languageLoop.h"
 #include "../functions/settings/dimmingLoop.h"
 #include "../functions/settings/volumeLoop.h"
+#include "../functions/settings/toggleWebServerFs.h"
 
 
 // Wi-Fi functions

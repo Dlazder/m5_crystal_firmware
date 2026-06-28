@@ -19,6 +19,7 @@
     X(LANGUAGE,              111, languageLoop) \
     X(DIMMING,               112, dimmingLoop) \
     X(VOLUME,                113, volumeLoop) \
+    X(WEBSERVER_FS,          114, toggleWebServerFs) \
     \
     /* Wi-Fi (200-299) */ \
     X(WIFI,              200, wifiMenuLoop) \

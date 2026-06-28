@@ -78,6 +78,7 @@ const Locale LANG_ID = {
     .MENU_SETTINGS_KB_GYRO        = "giroskop",
     .MENU_SETTINGS_LANGUAGE       = "bahasa",
     .MENU_SETTINGS_DIMMING        = "redupkan",
+    .MENU_SETTINGS_WEBSERVER_FS   = "web server FS",
 
     // Other menu
     .MENU_OTHER                   = "lainnya",
@@ -175,4 +176,5 @@ const Locale LANG_ID = {
     .TXT_SETTINGS_STATUS_BAR      = "bilah status: ",
     .TXT_SETTINGS_PID             = "PID: ",
     .TXT_SETTINGS_KB_GYRO         = "Giroskop: ",
+    .TXT_SETTINGS_WEBSERVER_FS    = "WebServer FS: ",
 };

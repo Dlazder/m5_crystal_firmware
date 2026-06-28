@@ -78,6 +78,7 @@ const Locale LANG_EN = {
 	.MENU_SETTINGS_KB_GYRO       = "keyboard gyro",
 	.MENU_SETTINGS_LANGUAGE      = "language",
 	.MENU_SETTINGS_DIMMING       = "dim screen",
+	.MENU_SETTINGS_WEBSERVER_FS  = "web server FS",
 
 	// Other menu
 	.MENU_OTHER                  = "other",
@@ -175,4 +176,5 @@ const Locale LANG_EN = {
 	.TXT_SETTINGS_STATUS_BAR     = "status bar: ",
 	.TXT_SETTINGS_PID            = "PID: ",
 	.TXT_SETTINGS_KB_GYRO        = "KB gyro: ",
+	.TXT_SETTINGS_WEBSERVER_FS   = "WebServer FS: ",
 };

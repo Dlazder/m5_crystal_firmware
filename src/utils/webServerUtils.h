@@ -1,3 +1,17 @@
+String getContentType(String path) {
+	path.toLowerCase();
+	if (path.endsWith(".html") || path.endsWith(".htm")) return "text/html";
+	if (path.endsWith(".css")) return "text/css";
+	if (path.endsWith(".js")) return "application/javascript";
+	if (path.endsWith(".png")) return "image/png";
+	if (path.endsWith(".jpg") || path.endsWith(".jpeg")) return "image/jpeg";
+	if (path.endsWith(".gif")) return "image/gif";
+	if (path.endsWith(".svg")) return "image/svg+xml";
+	if (path.endsWith(".ico")) return "image/x-icon";
+	if (path.endsWith(".json")) return "application/json";
+	return "text/plain";
+}
+
 String mainHTML() {
 	String html = "<!DOCTYPE html><html lang=\"en\"><head><meta charset=\"UTF-8\"><meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\"><title>M5-power-firmware</title><link rel=\"stylesheet\" href=\"style.css\"></head><body><h1>M5 power firmware</h1><div class=\"screen\"><div class=\"menu-screen\"></div><div class=\"function-screen\"></div></div><div class=\"controls\"><div><button class=\"control-btn btn-up\">↑</button><button class=\"control-btn btn-down\">↓</button></div><div><button class=\"control-btn btn-a\">A</button><button class=\"control-btn btn-b\">B</button></div></div><div class=\"controls\"><button class=\"control-btn btn-update\">↻</button></div><script src=\"index.js\"></script></body></html>";
 	return html;

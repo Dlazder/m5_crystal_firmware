@@ -78,6 +78,7 @@ struct Locale {
 	const char* MENU_SETTINGS_KB_GYRO;
 	const char* MENU_SETTINGS_LANGUAGE;
 	const char* MENU_SETTINGS_DIMMING;
+	const char* MENU_SETTINGS_WEBSERVER_FS;
 
 	// Other menu
 	const char* MENU_OTHER;
@@ -176,6 +177,7 @@ struct Locale {
 	const char* TXT_SETTINGS_STATUS_BAR;
 	const char* TXT_SETTINGS_PID;
 	const char* TXT_SETTINGS_KB_GYRO;
+	const char* TXT_SETTINGS_WEBSERVER_FS;
 };
 
 extern const Locale LANG_EN;

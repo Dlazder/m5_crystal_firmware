@@ -78,6 +78,7 @@ const Locale LANG_IT = {
     .MENU_SETTINGS_KB_GYRO        = "giroscopio",
     .MENU_SETTINGS_LANGUAGE       = "lingua",
     .MENU_SETTINGS_DIMMING        = "oscura",
+    .MENU_SETTINGS_WEBSERVER_FS   = "web server FS",
 
     // Other menu
     .MENU_OTHER                   = "altro",
@@ -175,4 +176,5 @@ const Locale LANG_IT = {
     .TXT_SETTINGS_STATUS_BAR      = "barra stato: ",
     .TXT_SETTINGS_PID             = "PID: ",
     .TXT_SETTINGS_KB_GYRO         = "Giroscopio: ",
+    .TXT_SETTINGS_WEBSERVER_FS    = "WebServer FS: ",
 };

@@ -78,6 +78,7 @@ const Locale LANG_RU = {
 	.MENU_SETTINGS_KB_GYRO       = "гиро клав.",
 	.MENU_SETTINGS_LANGUAGE      = "язык",
 	.MENU_SETTINGS_DIMMING       = "диммер",
+	.MENU_SETTINGS_WEBSERVER_FS  = "веб-сервер FS",
 
 	// Other menu
 	.MENU_OTHER                  = "другое",
@@ -175,4 +176,5 @@ const Locale LANG_RU = {
 	.TXT_SETTINGS_STATUS_BAR     = "статус бар: ",
 	.TXT_SETTINGS_PID            = "PID: ",
 	.TXT_SETTINGS_KB_GYRO        = "гиро клав.: ",
+	.TXT_SETTINGS_WEBSERVER_FS   = "Веб-сервер FS: ",
 };
