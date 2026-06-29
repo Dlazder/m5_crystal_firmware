@@ -45,7 +45,7 @@ bool badUsbIsDelaying() {
  */
 uint8_t badUsbResolveKey(String name) {
   if (name == "ENTER")     return KEY_RETURN;
-  if (name == "BACKSPACE") return KEY_BACKSPACE;
+  if (name == "BACKSPACE") return BLE_KEY_BACKSPACE;
   if (name == "TAB")       return KEY_TAB;
   if (name == "ESC")       return KEY_ESC;
   if (name == "DELETE")    return KEY_DELETE;
