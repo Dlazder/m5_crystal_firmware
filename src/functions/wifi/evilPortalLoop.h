@@ -2,7 +2,6 @@
 
 #include <LittleFS.h>
 
-const char* EVIL_PORTAL_SSID = "Free WiFi";
 const char* EVIL_PORTAL_CREDS_FILE = "/evil_portal_creds.txt";
 IPAddress EVIL_PORTAL_GATEWAY(172, 0, 0, 1);
 IPAddress EVIL_PORTAL_SUBNET(255, 255, 255, 0);
@@ -101,6 +100,7 @@ void evilPortalLoop() {
 
 	if (isSetup()) {
 		webServerDone = false;
+		wifiSsid = getDataString("wifiSsid", "Free WiFi");
 
 		if (webServerFs && selectedFilePath == "") {
 			filePickerSetup(PID::WIFI);
@@ -110,17 +110,14 @@ void evilPortalLoop() {
 	// File picker phase
 	if (fpActive) {
 		if (filePickerLoop()) return;
-		if (selectedFilePath == "") return; // cancelled - back to PID::WIFI
 		// file selected - fall through to web server setup
 	}
-
-	if (webServerFs && selectedFilePath == "") return; // still waiting for picker
 
 	// Web server setup (runs once)
 	if (!webServerDone) {
 		// AP + DNS
 		WiFi.mode(WIFI_AP);
-		WiFi.softAP(EVIL_PORTAL_SSID, nullptr); // open network
+		WiFi.softAP(wifiSsid.c_str(), nullptr); // open network
 		WiFi.softAPConfig(EVIL_PORTAL_GATEWAY, EVIL_PORTAL_GATEWAY, EVIL_PORTAL_SUBNET);
 		dnsServer.start(53, "*", EVIL_PORTAL_GATEWAY);
 
@@ -154,7 +151,7 @@ void evilPortalLoop() {
 		isWebInterfaceEnabled = true;
 		evilPortalVictimCount = 0;
 
-		String ssidLabel = webServerFs ? selectedFilePath : String(EVIL_PORTAL_SSID);
+		String ssidLabel = webServerFs ? selectedFilePath : wifiSsid;
 		String lines[] = {
 			L->TXT_WIFI_EVIL_PORTAL_RUNNING,
 			webServerFs ? "FS: " + ssidLabel : "SSID: " + ssidLabel,
@@ -171,7 +168,7 @@ void evilPortalLoop() {
 	static int lastVictimCount = 0;
 	if (evilPortalVictimCount != lastVictimCount) {
 		lastVictimCount = evilPortalVictimCount;
-		String ssidLabel = webServerFs ? selectedFilePath : String(EVIL_PORTAL_SSID);
+		String ssidLabel = webServerFs ? selectedFilePath : wifiSsid;
 		String lines[] = {
 			L->TXT_WIFI_EVIL_PORTAL_RUNNING,
 			webServerFs ? "FS: " + ssidLabel : "SSID: " + ssidLabel,

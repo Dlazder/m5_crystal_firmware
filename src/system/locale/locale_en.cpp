@@ -20,6 +20,7 @@ const Locale LANG_EN = {
 	.MENU_WIFI_DEAUTH_ALL        = "deauth all",
 	.MENU_WIFI_EVIL_PORTAL       = "evil portal",
 	.MENU_WIFI_EVIL_TWIN         = "evil twin",
+	.MENU_SETTINGS_WIFI_SSID      = "Wi-Fi SSID",
 
 	// Bluetooth menu
 	.MENU_BT                     = "Bluetooth",
@@ -141,6 +142,7 @@ const Locale LANG_EN = {
 	.TXT_WIFI_EVIL_PORTAL_RUNNING     = "Evil Portal active",
 	.TXT_WIFI_EVIL_PORTAL_CRED_CAPTURED = "Creds captured!",
 	.TXT_WIFI_EVIL_TWIN_RUNNING     = "Evil Twin active",
+	.TXT_SETTINGS_WIFI_SSID      = "Wi-Fi SSID: ",
 
 	// Bluetooth text
 	.TXT_BT_FILE_ERROR           = "File error",

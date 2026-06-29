@@ -20,6 +20,7 @@ struct Locale {
 	const char* MENU_WIFI_DEAUTH_ALL;
 	const char* MENU_WIFI_EVIL_PORTAL;
 	const char* MENU_WIFI_EVIL_TWIN;
+	const char* MENU_SETTINGS_WIFI_SSID;
 
 	// Bluetooth menu
 	const char* MENU_BT;
@@ -142,6 +143,7 @@ struct Locale {
 	const char* TXT_WIFI_EVIL_PORTAL_RUNNING;
 	const char* TXT_WIFI_EVIL_PORTAL_CRED_CAPTURED;
 	const char* TXT_WIFI_EVIL_TWIN_RUNNING;
+	const char* TXT_SETTINGS_WIFI_SSID;
 
 	// Bluetooth text
 	const char* TXT_BT_FILE_ERROR;

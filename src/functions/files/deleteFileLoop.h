@@ -3,8 +3,9 @@
 void deleteFileLoop() {
 	if (isSetup()) {
 		String name = selectedFilePath.substring(selectedFilePath.lastIndexOf('/') + 1);
-		String lines[] = { "delete file?", name.substring(0, 16), L->TXT_PRESS_A };
-		centeredPrintRows(lines, 3, MEDIUM_TEXT);
+		String lines[] = { "delete file?", name.substring(0, 16)};
+		centeredPrintRows(lines, 2, MEDIUM_TEXT, true);
+		drawHintCustom("enter: delete", "A: delete");
 	}
 
 	if (isBtnAWasPressed() || isKbEnterPressed()) {

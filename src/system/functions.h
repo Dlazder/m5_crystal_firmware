@@ -23,6 +23,7 @@
 #include "../functions/settings/dimmingLoop.h"
 #include "../functions/settings/volumeLoop.h"
 #include "../functions/settings/toggleWebServerFs.h"
+#include "../functions/settings/ssidLoop.h"
 
 
 // Wi-Fi functions

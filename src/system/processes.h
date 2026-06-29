@@ -20,6 +20,7 @@
     X(DIMMING,               112, dimmingLoop) \
     X(VOLUME,                113, volumeLoop) \
     X(WEBSERVER_FS,          114, toggleWebServerFs) \
+    X(SETTINGS_SSID,         115, setSsidLoop) \
     \
     /* Wi-Fi (200-299) */ \
     X(WIFI,              200, wifiMenuLoop) \

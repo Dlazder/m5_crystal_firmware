@@ -15,6 +15,7 @@ void settingsMenuLoop() {
 		{PID::LANGUAGE,            L->MENU_SETTINGS_LANGUAGE},
 		{PID::KB_GYRO,             L->MENU_SETTINGS_KB_GYRO},
 		{PID::WEBSERVER_FS,        L->MENU_SETTINGS_WEBSERVER_FS},
+		{PID::SETTINGS_SSID,        L->MENU_SETTINGS_WIFI_SSID},
 	};
 	int settingsMenuSize = sizeof(settingsMenu) / sizeof(MENU);
 

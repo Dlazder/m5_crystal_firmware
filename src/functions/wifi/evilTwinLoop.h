@@ -111,6 +111,7 @@ void evilTwinLoop() {
 
 	if (isSetup()) {
 		webServerDone = false;
+		wifiSsid = getDataString("wifiSsid", "");
 
 		if (webServerFs && selectedFilePath == "") {
 			filePickerSetup(PID::WIFI_SELECTED);
@@ -120,15 +121,13 @@ void evilTwinLoop() {
 	// File picker phase
 	if (fpActive) {
 		if (filePickerLoop()) return;
-		if (selectedFilePath == "") return; // cancelled
 	}
-
-	if (webServerFs && selectedFilePath == "") return;
 
 	// Web server + AP setup (runs once)
 	if (!webServerDone) {
 		WiFi.mode(WIFI_AP);
-		WiFi.softAP(ssid, ""); // open network with target's SSID
+		String useSsid = wifiSsid.length() > 0 ? wifiSsid : ssid;
+		WiFi.softAP(useSsid.c_str(), ""); // open network with configured or target's SSID
 		WiFi.softAPConfig(EVIL_TWIN_GATEWAY, EVIL_TWIN_GATEWAY, EVIL_TWIN_SUBNET);
 		dnsServer.start(53, "*", EVIL_TWIN_GATEWAY);
 
@@ -165,7 +164,7 @@ void evilTwinLoop() {
 		isWebInterfaceEnabled = true;
 		evilTwinVictimCount = 0;
 
-		String ssidLabel = webServerFs ? selectedFilePath : String(ssid);
+		String ssidLabel = webServerFs ? selectedFilePath : (wifiSsid.length() > 0 ? wifiSsid : ssid);
 		String lines[] = {
 			L->TXT_WIFI_EVIL_TWIN_RUNNING,
 			webServerFs ? "FS: " + ssidLabel : "SSID: " + ssidLabel,
@@ -185,7 +184,7 @@ void evilTwinLoop() {
 	static int lastVictimCount = 0;
 	if (evilTwinVictimCount != lastVictimCount) {
 		lastVictimCount = evilTwinVictimCount;
-		String ssidLabel = webServerFs ? selectedFilePath : String(ssid);
+		String ssidLabel = webServerFs ? selectedFilePath : (wifiSsid.length() > 0 ? wifiSsid : ssid);
 		String lines[] = {
 			L->TXT_WIFI_EVIL_TWIN_RUNNING,
 			webServerFs ? "FS: " + ssidLabel : "SSID: " + ssidLabel,
