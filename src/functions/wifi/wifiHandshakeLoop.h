@@ -10,7 +10,6 @@
 
 static const char* HANDSHAKE_CAPTURE_PATH = "/handshake_capture.pcap";
 
-
 // Ring buffer for passing packets from callback -> main loop
 
 #define HANDSHAKE_RING_SIZE 16
@@ -25,16 +24,15 @@ struct pkt_entry {
 static pkt_entry handshakeRing[HANDSHAKE_RING_SIZE];
 static volatile int handshakeRingHead = 0; // producer (callback) write index
 static volatile int handshakeRingTail = 0; // consumer (main loop) read index
-static int handshakeTotalPackets = 0;       // total frames saved (beacons + EAPOL)
+static int handshakeTotalPackets = 0; // total frames saved (beacons + EAPOL)
 
 // Snapshot of target params, copied on setup (avoid relying on scan pointers).
-static uint8_t  hsTargetBssid[6];
-static int      hsTargetChannel;
-static String   hsTargetSsid;
+static uint8_t hsTargetBssid[6];
+static int hsTargetChannel;
+static String hsTargetSsid;
 
 // Beacon counter — reset each session, cap at 3 to save PCAP space
 static int beaconCount = 0;
-
 
 // Promiscuous callback
 // Runs in WiFi task context — no file I/O, no display calls, no long delays.
@@ -54,7 +52,7 @@ static void wifiHandshakeSniffCb(void* buf, wifi_promiscuous_pkt_type_t type) {
 	uint8_t frameType = (fc >> 2) & 0x3;
 	if (frameType != 0 && frameType != 2) return;
 
-	// === Beacon frames (MGMT, subtype 8) — capture for aircrack-ng ESSID ===
+	// Beacon frames (MGMT, subtype 8) - capture for aircrack-ng ESSID
 	if (frameType == 0) {
 		uint8_t subtype = (fc >> 4) & 0xF;
 		if (subtype != 8) return; // Beacon only
@@ -77,26 +75,25 @@ static void wifiHandshakeSniffCb(void* buf, wifi_promiscuous_pkt_type_t type) {
 
 		pkt_entry& entry = handshakeRing[handshakeRingHead];
 		memcpy(entry.data, frame, frameLen);
-		entry.len       = frameLen;
-		entry.rssi      = pkt->rx_ctrl.rssi;
+		entry.len = frameLen;
+		entry.rssi = pkt->rx_ctrl.rssi;
 		entry.timestamp = pkt->rx_ctrl.timestamp;
 		handshakeRingHead = nextHead;
 
-		Serial.printf("Beacon #%d: len=%u total=%d\n", beaconCount, frameLen,
-		              handshakeTotalPackets + (handshakeRingHead - handshakeRingTail + HANDSHAKE_RING_SIZE) % HANDSHAKE_RING_SIZE);
+		Serial.printf("Beacon #%d: len=%u total=%d\n", beaconCount, frameLen, handshakeTotalPackets + (handshakeRingHead - handshakeRingTail + HANDSHAKE_RING_SIZE) % HANDSHAKE_RING_SIZE);
 		return;
 	}
 
-	// === Data frames — EAPOL detection ======================================
+	// Data frames - EAPOL detection
 
-	bool toDS   = (fc >> 8) & 0x1;
+	bool toDS = (fc >> 8) & 0x1;
 	bool fromDS = (fc >> 9) & 0x1;
 
 	// Determine BSSID position in address fields
 	uint8_t* bssidPtr = nullptr;
-	if (toDS && !fromDS)       bssidPtr = frame + 4;   // Addr1
-	else if (!toDS && fromDS)  bssidPtr = frame + 10;  // Addr2
-	else if (!toDS && !fromDS) bssidPtr = frame + 16;  // Addr3
+	if (toDS && !fromDS) bssidPtr = frame + 4; // Addr1
+	else if (!toDS && fromDS) bssidPtr = frame + 10; // Addr2
+	else if (!toDS && !fromDS) bssidPtr = frame + 16; // Addr3
 	if (!bssidPtr) return;
 
 	// Filter by target BSSID
@@ -109,7 +106,7 @@ static void wifiHandshakeSniffCb(void* buf, wifi_promiscuous_pkt_type_t type) {
 	bool isQoS = false;
 	uint8_t subtype = (fc >> 4) & 0xF;
 	if (subtype & 0x8) {
-		hdrLen += 2;  // QoS Control
+		hdrLen += 2; // QoS Control
 		isQoS = true;
 		// HT Control only present in QoS Data frames when +HTC bit (15) is set
 		// In non-QoS frames bit 15 = Order, does NOT add HT Control
@@ -122,10 +119,10 @@ static void wifiHandshakeSniffCb(void* buf, wifi_promiscuous_pkt_type_t type) {
 	static int dataDbgCount = 0;
 	if (dataDbgCount < 3) {
 		Serial.printf("DATA #%d: fc=0x%04x subtype=%u toDS=%d fromDS=%d "
-		              "hdrLen=%d frameLen=%u\n",
-		              dataDbgCount + 1, fc, subtype, toDS, fromDS,
-		              hdrLen, frameLen);
-		Serial.print("  payload: ");
+			"hdrLen=%d frameLen=%u\n",
+			dataDbgCount + 1, fc, subtype, toDS, fromDS,
+			hdrLen, frameLen);
+		Serial.print("	payload: ");
 		for (int i = 0; i < (frameLen < 40 ? frameLen : 40); i++)
 			Serial.printf("%02x ", frame[i]);
 		Serial.println();
@@ -135,8 +132,8 @@ static void wifiHandshakeSniffCb(void* buf, wifi_promiscuous_pkt_type_t type) {
 	// LLC/SNAP: AA AA 03 00 00 00 88 8E (EAPOL)
 	uint8_t* llc = frame + hdrLen;
 	if (llc[0] == 0xAA && llc[1] == 0xAA && llc[2] == 0x03 &&
-	    llc[3] == 0x00 && llc[4] == 0x00 && llc[5] == 0x00 &&
-	    llc[6] == 0x88 && llc[7] == 0x8E) {
+		llc[3] == 0x00 && llc[4] == 0x00 && llc[5] == 0x00 &&
+		llc[6] == 0x88 && llc[7] == 0x8E) {
 
 		// Verify EAPOL type — must be 3 (EAPOL-Key) for handshake frames
 		uint8_t eapolType = llc[9]; // llc+8=version, llc+9=type
@@ -147,8 +144,8 @@ static void wifiHandshakeSniffCb(void* buf, wifi_promiscuous_pkt_type_t type) {
 
 		pkt_entry& entry = handshakeRing[handshakeRingHead];
 		memcpy(entry.data, frame, frameLen);
-		entry.len       = frameLen;
-		entry.rssi      = pkt->rx_ctrl.rssi;
+		entry.len = frameLen;
+		entry.rssi = pkt->rx_ctrl.rssi;
 		entry.timestamp = pkt->rx_ctrl.timestamp;
 		handshakeRingHead = nextHead;
 
@@ -156,42 +153,40 @@ static void wifiHandshakeSniffCb(void* buf, wifi_promiscuous_pkt_type_t type) {
 		static int eapolDebugCount = 0;
 		if (eapolDebugCount < 8) {
 			// EAPOL header at llc+8: version(1) + type(1) + length(2, big-endian)
-			uint8_t  eapolVer      = llc[8];
+			uint8_t eapolVer = llc[8];
 			// eapolType already checked above at llc[9]
 			uint16_t eapolDeclared = (llc[10] << 8) | llc[11];
 			// Actual EAPOL body = frameLen - 802.11hdr - LLC(8) - EAPOLhdr(4) - FCS(4)
-			uint16_t eapolActual   = frameLen - hdrLen - 8 - 4 - 4;
+			uint16_t eapolActual = frameLen - hdrLen - 8 - 4 - 4;
 			// EAPOL-Key body at llc+12: desc(1) + info(2) + keylen(2) + replay(8) + nonce(32) + ...
-			uint8_t  keyDesc  = llc[12];
-			uint16_t keyInfo  = (llc[13] << 8) | llc[14];
-			uint16_t keyLen   = (llc[15] << 8) | llc[16];
+			uint8_t keyDesc = llc[12];
+			uint16_t keyInfo = (llc[13] << 8) | llc[14];
+			uint16_t keyLen = (llc[15] << 8) | llc[16];
 			// Decode flags: ack=(7), mic=(8), secure=(9), install=(6)
-			bool kAck    = (keyInfo >> 7) & 1;
-			bool kMic    = (keyInfo >> 8) & 1;
+			bool kAck = (keyInfo >> 7) & 1;
+			bool kMic = (keyInfo >> 8) & 1;
 			bool kSecure = (keyInfo >> 9) & 1;
 			bool kInstall= (keyInfo >> 6) & 1;
 			char msgType = (kAck && !kMic) ? '1' : (kMic && !kAck && !kSecure) ? '2'
-			             : (kAck && kMic && kSecure) ? '3' : (kMic && kSecure && !kAck) ? '4' : '?';
+				: (kAck && kMic && kSecure) ? '3' : (kMic && kSecure && !kAck) ? '4' : '?';
 			Serial.printf("EAPOL #%d [M%c]: ver=%u type=%u eapol_decl=%u eapol_actual=%u "
-			              "key_info=0x%04x key_desc=%u key_len=%u "
-			              "ack=%d mic=%d sec=%d inst=%d "
-			              "hdrLen=%d frameLen=%u toDS=%d fromDS=%d isQoS=%d\n",
-			              eapolDebugCount + 1, msgType,
-			              eapolVer, eapolType,
-			              eapolDeclared, eapolActual,
-			              keyInfo, keyDesc, keyLen,
-			              kAck, kMic, kSecure, kInstall,
-			              hdrLen, frameLen, toDS, fromDS, isQoS);
+				"key_info=0x%04x key_desc=%u key_len=%u "
+				"ack=%d mic=%d sec=%d inst=%d "
+				"hdrLen=%d frameLen=%u toDS=%d fromDS=%d isQoS=%d\n",
+				eapolDebugCount + 1, msgType,
+				eapolVer, eapolType,
+				eapolDeclared, eapolActual,
+				keyInfo, keyDesc, keyLen,
+				kAck, kMic, kSecure, kInstall,
+				hdrLen, frameLen, toDS, fromDS, isQoS);
 			// Dump first 8 bytes of Key Nonce (offset 13 from EAPOL-Key body = llc+12+13 = llc+25)
-			Serial.printf("  nonce[0:8]: %02x %02x %02x %02x %02x %02x %02x %02x\n",
-			              llc[25], llc[26], llc[27], llc[28],
-			              llc[29], llc[30], llc[31], llc[32]);
+			Serial.printf("	nonce[0:8]: %02x %02x %02x %02x %02x %02x %02x %02x\n",
+				llc[25], llc[26], llc[27], llc[28],
+				llc[29], llc[30], llc[31], llc[32]);
 			eapolDebugCount++;
 		}
 	}
 }
-
-// Main loop
 
 void wifiHandshakeLoop() {
 	static File pcapFile;
