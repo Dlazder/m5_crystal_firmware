@@ -20,6 +20,7 @@ const Locale LANG_ID = {
     .MENU_WIFI_DEAUTH_ALL         = "deauth semua",
     .MENU_WIFI_EVIL_PORTAL       = "evil portal",
     .MENU_WIFI_EVIL_TWIN         = "evil twin",
+    .MENU_WIFI_HANDSHAKE         = "tangkap handshake",
     .MENU_SETTINGS_WIFI_SSID      = "Wi-Fi SSID",
 
     // Bluetooth menu
@@ -143,6 +144,9 @@ const Locale LANG_ID = {
     .TXT_WIFI_EVIL_PORTAL_CRED_CAPTURED = "Creds ditangkap!",
     .TXT_WIFI_EVIL_TWIN_RUNNING     = "Evil Twin aktif",
     .TXT_SETTINGS_WIFI_SSID      = "Wi-Fi SSID: ",
+    .TXT_WIFI_HANDSHAKE_CAPTURING = "Menangkap...",
+    .TXT_WIFI_HANDSHAKE_PACKETS   = "Paket: %d",
+    .TXT_WIFI_HANDSHAKE_SAVED     = "Disimpan ke SD",
 
     // Bluetooth text
     .TXT_BT_FILE_ERROR            = "Error file",

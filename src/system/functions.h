@@ -42,6 +42,7 @@
 #include "../functions/wifi/wifiDeauthAllLoop.h"
 #include "../functions/wifi/evilPortalLoop.h"
 #include "../functions/wifi/evilTwinLoop.h"
+#include "../functions/wifi/wifiHandshakeLoop.h"
 
 
 // Files

@@ -20,6 +20,7 @@ const Locale LANG_UK = {
 	.MENU_WIFI_DEAUTH_ALL        = "деаут всі",
 	.MENU_WIFI_EVIL_PORTAL       = "evil portal",
 	.MENU_WIFI_EVIL_TWIN         = "evil twin",
+	.MENU_WIFI_HANDSHAKE         = "захоплення рукостискання",
 	.MENU_SETTINGS_WIFI_SSID      = "Wi-Fi SSID",
 
 	// Bluetooth menu
@@ -143,6 +144,9 @@ const Locale LANG_UK = {
 	.TXT_WIFI_EVIL_PORTAL_CRED_CAPTURED = "Креди отримані!",
 	.TXT_WIFI_EVIL_TWIN_RUNNING     = "Evil Twin активний",
 	.TXT_SETTINGS_WIFI_SSID      = "Wi-Fi SSID: ",
+	.TXT_WIFI_HANDSHAKE_CAPTURING = "Захоплення...",
+	.TXT_WIFI_HANDSHAKE_PACKETS   = "Пакетів: %d",
+	.TXT_WIFI_HANDSHAKE_SAVED     = "Збережено на SD",
 
 	// Bluetooth text
 	.TXT_BT_FILE_ERROR           = "Помилка файлу",
