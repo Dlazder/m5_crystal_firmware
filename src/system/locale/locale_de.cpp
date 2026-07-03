@@ -144,9 +144,11 @@ const Locale LANG_DE = {
 	.TXT_WIFI_EVIL_PORTAL_CRED_CAPTURED = "Creds erfasst!",
 	.TXT_WIFI_EVIL_TWIN_RUNNING     = "Evil Twin aktiv",
 	.TXT_SETTINGS_WIFI_SSID      = "Wi-Fi SSID: ",
-	.TXT_WIFI_HANDSHAKE_CAPTURING = "Erfasse...",
+	
 	.TXT_WIFI_HANDSHAKE_PACKETS   = "Pakete: %d",
 	.TXT_WIFI_HANDSHAKE_SAVED     = "Gespeichert auf SD",
+		.TXT_WIFI_HANDSHAKE_DEAUTH_ON  = "Deauth: AN",
+		.TXT_WIFI_HANDSHAKE_DEAUTH_OFF = "Deauth: AUS",
 
 	// Bluetooth text
 	.TXT_BT_FILE_ERROR           = "Dateifehler",

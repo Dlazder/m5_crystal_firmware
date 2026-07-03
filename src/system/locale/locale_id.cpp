@@ -144,9 +144,11 @@ const Locale LANG_ID = {
     .TXT_WIFI_EVIL_PORTAL_CRED_CAPTURED = "Creds ditangkap!",
     .TXT_WIFI_EVIL_TWIN_RUNNING     = "Evil Twin aktif",
     .TXT_SETTINGS_WIFI_SSID      = "Wi-Fi SSID: ",
-    .TXT_WIFI_HANDSHAKE_CAPTURING = "Menangkap...",
+    
     .TXT_WIFI_HANDSHAKE_PACKETS   = "Paket: %d",
     .TXT_WIFI_HANDSHAKE_SAVED     = "Disimpan ke SD",
+		.TXT_WIFI_HANDSHAKE_DEAUTH_ON  = "Deauth: ON",
+		.TXT_WIFI_HANDSHAKE_DEAUTH_OFF = "Deauth: OFF",
 
     // Bluetooth text
     .TXT_BT_FILE_ERROR            = "Error file",

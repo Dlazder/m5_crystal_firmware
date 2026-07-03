@@ -144,9 +144,11 @@ const Locale LANG_RU = {
 	.TXT_WIFI_EVIL_PORTAL_CRED_CAPTURED = "Креды получены!",
 	.TXT_WIFI_EVIL_TWIN_RUNNING     = "Evil Twin активен",
 	.TXT_SETTINGS_WIFI_SSID      = "Wi-Fi SSID: ",
-	.TXT_WIFI_HANDSHAKE_CAPTURING = "Захват...",
+	
 	.TXT_WIFI_HANDSHAKE_PACKETS   = "Пакетов: %d",
 	.TXT_WIFI_HANDSHAKE_SAVED     = "Сохранено на SD",
+		.TXT_WIFI_HANDSHAKE_DEAUTH_ON  = "Деаут: ВКЛ",
+		.TXT_WIFI_HANDSHAKE_DEAUTH_OFF = "Деаут: ВЫКЛ",
 
 	// Bluetooth text
 	.TXT_BT_FILE_ERROR           = "Ошибка файла",

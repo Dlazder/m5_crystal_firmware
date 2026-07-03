@@ -148,6 +148,8 @@ struct Locale {
 	const char* TXT_WIFI_HANDSHAKE_CAPTURING;
 	const char* TXT_WIFI_HANDSHAKE_PACKETS;   // "EAPOL: %d"
 	const char* TXT_WIFI_HANDSHAKE_SAVED;      // "Saved to LittleFS"
+	const char* TXT_WIFI_HANDSHAKE_DEAUTH_ON;
+	const char* TXT_WIFI_HANDSHAKE_DEAUTH_OFF;
 
 	// Bluetooth text
 	const char* TXT_BT_FILE_ERROR;
