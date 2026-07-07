@@ -262,12 +262,30 @@ void wifiHandshakeLoop() {
 
 	// Drain ring buffer -> write PCAP packets
 	while (handshakeRingTail != handshakeRingHead) {
+		const pkt_entry& pkt = handshakeRing[handshakeRingTail];
 		if (fileOpen && pcapFile) {
-			const pkt_entry& pkt = handshakeRing[handshakeRingTail];
 			writePcapPacket(pcapFile, pkt.data, pkt.len, pkt.rssi, pkt.timestamp, hsTargetChannel);
 		}
 		handshakeRingTail = (handshakeRingTail + 1) % HANDSHAKE_RING_SIZE;
-		handshakeTotalPackets++;
+		// Only count EAPOL M2 frames (one per handshake)
+		uint16_t fc = pkt.data[0] | (pkt.data[1] << 8);
+		if (((fc >> 2) & 0x3) == 2) { // Data frame
+			bool toDS = (fc >> 8) & 0x1;
+			bool fromDS = (fc >> 9) & 0x1;
+			int hdrLen = 24;
+			uint8_t subtype = (fc >> 4) & 0xF;
+			if (toDS && fromDS) hdrLen += 6;
+			if (subtype & 0x8) {
+				hdrLen += 2;
+				if ((fc >> 15) & 0x1) hdrLen += 4;
+			}
+			uint16_t keyInfo = (pkt.data[hdrLen + 13] << 8) | pkt.data[hdrLen + 14];
+			// M2: MIC=1 (bit8), ACK=0 (bit7)
+			if ((keyInfo & 0x0100) && !(keyInfo & 0x0080)) {
+				handshakeTotalPackets++;
+				soundBeep();
+			}
+		}
 	}
 
 	// Flush after new packets to commit to flash

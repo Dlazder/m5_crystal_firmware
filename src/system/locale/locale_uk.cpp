@@ -145,7 +145,7 @@ const Locale LANG_UK = {
 	.TXT_WIFI_EVIL_TWIN_RUNNING     = "Evil Twin активний",
 	.TXT_SETTINGS_WIFI_SSID      = "Wi-Fi SSID: ",
 	
-	.TXT_WIFI_HANDSHAKE_PACKETS   = "Пакетів: %d",
+	.TXT_WIFI_HANDSHAKE_PACKETS   = "Handshake: %d",
 	.TXT_WIFI_HANDSHAKE_SAVED     = "Збережено на SD",
 		.TXT_WIFI_HANDSHAKE_DEAUTH_ON  = "Деаут: УВІМК",
 		.TXT_WIFI_HANDSHAKE_DEAUTH_OFF = "Деаут: ВИМК",

@@ -145,7 +145,7 @@ const Locale LANG_EN = {
 	.TXT_WIFI_EVIL_TWIN_RUNNING     = "Evil Twin active",
 	.TXT_SETTINGS_WIFI_SSID      = "Wi-Fi SSID: ",
 	
-	.TXT_WIFI_HANDSHAKE_PACKETS   = "Packets: %d",
+	.TXT_WIFI_HANDSHAKE_PACKETS   = "Handshakes: %d",
 	.TXT_WIFI_HANDSHAKE_SAVED     = "Saved to SD",
 		.TXT_WIFI_HANDSHAKE_DEAUTH_ON  = "Deauth: ON",
 		.TXT_WIFI_HANDSHAKE_DEAUTH_OFF = "Deauth: OFF",

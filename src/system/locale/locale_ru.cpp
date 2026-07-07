@@ -145,7 +145,7 @@ const Locale LANG_RU = {
 	.TXT_WIFI_EVIL_TWIN_RUNNING     = "Evil Twin активен",
 	.TXT_SETTINGS_WIFI_SSID      = "Wi-Fi SSID: ",
 	
-	.TXT_WIFI_HANDSHAKE_PACKETS   = "Пакетов: %d",
+	.TXT_WIFI_HANDSHAKE_PACKETS   = "Handshake: %d",
 	.TXT_WIFI_HANDSHAKE_SAVED     = "Сохранено на SD",
 		.TXT_WIFI_HANDSHAKE_DEAUTH_ON  = "Деаут: ВКЛ",
 		.TXT_WIFI_HANDSHAKE_DEAUTH_OFF = "Деаут: ВЫКЛ",
