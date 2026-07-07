@@ -24,7 +24,7 @@
 
 		Keyboard_Class::KeysState state = M5Cardputer.Keyboard.keysState();
 
-		if (state.backspace || state.del) { kbDelPressed = true; return; }
+		if (state.del) { kbDelPressed = true; return; }
 		if (state.enter) { kbEnterPressed = true; return; }
 
 		kbWord = "";

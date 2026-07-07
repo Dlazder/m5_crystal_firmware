@@ -10,7 +10,7 @@
 
 #include "esp_wifi.h"
 
-static const char* HANDSHAKE_CAPTURE_PATH = "/handshake_capture.pcap";
+static const char* HANDSHAKE_CAPTURE_PATH = "/handshake.pcap";
 
 // Ring buffer for passing packets from callback -> main loop
 
@@ -40,6 +40,8 @@ static int beaconCount = 0;
 static bool deauthEnabled = false;
 static uint32_t lastDeauthTime = 0;
 #define DEAUTH_INTERVAL_MS 200
+
+#define HASH_PATH "/handshake.hash"
 
 // Promiscuous callback
 // Runs in WiFi task context — no file I/O, no display calls, no long delays.
@@ -120,7 +122,7 @@ static void wifiHandshakeSniffCb(void* buf, wifi_promiscuous_pkt_type_t type) {
 		if ((fc >> 15) & 0x1) hdrLen += 4;
 	}
 
-	if (frameLen < hdrLen + 8 + 4) return; // need room for LLC/SNAP + FCS
+	if (frameLen < hdrLen + 8 + 4 + 4) return; // need LLC/SNAP(8) + EAPOL hdr(4) + FCS(4)
 
 	// Diagnostic: hex dump first 40 bytes of payload for the first few data frames
 	static int dataDbgCount = 0;
@@ -322,6 +324,14 @@ void wifiHandshakeLoop() {
 			pcapFile.flush();
 			pcapFile.close();
 			fileOpen = false;
+
+			// Generate FT hash from the pcap we just wrote
+			{
+				bool hashOk = pcapToFTHash(HANDSHAKE_CAPTURE_PATH);
+				if (hashOk) {
+					Serial.println("FT hash saved: " HASH_PATH);
+				}
+			}
 
 			char countBuf[40];
 			snprintf(countBuf, sizeof(countBuf), L->TXT_WIFI_HANDSHAKE_PACKETS, handshakeTotalPackets);
