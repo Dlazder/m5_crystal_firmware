@@ -149,8 +149,6 @@ const Locale LANG_ES = {
 	
 	.TXT_WIFI_HANDSHAKE_PACKETS   = "Handshakes: ",
 	.TXT_WIFI_HANDSHAKE_SAVED     = "Guardado en SD",
-		.TXT_WIFI_HANDSHAKE_DEAUTH_ON  = "Deauth: ON",
-		.TXT_WIFI_HANDSHAKE_DEAUTH_OFF = "Deauth: OFF",
 
 	// Bluetooth text
 	.TXT_BT_FILE_ERROR = "Error de archivo",

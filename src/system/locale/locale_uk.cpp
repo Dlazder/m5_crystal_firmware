@@ -149,9 +149,7 @@ const Locale LANG_UK = {
 	
 	.TXT_WIFI_HANDSHAKE_PACKETS   = "Handshake: ",
 	.TXT_WIFI_HANDSHAKE_SAVED     = "Збережено на SD",
-		.TXT_WIFI_HANDSHAKE_DEAUTH_ON  = "Деаут: УВІМК",
-		.TXT_WIFI_HANDSHAKE_DEAUTH_OFF = "Деаут: ВИМК",
-
+				
 	// Bluetooth text
 	.TXT_BT_FILE_ERROR           = "Помилка файлу",
 	.TXT_BT_PRESS_A_TO_RUN       = "A - запустити",

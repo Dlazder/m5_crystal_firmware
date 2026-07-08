@@ -1,6 +1,6 @@
 // pid PID::WIFI_HANDSHAKE_CAPTURE
 
-// Passive WPA handshake capture via promiscuous mode.
+// WPA handshake capture via promiscuous mode.
 // Listens on the target channel for EAPOL frames to/from the selected
 // BSSID, saves them to a PCAP file on SD card, and shows a live
 // packet counter. Also captures beacon frames so aircrack-ng can
@@ -372,7 +372,7 @@ void wifiHandshakeLoop() {
 		String lines[] = {
 			hsTargetSsid,
 			String(L->TXT_WIFI_HANDSHAKE_PACKETS) + String(handshakeTotalPackets),
-			deauthEnabled ? L->TXT_WIFI_HANDSHAKE_DEAUTH_ON : L->TXT_WIFI_HANDSHAKE_DEAUTH_OFF,
+			"Deauth: " + String(deauthEnabled ? L->TXT_ON : L->TXT_OFF),
 			"FT-PSK: " + String(hsIsFT ? L->TXT_ON : L->TXT_OFF)
 		};
 		centeredPrintRows(lines, 4, SMALL_TEXT, true);
