@@ -18,6 +18,10 @@ const Locale LANG_IT = {
     .MENU_WIFI_WPA_BF             = "wpa bruteforce",
     .MENU_WIFI_WPA_BF_ALL         = "wpa bf tutte reti",
     .MENU_WIFI_DEAUTH_ALL         = "deauth tutte",
+    .MENU_WIFI_EVIL_PORTAL       = "evil portal",
+    .MENU_WIFI_EVIL_TWIN         = "evil twin",
+    .MENU_WIFI_HANDSHAKE         = "cattura handshake",
+    .MENU_SETTINGS_WIFI_SSID      = "Wi-Fi SSID",
 
     // Bluetooth menu
     .MENU_BT                      = "Bluetooth",
@@ -76,6 +80,7 @@ const Locale LANG_IT = {
     .MENU_SETTINGS_KB_GYRO        = "giroscopio",
     .MENU_SETTINGS_LANGUAGE       = "lingua",
     .MENU_SETTINGS_DIMMING        = "oscura",
+    .MENU_SETTINGS_WEBSERVER_FS   = "web server FS",
 
     // Other menu
     .MENU_OTHER                   = "altro",
@@ -108,6 +113,8 @@ const Locale LANG_IT = {
     .TXT_SWITCH                   = "cambia",
     .TXT_ENABLED                  = "attivo",
     .TXT_DISABLED                 = "disattivo",
+    .TXT_ON                       = "ON",
+    .TXT_OFF                      = "OFF",
     .TXT_SCANNING                 = "Scansione...",
     .TXT_CONNECTING               = "Connessione...",
     .TXT_CONNECTED                = "Connesso",
@@ -135,6 +142,13 @@ const Locale LANG_IT = {
     .TXT_WIFI_BF_ALL_NETS         = "Reti: %d",
     .TXT_WIFI_BF_ALL_CRACKED      = "Violato: %d/%d",
     .TXT_WIFI_NO_NETWORKS         = "Nessuna rete",
+    .TXT_WIFI_EVIL_PORTAL_RUNNING     = "Evil Portal attivo",
+    .TXT_WIFI_EVIL_PORTAL_CRED_CAPTURED = "Creds catturate!",
+    .TXT_WIFI_EVIL_TWIN_RUNNING     = "Evil Twin attivo",
+    .TXT_SETTINGS_WIFI_SSID      = "Wi-Fi SSID: ",
+    
+    .TXT_WIFI_HANDSHAKE_PACKETS   = "Handshake: ",
+    .TXT_WIFI_HANDSHAKE_SAVED     = "Salvato su SD",
 
     // Bluetooth text
     .TXT_BT_FILE_ERROR            = "Errore file",
@@ -170,4 +184,5 @@ const Locale LANG_IT = {
     .TXT_SETTINGS_STATUS_BAR      = "barra stato: ",
     .TXT_SETTINGS_PID             = "PID: ",
     .TXT_SETTINGS_KB_GYRO         = "Giroscopio: ",
+    .TXT_SETTINGS_WEBSERVER_FS    = "WebServer FS: ",
 };

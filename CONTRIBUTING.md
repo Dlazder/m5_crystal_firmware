@@ -12,20 +12,34 @@ Thank you for your interest in contributing! This document describes how to get 
 
 ## Development setup
 
-1. Install [PlatformIO](https://platformio.org/) (VS Code extension or CLI)
-2. Clone the repository:
-   ```bash
-   git clone https://github.com/Dlazder/m5stick_crystal_firmware.git
-   cd m5stick_crystal_firmware
-   ```
+1. Clone the repository:
+
+```bash
+git clone https://github.com/Dlazder/m5_crystal_firmware.git
+cd m5stick_crystal_firmware
+```
+
+2. Install [PlatformIO](https://platformio.org/) VS code extension
 3. Open the project in VS Code — PlatformIO will install dependencies automatically
-4. Select your target device in `platformio.ini` and build
+4. Select your device/port (through bottom panel or command palete) and build/upload firmware
 
 See [build instructions](./docs/build.md) for full details and alternative methods.
 
 ## Adding a new feature
 
 The firmware is designed to make adding new functions straightforward. Read the [how to add a feature](./docs/add_feature.md) before starting
+
+## Develop guide
+
+Read the [develop guide](docs/develop.md) to understand the basic structure of the firmware and its individual parts.
+
+## Documentation
+
+- [Build firmware and flash (all methods)](./docs/build.md)
+- [Module connection guide (PN532, SD, IR)](./docs/modules.md)
+- [Developer guide (far from complete)](./docs/develop.md)
+- [How to add a new feature](./docs/add_feature.md)
+- [Description of utilities](./docs/utils.md)
 
 ## Pull request checklist
 

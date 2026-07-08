@@ -18,6 +18,10 @@ const Locale LANG_EN = {
 	.MENU_WIFI_WPA_BF            = "wpa bruteforce",
 	.MENU_WIFI_WPA_BF_ALL        = "wpa bf all nets",
 	.MENU_WIFI_DEAUTH_ALL        = "deauth all",
+	.MENU_WIFI_EVIL_PORTAL       = "evil portal",
+	.MENU_WIFI_EVIL_TWIN         = "evil twin",
+	.MENU_WIFI_HANDSHAKE         = "handshake capture",
+	.MENU_SETTINGS_WIFI_SSID      = "Wi-Fi SSID",
 
 	// Bluetooth menu
 	.MENU_BT                     = "Bluetooth",
@@ -76,6 +80,7 @@ const Locale LANG_EN = {
 	.MENU_SETTINGS_KB_GYRO       = "keyboard gyro",
 	.MENU_SETTINGS_LANGUAGE      = "language",
 	.MENU_SETTINGS_DIMMING       = "dim screen",
+	.MENU_SETTINGS_WEBSERVER_FS  = "web server FS",
 
 	// Other menu
 	.MENU_OTHER                  = "other",
@@ -108,6 +113,8 @@ const Locale LANG_EN = {
 	.TXT_SWITCH                  = "switch",
 	.TXT_ENABLED                 = "enabled",
 	.TXT_DISABLED                = "disabled",
+	.TXT_ON                      = "ON",
+	.TXT_OFF                     = "OFF",
 	.TXT_SCANNING                = "Scanning...",
 	.TXT_CONNECTING              = "Connecting...",
 	.TXT_CONNECTED               = "Connected",
@@ -135,6 +142,13 @@ const Locale LANG_EN = {
 	.TXT_WIFI_BF_ALL_NETS        = "Nets: %d",
 	.TXT_WIFI_BF_ALL_CRACKED     = "Cracked: %d/%d",
 	.TXT_WIFI_NO_NETWORKS        = "No networks",
+	.TXT_WIFI_EVIL_PORTAL_RUNNING     = "Evil Portal active",
+	.TXT_WIFI_EVIL_PORTAL_CRED_CAPTURED = "Creds captured!",
+	.TXT_WIFI_EVIL_TWIN_RUNNING     = "Evil Twin active",
+	.TXT_SETTINGS_WIFI_SSID      = "Wi-Fi SSID: ",
+	
+	.TXT_WIFI_HANDSHAKE_PACKETS   = "Handshakes: ",
+	.TXT_WIFI_HANDSHAKE_SAVED     = "Saved to SD",
 
 	// Bluetooth text
 	.TXT_BT_FILE_ERROR           = "File error",
@@ -170,4 +184,5 @@ const Locale LANG_EN = {
 	.TXT_SETTINGS_STATUS_BAR     = "status bar: ",
 	.TXT_SETTINGS_PID            = "PID: ",
 	.TXT_SETTINGS_KB_GYRO        = "KB gyro: ",
+	.TXT_SETTINGS_WEBSERVER_FS   = "WebServer FS: ",
 };

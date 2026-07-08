@@ -22,6 +22,8 @@
 #include "../functions/settings/languageLoop.h"
 #include "../functions/settings/dimmingLoop.h"
 #include "../functions/settings/volumeLoop.h"
+#include "../functions/settings/toggleWebServerFs.h"
+#include "../functions/settings/ssidLoop.h"
 
 
 // Wi-Fi functions
@@ -38,6 +40,10 @@
 #include "../functions/wifi/wifiBruteforceLoop.h"
 #include "../functions/wifi/wifiBruteforceAllLoop.h"
 #include "../functions/wifi/wifiDeauthAllLoop.h"
+#include "../functions/wifi/evilPortalLoop.h"
+#include "../functions/wifi/evilTwinLoop.h"
+#include "../functions/wifi/wifiHandshakeLoop.h"
+#include "../functions/wifi/pcapToHashLoop.h"
 
 
 // Files

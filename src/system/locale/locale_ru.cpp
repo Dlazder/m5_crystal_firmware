@@ -18,6 +18,10 @@ const Locale LANG_RU = {
 	.MENU_WIFI_WPA_BF            = "wpa брутфорс",
 	.MENU_WIFI_WPA_BF_ALL        = "wpa бф все сети",
 	.MENU_WIFI_DEAUTH_ALL        = "деаут все",
+	.MENU_WIFI_EVIL_PORTAL       = "evil portal",
+	.MENU_WIFI_EVIL_TWIN         = "evil twin",
+	.MENU_WIFI_HANDSHAKE         = "захват рукопожатия",
+	.MENU_SETTINGS_WIFI_SSID      = "Wi-Fi SSID",
 
 	// Bluetooth menu
 	.MENU_BT                     = "Bluetooth",
@@ -76,6 +80,7 @@ const Locale LANG_RU = {
 	.MENU_SETTINGS_KB_GYRO       = "гиро клав.",
 	.MENU_SETTINGS_LANGUAGE      = "язык",
 	.MENU_SETTINGS_DIMMING       = "диммер",
+	.MENU_SETTINGS_WEBSERVER_FS  = "веб-сервер FS",
 
 	// Other menu
 	.MENU_OTHER                  = "другое",
@@ -108,6 +113,8 @@ const Locale LANG_RU = {
 	.TXT_SWITCH                  = "переключить",
 	.TXT_ENABLED                 = "включено",
 	.TXT_DISABLED                = "выключено",
+	.TXT_ON                      = "ВКЛ",
+	.TXT_OFF                     = "ВЫКЛ",
 	.TXT_SCANNING                = "Сканирование...",
 	.TXT_CONNECTING              = "Подключение...",
 	.TXT_CONNECTED               = "Подключено",
@@ -135,6 +142,13 @@ const Locale LANG_RU = {
 	.TXT_WIFI_BF_ALL_NETS        = "Сетей: %d",
 	.TXT_WIFI_BF_ALL_CRACKED     = "Взломано: %d/%d",
 	.TXT_WIFI_NO_NETWORKS        = "Нет сетей",
+	.TXT_WIFI_EVIL_PORTAL_RUNNING     = "Evil Portal активен",
+	.TXT_WIFI_EVIL_PORTAL_CRED_CAPTURED = "Креды получены!",
+	.TXT_WIFI_EVIL_TWIN_RUNNING     = "Evil Twin активен",
+	.TXT_SETTINGS_WIFI_SSID      = "Wi-Fi SSID: ",
+	
+	.TXT_WIFI_HANDSHAKE_PACKETS   = "Handshake: ",
+	.TXT_WIFI_HANDSHAKE_SAVED     = "Сохранено на SD",
 
 	// Bluetooth text
 	.TXT_BT_FILE_ERROR           = "Ошибка файла",
@@ -170,4 +184,5 @@ const Locale LANG_RU = {
 	.TXT_SETTINGS_STATUS_BAR     = "статус бар: ",
 	.TXT_SETTINGS_PID            = "PID: ",
 	.TXT_SETTINGS_KB_GYRO        = "гиро клав.: ",
+	.TXT_SETTINGS_WEBSERVER_FS   = "Веб-сервер FS: ",
 };

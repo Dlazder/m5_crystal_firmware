@@ -1,6 +1,12 @@
 #include <stdint.h>
 #include "./processes.h"
 #include "./deauth_patch.h"
+
+// Must come before M5GFX/M5Unified so its DataWrapperT<fs::FS> and
+// per-filesystem specializations are compiled (see M5GFX.h comment).
+#include <SD.h>
+#include <LittleFS.h>
+
 #include "M5Unified.h"
 #include <WiFi.h>
 #include <DNSServer.h>
@@ -110,6 +116,7 @@ int globalTimer = millis();
 int globalPreviousTimer = 0;
 
 bool isWebInterfaceEnabled = false;
+bool webServerFs = false;
 bool webDataRequested = true;
 String webData = "";
 String webDataType = "";

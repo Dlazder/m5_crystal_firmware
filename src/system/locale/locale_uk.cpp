@@ -18,6 +18,10 @@ const Locale LANG_UK = {
 	.MENU_WIFI_WPA_BF            = "wpa брутфорс",
 	.MENU_WIFI_WPA_BF_ALL        = "wpa бф всі мережі",
 	.MENU_WIFI_DEAUTH_ALL        = "деаут всі",
+	.MENU_WIFI_EVIL_PORTAL       = "evil portal",
+	.MENU_WIFI_EVIL_TWIN         = "evil twin",
+	.MENU_WIFI_HANDSHAKE         = "захоплення рукостискання",
+	.MENU_SETTINGS_WIFI_SSID      = "Wi-Fi SSID",
 
 	// Bluetooth menu
 	.MENU_BT                     = "Bluetooth",
@@ -76,6 +80,7 @@ const Locale LANG_UK = {
 	.MENU_SETTINGS_KB_GYRO       = "гіро клав.",
 	.MENU_SETTINGS_LANGUAGE      = "мова",
 	.MENU_SETTINGS_DIMMING       = "димінг",
+	.MENU_SETTINGS_WEBSERVER_FS  = "веб-сервер FS",
 
 	// Other menu
 	.MENU_OTHER                  = "інше",
@@ -108,6 +113,8 @@ const Locale LANG_UK = {
 	.TXT_SWITCH                  = "перемкнути",
 	.TXT_ENABLED                 = "увімкнено",
 	.TXT_DISABLED                = "вимкнено",
+	.TXT_ON                      = "УВІМК",
+	.TXT_OFF                     = "ВИМК",
 	.TXT_SCANNING                = "Сканування...",
 	.TXT_CONNECTING              = "Підключення...",
 	.TXT_CONNECTED               = "Підключено",
@@ -135,7 +142,14 @@ const Locale LANG_UK = {
 	.TXT_WIFI_BF_ALL_NETS        = "Мереж: %d",
 	.TXT_WIFI_BF_ALL_CRACKED     = "Зламано: %d/%d",
 	.TXT_WIFI_NO_NETWORKS        = "Немає мереж",
-
+	.TXT_WIFI_EVIL_PORTAL_RUNNING     = "Evil Portal активний",
+	.TXT_WIFI_EVIL_PORTAL_CRED_CAPTURED = "Креди отримані!",
+	.TXT_WIFI_EVIL_TWIN_RUNNING     = "Evil Twin активний",
+	.TXT_SETTINGS_WIFI_SSID      = "Wi-Fi SSID: ",
+	
+	.TXT_WIFI_HANDSHAKE_PACKETS   = "Handshake: ",
+	.TXT_WIFI_HANDSHAKE_SAVED     = "Збережено на SD",
+				
 	// Bluetooth text
 	.TXT_BT_FILE_ERROR           = "Помилка файлу",
 	.TXT_BT_PRESS_A_TO_RUN       = "A - запустити",
@@ -170,4 +184,5 @@ const Locale LANG_UK = {
 	.TXT_SETTINGS_STATUS_BAR     = "стат. рядок: ",
 	.TXT_SETTINGS_PID            = "PID: ",
 	.TXT_SETTINGS_KB_GYRO        = "гіро клав.: ",
+	.TXT_SETTINGS_WEBSERVER_FS   = "Веб-сервер FS: ",
 };

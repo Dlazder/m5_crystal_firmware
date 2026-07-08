@@ -18,6 +18,10 @@ const Locale LANG_ID = {
     .MENU_WIFI_WPA_BF             = "wpa bruteforce",
     .MENU_WIFI_WPA_BF_ALL         = "wpa bf semua net",
     .MENU_WIFI_DEAUTH_ALL         = "deauth semua",
+    .MENU_WIFI_EVIL_PORTAL       = "evil portal",
+    .MENU_WIFI_EVIL_TWIN         = "evil twin",
+    .MENU_WIFI_HANDSHAKE         = "tangkap handshake",
+    .MENU_SETTINGS_WIFI_SSID      = "Wi-Fi SSID",
 
     // Bluetooth menu
     .MENU_BT                      = "Bluetooth",
@@ -76,6 +80,7 @@ const Locale LANG_ID = {
     .MENU_SETTINGS_KB_GYRO        = "giroskop",
     .MENU_SETTINGS_LANGUAGE       = "bahasa",
     .MENU_SETTINGS_DIMMING        = "redupkan",
+    .MENU_SETTINGS_WEBSERVER_FS   = "web server FS",
 
     // Other menu
     .MENU_OTHER                   = "lainnya",
@@ -108,6 +113,8 @@ const Locale LANG_ID = {
     .TXT_SWITCH                   = "ganti",
     .TXT_ENABLED                  = "aktif",
     .TXT_DISABLED                 = "nonaktif",
+    .TXT_ON                       = "ON",
+    .TXT_OFF                      = "OFF",
     .TXT_SCANNING                 = "Memindai...",
     .TXT_CONNECTING               = "Menghubungkan...",
     .TXT_CONNECTED                = "Terhubung",
@@ -135,6 +142,13 @@ const Locale LANG_ID = {
     .TXT_WIFI_BF_ALL_NETS         = "Jaringan: %d",
     .TXT_WIFI_BF_ALL_CRACKED      = "Berhasil: %d/%d",
     .TXT_WIFI_NO_NETWORKS         = "Tidak ada jaringan",
+    .TXT_WIFI_EVIL_PORTAL_RUNNING     = "Evil Portal aktif",
+    .TXT_WIFI_EVIL_PORTAL_CRED_CAPTURED = "Creds ditangkap!",
+    .TXT_WIFI_EVIL_TWIN_RUNNING     = "Evil Twin aktif",
+    .TXT_SETTINGS_WIFI_SSID      = "Wi-Fi SSID: ",
+    
+    .TXT_WIFI_HANDSHAKE_PACKETS   = "Handshake: ",
+    .TXT_WIFI_HANDSHAKE_SAVED     = "Disimpan ke SD",
 
     // Bluetooth text
     .TXT_BT_FILE_ERROR            = "Error file",
@@ -170,4 +184,5 @@ const Locale LANG_ID = {
     .TXT_SETTINGS_STATUS_BAR      = "bilah status: ",
     .TXT_SETTINGS_PID             = "PID: ",
     .TXT_SETTINGS_KB_GYRO         = "Giroskop: ",
+    .TXT_SETTINGS_WEBSERVER_FS    = "WebServer FS: ",
 };
