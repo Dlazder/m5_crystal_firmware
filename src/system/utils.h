@@ -21,6 +21,8 @@
 #include "../utils/sdUtils.h"
 #include "../utils/filePickerUtils.h"
 #include "../utils/wifiUtils/wifiStorageUtils.h"
+#include "../utils/wifiUtils/pcapUtils.h"
+#include "../utils/wifiUtils/deauthUtils.h"
 #include "../utils/badUsbUtils.h"
 #include "../utils/bleUtils.h"
 

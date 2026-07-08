@@ -1,7 +1,5 @@
 // pid PID::WIFI_DEAUTH_ALL
 
-// Reuses the deauth frame helpers defined in wifiDeauthLoop.h
-
 static int _daIndex = 0;
 
 void wifiDeauthAllLoop() {
@@ -36,7 +34,7 @@ void wifiDeauthAllLoop() {
 	drawSpinner();
 	canvas.pushSprite(0, getStatusBarHeight());
 
-	wsl_bypasser_send_deauth_frame(targetBssid, targetChannel);
+	deauthSendFrame(targetBssid, targetChannel);
 
 	_daIndex = (_daIndex + 1) % wifiCount;
 }

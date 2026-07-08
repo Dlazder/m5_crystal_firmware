@@ -20,6 +20,7 @@ const Locale LANG_EN = {
 	.MENU_WIFI_DEAUTH_ALL        = "deauth all",
 	.MENU_WIFI_EVIL_PORTAL       = "evil portal",
 	.MENU_WIFI_EVIL_TWIN         = "evil twin",
+	.MENU_WIFI_HANDSHAKE         = "handshake capture",
 	.MENU_SETTINGS_WIFI_SSID      = "Wi-Fi SSID",
 
 	// Bluetooth menu
@@ -112,6 +113,8 @@ const Locale LANG_EN = {
 	.TXT_SWITCH                  = "switch",
 	.TXT_ENABLED                 = "enabled",
 	.TXT_DISABLED                = "disabled",
+	.TXT_ON                      = "ON",
+	.TXT_OFF                     = "OFF",
 	.TXT_SCANNING                = "Scanning...",
 	.TXT_CONNECTING              = "Connecting...",
 	.TXT_CONNECTED               = "Connected",
@@ -143,6 +146,9 @@ const Locale LANG_EN = {
 	.TXT_WIFI_EVIL_PORTAL_CRED_CAPTURED = "Creds captured!",
 	.TXT_WIFI_EVIL_TWIN_RUNNING     = "Evil Twin active",
 	.TXT_SETTINGS_WIFI_SSID      = "Wi-Fi SSID: ",
+	
+	.TXT_WIFI_HANDSHAKE_PACKETS   = "Handshakes: ",
+	.TXT_WIFI_HANDSHAKE_SAVED     = "Saved to SD",
 
 	// Bluetooth text
 	.TXT_BT_FILE_ERROR           = "File error",
