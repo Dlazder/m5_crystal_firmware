@@ -114,6 +114,8 @@ struct Locale {
 	const char* TXT_SWITCH;
 	const char* TXT_ENABLED;
 	const char* TXT_DISABLED;
+	const char* TXT_ON;
+	const char* TXT_OFF;
 	const char* TXT_SCANNING;
 	const char* TXT_CONNECTING;
 	const char* TXT_CONNECTED;
@@ -146,8 +148,8 @@ struct Locale {
 	const char* TXT_WIFI_EVIL_TWIN_RUNNING;
 	const char* TXT_SETTINGS_WIFI_SSID;
 	const char* TXT_WIFI_HANDSHAKE_CAPTURING;
-	const char* TXT_WIFI_HANDSHAKE_PACKETS;   // "EAPOL: %d"
-	const char* TXT_WIFI_HANDSHAKE_SAVED;      // "Saved to LittleFS"
+	const char* TXT_WIFI_HANDSHAKE_PACKETS;
+	const char* TXT_WIFI_HANDSHAKE_SAVED;
 	const char* TXT_WIFI_HANDSHAKE_DEAUTH_ON;
 	const char* TXT_WIFI_HANDSHAKE_DEAUTH_OFF;
 

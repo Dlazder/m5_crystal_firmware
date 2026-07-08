@@ -10,7 +10,7 @@
 
 #include "esp_wifi.h"
 
-static const char* HANDSHAKE_CAPTURE_PATH = "/handshake.pcap";
+static String handshakeCapturePath; // set during setup, e.g. /handshake_MyWiFi_1.pcap
 
 // Ring buffer for passing packets from callback -> main loop
 
@@ -36,12 +36,16 @@ static String hsTargetSsid;
 // Beacon counter — reset each session, cap at 3 to save PCAP space
 static int beaconCount = 0;
 
+// FT-PSK detection — parsed from beacon RSN IE (AKM suite 00-0F-AC-04)
+static bool hsIsFT = false;
+static bool hsIsFTDetected = false;
+
 // Deauth toggle state — press Enter/BtnA to toggle
 static bool deauthEnabled = false;
 static uint32_t lastDeauthTime = 0;
 #define DEAUTH_INTERVAL_MS 200
 
-#define HASH_PATH "/handshake.hash"
+
 
 // Promiscuous callback
 // Runs in WiFi task context — no file I/O, no display calls, no long delays.
@@ -68,6 +72,37 @@ static void wifiHandshakeSniffCb(void* buf, wifi_promiscuous_pkt_type_t type) {
 
 		// Beacon Addr3 (offset 16) = BSSID
 		if (memcmp(frame + 16, hsTargetBssid, 6) != 0) return;
+
+		// Parse RSN IE for FT-PSK detection (AKM suite 00-0F-AC-04)
+		if (!hsIsFTDetected) {
+			int pos = 36; // fixed beacon body: timestamp(8) + interval(2) + capabilities(2)
+			while (pos + 2 <= (int)frameLen - 4) { // -4 for FCS
+				uint8_t tag = frame[pos];
+				uint8_t tlen = frame[pos + 1];
+				if (pos + 2 + tlen > (int)frameLen - 4) break;
+				if (tag == 0x30 && tlen >= 20) { // RSN IE
+					const uint8_t* rsn = frame + pos + 2;
+					int off = 2;                          // version
+					off += 4;                             // group cipher suite
+					uint16_t pwCnt = rsn[off] | (rsn[off+1] << 8);
+					off += 2 + pwCnt * 4;                 // pairwise cipher list
+					if (off + 2 <= tlen) {
+						uint16_t akmCnt = rsn[off] | (rsn[off+1] << 8);
+						off += 2;
+						for (int i = 0; i < (int)akmCnt && off + 4 <= tlen; i++) {
+							if (rsn[off] == 0x00 && rsn[off+1] == 0x0F
+								&& rsn[off+2] == 0xAC && rsn[off+3] == 0x04) {
+								hsIsFT = true;
+								Serial.println("FT-PSK detected: AKM suite 00-0F-AC-04");
+							}
+							off += 4;
+						}
+					}
+					hsIsFTDetected = true;
+				}
+				pos += 2 + tlen;
+			}
+		}
 
 		if (beaconCount >= 3) {
 			static int overflowDbg = 0;
@@ -206,6 +241,8 @@ void wifiHandshakeLoop() {
 		handshakeRingTail = 0;
 		handshakeTotalPackets = 0;
 		beaconCount = 0;
+		hsIsFT = false;
+		hsIsFTDetected = false;
 		fileOpen = false;
 		deauthEnabled = false;
 		lastDeauthTime = 0;
@@ -215,12 +252,30 @@ void wifiHandshakeLoop() {
 		hsTargetChannel = channel;
 		hsTargetSsid = ssid;
 
-		// Open PCAP file on SD card
+		// Open PCAP file on SD card with unique name: /handshake_<ssid>_<N>.pcap
 		if (sdBegin()) {
-			if (SD.exists(HANDSHAKE_CAPTURE_PATH))
-				SD.remove(HANDSHAKE_CAPTURE_PATH);
+			// Sanitize SSID for FAT filename
+			String safeSsid = ssid;
+			safeSsid.replace(" ", "_");
+			safeSsid.replace("/", "_");
+			safeSsid.replace("\\", "_");
+			safeSsid.replace(":", "_");
+			safeSsid.replace("*", "_");
+			safeSsid.replace("?", "_");
+			safeSsid.replace("\"", "_");
+			safeSsid.replace("<", "_");
+			safeSsid.replace(">", "_");
+			safeSsid.replace("|", "_");
 
-			pcapFile = SD.open(HANDSHAKE_CAPTURE_PATH, FILE_WRITE);
+			String path;
+			int n = 1;
+			do {
+				path = "/handshake_" + safeSsid + "_" + String(n) + ".pcap";
+				n++;
+			} while (SD.exists(path));
+			handshakeCapturePath = path;
+
+			pcapFile = SD.open(handshakeCapturePath, FILE_WRITE);
 			if (pcapFile) {
 				writePcapGlobalHeader(pcapFile);
 				fileOpen = true;
@@ -314,22 +369,15 @@ void wifiHandshakeLoop() {
 
 	// Refresh display every frame for spinner animation
 	{
-		char buf[40];
-		snprintf(buf, sizeof(buf), L->TXT_WIFI_HANDSHAKE_PACKETS, handshakeTotalPackets);
-
-		const char* deauthLine = deauthEnabled
-			? L->TXT_WIFI_HANDSHAKE_DEAUTH_ON
-			: L->TXT_WIFI_HANDSHAKE_DEAUTH_OFF;
-
 		String lines[] = {
 			hsTargetSsid,
-			"Ch: " + String(hsTargetChannel),
-			String(buf),
-			String(deauthLine)
+			String(L->TXT_WIFI_HANDSHAKE_PACKETS) + String(handshakeTotalPackets),
+			deauthEnabled ? L->TXT_WIFI_HANDSHAKE_DEAUTH_ON : L->TXT_WIFI_HANDSHAKE_DEAUTH_OFF,
+			"FT-PSK: " + String(hsIsFT ? L->TXT_ON : L->TXT_OFF)
 		};
 		centeredPrintRows(lines, 4, SMALL_TEXT, true);
 		drawSpinner();
-		canvas.pushSprite(0, getStatusBarHeight());
+		drawHintCustom("enter: deauth", "A: deauth");
 	}
 
 	if (checkExit()) {
@@ -343,22 +391,11 @@ void wifiHandshakeLoop() {
 			pcapFile.close();
 			fileOpen = false;
 
-			// Generate FT hash from the pcap we just wrote
-			{
-				bool hashOk = pcapToFTHash(HANDSHAKE_CAPTURE_PATH);
-				if (hashOk) {
-					Serial.println("FT hash saved: " HASH_PATH);
-				}
-			}
-
-			char countBuf[40];
-			snprintf(countBuf, sizeof(countBuf), L->TXT_WIFI_HANDSHAKE_PACKETS, handshakeTotalPackets);
-
 			String lines[] = {
-				String(countBuf),
-				L->TXT_WIFI_HANDSHAKE_SAVED
+				L->TXT_WIFI_HANDSHAKE_SAVED,
+				handshakeCapturePath
 			};
-			centeredPrintRows(lines, 2, MEDIUM_TEXT);
+			centeredPrintRows(lines, 2, SMALL_TEXT);
 			soundSuccess();
 			delay(800);
 		} else {

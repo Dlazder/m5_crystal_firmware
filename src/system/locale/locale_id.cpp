@@ -113,6 +113,8 @@ const Locale LANG_ID = {
     .TXT_SWITCH                   = "ganti",
     .TXT_ENABLED                  = "aktif",
     .TXT_DISABLED                 = "nonaktif",
+    .TXT_ON                       = "ON",
+    .TXT_OFF                      = "OFF",
     .TXT_SCANNING                 = "Memindai...",
     .TXT_CONNECTING               = "Menghubungkan...",
     .TXT_CONNECTED                = "Terhubung",
@@ -145,7 +147,7 @@ const Locale LANG_ID = {
     .TXT_WIFI_EVIL_TWIN_RUNNING     = "Evil Twin aktif",
     .TXT_SETTINGS_WIFI_SSID      = "Wi-Fi SSID: ",
     
-    .TXT_WIFI_HANDSHAKE_PACKETS   = "Handshake: %d",
+    .TXT_WIFI_HANDSHAKE_PACKETS   = "Handshake: ",
     .TXT_WIFI_HANDSHAKE_SAVED     = "Disimpan ke SD",
 		.TXT_WIFI_HANDSHAKE_DEAUTH_ON  = "Deauth: ON",
 		.TXT_WIFI_HANDSHAKE_DEAUTH_OFF = "Deauth: OFF",

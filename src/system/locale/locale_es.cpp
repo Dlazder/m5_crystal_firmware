@@ -113,6 +113,8 @@ const Locale LANG_ES = {
 	.TXT_SWITCH  = "cambiar",
 	.TXT_ENABLED = "activado",
 	.TXT_DISABLED = "desactivado",
+	.TXT_ON      = "ON",
+	.TXT_OFF     = "OFF",
 	.TXT_SCANNING = "Buscando...",
 	.TXT_CONNECTING = "Conectando...",
 	.TXT_CONNECTED = "Conectado",
@@ -145,7 +147,7 @@ const Locale LANG_ES = {
 	.TXT_WIFI_EVIL_TWIN_RUNNING     = "Evil Twin activo",
 	.TXT_SETTINGS_WIFI_SSID      = "Wi-Fi SSID: ",
 	
-	.TXT_WIFI_HANDSHAKE_PACKETS   = "Handshakes: %d",
+	.TXT_WIFI_HANDSHAKE_PACKETS   = "Handshakes: ",
 	.TXT_WIFI_HANDSHAKE_SAVED     = "Guardado en SD",
 		.TXT_WIFI_HANDSHAKE_DEAUTH_ON  = "Deauth: ON",
 		.TXT_WIFI_HANDSHAKE_DEAUTH_OFF = "Deauth: OFF",
