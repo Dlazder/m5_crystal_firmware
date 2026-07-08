@@ -82,10 +82,10 @@ static void wifiHandshakeSniffCb(void* buf, wifi_promiscuous_pkt_type_t type) {
 				if (pos + 2 + tlen > (int)frameLen - 4) break;
 				if (tag == 0x30 && tlen >= 20) { // RSN IE
 					const uint8_t* rsn = frame + pos + 2;
-					int off = 2;                          // version
-					off += 4;                             // group cipher suite
+					int off = 2; // version
+					off += 4; // group cipher suite
 					uint16_t pwCnt = rsn[off] | (rsn[off+1] << 8);
-					off += 2 + pwCnt * 4;                 // pairwise cipher list
+					off += 2 + pwCnt * 4; // pairwise cipher list
 					if (off + 2 <= tlen) {
 						uint16_t akmCnt = rsn[off] | (rsn[off+1] << 8);
 						off += 2;
@@ -361,9 +361,7 @@ void wifiHandshakeLoop() {
 		uint32_t now = millis();
 		if (now - lastDeauthTime >= DEAUTH_INTERVAL_MS) {
 			lastDeauthTime = now;
-			memcpy(&deauth_frame[10], hsTargetBssid, 6);
-			memcpy(&deauth_frame[16], hsTargetBssid, 6);
-			esp_wifi_80211_tx(WIFI_IF_AP, deauth_frame, sizeof(deauth_frame_default), false);
+			deauthSendFrame(hsTargetBssid, hsTargetChannel);
 		}
 	}
 
