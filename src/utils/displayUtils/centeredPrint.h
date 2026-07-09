@@ -11,10 +11,13 @@ void centeredPrint(String text, float textSize, bool manual = false) {
 
   int textWidth = canvas.textWidth(text.c_str());
   int textHeight = canvas.fontHeight();
-  int offsetX = (canvas.width() - textWidth) / 2;
-  int offsetY = (canvas.height() - textHeight) / 2;
+  int x = (canvas.width() - textWidth) / 2;
+  int y = (canvas.height() - textHeight) / 2;
 
-  canvas.setCursor(offsetX, offsetY);
+  // don't allow text to have x < 0 (+ a little margin)
+  if (x < 5) x = 5;
+
+  canvas.setCursor(x, y);
   canvas.println(text.c_str());
   if (!manual) canvas.pushSprite(0, getStatusBarHeight());
 }

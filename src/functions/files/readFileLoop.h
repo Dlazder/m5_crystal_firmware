@@ -81,7 +81,7 @@ void _rfDraw() {
 		canvas.fillRect(sbX, 0, sbW, sbH, BGCOLOR);
 		canvas.fillRect(sbX, sliderY, sbW, sliderH, FGCOLOR);
 	}
-	canvas.pushSprite(0, getStatusBarHeight());
+	canvas.pushSprite(0, getStatusBarOffset());
 }
 
 static bool _rfIsImageExt(const String& path) {
