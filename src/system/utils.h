@@ -23,6 +23,7 @@
 #include "../utils/wifiUtils/wifiStorageUtils.h"
 #include "../utils/wifiUtils/pcapUtils.h"
 #include "../utils/wifiUtils/deauthUtils.h"
+#include "../utils/wifiUtils/handshakeSession.h"
 #include "../utils/badUsbUtils.h"
 #include "../utils/bleUtils.h"
 

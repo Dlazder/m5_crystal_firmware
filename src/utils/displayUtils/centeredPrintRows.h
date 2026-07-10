@@ -5,13 +5,12 @@
  * @param textSize  Text size [TINY_TEXT; SMALL_TEXT; MEDIUM_TEXT; BIG_TEXT; HUGE_TEXT].
  * @param manual    If true, skips pushSprite — use when a drawHint* call follows to avoid double push.
  */
-void centeredPrintRows(String text[], int arraySize, float textSize, bool manual = false) {
-	canvas.clear();
+void centeredPrintRows(String text[], int arraySize, float textSize, bool manual = false, int startY = -1) {
+	if (startY < 0) canvas.clear();
 	canvas.setTextColor(FGCOLOR, BGCOLOR);
 	canvas.setTextSize(textSize);
 
-	int textHeight = arraySize * canvas.fontHeight();
-	int offsetY = (canvas.height() - textHeight) / 2;
+	int offsetY = (startY >= 0) ? startY : (canvas.height() - arraySize * canvas.fontHeight()) / 2;
 
 	for (int i = 0; i < arraySize; i++) {
 		int textWidth = canvas.textWidth(text[i].c_str());
