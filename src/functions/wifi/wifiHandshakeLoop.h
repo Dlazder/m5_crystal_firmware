@@ -45,11 +45,54 @@ static bool deauthEnabled = false;
 static uint32_t lastDeauthTime = 0;
 #define DEAUTH_INTERVAL_MS 200
 
+// Draw 5 progress squares: M1–M4 + handshake counter at the top of the canvas.
+static void _hsDrawProgress(int step, int count) {
+	const int margin = 5;
+	const int gap = 5;
+	const int topY = 5;
+	const int sqW = (canvas.width() - margin * 2 - gap * 4) / 5;
+	const int sqH = 20;
 
+	canvas.setTextSize(SMALL_TEXT);
+
+	// M1–M4 squares
+	for (int i = 0; i < 4; i++) {
+		int x = margin + i * (sqW + gap);
+		bool filled = (i < step);
+
+		if (filled) {
+			canvas.fillRect(x, topY, sqW, sqH, FGCOLOR);
+			canvas.setTextColor(BGCOLOR, FGCOLOR);
+		} else {
+			canvas.drawRect(x, topY, sqW, sqH, FGCOLOR);
+			canvas.setTextColor(FGCOLOR, BGCOLOR);
+		}
+
+		String label = "M" + String(i + 1);
+		int tw = canvas.textWidth(label.c_str());
+		int th = canvas.fontHeight();
+		canvas.setCursor(x + (sqW - tw) / 2, topY + (sqH - th) / 2);
+		canvas.print(label);
+	}
+
+	// 5th square: handshake counter (outline only, green text when >0)
+	{
+		int x = margin + 4 * (sqW + gap);
+		canvas.drawRect(x, topY, sqW, sqH, TFT_DARKGRAY);
+		canvas.setTextColor((count > 0) ? FGCOLOR : TFT_DARKGREY, BGCOLOR);
+
+		String label = String(count);
+		int tw = canvas.textWidth(label.c_str());
+		int th = canvas.fontHeight();
+		canvas.setCursor(x + (sqW - tw) / 2, topY + (sqH - th) / 2);
+		canvas.print(label);
+	}
+
+	canvas.setTextColor(FGCOLOR, BGCOLOR);
+}
 
 // Promiscuous callback
 // Runs in WiFi task context — no file I/O, no display calls, no long delays.
-
 static void wifiHandshakeSniffCb(void* buf, wifi_promiscuous_pkt_type_t type) {
 	// Accept MGMT (beacons) and DATA (EAPOL) frames
 	if (type != WIFI_PKT_MGMT && type != WIFI_PKT_DATA) return;
@@ -213,16 +256,6 @@ static void wifiHandshakeSniffCb(void* buf, wifi_promiscuous_pkt_type_t type) {
 			bool kInstall= (keyInfo >> 6) & 1;
 			char msgType = (kAck && !kMic) ? '1' : (kMic && !kAck && !kSecure) ? '2'
 				: (kAck && kMic && kSecure) ? '3' : (kMic && kSecure && !kAck) ? '4' : '?';
-			Serial.printf("EAPOL #%d [M%c]: ver=%u type=%u eapol_decl=%u eapol_actual=%u "
-				"key_info=0x%04x key_desc=%u key_len=%u "
-				"ack=%d mic=%d sec=%d inst=%d "
-				"hdrLen=%d frameLen=%u toDS=%d fromDS=%d isQoS=%d\n",
-				eapolDebugCount + 1, msgType,
-				eapolVer, eapolType,
-				eapolDeclared, eapolActual,
-				keyInfo, keyDesc, keyLen,
-				kAck, kMic, kSecure, kInstall,
-				hdrLen, frameLen, toDS, fromDS, isQoS);
 			// Dump first 8 bytes of Key Nonce (offset 13 from EAPOL-Key body = llc+12+13 = llc+25)
 			Serial.printf("	nonce[0:8]: %02x %02x %02x %02x %02x %02x %02x %02x\n",
 				llc[25], llc[26], llc[27], llc[28],
@@ -246,6 +279,7 @@ void wifiHandshakeLoop() {
 		fileOpen = false;
 		deauthEnabled = false;
 		lastDeauthTime = 0;
+		hsReset();
 
 		// Snapshot target params (BSSID pointer from scan may become stale)
 		memcpy(hsTargetBssid, bssid, 6);
@@ -322,23 +356,12 @@ void wifiHandshakeLoop() {
 			writePcapPacket(pcapFile, pkt.data, pkt.len, pkt.rssi, pkt.timestamp, hsTargetChannel);
 		}
 		handshakeRingTail = (handshakeRingTail + 1) % HANDSHAKE_RING_SIZE;
-		// Only count EAPOL M2 frames (one per handshake)
+		// Count complete handshakes via session state machine
 		uint16_t fc = pkt.data[0] | (pkt.data[1] << 8);
-		if (((fc >> 2) & 0x3) == 2) { // Data frame
-			bool toDS = (fc >> 8) & 0x1;
-			bool fromDS = (fc >> 9) & 0x1;
-			int hdrLen = 24;
-			uint8_t subtype = (fc >> 4) & 0xF;
-			if (toDS && fromDS) hdrLen += 6;
-			if (subtype & 0x8) {
-				hdrLen += 2;
-				if ((fc >> 15) & 0x1) hdrLen += 4;
-			}
-			uint16_t keyInfo = (pkt.data[hdrLen + 13] << 8) | pkt.data[hdrLen + 14];
-			// M2: MIC=1 (bit8), ACK=0 (bit7)
-			if ((keyInfo & 0x0100) && !(keyInfo & 0x0080)) {
+		if (((fc >> 2) & 0x3) == 2) { // Data frame (EAPOL)
+			if (hsProcessFrame(pkt.data)) {
 				handshakeTotalPackets++;
-				soundBeep();
+				soundSuccess();
 			}
 		}
 	}
@@ -367,13 +390,20 @@ void wifiHandshakeLoop() {
 
 	// Refresh display every frame for spinner animation
 	{
+		canvas.clear();
+		canvas.setTextColor(FGCOLOR, BGCOLOR);
+
+		_hsDrawProgress(hsGetDisplayStep(), handshakeTotalPackets);
+
+		canvas.setTextSize(SMALL_TEXT);
+		const int startY = 40; // topMargin(5) + sqH(20) + manual margin(15)
 		String lines[] = {
 			hsTargetSsid,
-			String(L->TXT_WIFI_HANDSHAKE_PACKETS) + String(handshakeTotalPackets),
 			"Deauth: " + String(deauthEnabled ? L->TXT_ON : L->TXT_OFF),
 			"FT-PSK: " + String(hsIsFT ? L->TXT_ON : L->TXT_OFF)
 		};
-		centeredPrintRows(lines, 4, SMALL_TEXT, true);
+		centeredPrintRows(lines, 3, SMALL_TEXT, true, startY);
+
 		drawSpinner();
 		drawHintCustom("enter: deauth", "A: deauth");
 	}

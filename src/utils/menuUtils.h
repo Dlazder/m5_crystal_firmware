@@ -19,7 +19,7 @@ void drawScrollbar(int currentCursor, int totalItems, int visibleItems) {
 	// canvas.fillRect(SCROLLBAR_X + 1, 0, 1, canvas.height(), BGCOLOR);
 }
 
-const int MENU_LABEL_MAX_CHARS = 18;
+const int MENU_LABEL_MAX_CHARS = 22;
 
 void drawMenu(MENU menu[], int size) {
 	if (cursor == size) cursor = cursor % size;
