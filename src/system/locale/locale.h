@@ -21,6 +21,7 @@ struct Locale {
 	const char* MENU_WIFI_EVIL_PORTAL;
 	const char* MENU_WIFI_EVIL_TWIN;
 	const char* MENU_WIFI_HANDSHAKE;
+	const char* MENU_WIFI_PMKID;
 	const char* MENU_SETTINGS_WIFI_SSID;
 
 	// Bluetooth menu

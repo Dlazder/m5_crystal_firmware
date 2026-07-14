@@ -44,6 +44,7 @@
 #include "../functions/wifi/evilTwinLoop.h"
 #include "../functions/wifi/wifiHandshakeLoop.h"
 #include "../functions/wifi/pcapToHashLoop.h"
+#include "../functions/wifi/wifiPmkidLoop.h"
 
 
 // Files

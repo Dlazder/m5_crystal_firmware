@@ -21,6 +21,7 @@ const Locale LANG_IT = {
     .MENU_WIFI_EVIL_PORTAL       = "evil portal",
     .MENU_WIFI_EVIL_TWIN         = "evil twin",
     .MENU_WIFI_HANDSHAKE         = "cattura handshake",
+    .MENU_WIFI_PMKID             = "cattura PMKID",
     .MENU_SETTINGS_WIFI_SSID      = "Wi-Fi SSID",
 
     // Bluetooth menu
