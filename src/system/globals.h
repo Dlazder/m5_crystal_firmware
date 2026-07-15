@@ -142,6 +142,7 @@ int dimmingPreviousTimer = 0;
 
 // files
 String selectedFilePath = "";
+String createFileCurrentDir = "/";
 
 // wifi deauth
 String ssid;

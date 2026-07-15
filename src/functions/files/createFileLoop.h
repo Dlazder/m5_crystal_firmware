@@ -21,7 +21,9 @@ void createFileLoop() {
 				changeProcess(createFileSourcePid);
 				return;
 			}
-			String path = "/" + String(buf);
+			String path = (createFileCurrentDir == "/")
+				? "/" + String(buf)
+				: createFileCurrentDir + "/" + String(buf);
 			bool ok = false;
 
 			if (createFileSourcePid == PID::FILE_PICKER_SD) {

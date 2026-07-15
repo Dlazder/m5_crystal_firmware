@@ -19,9 +19,9 @@ void selectedFileMenuLoop() {
 		} else if (previousProcess == PID::FILE_PICKER_SD) {
 			selectedFileSourcePid = PID::FILE_PICKER_SD;
 		}
-		selectedFileMenu[0].command = selectedFileSourcePid;
 		cursor = 0;
 		drawMenu(selectedFileMenu, selectedFileMenuSize);
 	}
+	selectedFileMenu[0].command = selectedFileSourcePid;
 	menuLoop(selectedFileMenu, selectedFileMenuSize);
 }
