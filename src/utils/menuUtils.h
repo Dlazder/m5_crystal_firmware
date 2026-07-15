@@ -20,6 +20,7 @@ void drawScrollbar(int currentCursor, int totalItems, int visibleItems) {
 }
 
 const int MENU_LABEL_MAX_CHARS = 22;
+const int MENU_ICON_TEXT_GAP = 5;  // pixels between icon and text
 
 void drawMenu(MENU menu[], int size) {
 	if (cursor == size) cursor = cursor % size;
@@ -39,7 +40,20 @@ void drawMenu(MENU menu[], int size) {
 		bool selected = (cursor == i);
 		canvas.fillRect(0, y, canvas.width(), lineHeight, selected ? FGCOLOR : BGCOLOR);
 		canvas.setTextColor(selected ? BGCOLOR : FGCOLOR, selected ? FGCOLOR : BGCOLOR);
-		canvas.setCursor(5, y);
+
+		bool hasIcon = (menu[i].icon != nullptr);
+		int textX;
+		if (hasIcon && iconsEnabled) {
+			int iconY = y + (lineHeight - MENU_ICON_H) / 2;
+			canvas.drawBitmap(5, iconY,
+				menu[i].icon,
+				MENU_ICON_W, MENU_ICON_H,
+				selected ? BGCOLOR : FGCOLOR);
+			textX = 5 + MENU_ICON_W + MENU_ICON_TEXT_GAP;
+		} else {
+			textX = 5;
+		}
+		canvas.setCursor(textX, y);
 		canvas.print(menu[i].name.substring(0, MENU_LABEL_MAX_CHARS).c_str());
 	}
 

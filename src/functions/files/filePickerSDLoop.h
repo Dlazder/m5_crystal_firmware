@@ -21,13 +21,13 @@ void _sdBuildMenu() {
 	sdFileMenu = new MENU[sdFileCount + 2];
 	sdFileFullPaths = new String[sdFileCount];
 
-	sdFileMenu[0] = { PID::FILES_MENU, L->MENU_BACK };
-	sdFileMenu[1] = { PID::FILE_CREATE, "create" };
+	sdFileMenu[0] = { PID::FILES_MENU, L->MENU_BACK, Icons::back };
+	sdFileMenu[1] = { PID::FILE_CREATE, "create", Icons::create };
 
 	for (int i = 0; i < sdFileCount; i++) {
 		sdFileFullPaths[i] = _fpMakePath(sdCurrentDir, names[i]);
 		int cmd = isDir[i] ? PID::FILE_PICKER_SD : PID::SELECTED_FILE_MENU;
-		sdFileMenu[i + 2] = { cmd, isDir[i] ? "/" + names[i] : names[i] };
+		sdFileMenu[i + 2] = { cmd, isDir[i] ? "/" + names[i] : names[i], isDir[i] ? Icons::folder : Icons::file };
 	}
 
 	delete[] names;

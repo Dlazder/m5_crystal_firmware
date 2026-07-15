@@ -36,9 +36,12 @@ int localesCount = sizeof(locales) / sizeof(locales[0]);
 #include <Preferences.h>
 Preferences preferences;
 
+#include "icons.h"
+
 struct MENU {
   int command;
   String name;
+  const uint8_t* icon;  // nullptr if no icon (14x14 1-bit bitmap)
 };
 
 bool hasImu = false;

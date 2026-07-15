@@ -2,7 +2,7 @@
 
 void otherMenuLoop() {
 	MENU otherMenu[] = {
-		{PID::MAIN_MENU,       L->MENU_BACK},
+		{PID::MAIN_MENU,       L->MENU_BACK, Icons::back},
 		{PID::CLOCK,           L->MENU_OTHER_CLOCK},
 		{PID::SOUND_LEVEL,     L->MENU_OTHER_SOUND_LEVEL},
 		{PID::LEVEL_TOOL,      L->MENU_OTHER_LEVEL_TOOL},

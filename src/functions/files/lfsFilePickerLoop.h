@@ -27,13 +27,13 @@ void _lfsBuildMenu() {
 		: 0;
 	int filePid = (_lfsStoredReturnPid != 0) ? _lfsStoredReturnPid : PID::SELECTED_FILE_MENU;
 
-	lfsFileMenu[0] = { backPid, L->MENU_BACK };
-	lfsFileMenu[1] = { PID::FILE_CREATE, "create" };
+	lfsFileMenu[0] = { backPid, L->MENU_BACK, Icons::back };
+	lfsFileMenu[1] = { PID::FILE_CREATE, "create", Icons::create };
 
 	for (int i = 0; i < lfsFileCount; i++) {
 		lfsFileFullPaths[i] = _fpMakePath(lfsCurrentDir, names[i]);
 		int cmd = isDir[i] ? PID::FILE_PICKER : filePid;
-		lfsFileMenu[i + 2] = { cmd, isDir[i] ? "/" + names[i] : names[i] };
+		lfsFileMenu[i + 2] = { cmd, isDir[i] ? "/" + names[i] : names[i], isDir[i] ? Icons::folder : Icons::file };
 	}
 
 	delete[] names;

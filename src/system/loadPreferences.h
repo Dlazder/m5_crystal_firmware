@@ -24,6 +24,9 @@ void loadPreferences() {
   Serial.printf("Color: %s\n", colorsEntry[colorIndex]);
   FGCOLOR = colors[colorIndex];
 
+	iconsEnabled = getData("icons", iconsEnabled);
+	Serial.printf("Icons: %s\n", iconsEnabled ? "enabled" : "disabled");
+
 	volume = getData("volume", volume);
 	Serial.printf("Volume: %d\n", volume / volumeDividor);
 	DEVICE.Speaker.setVolume(volume);

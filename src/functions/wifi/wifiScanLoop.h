@@ -18,11 +18,14 @@ void wifiScanLoop() {
 			wifiScanMenu = new MENU[wifiCount + 2];
 			wifiScanMenu[0].name = L->MENU_BACK;
 			wifiScanMenu[0].command = PID::WIFI;
+			wifiScanMenu[0].icon = Icons::back;
 			wifiScanMenu[1].name = L->MENU_RESCAN;
 			wifiScanMenu[1].command = PID::WIFI_SCAN;
+			wifiScanMenu[1].icon = nullptr;
 			for (int i = 0; i < wifiCount; i++) {
 				wifiScanMenu[i + 2].name = WiFi.SSID(i);
 				wifiScanMenu[i + 2].command = PID::WIFI_SELECTED;
+				wifiScanMenu[i + 2].icon = nullptr;
 			}
 		}
 		drawMenu(wifiScanMenu, wifiCount + 2);

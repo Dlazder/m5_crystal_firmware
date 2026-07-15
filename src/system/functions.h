@@ -24,6 +24,7 @@
 #include "../functions/settings/volumeLoop.h"
 #include "../functions/settings/toggleWebServerFs.h"
 #include "../functions/settings/ssidLoop.h"
+#include "../functions/settings/toggleIconsLoop.h"
 
 
 // Wi-Fi functions

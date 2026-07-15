@@ -30,3 +30,5 @@ int defaultVolumeLevel = 4;
 
 // Default screen dim timeout index (0 = OFF)
 int defaultDimTimeoutIndex = 1;
+
+bool iconsEnabled = true;

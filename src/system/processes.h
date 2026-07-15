@@ -21,6 +21,7 @@
     X(VOLUME,                113, volumeLoop) \
     X(WEBSERVER_FS,          114, toggleWebServerFs) \
     X(SETTINGS_SSID,         115, setSsidLoop) \
+    X(ICONS,                 116, toggleIconsLoop) \
     \
     /* Wi-Fi (200-299) */ \
     X(WIFI,              200, wifiMenuLoop) \

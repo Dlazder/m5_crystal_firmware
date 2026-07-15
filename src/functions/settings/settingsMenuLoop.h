@@ -2,12 +2,13 @@
 
 void settingsMenuLoop() {
 	MENU settingsMenu[] = {
-		{PID::MAIN_MENU,           L->MENU_BACK},
+		{PID::MAIN_MENU,           L->MENU_BACK, Icons::back},
 		{PID::SETTINGS_CLOCK,      L->MENU_SETTINGS_TIME},
 		{PID::BRIGHTNESS,          L->MENU_SETTINGS_BRIGHTNESS},
 		{PID::DIMMING,             L->MENU_SETTINGS_DIMMING},
 		{PID::ROTATION,            L->MENU_SETTINGS_ROTATION},
 		{PID::COLORS,              L->MENU_SETTINGS_COLORS},
+		{PID::ICONS, 							 "icons"},
 		{PID::SETTINGS_STATUS_BAR, L->MENU_SETTINGS_STATUS_BAR},
 		{PID::STARTUP_SOUND,       L->MENU_SETTINGS_STARTUP_SOUND},
 		{PID::VOLUME,              L->MENU_SETTINGS_VOLUME},
