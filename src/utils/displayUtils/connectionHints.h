@@ -108,9 +108,9 @@ void connectionGuideIR() {
 
 	#if HAS_PHYSICAL_KB
 		const char* rows[][2] = {
-			{"VCC", "3.3V"},
+			{"VCC", "5V IN/OUT"},
 			{"GND", "GND"},
-			{"OUT", "G8"},
+			{"OUT", "G3"},
 		};
 		int rowCount = 3;
 		const char* hRight = "Cardputer";
