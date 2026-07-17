@@ -122,11 +122,7 @@ void determineCardType() {
 
 void nfcAdvancedInfoLoop() {
 	if (isSetup()) {
-		String lines[] = {
-			"PN532: disconnected",
-			L->TXT_CONNECTING,
-		};
-		centeredPrintRows(lines, 2, MEDIUM_TEXT);
+		connectionGuideNFC();
 
 		Wire.end();
 		Wire.begin(NFC_SDA, NFC_SCL);

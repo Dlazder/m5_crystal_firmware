@@ -14,10 +14,7 @@ bool isPN532Connected() {
 
 void displayNotConnectedError() {
 	nfcModuleWasConnected = false;
-	String lines[] = {
-		"PN532: disconnected"
-	};
-	centeredPrintRows(lines, 1, MEDIUM_TEXT);
+	connectionGuideNFC();
 	Serial.println("PN532: disconnected");
 	DEVICE.Power.setLed(1);
 	soundError();
@@ -36,11 +33,7 @@ String uidToString(const uint8_t* uid, uint8_t uidLength) {
 
 void nfcReadLoop() {
 	if (isSetup()) {
-		String lines[] = {
-			"PN532: disconnected",
-			L->TXT_CONNECTING,
-		};
-		centeredPrintRows(lines, 2, MEDIUM_TEXT);
+		connectionGuideNFC();
 
 		// End any existing I2C session (e.g. internal bus brought up by the
 		// device init) so the bus is re-bound to the NFC GROVE pins. On ESP32

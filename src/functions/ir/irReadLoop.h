@@ -56,8 +56,7 @@ void _irRestoreReceiver() {
 	if (irHasSignal) {
 		_irDrawUi();
 	} else {
-		String lines[] = { "IR Receiver", "Waiting..." };
-		centeredPrintRows(lines, 2, MEDIUM_TEXT);
+		connectionGuideIR();
 	}
 }
 
@@ -67,11 +66,11 @@ void irReadLoop() {
 		irKbActive = false;
 		irHasSignal = false;
 
+		connectionGuideIR();
+
 		IrReceiver.begin(IR_RECEIVE_PIN, DISABLE_LED_FEEDBACK);
 		irReceiverStarted = true;
 
-		String lines[] = { "IR Receiver", "Waiting..." };
-		centeredPrintRows(lines, 2, MEDIUM_TEXT);
 		Serial.println("IR: receiver started on pin " + String(IR_RECEIVE_PIN));
 	}
 
