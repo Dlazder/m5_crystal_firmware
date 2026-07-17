@@ -50,6 +50,7 @@ const Locale LANG_RU = {
 	.MENU_NFC                    = "NFC",
 	.MENU_NFC_READ_UID           = "читать UID",
 	.MENU_NFC_WRITE_UID          = "записать UID",
+	.MENU_NFC_ADVANCED_INFO    = "расширенная инфо",
 
 	// IR menu
 	.MENU_IR                     = "IR",

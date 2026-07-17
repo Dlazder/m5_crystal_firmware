@@ -50,6 +50,7 @@ struct Locale {
 	const char* MENU_NFC;
 	const char* MENU_NFC_READ_UID;
 	const char* MENU_NFC_WRITE_UID;
+	const char* MENU_NFC_ADVANCED_INFO;
 
 	// IR menu
 	const char* MENU_IR;

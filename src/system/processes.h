@@ -60,6 +60,7 @@
     X(NFC,       400, nfcMenuLoop) \
     X(NFC_READ,  401, nfcReadLoop) \
     X(NFC_WRITE, 402, nfcWriteLoop) \
+    X(NFC_ADVANCED_INFO, 403, nfcAdvancedInfoLoop) \
     \
     /* Files (500-599) */ \
     X(FILES_MENU,         500, filesMenuLoop) \
