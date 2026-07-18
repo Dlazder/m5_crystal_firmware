@@ -41,6 +41,7 @@
     X(WIFI_HANDSHAKE_CAPTURE, 214, wifiHandshakeLoop) \
 	X(WIFI_PCAP_TO_HASH,     215, pcapToHashLoop)    \
 	X(WIFI_PMKID_CAPTURE,    216, wifiPmkidLoop)     \
+	X(WIFI_CHANNEL_ANALYZER, 217, wifiChannelAnalyzerLoop) \
     \
     /* Bluetooth (300-399) */ \
     X(BLUETOOTH,    300, bluetoothMenuLoop) \

@@ -22,6 +22,7 @@ const Locale LANG_ES = {
 	.MENU_WIFI_EVIL_TWIN         = "evil twin",
 	.MENU_WIFI_HANDSHAKE         = "captura handshake",
 	.MENU_WIFI_PMKID             = "captura PMKID",
+	.MENU_WIFI_CHANNEL_ANALYZER  = "analizador de canales",
 	.MENU_SETTINGS_WIFI_SSID      = "Wi-Fi SSID",
 
 	// Bluetooth menu
@@ -151,6 +152,7 @@ const Locale LANG_ES = {
 	
 	.TXT_WIFI_HANDSHAKE_PACKETS   = "Handshakes: ",
 	.TXT_WIFI_HANDSHAKE_SAVED     = "Guardado en SD",
+	.TXT_WIFI_NO_SCAN_DATA        = "Escanea redes primero",
 
 	// Bluetooth text
 	.TXT_BT_FILE_ERROR = "Error de archivo",

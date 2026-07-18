@@ -22,6 +22,7 @@ const Locale LANG_UK = {
 	.MENU_WIFI_EVIL_TWIN         = "evil twin",
 	.MENU_WIFI_HANDSHAKE         = "захоплення рукостискання",
 	.MENU_WIFI_PMKID             = "pmkid захоплення",
+	.MENU_WIFI_CHANNEL_ANALYZER  = "аналіз каналів",
 	.MENU_SETTINGS_WIFI_SSID      = "Wi-Fi SSID",
 
 	// Bluetooth menu
@@ -151,6 +152,7 @@ const Locale LANG_UK = {
 	
 	.TXT_WIFI_HANDSHAKE_PACKETS   = "Handshake: ",
 	.TXT_WIFI_HANDSHAKE_SAVED     = "Збережено на SD",
+	.TXT_WIFI_NO_SCAN_DATA        = "Спочатку проскануйте мережі",
 				
 	// Bluetooth text
 	.TXT_BT_FILE_ERROR           = "Помилка файлу",
