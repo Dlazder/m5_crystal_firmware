@@ -76,6 +76,7 @@ const Locale LANG_IT = {
     .MENU_SETTINGS_VOLUME         = "volume",
     .MENU_SETTINGS_ROTATION       = "rotazione",
     .MENU_SETTINGS_COLORS         = "colori",
+    .MENU_SETTINGS_ICONS          = "icone",
     .MENU_SETTINGS_STATUS_BAR     = "barra stato",
     .MENU_SETTINGS_STATUS_BAR_PID = "PID",
     .MENU_SETTINGS_STARTUP_SOUND  = "suono avvio",

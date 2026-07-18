@@ -76,6 +76,7 @@ struct Locale {
 	const char* MENU_SETTINGS_VOLUME;
 	const char* MENU_SETTINGS_ROTATION;
 	const char* MENU_SETTINGS_COLORS;
+	const char* MENU_SETTINGS_ICONS;
 	const char* MENU_SETTINGS_STATUS_BAR;
 	const char* MENU_SETTINGS_STATUS_BAR_PID;
 	const char* MENU_SETTINGS_STARTUP_SOUND;

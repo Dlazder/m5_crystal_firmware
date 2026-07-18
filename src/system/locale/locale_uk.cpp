@@ -76,6 +76,7 @@ const Locale LANG_UK = {
 	.MENU_SETTINGS_VOLUME        = "гучність",
 	.MENU_SETTINGS_ROTATION      = "поворот",
 	.MENU_SETTINGS_COLORS        = "кольори",
+	.MENU_SETTINGS_ICONS         = "іконки",
 	.MENU_SETTINGS_STATUS_BAR    = "стат. рядок",
 	.MENU_SETTINGS_STATUS_BAR_PID = "PID",
 	.MENU_SETTINGS_STARTUP_SOUND = "звук запуску",

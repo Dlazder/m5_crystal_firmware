@@ -76,6 +76,7 @@ const Locale LANG_RU = {
 	.MENU_SETTINGS_VOLUME        = "громкость",
 	.MENU_SETTINGS_ROTATION      = "поворот",
 	.MENU_SETTINGS_COLORS        = "цвета",
+	.MENU_SETTINGS_ICONS         = "иконки",
 	.MENU_SETTINGS_STATUS_BAR    = "статус бар",
 	.MENU_SETTINGS_STATUS_BAR_PID = "PID",
 	.MENU_SETTINGS_STARTUP_SOUND = "звук запуска",

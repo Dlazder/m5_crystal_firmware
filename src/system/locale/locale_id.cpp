@@ -76,6 +76,7 @@ const Locale LANG_ID = {
     .MENU_SETTINGS_VOLUME         = "volume",
     .MENU_SETTINGS_ROTATION       = "rotasi",
     .MENU_SETTINGS_COLORS         = "warna",
+    .MENU_SETTINGS_ICONS          = "ikon",
     .MENU_SETTINGS_STATUS_BAR     = "bilah status",
     .MENU_SETTINGS_STATUS_BAR_PID = "PID",
     .MENU_SETTINGS_STARTUP_SOUND  = "suara nyala",

@@ -8,7 +8,7 @@ void settingsMenuLoop() {
 		{PID::DIMMING,             L->MENU_SETTINGS_DIMMING},
 		{PID::ROTATION,            L->MENU_SETTINGS_ROTATION},
 		{PID::COLORS,              L->MENU_SETTINGS_COLORS},
-		{PID::ICONS, 							 "icons"},
+		{PID::ICONS,               L->MENU_SETTINGS_ICONS},
 		{PID::SETTINGS_STATUS_BAR, L->MENU_SETTINGS_STATUS_BAR},
 		{PID::STARTUP_SOUND,       L->MENU_SETTINGS_STARTUP_SOUND},
 		{PID::VOLUME,              L->MENU_SETTINGS_VOLUME},
