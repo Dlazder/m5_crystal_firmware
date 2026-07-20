@@ -2,8 +2,8 @@ void loadPreferences() {
 	Serial.println("Loading preferences...");
 
 	rotation = getData("rotation", rotation);
-	Serial.printf("Rotation: %d\n", rotation);
-  DISP.setRotation(rotation);
+	Serial.printf("Invert rotation: %s\n", rotation ? "enabled" : "disabled");
+  DISP.setRotation(rotation ? 3 : 1);
 
 	brightness = getData("brightness", brightness);
 	Serial.printf("Brightness: %d\n", brightness);

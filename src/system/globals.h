@@ -41,7 +41,8 @@ Preferences preferences;
 struct MENU {
   int command;
   String name;
-  const uint8_t* icon;  // nullptr if no icon (14x14 1-bit bitmap)
+  const uint8_t* icon;       // nullptr if no icon (14x14 1-bit bitmap)
+  const char* settingKey;    // nullptr if not a toggle; if set, toggles the boolean pref and ignores command
 };
 
 bool hasImu = false;
@@ -50,7 +51,7 @@ int cursor = 0;
 int process = PID::MAIN_MENU;
 int previousProcess = PID::MAIN_MENU;
 bool isSwitching = true;
-int rotation = 1;
+int rotation = 0;  // 0 = normal (DISP rotation 1), 1 = inverted (DISP rotation 3)
 
 #define DEVICE M5
 #define DISP DEVICE.Display
