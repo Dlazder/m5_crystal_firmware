@@ -83,14 +83,29 @@ static void _evilTwinRegisterLogin() {
 }
 
 static void _evilTwinServeFsFile(const String& uri, const String& htmlPath, bool useSd) {
-	String path = uri;
-	if (path == "/") path = htmlPath;
+	String path;
+	if (uri == "/") {
+		path = htmlPath;
+	} else {
+		// Resolve the requested URI relative to the HTML file's directory
+		// (the directory becomes the effective web root). This also prevents
+		// path traversal (e.g. "/../evil_twin_creds.txt") via normalization.
+		String baseDir = _getDirPath(htmlPath);
+		path = _resolveFsPath(uri, baseDir);
+		if (path.length() == 0) {
+			// Invalid path or traversal attempt — redirect to portal
+			webServer.sendHeader("Location", "http://" + EVIL_TWIN_GATEWAY.toString() + "/", true);
+			webServer.send(302, "text/plain", "");
+			return;
+		}
+	}
+
 	File f;
-#if HAS_SD
-	f = useSd ? SD.open(path) : LittleFS.open(path);
-#else
-	f = LittleFS.open(path);
-#endif
+	#if HAS_SD
+		f = useSd ? SD.open(path) : LittleFS.open(path);
+	#else
+		f = LittleFS.open(path);
+	#endif
 	if (f) {
 		webServer.streamFile(f, getContentType(path));
 		f.close();

@@ -12,6 +12,81 @@ String getContentType(String path) {
 	return "text/plain";
 }
 
+/**
+ * @brief Normalize a path string by resolving "." and ".." segments
+ *        and collapsing multiple consecutive slashes.
+ * @param path The raw path (must start with "/")
+ * @return Normalized path, or "" if path attempts to escape above the filesystem root
+ */
+static String _normalizeFsPath(const String& path) {
+	if (path.length() == 0 || path[0] != '/') return "";
+
+	String result = "/";
+	int len = path.length();
+	int i = 1; // skip leading "/"
+
+	while (i < len) {
+		int nextSlash = path.indexOf('/', i);
+		if (nextSlash < 0) nextSlash = len;
+
+		if (nextSlash > i) { // non-empty segment
+			String seg = path.substring(i, nextSlash);
+			if (seg == ".") {
+				// skip
+			} else if (seg == "..") {
+				int lastSlash = result.lastIndexOf('/');
+				if (lastSlash == 0) {
+					// Already at root — traversal attempt above "/"
+					return "";
+				}
+				result = result.substring(0, lastSlash);
+			} else {
+				if (result != "/") result += "/";
+				result += seg;
+			}
+		}
+		// else: empty segment means "//" — skip
+
+		i = nextSlash + 1;
+	}
+
+	if (result.length() == 0) result = "/";
+	return result;
+}
+
+/**
+ * @brief Extract the directory part of a file path.
+ *        "/portals/google/index.html" -> "/portals/google/"
+ *        "/index.html" -> "/"
+ */
+static String _getDirPath(const String& filePath) {
+	int lastSlash = filePath.lastIndexOf('/');
+	if (lastSlash <= 0) return "/";
+	return filePath.substring(0, lastSlash + 1);
+}
+
+/**
+ * @brief Resolve a requested URI relative to the web root directory.
+ *        Strips the leading "/" from URI, joins it with the base directory,
+ *        normalizes the result, and verifies the result stays within the base directory.
+ * @param uri The HTTP request URI (e.g., "/style.css" or "/../creds.txt")
+ * @param baseDir The directory containing the HTML file (e.g., "/portals/google/")
+ * @return Normalized absolute path within baseDir, or "" if traversal attempt is detected
+ */
+static String _resolveFsPath(const String& uri, const String& baseDir) {
+	// Strip leading "/" so the URI is treated as relative to baseDir (the web root)
+	String relative = uri.startsWith("/") ? uri.substring(1) : uri;
+	String combined = baseDir + relative;
+	String normalized = _normalizeFsPath(combined);
+
+	// Block traversal: normalized path must start with the base directory
+	if (normalized.length() == 0) return "";
+	if (!normalized.startsWith(baseDir)) {
+		return "";
+	}
+	return normalized;
+}
+
 String mainHTML() {
 	String html = "<!DOCTYPE html><html lang=\"en\"><head><meta charset=\"UTF-8\"><meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\"><title>M5-power-firmware</title><link rel=\"stylesheet\" href=\"style.css\"></head><body><h1>M5 power firmware</h1><div class=\"screen\"><div class=\"menu-screen\"></div><div class=\"function-screen\"></div></div><div class=\"controls\"><div><button class=\"control-btn btn-up\">↑</button><button class=\"control-btn btn-down\">↓</button></div><div><button class=\"control-btn btn-a\">A</button><button class=\"control-btn btn-b\">B</button></div></div><div class=\"controls\"><button class=\"control-btn btn-update\">↻</button></div><script src=\"index.js\"></script></body></html>";
 	return html;
