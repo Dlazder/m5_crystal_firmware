@@ -23,6 +23,7 @@ const Locale LANG_IT = {
     .MENU_WIFI_HANDSHAKE         = "cattura handshake",
     .MENU_WIFI_PMKID             = "cattura PMKID",
     .MENU_WIFI_CHANNEL_ANALYZER  = "analizzatore canali",
+    .MENU_WIFI_WEB_SERVER       = "web server",
     .MENU_SETTINGS_WIFI_SSID      = "Wi-Fi SSID",
 
     // Bluetooth menu
@@ -151,6 +152,7 @@ const Locale LANG_IT = {
     .TXT_WIFI_EVIL_PORTAL_RUNNING     = "Evil Portal attivo",
     .TXT_WIFI_EVIL_PORTAL_CRED_CAPTURED = "Creds catturate!",
     .TXT_WIFI_EVIL_TWIN_RUNNING     = "Evil Twin attivo",
+    .TXT_WIFI_WEB_SERVER_RUNNING   = "Web Server attivo",
     .TXT_SETTINGS_WIFI_SSID      = "Wi-Fi SSID: ",
     
     .TXT_WIFI_HANDSHAKE_PACKETS   = "Handshake: ",

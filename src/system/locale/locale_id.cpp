@@ -23,6 +23,7 @@ const Locale LANG_ID = {
     .MENU_WIFI_HANDSHAKE         = "tangkap handshake",
     .MENU_WIFI_PMKID             = "tangkap PMKID",
     .MENU_WIFI_CHANNEL_ANALYZER  = "analisis saluran",
+    .MENU_WIFI_WEB_SERVER       = "server web",
     .MENU_SETTINGS_WIFI_SSID      = "Wi-Fi SSID",
 
     // Bluetooth menu
@@ -151,6 +152,7 @@ const Locale LANG_ID = {
     .TXT_WIFI_EVIL_PORTAL_RUNNING     = "Evil Portal aktif",
     .TXT_WIFI_EVIL_PORTAL_CRED_CAPTURED = "Creds ditangkap!",
     .TXT_WIFI_EVIL_TWIN_RUNNING     = "Evil Twin aktif",
+    .TXT_WIFI_WEB_SERVER_RUNNING   = "Server Web aktif",
     .TXT_SETTINGS_WIFI_SSID      = "Wi-Fi SSID: ",
     
     .TXT_WIFI_HANDSHAKE_PACKETS   = "Handshake: ",

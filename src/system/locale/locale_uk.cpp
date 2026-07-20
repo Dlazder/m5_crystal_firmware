@@ -23,6 +23,7 @@ const Locale LANG_UK = {
 	.MENU_WIFI_HANDSHAKE         = "захоплення рукостискання",
 	.MENU_WIFI_PMKID             = "pmkid захоплення",
 	.MENU_WIFI_CHANNEL_ANALYZER  = "аналіз каналів",
+	.MENU_WIFI_WEB_SERVER       = "веб-сервер",
 	.MENU_SETTINGS_WIFI_SSID      = "Wi-Fi SSID",
 
 	// Bluetooth menu
@@ -151,6 +152,7 @@ const Locale LANG_UK = {
 	.TXT_WIFI_EVIL_PORTAL_RUNNING     = "Evil Portal активний",
 	.TXT_WIFI_EVIL_PORTAL_CRED_CAPTURED = "Креди отримані!",
 	.TXT_WIFI_EVIL_TWIN_RUNNING     = "Evil Twin активний",
+	.TXT_WIFI_WEB_SERVER_RUNNING   = "Веб-сервер активний",
 	.TXT_SETTINGS_WIFI_SSID      = "Wi-Fi SSID: ",
 	
 	.TXT_WIFI_HANDSHAKE_PACKETS   = "Handshake: ",

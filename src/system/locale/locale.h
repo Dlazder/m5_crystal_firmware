@@ -23,6 +23,7 @@ struct Locale {
 	const char* MENU_WIFI_HANDSHAKE;
 	const char* MENU_WIFI_PMKID;
 	const char* MENU_WIFI_CHANNEL_ANALYZER;
+	const char* MENU_WIFI_WEB_SERVER;
 	const char* MENU_SETTINGS_WIFI_SSID;
 
 	// Bluetooth menu
@@ -152,6 +153,7 @@ struct Locale {
 	const char* TXT_WIFI_EVIL_PORTAL_RUNNING;
 	const char* TXT_WIFI_EVIL_PORTAL_CRED_CAPTURED;
 	const char* TXT_WIFI_EVIL_TWIN_RUNNING;
+	const char* TXT_WIFI_WEB_SERVER_RUNNING;
 	const char* TXT_SETTINGS_WIFI_SSID;
 	const char* TXT_WIFI_HANDSHAKE_CAPTURING;
 	const char* TXT_WIFI_HANDSHAKE_PACKETS;

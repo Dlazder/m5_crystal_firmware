@@ -23,6 +23,7 @@ const Locale LANG_RU = {
 	.MENU_WIFI_HANDSHAKE         = "захват рукопожатия",
 	.MENU_WIFI_PMKID             = "pmkid захват",
 	.MENU_WIFI_CHANNEL_ANALYZER  = "анализатор каналов",
+	.MENU_WIFI_WEB_SERVER       = "веб-сервер",
 	.MENU_SETTINGS_WIFI_SSID      = "Wi-Fi SSID",
 
 	// Bluetooth menu
@@ -151,6 +152,7 @@ const Locale LANG_RU = {
 	.TXT_WIFI_EVIL_PORTAL_RUNNING     = "Evil Portal активен",
 	.TXT_WIFI_EVIL_PORTAL_CRED_CAPTURED = "Креды получены!",
 	.TXT_WIFI_EVIL_TWIN_RUNNING     = "Evil Twin активен",
+	.TXT_WIFI_WEB_SERVER_RUNNING   = "Веб-сервер активен",
 	.TXT_SETTINGS_WIFI_SSID      = "Wi-Fi SSID: ",
 	
 	.TXT_WIFI_HANDSHAKE_PACKETS   = "Handshake: ",
