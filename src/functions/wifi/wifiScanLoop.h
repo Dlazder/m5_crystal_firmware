@@ -12,9 +12,8 @@ void wifiScanLoop() {
 			delete[] wifiScanMenu;
 			wifiScanMenu = nullptr;
 			cursor = 0;
-			WiFi.scanDelete();
 			Serial.println("Scanning...");
-			WiFi.scanNetworks(true);
+			WiFi.scanNetworks(true);  // calls scanDelete() internally
 			_wifiScanning = true;
 		}
 
@@ -24,17 +23,18 @@ void wifiScanLoop() {
 		}
 	}
 
-	// Async scan polling
+	// ---- Async scan polling ----
 	if (_wifiScanning) {
 		int result = WiFi.scanComplete();
 
 		if (result == WIFI_SCAN_RUNNING) {
+			// Show spinner with centered text (manual mode)
 			centeredPrint(L->TXT_SCANNING, MEDIUM_TEXT, true);
 			drawSpinner();
 			canvas.pushSprite(0, getStatusBarHeight());
 
-			// Exit leaves the scan running in background.
-			// Results will be available on next entry.
+			// Exit leaves the scan running; _wifiScanning stays true
+			// so re-entry won't start a duplicate scan.
 			if (checkExit(PID::WIFI)) {
 				return;
 			}
@@ -46,20 +46,21 @@ void wifiScanLoop() {
 		wifiCount = (result >= 0) ? result : 0;
 
 		// Build menu from scan results
-		if (wifiScanMenu != nullptr) {
-			delete[] wifiScanMenu;
-		}
+		delete[] wifiScanMenu;
 		wifiScanMenu = new MENU[wifiCount + 2];
 		wifiScanMenu[0].name = L->MENU_BACK;
 		wifiScanMenu[0].command = PID::WIFI;
 		wifiScanMenu[0].icon = Icons::back;
+		wifiScanMenu[0].settingKey = nullptr;
 		wifiScanMenu[1].name = L->MENU_RESCAN;
 		wifiScanMenu[1].command = PID::WIFI_SCAN;
 		wifiScanMenu[1].icon = nullptr;
+		wifiScanMenu[1].settingKey = nullptr;
 		for (int i = 0; i < wifiCount; i++) {
 			wifiScanMenu[i + 2].name = WiFi.SSID(i);
 			wifiScanMenu[i + 2].command = PID::WIFI_SELECTED;
 			wifiScanMenu[i + 2].icon = nullptr;
+			wifiScanMenu[i + 2].settingKey = nullptr;
 		}
 
 		cursor = 0;

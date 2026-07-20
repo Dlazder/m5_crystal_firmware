@@ -33,9 +33,11 @@ void bluetoothScanLoop() {
 			bleScanMenu[0].name = L->MENU_BACK;
 			bleScanMenu[0].command = PID::BLUETOOTH;
 			bleScanMenu[0].icon = nullptr;
+				bleScanMenu[0].settingKey = nullptr;
 			bleScanMenu[1].name = L->MENU_RESCAN;
 			bleScanMenu[1].command = PID::BT_SCAN;
 			bleScanMenu[1].icon = nullptr;
+				bleScanMenu[1].settingKey = nullptr;
 
 			for (int i = 0; i < bleCount; i++) {
 				BLEAdvertisedDevice device = results.getDevice(i);
@@ -48,6 +50,7 @@ void bluetoothScanLoop() {
 				bleScanMenu[i + 2].name = name;
 				bleScanMenu[i + 2].command = PID::BT_SELECTED;
 				bleScanMenu[i + 2].icon = nullptr;
+				bleScanMenu[i + 2].settingKey = nullptr;
 			}
 		}
 		drawMenu(bleScanMenu, bleCount + 2);
