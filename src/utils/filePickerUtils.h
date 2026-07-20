@@ -83,7 +83,7 @@ void filePickerSetup(int cancelPid) {
 	fpActive = true;
 	_fpSourceSelected = false;
 	_fpCancel = cancelPid;
-	_fpSourceMenu[0] = { 0, L->MENU_BACK };
+	_fpSourceMenu[0] = { 0, L->MENU_BACK, Icons::back };
 	_fpSourceMenu[1] = { 0, L->MENU_FILES_LITTLEFS };
 	_fpSourceMenu[2] = { 0, L->MENU_FILES_SDCARD };
 	cursor = 0;
@@ -108,11 +108,11 @@ static bool _fpBuildLfs() {
 
 	_fpMenu = new MENU[_fpCount + 1];
 	_fpPaths = new String[_fpCount];
-	_fpMenu[0] = { 0, L->MENU_BACK };
+	_fpMenu[0] = { 0, L->MENU_BACK, Icons::back };
 
 	for (int i = 0; i < _fpCount; i++) {
 		_fpPaths[i] = _fpMakePath(_fpCurrentDir, names[i]);
-		_fpMenu[i + 1] = { 0, isDir[i] ? "/" + names[i] : names[i] };
+		_fpMenu[i + 1] = { 0, isDir[i] ? "/" + names[i] : names[i], isDir[i] ? Icons::folder : Icons::file };
 	}
 
 	delete[] names;
@@ -131,11 +131,11 @@ static bool _fpBuildSd() {
 
 	_fpMenu = new MENU[_fpCount + 1];
 	_fpPaths = new String[_fpCount];
-	_fpMenu[0] = { 0, L->MENU_BACK };
+	_fpMenu[0] = { 0, L->MENU_BACK, Icons::back };
 
 	for (int i = 0; i < _fpCount; i++) {
 		_fpPaths[i] = _fpMakePath(_fpCurrentDir, names[i]);
-		_fpMenu[i + 1] = { 0, isDir[i] ? "/" + names[i] : names[i] };
+		_fpMenu[i + 1] = { 0, isDir[i] ? "/" + names[i] : names[i], isDir[i] ? Icons::folder : Icons::file};
 	}
 
 	delete[] names;
