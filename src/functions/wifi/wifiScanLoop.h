@@ -54,7 +54,7 @@ void wifiScanLoop() {
 		wifiScanMenu[0].settingKey = nullptr;
 		wifiScanMenu[1].name = L->MENU_RESCAN;
 		wifiScanMenu[1].command = PID::WIFI_SCAN;
-		wifiScanMenu[1].icon = nullptr;
+		wifiScanMenu[1].icon = Icons::find;
 		wifiScanMenu[1].settingKey = nullptr;
 		for (int i = 0; i < wifiCount; i++) {
 			wifiScanMenu[i + 2].name = WiFi.SSID(i);

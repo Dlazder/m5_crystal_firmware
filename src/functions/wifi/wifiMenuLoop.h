@@ -3,7 +3,7 @@
 void wifiMenuLoop() {
 	MENU wifiMenu[] = {
 		{PID::MAIN_MENU, L->MENU_BACK, Icons::back},
-		{PID::WIFI_SCAN, L->MENU_SCAN},
+		{PID::WIFI_SCAN, L->MENU_SCAN, Icons::find},
 		{PID::WEATHER, L->MENU_WIFI_WEATHER},
 		{PID::WIFI_TIME_SYNC, L->MENU_WIFI_SYNC_TIME},
 		{PID::WIFI_DISCONNECT, L->MENU_WIFI_DISCONNECT},

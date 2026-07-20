@@ -2,8 +2,8 @@
 
 void selectedWifiMenuLoop() {
 	MENU selectedWifiMenu[] = {
-		{PID::WIFI_SCAN, L->MENU_BACK},
-		{PID::WIFI_INFO, L->MENU_WIFI_INFO},
+		{PID::WIFI_SCAN, L->MENU_BACK, Icons::back},
+		{PID::WIFI_INFO, L->MENU_WIFI_INFO, Icons::info},
 		{PID::WIFI_DEAUTH, L->MENU_WIFI_DEAUTH},
 		{PID::WIFI_CONNECT, L->MENU_WIFI_CONNECT},
 		{PID::WIFI_WPA_BF, L->MENU_WIFI_WPA_BF},
