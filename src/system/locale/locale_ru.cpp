@@ -132,6 +132,8 @@ const Locale LANG_RU = {
 	.TXT_ERROR                   = "Ошибка",
 	.TXT_NA                      = "н/д",
 	.TXT_UNNAMED                 = "без имени",
+	.TXT_SAVED_SD                = "Сохранено на SD",
+	.TXT_SAVED_LFS               = "Сохранено на LFS",
 
 	// Wi-Fi text
 	.TXT_WIFI_AP_ENABLED         = "WiFi AP вкл.",
@@ -152,7 +154,7 @@ const Locale LANG_RU = {
 	.TXT_SETTINGS_WIFI_SSID      = "Wi-Fi SSID: ",
 	
 	.TXT_WIFI_HANDSHAKE_PACKETS   = "Handshake: ",
-	.TXT_WIFI_HANDSHAKE_SAVED     = "Сохранено на SD",
+
 	.TXT_WIFI_NO_SCAN_DATA        = "Сначала просканируйте сети",
 
 	// Bluetooth text

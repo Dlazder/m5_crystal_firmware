@@ -132,6 +132,8 @@ const Locale LANG_ID = {
     .TXT_ERROR                    = "Error",
     .TXT_NA                       = "t/a",
     .TXT_UNNAMED                  = "tanpa nama",
+    .TXT_SAVED_SD                 = "Disimpan ke SD",
+    .TXT_SAVED_LFS                = "Disimpan ke LFS",
 
     // Wi-Fi text
     .TXT_WIFI_AP_ENABLED          = "WiFi AP aktif",
@@ -152,7 +154,7 @@ const Locale LANG_ID = {
     .TXT_SETTINGS_WIFI_SSID      = "Wi-Fi SSID: ",
     
     .TXT_WIFI_HANDSHAKE_PACKETS   = "Handshake: ",
-    .TXT_WIFI_HANDSHAKE_SAVED     = "Disimpan ke SD",
+
     .TXT_WIFI_NO_SCAN_DATA        = "Pindai jaringan dulu",
 
     // Bluetooth text

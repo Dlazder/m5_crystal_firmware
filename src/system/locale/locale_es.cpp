@@ -131,7 +131,9 @@ const Locale LANG_ES = {
 	.TXT_SUCCESS = "Exito",
 	.TXT_ERROR = "Error",
 	.TXT_NA = "n/d",
-	.TXT_UNNAMED = "sin nombre",
+	.TXT_UNNAMED   = "sin nombre",
+	.TXT_SAVED_SD  = "Guardado en SD",
+	.TXT_SAVED_LFS = "Guardado en LFS",
 
 	// Wi-Fi text
 	.TXT_WIFI_AP_ENABLED = "WiFi AP activado",
@@ -152,7 +154,7 @@ const Locale LANG_ES = {
 	.TXT_SETTINGS_WIFI_SSID      = "Wi-Fi SSID: ",
 	
 	.TXT_WIFI_HANDSHAKE_PACKETS   = "Handshakes: ",
-	.TXT_WIFI_HANDSHAKE_SAVED     = "Guardado en SD",
+
 	.TXT_WIFI_NO_SCAN_DATA        = "Escanea redes primero",
 
 	// Bluetooth text

@@ -20,9 +20,9 @@ void pcapToHashLoop() {
 		if (filePickerLoop()) return;
 		if (selectedFilePath == "") return; // user cancelled, changeProcess already called
 
-		// Only process .pcap files from SD
-		if (!fpSelectedSd || !selectedFilePath.endsWith(".pcap")) {
-			centeredPrint("Select a .pcap file\nfrom SD card", SMALL_TEXT);
+		// Only process .pcap files
+		if (!selectedFilePath.endsWith(".pcap")) {
+			centeredPrint("Select a .pcap file", SMALL_TEXT);
 			soundError();
 			selectedFilePath = "";
 			filePickerSetup(PID::WIFI);
@@ -33,7 +33,7 @@ void pcapToHashLoop() {
 		centeredPrint("Processing...", MEDIUM_TEXT);
 		canvas.pushSprite(0, getStatusBarHeight());
 
-		success = pcapToFTHash(selectedFilePath);
+		success = pcapToFTHash(selectedFilePath, !fpSelectedSd);
 		converted = true;
 		return;
 	}
@@ -44,7 +44,7 @@ void pcapToHashLoop() {
 			String hashPath = selectedFilePath;
 			hashPath.replace(".pcap", ".hash");
 			String lines[] = {
-				"Hash file saved:",
+				fpSelectedSd ? L->TXT_SAVED_SD : L->TXT_SAVED_LFS,
 				hashPath
 			};
 			centeredPrintRows(lines, 2, SMALL_TEXT);

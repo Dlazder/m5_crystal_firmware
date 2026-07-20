@@ -132,6 +132,8 @@ const Locale LANG_EN = {
 	.TXT_ERROR                   = "Error",
 	.TXT_NA                      = "n/a",
 	.TXT_UNNAMED                 = "unnamed",
+	.TXT_SAVED_SD                = "Saved to SD",
+	.TXT_SAVED_LFS               = "Saved to LFS",
 
 	// Wi-Fi text
 	.TXT_WIFI_AP_ENABLED         = "WiFi AP enabled",
@@ -152,7 +154,7 @@ const Locale LANG_EN = {
 	.TXT_SETTINGS_WIFI_SSID      = "Wi-Fi SSID: ",
 	
 	.TXT_WIFI_HANDSHAKE_PACKETS   = "Handshakes: ",
-	.TXT_WIFI_HANDSHAKE_SAVED     = "Saved to SD",
+
 	.TXT_WIFI_NO_SCAN_DATA        = "Scan networks first",
 
 	// Bluetooth text

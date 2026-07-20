@@ -133,6 +133,8 @@ struct Locale {
 	const char* TXT_ERROR;
 	const char* TXT_NA;
 	const char* TXT_UNNAMED;
+	const char* TXT_SAVED_SD;
+	const char* TXT_SAVED_LFS;
 
 	// Wi-Fi text
 	const char* TXT_WIFI_AP_ENABLED;
@@ -153,7 +155,7 @@ struct Locale {
 	const char* TXT_SETTINGS_WIFI_SSID;
 	const char* TXT_WIFI_HANDSHAKE_CAPTURING;
 	const char* TXT_WIFI_HANDSHAKE_PACKETS;
-	const char* TXT_WIFI_HANDSHAKE_SAVED;
+
 	const char* TXT_WIFI_NO_SCAN_DATA;
 
 	// Bluetooth text
