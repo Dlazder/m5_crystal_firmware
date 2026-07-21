@@ -155,5 +155,8 @@ void soundLevelLoop() {
 
 	if (checkExit()) {
 		DEVICE.Mic.end();
+		// Mic.end() leaves GPIO pins floating, causing speaker noise
+		DEVICE.Speaker.begin();
+		DEVICE.Speaker.end();
 	}
 }
