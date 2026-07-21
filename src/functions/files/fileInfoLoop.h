@@ -34,7 +34,7 @@ void fileInfoLoop() {
 			_formatFileSize(fileSize),
 			source,
 		};
-		centeredPrintRows(lines, 3, MEDIUM_TEXT);
+		centeredPrintRows(lines, 3, SMALL_TEXT);
 	}
 	checkExit(PID::SELECTED_FILE_MENU);
 }
