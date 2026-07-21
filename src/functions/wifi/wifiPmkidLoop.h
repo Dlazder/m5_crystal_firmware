@@ -226,13 +226,7 @@ void wifiPmkidLoop() {
 				s.replace(">", "_");
 				s.replace("|", "_");
 
-				String path;
-				int n = 1;
-				do {
-					path = "/pmkid_" + s + "_" + String(n) + ".hc22000";
-					n++;
-				} while (SD.exists(path));
-				pmkidCapturePath = path;
+				pmkidCapturePath = generateUniqueFilename("/pmkid_" + s, ".hc22000", false);
 
 				pmkidFile = SD.open(pmkidCapturePath, FILE_WRITE);
 				if (pmkidFile) {

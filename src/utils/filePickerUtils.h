@@ -1,3 +1,25 @@
+/**
+ * Generates a unique file path by appending an incrementing counter
+ * before the extension until an unused name is found.
+ *
+ * Example: generateUniqueFilename("/handshake_MyWiFi", ".pcap", false)
+ *          → "/handshake_MyWiFi_1.pcap" (or _2, _3, …)
+ *
+ * @param basePath    Path before the counter (e.g. "/handshake_MyWiFi")
+ * @param ext         File extension including dot (e.g. ".pcap")
+ * @param useLittleFS true = check LittleFS, false = check SD
+ * @return Unique path like "/handshake_MyWiFi_1.pcap"
+ */
+String generateUniqueFilename(const String& basePath, const String& ext, bool useLittleFS) {
+	String path;
+	int n = 1;
+	do {
+		path = basePath + "_" + String(n) + ext;
+		n++;
+	} while (useLittleFS ? LittleFS.exists(path) : SD.exists(path));
+	return path;
+}
+
 bool fpActive = false;
 bool fpSelectedSd = false;
 

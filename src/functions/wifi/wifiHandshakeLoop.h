@@ -309,13 +309,7 @@ void wifiHandshakeLoop() {
 			safeSsid.replace(">", "_");
 			safeSsid.replace("|", "_");
 
-			String path;
-			int n = 1;
-			do {
-				path = "/handshake_" + safeSsid + "_" + String(n) + ".pcap";
-				n++;
-			} while (useLittleFS ? LittleFS.exists(path) : SD.exists(path));
-			handshakeCapturePath = path;
+			handshakeCapturePath = generateUniqueFilename("/handshake_" + safeSsid, ".pcap", useLittleFS);
 
 			pcapFile = useLittleFS
 				? LittleFS.open(handshakeCapturePath, FILE_WRITE)
