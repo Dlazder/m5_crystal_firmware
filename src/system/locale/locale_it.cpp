@@ -21,6 +21,9 @@ const Locale LANG_IT = {
     .MENU_WIFI_EVIL_PORTAL       = "evil portal",
     .MENU_WIFI_EVIL_TWIN         = "evil twin",
     .MENU_WIFI_HANDSHAKE         = "cattura handshake",
+    .MENU_WIFI_PMKID             = "cattura PMKID",
+    .MENU_WIFI_CHANNEL_ANALYZER  = "analizzatore canali",
+    .MENU_WIFI_WEB_SERVER       = "web server",
     .MENU_SETTINGS_WIFI_SSID      = "Wi-Fi SSID",
 
     // Bluetooth menu
@@ -49,6 +52,7 @@ const Locale LANG_IT = {
     .MENU_NFC                     = "NFC",
     .MENU_NFC_READ_UID            = "leggi UID",
     .MENU_NFC_WRITE_UID           = "scrivi UID",
+    .MENU_NFC_ADVANCED_INFO       = "info avanzata",
 
     // IR menu
     .MENU_IR                      = "IR",
@@ -71,8 +75,9 @@ const Locale LANG_IT = {
     .MENU_SETTINGS_TIME           = "ora",
     .MENU_SETTINGS_BRIGHTNESS     = "luminosita",
     .MENU_SETTINGS_VOLUME         = "volume",
-    .MENU_SETTINGS_ROTATION       = "rotazione",
+    .MENU_SETTINGS_ROTATION       = "inverti rotazione",
     .MENU_SETTINGS_COLORS         = "colori",
+    .MENU_SETTINGS_ICONS          = "icone",
     .MENU_SETTINGS_STATUS_BAR     = "barra stato",
     .MENU_SETTINGS_STATUS_BAR_PID = "PID",
     .MENU_SETTINGS_STARTUP_SOUND  = "suono avvio",
@@ -128,6 +133,8 @@ const Locale LANG_IT = {
     .TXT_ERROR                    = "Errore",
     .TXT_NA                       = "n/d",
     .TXT_UNNAMED                  = "senza nome",
+    .TXT_SAVED_SD                 = "Salvato su SD",
+    .TXT_SAVED_LFS                = "Salvato su LFS",
 
     // Wi-Fi text
     .TXT_WIFI_AP_ENABLED          = "WiFi AP attivo",
@@ -145,10 +152,12 @@ const Locale LANG_IT = {
     .TXT_WIFI_EVIL_PORTAL_RUNNING     = "Evil Portal attivo",
     .TXT_WIFI_EVIL_PORTAL_CRED_CAPTURED = "Creds catturate!",
     .TXT_WIFI_EVIL_TWIN_RUNNING     = "Evil Twin attivo",
+    .TXT_WIFI_WEB_SERVER_RUNNING   = "Web Server attivo",
     .TXT_SETTINGS_WIFI_SSID      = "Wi-Fi SSID: ",
     
     .TXT_WIFI_HANDSHAKE_PACKETS   = "Handshake: ",
-    .TXT_WIFI_HANDSHAKE_SAVED     = "Salvato su SD",
+
+    .TXT_WIFI_NO_SCAN_DATA        = "Prima scansiona reti",
 
     // Bluetooth text
     .TXT_BT_FILE_ERROR            = "Errore file",
@@ -179,7 +188,7 @@ const Locale LANG_IT = {
     .TXT_SETTINGS_VOLUME          = "volume: ",
     .TXT_SETTINGS_COLOR           = "colore: ",
     .TXT_SETTINGS_FONT            = "Carattere:",
-    .TXT_SETTINGS_ROTATION        = "rotazione",
+    .TXT_SETTINGS_ROTATION        = "inverti rotazione",
     .TXT_SETTINGS_SOUND           = "Suono: ",
     .TXT_SETTINGS_STATUS_BAR      = "barra stato: ",
     .TXT_SETTINGS_PID             = "PID: ",

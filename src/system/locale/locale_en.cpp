@@ -21,6 +21,9 @@ const Locale LANG_EN = {
 	.MENU_WIFI_EVIL_PORTAL       = "evil portal",
 	.MENU_WIFI_EVIL_TWIN         = "evil twin",
 	.MENU_WIFI_HANDSHAKE         = "handshake capture",
+	.MENU_WIFI_PMKID             = "pmkid capture",
+	.MENU_WIFI_CHANNEL_ANALYZER  = "channel analyzer",
+	.MENU_WIFI_WEB_SERVER       = "web server",
 	.MENU_SETTINGS_WIFI_SSID      = "Wi-Fi SSID",
 
 	// Bluetooth menu
@@ -49,6 +52,7 @@ const Locale LANG_EN = {
 	.MENU_NFC                    = "NFC",
 	.MENU_NFC_READ_UID           = "read UID",
 	.MENU_NFC_WRITE_UID          = "write UID",
+	.MENU_NFC_ADVANCED_INFO    = "advanced info",
 
 	// IR menu
 	.MENU_IR                     = "IR",
@@ -71,8 +75,9 @@ const Locale LANG_EN = {
 	.MENU_SETTINGS_TIME          = "time",
 	.MENU_SETTINGS_BRIGHTNESS    = "brightness",
 	.MENU_SETTINGS_VOLUME        = "volume",
-	.MENU_SETTINGS_ROTATION      = "rotation",
+	.MENU_SETTINGS_ROTATION      = "invert rotation",
 	.MENU_SETTINGS_COLORS        = "colors",
+	.MENU_SETTINGS_ICONS         = "icons",
 	.MENU_SETTINGS_STATUS_BAR    = "status bar",
 	.MENU_SETTINGS_STATUS_BAR_PID = "PID",
 	.MENU_SETTINGS_STARTUP_SOUND = "startup sound",
@@ -128,6 +133,8 @@ const Locale LANG_EN = {
 	.TXT_ERROR                   = "Error",
 	.TXT_NA                      = "n/a",
 	.TXT_UNNAMED                 = "unnamed",
+	.TXT_SAVED_SD                = "Saved to SD",
+	.TXT_SAVED_LFS               = "Saved to LFS",
 
 	// Wi-Fi text
 	.TXT_WIFI_AP_ENABLED         = "WiFi AP enabled",
@@ -145,10 +152,12 @@ const Locale LANG_EN = {
 	.TXT_WIFI_EVIL_PORTAL_RUNNING     = "Evil Portal active",
 	.TXT_WIFI_EVIL_PORTAL_CRED_CAPTURED = "Creds captured!",
 	.TXT_WIFI_EVIL_TWIN_RUNNING     = "Evil Twin active",
+	.TXT_WIFI_WEB_SERVER_RUNNING   = "Web Server active",
 	.TXT_SETTINGS_WIFI_SSID      = "Wi-Fi SSID: ",
 	
 	.TXT_WIFI_HANDSHAKE_PACKETS   = "Handshakes: ",
-	.TXT_WIFI_HANDSHAKE_SAVED     = "Saved to SD",
+
+	.TXT_WIFI_NO_SCAN_DATA        = "Scan networks first",
 
 	// Bluetooth text
 	.TXT_BT_FILE_ERROR           = "File error",
@@ -179,7 +188,7 @@ const Locale LANG_EN = {
 	.TXT_SETTINGS_VOLUME         = "volume: ",
 	.TXT_SETTINGS_COLOR          = "color: ",
 	.TXT_SETTINGS_FONT           = "Font:",
-	.TXT_SETTINGS_ROTATION       = "rotation",
+	.TXT_SETTINGS_ROTATION       = "invert rotation",
 	.TXT_SETTINGS_SOUND          = "Sound: ",
 	.TXT_SETTINGS_STATUS_BAR     = "status bar: ",
 	.TXT_SETTINGS_PID            = "PID: ",

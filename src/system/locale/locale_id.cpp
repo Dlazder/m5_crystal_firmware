@@ -21,6 +21,9 @@ const Locale LANG_ID = {
     .MENU_WIFI_EVIL_PORTAL       = "evil portal",
     .MENU_WIFI_EVIL_TWIN         = "evil twin",
     .MENU_WIFI_HANDSHAKE         = "tangkap handshake",
+    .MENU_WIFI_PMKID             = "tangkap PMKID",
+    .MENU_WIFI_CHANNEL_ANALYZER  = "analisis saluran",
+    .MENU_WIFI_WEB_SERVER       = "server web",
     .MENU_SETTINGS_WIFI_SSID      = "Wi-Fi SSID",
 
     // Bluetooth menu
@@ -49,6 +52,7 @@ const Locale LANG_ID = {
     .MENU_NFC                     = "NFC",
     .MENU_NFC_READ_UID            = "baca UID",
     .MENU_NFC_WRITE_UID           = "tulis UID",
+    .MENU_NFC_ADVANCED_INFO       = "info lanjutan",
 
     // IR menu
     .MENU_IR                      = "IR",
@@ -71,8 +75,9 @@ const Locale LANG_ID = {
     .MENU_SETTINGS_TIME           = "waktu",
     .MENU_SETTINGS_BRIGHTNESS     = "kecerahan",
     .MENU_SETTINGS_VOLUME         = "volume",
-    .MENU_SETTINGS_ROTATION       = "rotasi",
+    .MENU_SETTINGS_ROTATION       = "balik rotasi",
     .MENU_SETTINGS_COLORS         = "warna",
+    .MENU_SETTINGS_ICONS          = "ikon",
     .MENU_SETTINGS_STATUS_BAR     = "bilah status",
     .MENU_SETTINGS_STATUS_BAR_PID = "PID",
     .MENU_SETTINGS_STARTUP_SOUND  = "suara nyala",
@@ -128,6 +133,8 @@ const Locale LANG_ID = {
     .TXT_ERROR                    = "Error",
     .TXT_NA                       = "t/a",
     .TXT_UNNAMED                  = "tanpa nama",
+    .TXT_SAVED_SD                 = "Disimpan ke SD",
+    .TXT_SAVED_LFS                = "Disimpan ke LFS",
 
     // Wi-Fi text
     .TXT_WIFI_AP_ENABLED          = "WiFi AP aktif",
@@ -145,10 +152,12 @@ const Locale LANG_ID = {
     .TXT_WIFI_EVIL_PORTAL_RUNNING     = "Evil Portal aktif",
     .TXT_WIFI_EVIL_PORTAL_CRED_CAPTURED = "Creds ditangkap!",
     .TXT_WIFI_EVIL_TWIN_RUNNING     = "Evil Twin aktif",
+    .TXT_WIFI_WEB_SERVER_RUNNING   = "Server Web aktif",
     .TXT_SETTINGS_WIFI_SSID      = "Wi-Fi SSID: ",
     
     .TXT_WIFI_HANDSHAKE_PACKETS   = "Handshake: ",
-    .TXT_WIFI_HANDSHAKE_SAVED     = "Disimpan ke SD",
+
+    .TXT_WIFI_NO_SCAN_DATA        = "Pindai jaringan dulu",
 
     // Bluetooth text
     .TXT_BT_FILE_ERROR            = "Error file",
@@ -179,7 +188,7 @@ const Locale LANG_ID = {
     .TXT_SETTINGS_VOLUME          = "volume: ",
     .TXT_SETTINGS_COLOR           = "warna: ",
     .TXT_SETTINGS_FONT            = "Font:",
-    .TXT_SETTINGS_ROTATION        = "rotasi",
+    .TXT_SETTINGS_ROTATION        = "balik rotasi",
     .TXT_SETTINGS_SOUND           = "Suara: ",
     .TXT_SETTINGS_STATUS_BAR      = "bilah status: ",
     .TXT_SETTINGS_PID             = "PID: ",

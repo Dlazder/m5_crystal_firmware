@@ -2,7 +2,7 @@
 
 void irMenuLoop() {
 	MENU irMenu[] = {
-		{PID::MAIN_MENU, L->MENU_BACK},
+		{PID::MAIN_MENU, L->MENU_BACK, Icons::back},
 		{PID::IR_READ, L->MENU_IR_READ},
 		{PID::IR_SEND, L->MENU_IR_SEND},
 		{PID::IR_TV_B_GONE, L->MENU_IR_TV_B_GONE},

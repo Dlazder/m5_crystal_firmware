@@ -21,6 +21,9 @@ const Locale LANG_ES = {
 	.MENU_WIFI_EVIL_PORTAL       = "evil portal",
 	.MENU_WIFI_EVIL_TWIN         = "evil twin",
 	.MENU_WIFI_HANDSHAKE         = "captura handshake",
+	.MENU_WIFI_PMKID             = "captura PMKID",
+	.MENU_WIFI_CHANNEL_ANALYZER  = "analizador de canales",
+	.MENU_WIFI_WEB_SERVER       = "servidor web",
 	.MENU_SETTINGS_WIFI_SSID      = "Wi-Fi SSID",
 
 	// Bluetooth menu
@@ -49,6 +52,7 @@ const Locale LANG_ES = {
 	.MENU_NFC= "NFC",
 	.MENU_NFC_READ_UID = "leer UID",
 	.MENU_NFC_WRITE_UID = "escribir UID",
+	.MENU_NFC_ADVANCED_INFO = "info avanzada",
 
 	// IR menu
 	.MENU_IR                     = "IR",
@@ -71,8 +75,9 @@ const Locale LANG_ES = {
 	.MENU_SETTINGS_TIME = "hora",
 	.MENU_SETTINGS_BRIGHTNESS = "brillo",
 	.MENU_SETTINGS_VOLUME     = "volumen",
-	.MENU_SETTINGS_ROTATION = "rotacion",
+	.MENU_SETTINGS_ROTATION = "invertir rotacion",
 	.MENU_SETTINGS_COLORS = "colores",
+	.MENU_SETTINGS_ICONS = "iconos",
 	.MENU_SETTINGS_STATUS_BAR = "barra estado",
 	.MENU_SETTINGS_STATUS_BAR_PID = "PID",
 	.MENU_SETTINGS_STARTUP_SOUND = "sonido inicio",
@@ -127,7 +132,9 @@ const Locale LANG_ES = {
 	.TXT_SUCCESS = "Exito",
 	.TXT_ERROR = "Error",
 	.TXT_NA = "n/d",
-	.TXT_UNNAMED = "sin nombre",
+	.TXT_UNNAMED   = "sin nombre",
+	.TXT_SAVED_SD  = "Guardado en SD",
+	.TXT_SAVED_LFS = "Guardado en LFS",
 
 	// Wi-Fi text
 	.TXT_WIFI_AP_ENABLED = "WiFi AP activado",
@@ -145,10 +152,12 @@ const Locale LANG_ES = {
 	.TXT_WIFI_EVIL_PORTAL_RUNNING     = "Evil Portal activo",
 	.TXT_WIFI_EVIL_PORTAL_CRED_CAPTURED = "Creds capturadas!",
 	.TXT_WIFI_EVIL_TWIN_RUNNING     = "Evil Twin activo",
+	.TXT_WIFI_WEB_SERVER_RUNNING   = "Servidor Web activo",
 	.TXT_SETTINGS_WIFI_SSID      = "Wi-Fi SSID: ",
 	
 	.TXT_WIFI_HANDSHAKE_PACKETS   = "Handshakes: ",
-	.TXT_WIFI_HANDSHAKE_SAVED     = "Guardado en SD",
+
+	.TXT_WIFI_NO_SCAN_DATA        = "Escanea redes primero",
 
 	// Bluetooth text
 	.TXT_BT_FILE_ERROR = "Error de archivo",
@@ -179,7 +188,7 @@ const Locale LANG_ES = {
 	.TXT_SETTINGS_VOLUME     = "volumen: ",
 	.TXT_SETTINGS_COLOR= "color: ",
 	.TXT_SETTINGS_FONT = "Fuente:",
-	.TXT_SETTINGS_ROTATION = "rotacion",
+	.TXT_SETTINGS_ROTATION = "invertir rotacion",
 	.TXT_SETTINGS_SOUND= "Sonido: ",
 	.TXT_SETTINGS_STATUS_BAR = "barra estado: ",
 	.TXT_SETTINGS_PID= "PID: ",

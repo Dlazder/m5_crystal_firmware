@@ -2,9 +2,9 @@
 
 void flashLightMenuLoop() {
 	MENU flashLightMenu[] = {
-		{PID::OTHER,              L->MENU_BACK},
-		{PID::FLASHLIGHT,         L->MENU_OTHER_FLASHLIGHT},
-		{PID::FLASHLIGHT_FLICKER, L->MENU_OTHER_FLICKER},
+		{PID::OTHER,              L->MENU_BACK, Icons::back},
+		{PID::FLASHLIGHT,         L->MENU_OTHER_FLASHLIGHT, Icons::flashlight},
+		{PID::FLASHLIGHT_FLICKER, L->MENU_OTHER_FLICKER, Icons::flashlight},
 		{PID::BRIGHTNESS,         L->MENU_SETTINGS_BRIGHTNESS},
 		{PID::COLORS,             L->MENU_SETTINGS_COLORS},
 	};

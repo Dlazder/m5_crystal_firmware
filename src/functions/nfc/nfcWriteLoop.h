@@ -128,11 +128,7 @@ bool writeNewUID(uint8_t *newUID, uint8_t newUIDLength) {
 
 void nfcWriteLoop() {
 	if (isSetup()) {
-		String lines[] = {
-			"PN532: disconnected",
-			L->TXT_CONNECTING,
-		};
-		centeredPrintRows(lines, 2, MEDIUM_TEXT);
+		connectionGuideNFC();
 
 		// See nfcReadLoop: release the bus before re-binding to GROVE pins.
 		Wire.end();

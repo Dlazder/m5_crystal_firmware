@@ -6,3 +6,4 @@
 #include "drawStartupScreen.h"
 #include "drawSpinner.h"
 #include "drawScript.h"
+#include "connectionHints.h"

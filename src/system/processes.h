@@ -21,6 +21,7 @@
     X(VOLUME,                113, volumeLoop) \
     X(WEBSERVER_FS,          114, toggleWebServerFs) \
     X(SETTINGS_SSID,         115, setSsidLoop) \
+    X(ICONS,                 116, toggleIconsLoop) \
     \
     /* Wi-Fi (200-299) */ \
     X(WIFI,              200, wifiMenuLoop) \
@@ -39,6 +40,9 @@
     X(EVIL_TWIN,              213, evilTwinLoop) \
     X(WIFI_HANDSHAKE_CAPTURE, 214, wifiHandshakeLoop) \
 	X(WIFI_PCAP_TO_HASH,     215, pcapToHashLoop)    \
+	X(WIFI_PMKID_CAPTURE,    216, wifiPmkidLoop)     \
+	X(WIFI_CHANNEL_ANALYZER, 217, wifiChannelAnalyzerLoop) \
+	X(WEB_SERVER,            218, webServerLoop) \
     \
     /* Bluetooth (300-399) */ \
     X(BLUETOOTH,    300, bluetoothMenuLoop) \
@@ -58,6 +62,7 @@
     X(NFC,       400, nfcMenuLoop) \
     X(NFC_READ,  401, nfcReadLoop) \
     X(NFC_WRITE, 402, nfcWriteLoop) \
+    X(NFC_ADVANCED_INFO, 403, nfcAdvancedInfoLoop) \
     \
     /* Files (500-599) */ \
     X(FILES_MENU,         500, filesMenuLoop) \

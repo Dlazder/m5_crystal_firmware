@@ -21,6 +21,9 @@ const Locale LANG_RU = {
 	.MENU_WIFI_EVIL_PORTAL       = "evil portal",
 	.MENU_WIFI_EVIL_TWIN         = "evil twin",
 	.MENU_WIFI_HANDSHAKE         = "захват рукопожатия",
+	.MENU_WIFI_PMKID             = "pmkid захват",
+	.MENU_WIFI_CHANNEL_ANALYZER  = "анализатор каналов",
+	.MENU_WIFI_WEB_SERVER       = "веб-сервер",
 	.MENU_SETTINGS_WIFI_SSID      = "Wi-Fi SSID",
 
 	// Bluetooth menu
@@ -49,6 +52,7 @@ const Locale LANG_RU = {
 	.MENU_NFC                    = "NFC",
 	.MENU_NFC_READ_UID           = "читать UID",
 	.MENU_NFC_WRITE_UID          = "записать UID",
+	.MENU_NFC_ADVANCED_INFO    = "расширенная инфо",
 
 	// IR menu
 	.MENU_IR                     = "IR",
@@ -71,8 +75,9 @@ const Locale LANG_RU = {
 	.MENU_SETTINGS_TIME          = "время",
 	.MENU_SETTINGS_BRIGHTNESS    = "яркость",
 	.MENU_SETTINGS_VOLUME        = "громкость",
-	.MENU_SETTINGS_ROTATION      = "поворот",
+	.MENU_SETTINGS_ROTATION      = "переворот",
 	.MENU_SETTINGS_COLORS        = "цвета",
+	.MENU_SETTINGS_ICONS         = "иконки",
 	.MENU_SETTINGS_STATUS_BAR    = "статус бар",
 	.MENU_SETTINGS_STATUS_BAR_PID = "PID",
 	.MENU_SETTINGS_STARTUP_SOUND = "звук запуска",
@@ -128,6 +133,8 @@ const Locale LANG_RU = {
 	.TXT_ERROR                   = "Ошибка",
 	.TXT_NA                      = "н/д",
 	.TXT_UNNAMED                 = "без имени",
+	.TXT_SAVED_SD                = "Сохранено на SD",
+	.TXT_SAVED_LFS               = "Сохранено на LFS",
 
 	// Wi-Fi text
 	.TXT_WIFI_AP_ENABLED         = "WiFi AP вкл.",
@@ -145,10 +152,12 @@ const Locale LANG_RU = {
 	.TXT_WIFI_EVIL_PORTAL_RUNNING     = "Evil Portal активен",
 	.TXT_WIFI_EVIL_PORTAL_CRED_CAPTURED = "Креды получены!",
 	.TXT_WIFI_EVIL_TWIN_RUNNING     = "Evil Twin активен",
+	.TXT_WIFI_WEB_SERVER_RUNNING   = "Веб-сервер активен",
 	.TXT_SETTINGS_WIFI_SSID      = "Wi-Fi SSID: ",
 	
 	.TXT_WIFI_HANDSHAKE_PACKETS   = "Handshake: ",
-	.TXT_WIFI_HANDSHAKE_SAVED     = "Сохранено на SD",
+
+	.TXT_WIFI_NO_SCAN_DATA        = "Сначала просканируйте сети",
 
 	// Bluetooth text
 	.TXT_BT_FILE_ERROR           = "Ошибка файла",
@@ -179,7 +188,7 @@ const Locale LANG_RU = {
 	.TXT_SETTINGS_VOLUME         = "громкость: ",
 	.TXT_SETTINGS_COLOR          = "цвет: ",
 	.TXT_SETTINGS_FONT           = "шрифт:",
-	.TXT_SETTINGS_ROTATION       = "ориентация экрана",
+	.TXT_SETTINGS_ROTATION       = "переворот экрана",
 	.TXT_SETTINGS_SOUND          = "звук: ",
 	.TXT_SETTINGS_STATUS_BAR     = "статус бар: ",
 	.TXT_SETTINGS_PID            = "PID: ",

@@ -21,6 +21,9 @@ const Locale LANG_UK = {
 	.MENU_WIFI_EVIL_PORTAL       = "evil portal",
 	.MENU_WIFI_EVIL_TWIN         = "evil twin",
 	.MENU_WIFI_HANDSHAKE         = "захоплення рукостискання",
+	.MENU_WIFI_PMKID             = "pmkid захоплення",
+	.MENU_WIFI_CHANNEL_ANALYZER  = "аналіз каналів",
+	.MENU_WIFI_WEB_SERVER       = "веб-сервер",
 	.MENU_SETTINGS_WIFI_SSID      = "Wi-Fi SSID",
 
 	// Bluetooth menu
@@ -49,6 +52,7 @@ const Locale LANG_UK = {
 	.MENU_NFC                    = "NFC",
 	.MENU_NFC_READ_UID           = "читати UID",
 	.MENU_NFC_WRITE_UID          = "записати UID",
+	.MENU_NFC_ADVANCED_INFO    = "розширена інфо",
 
 	// IR menu
 	.MENU_IR                     = "IR",
@@ -71,8 +75,9 @@ const Locale LANG_UK = {
 	.MENU_SETTINGS_TIME          = "час",
 	.MENU_SETTINGS_BRIGHTNESS    = "яскравість",
 	.MENU_SETTINGS_VOLUME        = "гучність",
-	.MENU_SETTINGS_ROTATION      = "поворот",
+	.MENU_SETTINGS_ROTATION      = "переворот",
 	.MENU_SETTINGS_COLORS        = "кольори",
+	.MENU_SETTINGS_ICONS         = "іконки",
 	.MENU_SETTINGS_STATUS_BAR    = "стат. рядок",
 	.MENU_SETTINGS_STATUS_BAR_PID = "PID",
 	.MENU_SETTINGS_STARTUP_SOUND = "звук запуску",
@@ -128,6 +133,8 @@ const Locale LANG_UK = {
 	.TXT_ERROR                   = "Помилка",
 	.TXT_NA                      = "н/д",
 	.TXT_UNNAMED                 = "без імені",
+	.TXT_SAVED_SD                = "Збережено на SD",
+	.TXT_SAVED_LFS               = "Збережено на LFS",
 
 	// Wi-Fi text
 	.TXT_WIFI_AP_ENABLED         = "WiFi AP увімк.",
@@ -145,10 +152,12 @@ const Locale LANG_UK = {
 	.TXT_WIFI_EVIL_PORTAL_RUNNING     = "Evil Portal активний",
 	.TXT_WIFI_EVIL_PORTAL_CRED_CAPTURED = "Креди отримані!",
 	.TXT_WIFI_EVIL_TWIN_RUNNING     = "Evil Twin активний",
+	.TXT_WIFI_WEB_SERVER_RUNNING   = "Веб-сервер активний",
 	.TXT_SETTINGS_WIFI_SSID      = "Wi-Fi SSID: ",
 	
 	.TXT_WIFI_HANDSHAKE_PACKETS   = "Handshake: ",
-	.TXT_WIFI_HANDSHAKE_SAVED     = "Збережено на SD",
+
+	.TXT_WIFI_NO_SCAN_DATA        = "Спочатку проскануйте мережі",
 				
 	// Bluetooth text
 	.TXT_BT_FILE_ERROR           = "Помилка файлу",
@@ -179,7 +188,7 @@ const Locale LANG_UK = {
 	.TXT_SETTINGS_VOLUME         = "гучність: ",
 	.TXT_SETTINGS_COLOR          = "колір: ",
 	.TXT_SETTINGS_FONT           = "Шрифт:",
-	.TXT_SETTINGS_ROTATION       = "поворот",
+	.TXT_SETTINGS_ROTATION       = "переворот",
 	.TXT_SETTINGS_SOUND          = "Звук: ",
 	.TXT_SETTINGS_STATUS_BAR     = "стат. рядок: ",
 	.TXT_SETTINGS_PID            = "PID: ",

@@ -3,8 +3,8 @@
 void deleteFileLoop() {
 	if (isSetup()) {
 		String name = selectedFilePath.substring(selectedFilePath.lastIndexOf('/') + 1);
-		String lines[] = { "delete file?", name.substring(0, 16)};
-		centeredPrintRows(lines, 2, MEDIUM_TEXT, true);
+		String lines[] = { "delete file?", name};
+		centeredPrintRows(lines, 2, SMALL_TEXT, true);
 		drawHintCustom("enter: delete", "A: delete");
 	}
 

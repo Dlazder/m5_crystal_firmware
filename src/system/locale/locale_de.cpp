@@ -21,6 +21,9 @@ const Locale LANG_DE = {
 	.MENU_WIFI_EVIL_PORTAL       = "evil portal",
 	.MENU_WIFI_EVIL_TWIN         = "evil twin",
 	.MENU_WIFI_HANDSHAKE         = "handshake erfassen",
+	.MENU_WIFI_PMKID             = "PMKID erfassen",
+	.MENU_WIFI_CHANNEL_ANALYZER  = "Kanal-Analyse",
+	.MENU_WIFI_WEB_SERVER       = "WebServer",
 	.MENU_SETTINGS_WIFI_SSID      = "Wi-Fi SSID",
 
 	// Bluetooth menu
@@ -49,6 +52,7 @@ const Locale LANG_DE = {
 	.MENU_NFC                    = "NFC",
 	.MENU_NFC_READ_UID           = "UID lesen",
 	.MENU_NFC_WRITE_UID          = "UID schreiben",
+	.MENU_NFC_ADVANCED_INFO    = "erweiterte Info",
 
 	// IR menu
 	.MENU_IR                     = "IR",
@@ -71,8 +75,9 @@ const Locale LANG_DE = {
 	.MENU_SETTINGS_TIME          = "uhrzeit",
 	.MENU_SETTINGS_BRIGHTNESS    = "helligkeit",
 	.MENU_SETTINGS_VOLUME        = "lautstärke",
-	.MENU_SETTINGS_ROTATION      = "drehung",
+	.MENU_SETTINGS_ROTATION      = "umkehren",
 	.MENU_SETTINGS_COLORS        = "farben",
+	.MENU_SETTINGS_ICONS         = "symbole",
 	.MENU_SETTINGS_STATUS_BAR    = "statusleiste",
 	.MENU_SETTINGS_STATUS_BAR_PID = "PID",
 	.MENU_SETTINGS_STARTUP_SOUND = "startsound",
@@ -128,6 +133,8 @@ const Locale LANG_DE = {
 	.TXT_ERROR                   = "Fehler",
 	.TXT_NA                      = "n/v",
 	.TXT_UNNAMED                 = "unbenannt",
+	.TXT_SAVED_SD                = "Auf SD gespeichert",
+	.TXT_SAVED_LFS               = "Auf LFS gespeichert",
 
 	// Wi-Fi text
 	.TXT_WIFI_AP_ENABLED         = "WiFi AP aktiv",
@@ -145,10 +152,12 @@ const Locale LANG_DE = {
 	.TXT_WIFI_EVIL_PORTAL_RUNNING     = "Evil Portal aktiv",
 	.TXT_WIFI_EVIL_PORTAL_CRED_CAPTURED = "Creds erfasst!",
 	.TXT_WIFI_EVIL_TWIN_RUNNING     = "Evil Twin aktiv",
+	.TXT_WIFI_WEB_SERVER_RUNNING   = "WebServer aktiv",
 	.TXT_SETTINGS_WIFI_SSID      = "Wi-Fi SSID: ",
 	
 	.TXT_WIFI_HANDSHAKE_PACKETS   = "Handshakes: ",
-	.TXT_WIFI_HANDSHAKE_SAVED     = "Gespeichert auf SD",
+
+	.TXT_WIFI_NO_SCAN_DATA        = "Netze zuerst scannen",
 				
 	// Bluetooth text
 	.TXT_BT_FILE_ERROR           = "Dateifehler",
@@ -179,7 +188,7 @@ const Locale LANG_DE = {
 	.TXT_SETTINGS_VOLUME         = "lautstärke: ",
 	.TXT_SETTINGS_COLOR          = "farbe: ",
 	.TXT_SETTINGS_FONT           = "Schrift:",
-	.TXT_SETTINGS_ROTATION       = "drehung",
+	.TXT_SETTINGS_ROTATION       = "umkehren",
 	.TXT_SETTINGS_SOUND          = "Sound: ",
 	.TXT_SETTINGS_STATUS_BAR     = "statusleiste: ",
 	.TXT_SETTINGS_PID            = "PID: ",

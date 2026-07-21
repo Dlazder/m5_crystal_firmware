@@ -82,6 +82,15 @@ jobs:
           VERSION=$(grep FIRMWARE_VERSION src/system/version.h | cut -d '"' -f 2)
           echo "VERSION=$VERSION" >> $GITHUB_ENV
 
+      - name: Get tag commit message
+        run: |
+          COMMIT_MSG=$(git log -1 --format=%B "${{ github.ref_name }}")
+          echo "RELEASE_BODY<<EOF" >> $GITHUB_ENV
+          echo "$COMMIT_MSG" >> $GITHUB_ENV
+          echo "" >> $GITHUB_ENV
+          echo "Build from commit: [${{ github.sha }}](https://github.com/${{ github.repository }}/commit/${{ github.sha }})" >> $GITHUB_ENV
+          echo "EOF" >> $GITHUB_ENV
+
       - name: Download artifacts
         uses: actions/download-artifact@v8.0.1
         with:
@@ -95,8 +104,7 @@ jobs:
         with:
           tag_name: ${{ github.ref_name }}
           name: ${{ github.ref_name }}
-          body: |
-            Build from commit: [${{ github.sha }}](https://github.com/${{ github.repository }}/commit/${{ github.sha }})
+          body: ${{ env.RELEASE_BODY }}
           files: |
             crystal_firmware_m5stick-c-plus2_v${{ env.VERSION }}.bin
             crystal_firmware_cardputer-adv_v${{ env.VERSION }}.bin

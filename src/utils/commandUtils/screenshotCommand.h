@@ -12,12 +12,7 @@ void screenshotCommand() {
         return;
     }
 
-    // Find a free filename: /screenshot_0001.bmp ... /screenshot_9999.bmp
-    char filePath[32];
-    for (int i = 1; i <= 9999; i++) {
-        snprintf(filePath, sizeof(filePath), "/screenshot_%04d.bmp", i);
-        if (!SD.exists(filePath)) break;
-    }
+    String filePath = generateUniqueFilename("/screenshot", ".bmp", false);
 
     int w = DISP.width();
     int h = DISP.height();
@@ -73,6 +68,6 @@ void screenshotCommand() {
     }
 
     f.close();
-    Serial.println("Screenshot saved: " + String(filePath));
+    Serial.println("Screenshot saved: " + filePath);
 #endif
 }

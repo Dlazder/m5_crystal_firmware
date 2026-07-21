@@ -1,4 +1,4 @@
-// pid PID::WIFI_HANDSHAKE_CAPTURE
+// PID::WIFI_HANDSHAKE_CAPTURE
 
 // WPA handshake capture via promiscuous mode.
 // Listens on the target channel for EAPOL frames to/from the selected
@@ -11,6 +11,7 @@
 #include "esp_wifi.h"
 
 static String handshakeCapturePath; // set during setup, e.g. /handshake_MyWiFi_1.pcap
+static bool useLittleFS = false; // true when SD unavailable, using LittleFS fallback
 
 // Ring buffer for passing packets from callback -> main loop
 
@@ -286,8 +287,15 @@ void wifiHandshakeLoop() {
 		hsTargetChannel = channel;
 		hsTargetSsid = ssid;
 
-		// Open PCAP file on SD card with unique name: /handshake_<ssid>_<N>.pcap
-		if (sdBegin()) {
+		// Open PCAP file: SD card first, fallback to LittleFS
+		useLittleFS = false;
+		bool storageReady = sdBegin();
+		if (!storageReady) {
+			storageReady = lfsBegin();
+			useLittleFS = storageReady;
+		}
+
+		if (storageReady) {
 			// Sanitize SSID for FAT filename
 			String safeSsid = ssid;
 			safeSsid.replace(" ", "_");
@@ -301,15 +309,11 @@ void wifiHandshakeLoop() {
 			safeSsid.replace(">", "_");
 			safeSsid.replace("|", "_");
 
-			String path;
-			int n = 1;
-			do {
-				path = "/handshake_" + safeSsid + "_" + String(n) + ".pcap";
-				n++;
-			} while (SD.exists(path));
-			handshakeCapturePath = path;
+			handshakeCapturePath = generateUniqueFilename("/handshake_" + safeSsid, ".pcap", useLittleFS);
 
-			pcapFile = SD.open(handshakeCapturePath, FILE_WRITE);
+			pcapFile = useLittleFS
+				? LittleFS.open(handshakeCapturePath, FILE_WRITE)
+				: SD.open(handshakeCapturePath, FILE_WRITE);
 			if (pcapFile) {
 				writePcapGlobalHeader(pcapFile);
 				fileOpen = true;
@@ -420,7 +424,7 @@ void wifiHandshakeLoop() {
 			fileOpen = false;
 
 			String lines[] = {
-				L->TXT_WIFI_HANDSHAKE_SAVED,
+				useLittleFS ? L->TXT_SAVED_LFS : L->TXT_SAVED_SD,
 				handshakeCapturePath
 			};
 			centeredPrintRows(lines, 2, SMALL_TEXT);

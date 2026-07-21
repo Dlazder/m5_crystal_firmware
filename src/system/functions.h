@@ -24,6 +24,7 @@
 #include "../functions/settings/volumeLoop.h"
 #include "../functions/settings/toggleWebServerFs.h"
 #include "../functions/settings/ssidLoop.h"
+#include "../functions/settings/toggleIconsLoop.h"
 
 
 // Wi-Fi functions
@@ -42,8 +43,11 @@
 #include "../functions/wifi/wifiDeauthAllLoop.h"
 #include "../functions/wifi/evilPortalLoop.h"
 #include "../functions/wifi/evilTwinLoop.h"
+#include "../functions/wifi/webServerLoop.h"
 #include "../functions/wifi/wifiHandshakeLoop.h"
 #include "../functions/wifi/pcapToHashLoop.h"
+#include "../functions/wifi/wifiPmkidLoop.h"
+#include "../functions/wifi/wifiChannelAnalyzerLoop.h"
 
 
 // Files
@@ -77,6 +81,7 @@
 #include "../functions/nfc/nfcMenuLoop.h"
 #include "../functions/nfc/nfcReadLoop.h"
 #include "../functions/nfc/nfcWriteLoop.h"
+#include "../functions/nfc/nfcAdvancedInfoLoop.h"
 
 
 // IR functions

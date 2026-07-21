@@ -21,6 +21,9 @@ struct Locale {
 	const char* MENU_WIFI_EVIL_PORTAL;
 	const char* MENU_WIFI_EVIL_TWIN;
 	const char* MENU_WIFI_HANDSHAKE;
+	const char* MENU_WIFI_PMKID;
+	const char* MENU_WIFI_CHANNEL_ANALYZER;
+	const char* MENU_WIFI_WEB_SERVER;
 	const char* MENU_SETTINGS_WIFI_SSID;
 
 	// Bluetooth menu
@@ -49,6 +52,7 @@ struct Locale {
 	const char* MENU_NFC;
 	const char* MENU_NFC_READ_UID;
 	const char* MENU_NFC_WRITE_UID;
+	const char* MENU_NFC_ADVANCED_INFO;
 
 	// IR menu
 	const char* MENU_IR;
@@ -73,6 +77,7 @@ struct Locale {
 	const char* MENU_SETTINGS_VOLUME;
 	const char* MENU_SETTINGS_ROTATION;
 	const char* MENU_SETTINGS_COLORS;
+	const char* MENU_SETTINGS_ICONS;
 	const char* MENU_SETTINGS_STATUS_BAR;
 	const char* MENU_SETTINGS_STATUS_BAR_PID;
 	const char* MENU_SETTINGS_STARTUP_SOUND;
@@ -129,6 +134,8 @@ struct Locale {
 	const char* TXT_ERROR;
 	const char* TXT_NA;
 	const char* TXT_UNNAMED;
+	const char* TXT_SAVED_SD;
+	const char* TXT_SAVED_LFS;
 
 	// Wi-Fi text
 	const char* TXT_WIFI_AP_ENABLED;
@@ -146,10 +153,12 @@ struct Locale {
 	const char* TXT_WIFI_EVIL_PORTAL_RUNNING;
 	const char* TXT_WIFI_EVIL_PORTAL_CRED_CAPTURED;
 	const char* TXT_WIFI_EVIL_TWIN_RUNNING;
+	const char* TXT_WIFI_WEB_SERVER_RUNNING;
 	const char* TXT_SETTINGS_WIFI_SSID;
 	const char* TXT_WIFI_HANDSHAKE_CAPTURING;
 	const char* TXT_WIFI_HANDSHAKE_PACKETS;
-	const char* TXT_WIFI_HANDSHAKE_SAVED;
+
+	const char* TXT_WIFI_NO_SCAN_DATA;
 
 	// Bluetooth text
 	const char* TXT_BT_FILE_ERROR;

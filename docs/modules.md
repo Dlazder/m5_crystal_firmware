@@ -58,5 +58,5 @@ Connect the PN532 module to the GROVE port. Switch the module to **I2C mode**.
 | Cardputer | IR Reciever module |
 | - | - |
 | GND | GND |
-| 5V OUT | VCC |
-| G8(SDA) | OUT |
+| 5V OUT/IN | VCC |
+| G3 | OUT |

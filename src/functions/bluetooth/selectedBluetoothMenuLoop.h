@@ -2,7 +2,7 @@
 
 void selectedBluetoothMenuLoop() {
 	MENU selectedBluetoothMenu[] = {
-		{PID::BT_SCAN,   L->MENU_BACK},
+		{PID::BT_SCAN,   L->MENU_BACK, Icons::back},
 		{PID::BT_INFO,   L->MENU_BT_INFO},
 		{PID::BT_FINDER, L->MENU_BT_FIND},
 	};

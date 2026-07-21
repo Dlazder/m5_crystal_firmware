@@ -94,14 +94,21 @@ static void writePcapPacket(File& f, const uint8_t* data, uint16_t len,
 }
 
 // --- PCAP to FT Hash conversion -------------------------------------------
-// Reads a .pcap file from SD, extracts EAPOL handshake data, writes a
+// Reads a .pcap file (SD or LittleFS), extracts EAPOL handshake data, writes a
 // .hash file for FT-Crack / hashcat mode 22000 (WPA*04*...).
 // Returns true if a handshake was found and the hash file was written.
 
-static bool pcapToFTHash(const String& pcapPath) {
-	if (!sdBegin()) { Serial.println("pcapToFTHash: SD init failed"); return false; }
-	File f = SD.open(pcapPath.c_str());
-	if (!f) { Serial.printf("pcapToFTHash: cannot open %s\n", pcapPath.c_str()); return false; }
+static bool pcapToFTHash(const String& pcapPath, bool useLittleFS = false) {
+	bool storageReady = useLittleFS ? lfsBegin() : sdBegin();
+	if (!storageReady) {
+		Serial.printf("pcapToFTHash: storage init failed (LFS=%d)\n", useLittleFS);
+		return false;
+	}
+	File f = useLittleFS ? LittleFS.open(pcapPath.c_str()) : SD.open(pcapPath.c_str());
+	if (!f) {
+		Serial.printf("pcapToFTHash: cannot open %s\n", pcapPath.c_str());
+		return false;
+	}
 	Serial.printf("pcapToFTHash: opened %s (%u bytes)\n", pcapPath.c_str(), f.size());
 
 	// Read and verify pcap global header (24 bytes)
@@ -375,7 +382,7 @@ static bool pcapToFTHash(const String& pcapPath) {
 
 	Serial.printf("pcapToFTHash: hashLine %d bytes, starts: %.80s\n", hl, hashLine);
 
-	File hf = SD.open(hashPath.c_str(), FILE_WRITE);
+	File hf = useLittleFS ? LittleFS.open(hashPath.c_str(), FILE_WRITE) : SD.open(hashPath.c_str(), FILE_WRITE);
 	if (!hf) { Serial.println("pcapToFTHash: cannot write hash file"); return false; }
 	hf.write((uint8_t*)hashLine, hl);
 	hf.close();
