@@ -24,17 +24,24 @@
 
 		Keyboard_Class::KeysState state = M5Cardputer.Keyboard.keysState();
 
-		if (state.del) { kbDelPressed = true; return; }
+		if (state.del || state.backspace) { kbDelPressed = true; return; }
 		if (state.enter) { kbEnterPressed = true; return; }
+
+		// In text mode, fn + arrow keys = cursor navigation.
+		// M5Cardputer library reports fn-layer keys via state.up/down/left/right,
+		// NOT via state.word (PASS 2 in updateKeysState returns early).
+		if (kbTextMode && state.fn) {
+			if (state.up)    kbCursorUpPressed = true;
+			if (state.down)  kbCursorDownPressed = true;
+			if (state.left)  kbCursorLeftPressed = true;
+			if (state.right) kbCursorRightPressed = true;
+			return;
+		}
 
 		kbWord = "";
 		for (char c : state.word) {
 			if (kbTextMode) {
 				if (c == '`') kbEscPressed = true;
-				else if (c == ';' && !state.fn) kbCursorUpPressed = true;
-				else if (c == '.' && !state.fn) kbCursorDownPressed = true;
-				else if (c == ',' && !state.fn) kbCursorLeftPressed = true;
-				else if (c == '/' && !state.fn) kbCursorRightPressed = true;
 				else kbWord += c;
 			} else {
 				if (c == ';') kbUpPressed = true;
