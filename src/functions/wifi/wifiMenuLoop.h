@@ -1,4 +1,4 @@
-// pid PID::WIFI
+﻿// pid PID::WIFI
 
 void wifiMenuLoop() {
 	MENU wifiMenu[] = {
@@ -12,6 +12,7 @@ void wifiMenuLoop() {
 		{PID::EVIL_PORTAL, L->MENU_WIFI_EVIL_PORTAL},
 		{PID::WEB_SERVER, L->MENU_WIFI_WEB_SERVER},
 		{PID::WIFI_PCAP_TO_HASH, "pcap -> FT Hash"},
+		{PID::LFS_WEB_UI, "LFS WEB UI"},
 		{PID::WIFI_CHANNEL_ANALYZER, L->MENU_WIFI_CHANNEL_ANALYZER}
 	};
 	int wifiMenuSize = sizeof(wifiMenu) / sizeof(MENU);

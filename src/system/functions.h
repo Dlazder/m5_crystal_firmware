@@ -48,6 +48,7 @@
 #include "../functions/wifi/pcapToHashLoop.h"
 #include "../functions/wifi/wifiPmkidLoop.h"
 #include "../functions/wifi/wifiChannelAnalyzerLoop.h"
+#include "../functions/wifi/lfsWebUILoop.h"
 
 
 // Files

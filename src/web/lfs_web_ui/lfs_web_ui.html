@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>LFS WEB UI</title>
+<link rel="stylesheet" href="lfs_web_ui.css">
+</head>
+<body>
+
+<div class="header">
+    <h1>Crystal firmware</h1>
+    <span class="badge">LittleFS</span>
+</div>
+
+<div class="main">
+
+    <div class="card">
+        <div class="card-header">Upload File</div>
+        <div class="card-body">
+            <form method="POST" action="/upload" enctype="multipart/form-data" class="upload-form">
+                <input type="file" name="file" required>
+                <button type="submit" class="btn">Upload</button>
+            </form>
+        </div>
+    </div>
+
+    <div class="card">
+        <div class="card-header">Files</div>
+        <div class="card-body">
+            <ul class="file-list">
+                FILE_LIST_PLACEHOLDER
+            </ul>
+        </div>
+    </div>
+
+</div>
+
+<div class="footer">
+    <a href="/">⟳ Refresh</a>
+</div>
+
+</body>
+</html>
