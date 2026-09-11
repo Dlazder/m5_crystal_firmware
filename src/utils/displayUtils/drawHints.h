@@ -100,10 +100,10 @@ void drawHintCustom(const char* hint_keyboard, const char* hint_buttons) {
 // Hint for single-action toggle (rotation, etc.)
 void drawHintSwitch() {
 	#if HAS_PHYSICAL_KB
-		String hint = String("enter: ") + String(L->TXT_SWITCH);
+		String hint = String("enter: ") + L->TXT_SWITCH;
 		drawHint(hint.c_str());
 	#else
-		String hint = String("A: ") + String(L->TXT_SWITCH);
+		String hint = String("A: ") + L->TXT_SWITCH;
 		drawHint(hint.c_str());
 	#endif
 }
@@ -111,9 +111,9 @@ void drawHintSwitch() {
 // Hint for cycling through a range of values (brightness, color, volume, etc.)
 void drawHintRange() {
 #if HAS_PHYSICAL_KB
-	String hint = String("__LEFT__ __RIGHT__ ") + String(L->TXT_ADJUST);
+	String hint = String("__LEFT__ __RIGHT__ ") + L->TXT_ADJUST;
 	drawHint(hint.c_str());
 #else
-	drawHint(L->TXT_PRESS_A);
+	drawHint((String("A: ") + L->TXT_ADJUST).c_str());
 #endif
 }

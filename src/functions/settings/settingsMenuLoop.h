@@ -16,7 +16,7 @@ void settingsMenuLoop() {
 	int settingsMenuSize = sizeof(settingsMenu) / sizeof(MENU);
 
 	if (isSetup()) {
-		if (previousProcess == PID::MAIN_MENU) cursor = 0;
+		if (previousProcess == PID::MAIN_MENU || previousProcess == PID::SETTINGS_UI) cursor = 0;
 		drawMenu(settingsMenu, settingsMenuSize);
 	}
 	menuLoop(settingsMenu, settingsMenuSize);
