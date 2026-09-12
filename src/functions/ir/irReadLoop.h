@@ -35,12 +35,15 @@ void irReceived(irproto brand, uint32_t code, size_t len, rmt_symbol_word_t *ite
 }
 
 void _irDrawUi() {
+	char rawHex[11];
+	snprintf(rawHex, sizeof(rawHex), "0x%08lX", (unsigned long)irLastRaw);
 	String lines[] = {
 		irLastProtocol,
 		"Addr: 0x" + String(irLastAddress, HEX),
 		"Cmd: 0x" + String(irLastCommand, HEX),
+		String("Raw: ") + rawHex,
 	};
-	centeredPrintRows(lines, 3, MEDIUM_TEXT);
+	centeredPrintRows(lines, 4, SMALL_TEXT);
 	drawHintCustom("enter: save", "A: save");
 }
 
@@ -185,12 +188,15 @@ static uint32_t irLastRaw = 0;
 static bool irHasSignal = false;
 
 void _irDrawUi() {
+	char rawHex[11];
+	snprintf(rawHex, sizeof(rawHex), "0x%08lX", (unsigned long)irLastRaw);
 	String lines[] = {
 		irLastProtocol,
 		"Addr: 0x" + String(irLastAddress, HEX),
 		"Cmd: 0x" + String(irLastCommand, HEX),
+		String("Raw: ") + rawHex,
 	};
-	centeredPrintRows(lines, 3, MEDIUM_TEXT);
+	centeredPrintRows(lines, 4, MEDIUM_TEXT);
 	drawHintCustom("enter: save", "A: save");
 }
 

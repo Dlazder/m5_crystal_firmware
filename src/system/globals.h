@@ -87,6 +87,7 @@ const lgfx::IFont* systemFonts[] = {
   &u8g2FontGlasstown,       // Glasstown ~11px all scripts
   &u8g2FontIbmVga8,         // IBM VGA 8px all scripts
   &u8g2FontIbmVga9,         // IBM VGA 9px all scripts
+  &fonts::efontJA_16,        // M5GFX efont 16px — Japanese/hieroglyphs (JIS X 0208: kanji + kana + Latin)
 };
 const char* fontNames[] = {
   "default",
@@ -94,6 +95,7 @@ const char* fontNames[] = {
   "Glasstown",
   "IBM VGA8",
   "IBM VGA9",
+  "efont JA16",
 };
 const float fontScales[] = {
   1.000f,  // default (6x12_cyrillic): 12px * 1.000 = 12
@@ -101,6 +103,7 @@ const float fontScales[] = {
   0.750f,  // Glasstown:               16px * 0.750 = 12
   0.750f,  // IBM VGA8:                16px * 0.750 = 12
   0.750f,  // IBM VGA9:                16px * 0.750 = 12
+  0.750f,  // efont JA16:              16px * 0.750 = 12
 };
 
 void applyFont(int index) {

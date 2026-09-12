@@ -26,7 +26,10 @@ void drawclockSettingsUi(int currentState, int hours, int minutes) {
 		canvas.setTextColor(FGCOLOR, BGCOLOR);
 	#endif
 
-	drawHintClock();
+	drawHintCustom(
+		String("__LEFT__ __RIGHT__ " + String(L->TXT_SELECT) + "  __UP__ __DOWN__ " + String(L->TXT_ADJUST)).c_str(),
+		String(String("B: ") + String(L->TXT_SELECT) + "  A/PWR: " + String(L->TXT_ADJUST)).c_str()
+	);
 
 	canvas.pushSprite(0, getStatusBarHeight());
 }
@@ -53,12 +56,12 @@ void settingsClockLoop() {
 			currentState = (currentState + 1) % 2;
 			drawclockSettingsUi(currentState, tempHours, tempMinutes);
 		}
-		if (isKbPlusPressed() && checkTimer(100, true)) {
+		if (isKbUpPressed() && checkTimer(100, true)) {
 			if (currentState == 0) tempHours = (tempHours + 1) % 24;
 			else if (currentState == 1) tempMinutes = (tempMinutes + 1) % 60;
 			drawclockSettingsUi(currentState, tempHours, tempMinutes);
 		}
-		if (isKbMinusPressed() && checkTimer(100, true)) {
+		if (isKbDownPressed() && checkTimer(100, true)) {
 			if (currentState == 0) tempHours = (tempHours + 23) % 24;
 			else if (currentState == 1) tempMinutes = (tempMinutes + 59) % 60;
 			drawclockSettingsUi(currentState, tempHours, tempMinutes);

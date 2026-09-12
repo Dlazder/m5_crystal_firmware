@@ -1,0 +1,13 @@
+Multifunctional firmware for pentesting and everyday use.
+- Wi-Fi: scanner, deauth, WPA bruteforce, handshake capture, evil twin, evil portal, web server, channel analyzer, weather, time sync, wifi info, wifi connect, password store
+- Bluetooth: scanner, sniffer, bad BLE, air mouse, keyboard, presenter, camera shutter, bluetooth scan, device info, device finder, mouse jiggler.
+- IR: read and save signal, send signal, TV-B-Gone.
+- NFC (PN-532): read and write 4-byte UID, tag info.
+- USB: BAD USB, mouse jiggler, air mouse, keyboard, mass storage
+- Files: edit, create, delete, rename files, view images.
+- UART terminal: recieving and sending text. baud rate and pins settings
+- Settings: time, timezone, rotation, colors, fonts, brightness, status bar, volume, startup sound, language (12 languages) etc.
+- Other: clock, battery, level tool, flashlight, sound level, system info
+
+Rate my project on github.
+Contributing is welcome.

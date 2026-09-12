@@ -98,8 +98,8 @@ void levelToolLoop() {
 	} else {
 		// Calculate both axes: roll (left-right) and pitch (forward-back)
 		// Device lies flat, screen up — use accZ as gravity reference
-		float roll = -atan2(accX, accZ) * 180 / PI;
-		float pitch = -atan2(accY, accZ) * 180 / PI;
+		float roll = IMU_LEVEL_BUBBLE_ROLL(accX, accY, accZ);
+		float pitch = IMU_LEVEL_BUBBLE_PITCH(accX, accY, accZ);
 
 		// Exponential smoothing for both axes
 		if (filteredAngle == 0) {

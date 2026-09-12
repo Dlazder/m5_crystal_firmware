@@ -10,20 +10,12 @@
     X(SETTINGS_CLOCK,        101, settingsClockLoop) \
     X(SETTINGS_STATUS_BAR,   102, settingsStatusBarMenuLoop) \
     X(BRIGHTNESS,            103, brightnessLoop) \
-    X(ROTATION,              104, rotationLoop) \
     X(COLORS,                105, colorsLoop) \
     X(FONTS,                 106, fontsLoop) \
-    X(STARTUP_SOUND,         107, toggleStartupSound) \
-    X(KB_GYRO,               108, toggleKbGyroLoop) \
-    X(TOGGLE_STATUS_BAR,     109, toggleStatusBarLoop) \
-    X(TOGGLE_STATUS_BAR_PID, 110, toggleStatusBarPidLoop) \
     X(LANGUAGE,              111, languageLoop) \
     X(DIMMING,               112, dimmingLoop) \
     X(VOLUME,                113, volumeLoop) \
-    X(WEBSERVER_FS,          114, toggleWebServerFs) \
     X(SETTINGS_SSID,         115, setSsidLoop) \
-    X(ICONS,                 116, toggleIconsLoop) \
-    X(TOGGLE_STATUS_BAR_SECONDS, 117, defaultLoop) \
     X(SETTINGS_TIMEZONE,     118, settingsTimezoneLoop) \
     X(SETTINGS_UI,           119, settingsUIMenuLoop) \
     \
