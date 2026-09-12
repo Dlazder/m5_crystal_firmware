@@ -145,6 +145,7 @@ void bluetoothSnifferLoop() {
 
 	if (checkExit()) {
 		canvas.clear();
+		canvas.pushSprite(0, getStatusBarHeight());
 		if (bleSniffScan != nullptr) {
 			bleSniffScan->stop();
 			bleSniffScan->setAdvertisedDeviceCallbacks(nullptr);
