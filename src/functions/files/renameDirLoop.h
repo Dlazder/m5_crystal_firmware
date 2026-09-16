@@ -1,6 +1,6 @@
-// PID::FILE_CREATE
+// PID::FILE_RENAME_DIR
 
-void createFileLoop() {
+void renameDirLoop() {
 	if (isSetup()) {
 		kbReset();
 		drawKeyboardUi();
@@ -15,15 +15,14 @@ void createFileLoop() {
 				changeProcess(PID::FILE_OPTIONS);
 				return;
 			}
-			String path = (createFileCurrentDir == "/")
-				? "/" + String(buf)
-				: createFileCurrentDir + "/" + String(buf);
-			bool ok = false;
+
+			String parent = createFileCurrentDir.substring(0, createFileCurrentDir.lastIndexOf('/') + 1);
+			String newPath = parent + String(buf);
 
 			bool useLittleFS = (fileOptionsSourcePid != PID::FILE_PICKER_SD);
-			File f = Storage::open(path.c_str(), "w", useLittleFS);
-			ok = (bool)f;
-			if (f) f.close();
+			bool ok = Storage::rename(createFileCurrentDir.c_str(), newPath.c_str(), useLittleFS);
+
+			if (ok) createFileCurrentDir = newPath;
 
 			const char* result = ok ? L->TXT_SUCCESS : L->TXT_ERROR;
 			centeredPrint(result, MEDIUM_TEXT);

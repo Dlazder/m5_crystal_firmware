@@ -49,6 +49,18 @@ const Locale LANG_PT = {
 	.MENU_FILES_VIEW             = "visualizar",
 	.MENU_FILES_EDIT             = "editar",
 	.MENU_FILES_LITTLEFS         = "littleFS",
+	.MENU_FILES_OPTIONS       = "opções",
+	.MENU_FILES_CREATE_FILE   = "criar arquivo",
+	.MENU_FILES_CREATE_DIR    = "criar pasta",
+	.MENU_FILES_FOLDER_INFO   = "info da pasta",
+	.MENU_FILES_DELETE_DIR    = "apagar pasta",
+	.MENU_FILES_RENAME_DIR   = "renomear pasta",
+
+	// Files text
+	.TXT_DELETE_DIR           = "apagar pasta?",
+	.TXT_DELETE_RECURSIVE     = "apagar recursivamente?",
+	.TXT_DELETE_RECURSIVE_HINT = "todo o conteúdo será removido",
+	.TXT_FOLDER_COUNTS        = "%d arquivos, %d pastas",
 
 	// NFC menu
 	.MENU_NFC                    = "NFC",

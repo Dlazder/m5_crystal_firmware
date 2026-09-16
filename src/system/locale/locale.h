@@ -49,6 +49,18 @@ struct Locale {
 	const char* MENU_FILES_VIEW;
 	const char* MENU_FILES_EDIT;
 	const char* MENU_FILES_LITTLEFS;
+	const char* MENU_FILES_OPTIONS;
+	const char* MENU_FILES_CREATE_FILE;
+	const char* MENU_FILES_CREATE_DIR;
+	const char* MENU_FILES_FOLDER_INFO;
+	const char* MENU_FILES_DELETE_DIR;
+	const char* MENU_FILES_RENAME_DIR;
+
+	// Files text
+	const char* TXT_DELETE_DIR;
+	const char* TXT_DELETE_RECURSIVE;
+	const char* TXT_DELETE_RECURSIVE_HINT;
+	const char* TXT_FOLDER_COUNTS;
 
 	// NFC menu
 	const char* MENU_NFC;

@@ -72,6 +72,11 @@
     X(FILE_RENAME,        507, renameFileLoop) \
     X(FILE_VIEW,          508, readFileLoop) \
     X(FILE_EDIT,          509, editFileLoop) \
+    X(FILE_OPTIONS,       510, fileOptionsLoop) \
+    X(FILE_CREATE_DIR,    511, createDirLoop) \
+    X(FILE_DELETE_DIR,    512, deleteDirLoop) \
+    X(FILE_FOLDER_INFO,   513, folderInfoLoop) \
+    X(FILE_RENAME_DIR,    514, renameDirLoop) \
     \
     /* IR (600-699) */ \
     X(IR,                 600, irMenuLoop) \

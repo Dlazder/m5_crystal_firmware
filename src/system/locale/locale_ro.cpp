@@ -49,6 +49,18 @@ const Locale LANG_RO = {
 	.MENU_FILES_VIEW             = "vizualizează",
 	.MENU_FILES_EDIT             = "editează",
 	.MENU_FILES_LITTLEFS         = "littleFS",
+	.MENU_FILES_OPTIONS       = "opțiuni",
+	.MENU_FILES_CREATE_FILE   = "creare fișier",
+	.MENU_FILES_CREATE_DIR    = "creare folder",
+	.MENU_FILES_FOLDER_INFO   = "info folder",
+	.MENU_FILES_DELETE_DIR    = "șterge folderul",
+	.MENU_FILES_RENAME_DIR   = "redenumește folderul",
+
+	// Files text
+	.TXT_DELETE_DIR           = "ștergi folderul?",
+	.TXT_DELETE_RECURSIVE     = "ștergi recursiv?",
+	.TXT_DELETE_RECURSIVE_HINT = "tot conținutul va fi șters",
+	.TXT_FOLDER_COUNTS        = "%d fișiere, %d foldere",
 
 	// NFC menu
 	.MENU_NFC                    = "NFC",

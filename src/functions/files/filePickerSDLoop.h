@@ -21,7 +21,7 @@ void _sdBuildMenu() {
 	sdFileFullPaths = new String[sdFileCount];
 
 	sdFileMenu[0] = { PID::FILES_MENU, L->MENU_BACK, Icons::back };
-	sdFileMenu[1] = { PID::FILE_CREATE, "create", Icons::create };
+	sdFileMenu[1] = { PID::FILE_OPTIONS, L->MENU_FILES_OPTIONS, Icons::other };
 
 	for (int i = 0; i < sdFileCount; i++) {
 		sdFileFullPaths[i] = _fpMakePath(sdCurrentDir, names[i]);
@@ -73,7 +73,8 @@ void filePickerSDLoop() {
 
 		if (cursor == 1) {
 			createFileCurrentDir = sdCurrentDir;
-			changeProcess(PID::FILE_CREATE);
+			fileOptionsSourcePid = PID::FILE_PICKER_SD;
+			changeProcess(PID::FILE_OPTIONS);
 			return;
 		}
 

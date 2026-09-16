@@ -150,6 +150,7 @@ int dimmingPreviousTimer = 0;
 // files
 String selectedFilePath = "";
 String createFileCurrentDir = "/";
+int fileOptionsSourcePid = PID::FILE_PICKER;
 
 // wifi deauth
 String ssid;

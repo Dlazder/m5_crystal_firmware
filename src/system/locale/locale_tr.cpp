@@ -49,6 +49,18 @@ const Locale LANG_TR = {
 	.MENU_FILES_VIEW             = "görüntüle",
 	.MENU_FILES_EDIT             = "düzenle",
 	.MENU_FILES_LITTLEFS         = "littleFS",
+	.MENU_FILES_OPTIONS       = "seçenekler",
+	.MENU_FILES_CREATE_FILE   = "dosya oluştur",
+	.MENU_FILES_CREATE_DIR    = "klasör oluştur",
+	.MENU_FILES_FOLDER_INFO   = "klasör bilgisi",
+	.MENU_FILES_DELETE_DIR    = "klasörü sil",
+	.MENU_FILES_RENAME_DIR   = "klasör yeniden adlandır",
+
+	// Files text
+	.TXT_DELETE_DIR           = "klasör silinsin mi?",
+	.TXT_DELETE_RECURSIVE     = "özyinelemeli sil?",
+	.TXT_DELETE_RECURSIVE_HINT = "tüm içerik kaldırılacak",
+	.TXT_FOLDER_COUNTS        = "%d dosya, %d klasör",
 
 	// NFC menu
 	.MENU_NFC                    = "NFC",

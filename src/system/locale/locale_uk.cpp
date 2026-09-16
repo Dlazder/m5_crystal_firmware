@@ -49,6 +49,18 @@ const Locale LANG_UK = {
 	.MENU_FILES_VIEW             = "перегляд",
 	.MENU_FILES_EDIT             = "редагувати",
 	.MENU_FILES_LITTLEFS               = "littleFS",
+	.MENU_FILES_OPTIONS       = "опції",
+	.MENU_FILES_CREATE_FILE   = "створити файл",
+	.MENU_FILES_CREATE_DIR    = "створити папку",
+	.MENU_FILES_FOLDER_INFO   = "інфо папки",
+	.MENU_FILES_DELETE_DIR    = "видалити папку",
+	.MENU_FILES_RENAME_DIR   = "перейменувати папку",
+
+	// Files text
+	.TXT_DELETE_DIR           = "видалити папку?",
+	.TXT_DELETE_RECURSIVE     = "видалити рекурсивно?",
+	.TXT_DELETE_RECURSIVE_HINT = "весь вміст буде видалено",
+	.TXT_FOLDER_COUNTS        = "%d файлів, %d папок",
 
 	// NFC menu
 	.MENU_NFC                    = "NFC",

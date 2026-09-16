@@ -49,6 +49,18 @@ const Locale LANG_ID = {
     .MENU_FILES_VIEW              = "lihat",
     .MENU_FILES_EDIT              = "edit",
     .MENU_FILES_LITTLEFS                = "littleFS",
+    .MENU_FILES_OPTIONS       = "opsi",
+    .MENU_FILES_CREATE_FILE   = "buat file",
+    .MENU_FILES_CREATE_DIR    = "buat folder",
+    .MENU_FILES_FOLDER_INFO   = "info folder",
+    .MENU_FILES_DELETE_DIR    = "hapus folder",
+    .MENU_FILES_RENAME_DIR   = "ganti nama folder",
+
+    // Files text
+    .TXT_DELETE_DIR           = "hapus folder?",
+    .TXT_DELETE_RECURSIVE     = "hapus rekursif?",
+    .TXT_DELETE_RECURSIVE_HINT = "semua isi akan dihapus",
+    .TXT_FOLDER_COUNTS        = "%d file, %d folder",
 
     // NFC menu
     .MENU_NFC                     = "NFC",

@@ -1,6 +1,6 @@
-// PID::FILE_CREATE
+// PID::FILE_CREATE_DIR
 
-void createFileLoop() {
+void createDirLoop() {
 	if (isSetup()) {
 		kbReset();
 		drawKeyboardUi();
@@ -18,12 +18,9 @@ void createFileLoop() {
 			String path = (createFileCurrentDir == "/")
 				? "/" + String(buf)
 				: createFileCurrentDir + "/" + String(buf);
-			bool ok = false;
 
 			bool useLittleFS = (fileOptionsSourcePid != PID::FILE_PICKER_SD);
-			File f = Storage::open(path.c_str(), "w", useLittleFS);
-			ok = (bool)f;
-			if (f) f.close();
+			bool ok = Storage::mkdir(path.c_str(), useLittleFS);
 
 			const char* result = ok ? L->TXT_SUCCESS : L->TXT_ERROR;
 			centeredPrint(result, MEDIUM_TEXT);

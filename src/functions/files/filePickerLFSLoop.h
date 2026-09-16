@@ -24,7 +24,7 @@ void _lfsBuildMenu() {
 	int filePid = PID::SELECTED_FILE_MENU;
 
 	lfsFileMenu[0] = { backPid, L->MENU_BACK, Icons::back };
-	lfsFileMenu[1] = { PID::FILE_CREATE, "create", Icons::create };
+	lfsFileMenu[1] = { PID::FILE_OPTIONS, L->MENU_FILES_OPTIONS, Icons::other };
 
 	for (int i = 0; i < lfsFileCount; i++) {
 		lfsFileFullPaths[i] = _fpMakePath(lfsCurrentDir, names[i]);
@@ -76,7 +76,8 @@ void filePickerLFSLoop() {
 
 		if (cursor == 1) {
 			createFileCurrentDir = lfsCurrentDir;
-			changeProcess(PID::FILE_CREATE);
+			fileOptionsSourcePid = PID::FILE_PICKER;
+			changeProcess(PID::FILE_OPTIONS);
 			return;
 		}
 

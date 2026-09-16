@@ -67,6 +67,35 @@ bool rename(const char* from, const char* to, bool useLittleFS) {
 	return fsFor(useLittleFS).rename(from, to);
 }
 
+bool mkdir(const char* path, bool useLittleFS) {
+	return fsFor(useLittleFS).mkdir(path);
+}
+
+bool removeRecursive(const char* path, bool useLittleFS) {
+	fs::FS& fs = fsFor(useLittleFS);
+	String dirPath = String(path);
+
+	// Collect entries first, then delete, so directory iteration isn't
+	// invalidated by removals happening mid-iteration.
+	String* names = nullptr;
+	bool* isDir = nullptr;
+	int count = list(dirPath, useLittleFS, names, isDir);
+	if (count < 0) return false;
+
+	for (int i = 0; i < count; i++) {
+		String child = (dirPath == "/") ? "/" + names[i] : dirPath + "/" + names[i];
+		if (isDir[i]) {
+			if (!removeRecursive(child.c_str(), useLittleFS)) return false;
+		} else {
+			if (!fs.remove(child.c_str())) return false;
+		}
+	}
+	delete[] names;
+	delete[] isDir;
+
+	return fs.rmdir(path);
+}
+
 int list(const String& dirPath, bool useLittleFS, String*& outNames, bool*& outIsDir) {
 	fs::FS& fs = fsFor(useLittleFS);
 

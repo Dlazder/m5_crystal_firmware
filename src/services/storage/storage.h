@@ -47,6 +47,10 @@ File open(const char* path, const char* mode, bool useLittleFS = autoDetect());
 bool exists(const char* path, bool useLittleFS = autoDetect());
 bool remove(const char* path, bool useLittleFS = autoDetect());
 bool rename(const char* from, const char* to, bool useLittleFS = autoDetect());
+bool mkdir(const char* path, bool useLittleFS = autoDetect());
+
+/// Recursively deletes a directory and everything inside it.
+bool removeRecursive(const char* path, bool useLittleFS = autoDetect());
 
 /// Scans a directory, returning sorted entry names + directory flags.
 /// Directories come first, then files; each group sorted alphabetically.

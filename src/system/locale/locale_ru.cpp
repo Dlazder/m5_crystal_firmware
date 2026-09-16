@@ -49,6 +49,18 @@ const Locale LANG_RU = {
 	.MENU_FILES_VIEW             = "просмотр",
 	.MENU_FILES_EDIT             = "редактировать",
 	.MENU_FILES_LITTLEFS               = "littleFS",
+	.MENU_FILES_OPTIONS       = "опции",
+	.MENU_FILES_CREATE_FILE   = "создать файл",
+	.MENU_FILES_CREATE_DIR    = "создать папку",
+	.MENU_FILES_FOLDER_INFO   = "инфо папки",
+	.MENU_FILES_DELETE_DIR    = "удалить папку",
+	.MENU_FILES_RENAME_DIR   = "переименовать папку",
+
+	// Files text
+	.TXT_DELETE_DIR           = "удалить папку?",
+	.TXT_DELETE_RECURSIVE     = "удалить рекурсивно?",
+	.TXT_DELETE_RECURSIVE_HINT = "всё содержимое будет удалено",
+	.TXT_FOLDER_COUNTS        = "%d файлов, %d папок",
 
 	// NFC menu
 	.MENU_NFC                    = "NFC",
