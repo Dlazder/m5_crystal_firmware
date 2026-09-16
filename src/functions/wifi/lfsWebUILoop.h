@@ -1,16 +1,14 @@
 // PID::LFS_WEB_UI
 
-#include <LittleFS.h>
-
 static const char* LFS_WEB_UI_SSID = "M5 Crystal LFS";
 static IPAddress LFS_WEB_UI_GATEWAY(172, 0, 0, 1);
 static IPAddress LFS_WEB_UI_SUBNET(255, 255, 255, 0);
 
 static String _lfsWebUIGenerateFileList() {
-    if (!lfsBegin()) return "<li class=\"file-empty\">LittleFS mount failed</li>";
+    if (!Storage::mountLittleFS()) return "<li class=\"file-empty\">LittleFS mount failed</li>";
 
     String list = "";
-    File root = LittleFS.open("/");
+    File root = Storage::open("/", "r", true);
     if (root) {
         File f = root.openNextFile();
         bool hasFiles = false;
@@ -53,7 +51,7 @@ static void _lfsWebUIRegisterHandlers() {
 
     // ---- Download ----
     webServer.on("/download", []() {
-        if (!lfsBegin()) {
+        if (!Storage::mountLittleFS()) {
             webServer.send(500, "text/plain", "LittleFS mount failed");
             return;
         }
@@ -64,12 +62,12 @@ static void _lfsWebUIRegisterHandlers() {
             return;
         }
 
-        if (!LittleFS.exists(path)) {
+        if (!Storage::exists(path.c_str(), true)) {
             webServer.send(404, "text/plain", "File not found: " + path);
             return;
         }
 
-        File f = LittleFS.open(path, "r");
+        File f = Storage::open(path.c_str(), "r", true);
         if (!f) {
             webServer.send(500, "text/plain", "Failed to open: " + path);
             return;
@@ -81,7 +79,7 @@ static void _lfsWebUIRegisterHandlers() {
 
     // ---- Delete ----
     webServer.on("/delete", []() {
-        if (!lfsBegin()) {
+        if (!Storage::mountLittleFS()) {
             webServer.send(500, "text/plain", "LittleFS mount failed");
             return;
         }
@@ -92,7 +90,7 @@ static void _lfsWebUIRegisterHandlers() {
             return;
         }
 
-        if (LittleFS.remove(path)) {
+        if (Storage::remove(path.c_str(), true)) {
             webServer.sendHeader("Location", "/", true);
             webServer.send(302, "text/plain", "");
         } else {
@@ -111,14 +109,14 @@ static void _lfsWebUIRegisterHandlers() {
             static File uploadFile;
 
             if (upload.status == UPLOAD_FILE_START) {
-                if (!lfsBegin()) return;
+                if (!Storage::mountLittleFS()) return;
 
                 String filename = upload.filename;
                 if (!filename.startsWith("/")) filename = "/" + filename;
 
                 if (uploadFile) uploadFile.close();
 
-                uploadFile = LittleFS.open(filename, FILE_WRITE);
+                uploadFile = Storage::open(filename.c_str(), "w", true);
                 if (!uploadFile) {
                     Serial.println("LFS WEB UI: failed to open " + filename + " for writing");
                 }

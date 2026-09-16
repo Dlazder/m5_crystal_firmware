@@ -80,7 +80,7 @@ void wifiBruteforceLoop() {
 
 		if (selectedFilePath == "") return;
 
-		if (!readFileLines(selectedFilePath, _bfPasswords, _bfTotal)) {
+		if (!Storage::readLines(selectedFilePath, _bfPasswords, _bfTotal, !fpSelectedSd)) {
 			centeredPrint(L->TXT_BT_FILE_ERROR, MEDIUM_TEXT);
 			delay(1200);
 			_bfRestart();

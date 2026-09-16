@@ -2,7 +2,7 @@
 
 unsigned long badUsbDelayUntil = 0;
 
-// Script lines loaded via readFileLines and the index of the line to run next.
+// Script lines loaded via Storage::readLines and the index of the line to run next.
 // Used to render the script on screen with the current line highlighted.
 String* badUsbLines = nullptr;
 int badUsbLineCount = 0;
@@ -24,7 +24,7 @@ void badUsbFreeLines() {
 bool badUsbSetScript() {
   badUsbDelayUntil = 0;
   badUsbFreeLines();
-  return readFileLines(selectedFilePath, badUsbLines, badUsbLineCount);
+  return Storage::readLines(selectedFilePath, badUsbLines, badUsbLineCount, !fpSelectedSd);
 }
 
 /**

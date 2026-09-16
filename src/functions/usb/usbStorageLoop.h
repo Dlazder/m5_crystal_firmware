@@ -41,7 +41,7 @@ void usbStorageLoop() {
 	if (isSetup()) {
 		// (Re)mount the SD just to read its geometry, then release it so the
 		// host owns the card while MSC is active.
-		if (!sdBegin()) {
+		if (!Storage::mountSD()) {
 			centeredPrint(L->TXT_USB_STORAGE_NO_SD, MEDIUM_TEXT);
 			usbMscStarted = false;
 			return;
@@ -50,7 +50,7 @@ void usbStorageLoop() {
 		uint32_t sectorCount = SD.numSectors();
 		uint16_t sectorSize  = SD.sectorSize();
 		if (sectorCount == 0 || sectorSize == 0) {
-			sdEnd();
+			Storage::unmountSD();
 			centeredPrint(L->TXT_USB_STORAGE_NO_SD, MEDIUM_TEXT);
 			usbMscStarted = false;
 			return;
@@ -81,8 +81,8 @@ void usbStorageLoop() {
 			usbMsc.end();
 			usbMscStarted = false;
 			// Re-mount so the firmware's own file browser works again.
-			sdEnd();
-			sdBegin();
+			Storage::unmountSD();
+			Storage::mountSD();
 		}
 	}
 }

@@ -12,7 +12,7 @@ void screenshotCommand(Print& out) {
         return;
     }
 
-    String filePath = generateUniqueFilename("/screenshot", ".bmp", false);
+    String filePath = Storage::uniquePath("/screenshot", ".bmp", false);
 
     int w = DISP.width();
     int h = DISP.height();

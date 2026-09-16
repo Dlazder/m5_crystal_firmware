@@ -48,7 +48,7 @@ void _irDrawUi() {
 }
 
 void _irSaveToLFS(const char* filename) {
-	if (!lfsBegin()) {
+	if (!Storage::mountLittleFS()) {
 		centeredPrint("LittleFS error", MEDIUM_TEXT);
 		delay(800);
 		return;
@@ -56,7 +56,7 @@ void _irSaveToLFS(const char* filename) {
 	char rawHex[11];
 	snprintf(rawHex, sizeof(rawHex), "0x%08lX", (unsigned long)irLastRaw);
 	String path = "/" + String(filename) + ".ir";
-	File f = LittleFS.open(path.c_str(), "w");
+	File f = Storage::open(path.c_str(), "w", true);
 	if (!f) {
 		centeredPrint(L->TXT_IR_SAVE_ERROR, MEDIUM_TEXT);
 		delay(800);
@@ -201,7 +201,7 @@ void _irDrawUi() {
 }
 
 void _irSaveToLFS(const char* filename) {
-	if (!lfsBegin()) {
+	if (!Storage::mountLittleFS()) {
 		centeredPrint("LittleFS error", MEDIUM_TEXT);
 		delay(800);
 		return;
@@ -209,7 +209,7 @@ void _irSaveToLFS(const char* filename) {
 	char rawHex[11];
 	snprintf(rawHex, sizeof(rawHex), "0x%08lX", (unsigned long)irLastRaw);
 	String path = "/" + String(filename) + ".ir";
-	File f = LittleFS.open(path.c_str(), "w");
+	File f = Storage::open(path.c_str(), "w", true);
 	if (!f) {
 		centeredPrint(L->TXT_IR_SAVE_ERROR, MEDIUM_TEXT);
 		delay(800);

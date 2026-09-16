@@ -31,8 +31,7 @@ const char* _irProtocolName(irproto p) {
 }
 
 bool _irParseFile(const String& path) {
-	if (!lfsBegin()) return false;
-	File f = LittleFS.open(path.c_str(), "r");
+	File f = Storage::open(path.c_str(), "r", true);
 	if (!f) return false;
 	irSendProtocol = NEC; irSendAddress = 0; irSendCommand = 0; irSendBits = 32;
 	irHasRaw = false; irSendRaw = 0;
@@ -95,8 +94,7 @@ decode_type_t _irProtocolFromString(const String& name) {
 }
 
 bool _irParseFile(const String& path) {
-	if (!lfsBegin()) return false;
-	File f = LittleFS.open(path.c_str(), "r");
+	File f = Storage::open(path.c_str(), "r", true);
 	if (!f) return false;
 	irSendProtocol = UNKNOWN; irSendAddress = 0; irSendCommand = 0;
 	while (f.available()) {

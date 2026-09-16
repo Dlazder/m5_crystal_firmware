@@ -289,10 +289,10 @@ void wifiHandshakeLoop() {
 
 		// Open PCAP file: SD card first, fallback to LittleFS
 		useLittleFS = false;
-		bool storageReady = sdBegin();
+		bool storageReady = Storage::mountSD();
 		if (!storageReady) {
-			storageReady = lfsBegin();
-			useLittleFS = storageReady;
+			useLittleFS = Storage::mountLittleFS();
+			storageReady = useLittleFS;
 		}
 
 		if (storageReady) {
@@ -309,7 +309,7 @@ void wifiHandshakeLoop() {
 			safeSsid.replace(">", "_");
 			safeSsid.replace("|", "_");
 
-			handshakeCapturePath = generateUniqueFilename("/handshake_" + safeSsid, ".pcap", useLittleFS);
+			handshakeCapturePath = Storage::uniquePath("/handshake_" + safeSsid, ".pcap", useLittleFS);
 
 			// File will be opened lazily on first handshake packet
 		}
@@ -359,9 +359,7 @@ void wifiHandshakeLoop() {
 				handshakeTotalPackets++;
 				// Open file on first handshake packet
 				if (!fileOpen && handshakeCapturePath.length() > 0) {
-					pcapFile = useLittleFS
-						? LittleFS.open(handshakeCapturePath, FILE_WRITE)
-						: SD.open(handshakeCapturePath, FILE_WRITE);
+					pcapFile = Storage::open(handshakeCapturePath.c_str(), "w", useLittleFS);
 					if (pcapFile) {
 						writePcapGlobalHeader(pcapFile);
 						fileOpen = true;

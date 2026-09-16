@@ -1,58 +1,3 @@
-/**
- * Determines which filesystem to use for a new capture: SD card first,
- * falling back to LittleFS when no SD card is available.
- * @return true if LittleFS should be used, false for SD.
- */
-bool detectUseLittleFS() {
-	bool useLittleFS = false;
-	bool ready = sdBegin();
-	if (!ready) {
-		ready = lfsBegin();
-		useLittleFS = ready;
-	}
-	return useLittleFS;
-}
-
-/**
- * Generates a unique file path by appending an incrementing counter
- * before the extension until an unused name is found.
- *
- * Example: generateUniqueFilename("/handshake_MyWiFi", ".pcap", false)
- *          → "/handshake_MyWiFi_1.pcap" (or _2, _3, …)
- *
- * @param basePath    Path before the counter (e.g. "/handshake_MyWiFi")
- * @param ext         File extension including dot (e.g. ".pcap")
- * @param useLittleFS Filesystem to check: defaults to auto-detection (SD first,
- *                    LittleFS fallback); pass true/false to force LittleFS/SD.
- * @return Unique path like "/handshake_MyWiFi_1.pcap"
- */
-String generateUniqueFilename(const String& basePath, const String& ext, bool useLittleFS = detectUseLittleFS()) {
-	String path;
-	int n = 1;
-	do {
-		path = basePath + "_" + String(n) + ext;
-		n++;
-	} while (useLittleFS ? LittleFS.exists(path) : SD.exists(path));
-	return path;
-}
-
-/**
- * Opens a new uniquely-named file for writing, choosing SD or LittleFS
- * automatically (SD first, LittleFS fallback). Returns an open File handle
- * (invalid if neither filesystem could be written).
- * @param basePath    Path before the counter (e.g. "/uart")
- * @param ext         File extension including dot (e.g. ".log")
- * @param useLittleFS Filesystem to use: defaults to auto-detection; pass
- *                    true/false to force LittleFS/SD.
- * @return Open File handle, or an invalid File on failure.
- */
-File openUniqueFile(const String& basePath, const String& ext, bool useLittleFS = detectUseLittleFS()) {
-	String path = generateUniqueFilename(basePath, ext, useLittleFS);
-	return useLittleFS
-		? LittleFS.open(path.c_str(), FILE_WRITE)
-		: SD.open(path.c_str(), FILE_WRITE);
-}
-
 bool fpActive = false;
 bool fpSelectedSd = false;
 
@@ -63,57 +8,6 @@ static String* _fpPaths = nullptr;
 static int _fpCount = 0;
 static MENU _fpSourceMenu[3];
 static String _fpCurrentDir = "/";
-
-/**
- * @brief Scans a directory and returns sorted entry names + directory flags.
- *				Directories come first, then files; each group sorted alphabetically.
- * @param fs Filesystem reference (LittleFS or SD).
- * @param dirPath Path to scan.
- * @param outNames Set to newly allocated String[] on success; caller must delete[].
- * @param outIsDir Set to newly allocated bool[] on success; caller must delete[].
- * @return Number of entries, or -1 on error.
- */
-static int _scanDir(fs::FS& fs, const String& dirPath, String*& outNames, bool*& outIsDir) {
-	File dir = fs.open(dirPath);
-	if (!dir) return -1;
-
-	// Count
-	File f = dir.openNextFile();
-	int count = 0;
-	while (f) { count++; f = dir.openNextFile(); }
-
-	if (count == 0) { outNames = nullptr; outIsDir = nullptr; return 0; }
-
-	outNames = new String[count];
-	outIsDir = new bool[count];
-
-	// Collect
-	dir = fs.open(dirPath);
-	f = dir.openNextFile();
-	for (int i = 0; i < count; i++) {
-		outNames[i] = String(f.name());
-		outIsDir[i] = f.isDirectory();
-		f = dir.openNextFile();
-	}
-
-	// Sort: directories first (alphabetically), then files (alphabetically)
-	for (int i = 0; i < count - 1; i++) {
-		for (int j = i + 1; j < count; j++) {
-			bool swap = false;
-			if (!outIsDir[i] && outIsDir[j]) {
-				swap = true;
-			} else if (outIsDir[i] == outIsDir[j] && outNames[i].compareTo(outNames[j]) > 0) {
-				swap = true;
-			}
-			if (swap) {
-				String tmpName = outNames[i]; outNames[i] = outNames[j]; outNames[j] = tmpName;
-				bool tmpDir = outIsDir[i]; outIsDir[i] = outIsDir[j]; outIsDir[j] = tmpDir;
-			}
-		}
-	}
-
-	return count;
-}
 
 /**
  * @brief Navigates `dir` to its parent. If already at root, stays at "/".
@@ -154,11 +48,11 @@ static void _fpFree() {
 }
 
 static bool _fpBuildLfs() {
-	if (!lfsBegin()) { centeredPrint("LittleFS error", MEDIUM_TEXT); return false; }
+	if (!Storage::mountLittleFS()) { centeredPrint("LittleFS error", MEDIUM_TEXT); return false; }
 
 	String* names = nullptr;
 	bool* isDir = nullptr;
-	_fpCount = _scanDir(LittleFS, _fpCurrentDir, names, isDir);
+	_fpCount = Storage::list(_fpCurrentDir, true, names, isDir);
 	if (_fpCount < 0) return false;
 
 	_fpMenu = new MENU[_fpCount + 1];
@@ -175,13 +69,12 @@ static bool _fpBuildLfs() {
 	return true;
 }
 
-#if HAS_SD
 static bool _fpBuildSd() {
-	if (!sdBegin()) { centeredPrint("SD error", MEDIUM_TEXT); return false; }
+	if (!Storage::mountSD()) { centeredPrint("SD error", MEDIUM_TEXT); return false; }
 
 	String* names = nullptr;
 	bool* isDir = nullptr;
-	_fpCount = _scanDir(SD, _fpCurrentDir, names, isDir);
+	_fpCount = Storage::list(_fpCurrentDir, false, names, isDir);
 	if (_fpCount < 0) return false;
 
 	_fpMenu = new MENU[_fpCount + 1];
@@ -190,14 +83,13 @@ static bool _fpBuildSd() {
 
 	for (int i = 0; i < _fpCount; i++) {
 		_fpPaths[i] = _fpMakePath(_fpCurrentDir, names[i]);
-		_fpMenu[i + 1] = { 0, isDir[i] ? "/" + names[i] : names[i], isDir[i] ? Icons::folder : Icons::file};
+		_fpMenu[i + 1] = { 0, isDir[i] ? "/" + names[i] : names[i], isDir[i] ? Icons::folder : Icons::file };
 	}
 
 	delete[] names;
 	delete[] isDir;
 	return true;
 }
-#endif
 
 static void _fpRebuildAndDraw() {
 	_fpFree();
@@ -229,13 +121,7 @@ bool filePickerLoop() {
 			}
 			fpSelectedSd = (cursor == 2);
 			_fpCurrentDir = "/";
-			bool ok = fpSelectedSd
-			#if HAS_SD
-				? _fpBuildSd()
-			#else
-				? (centeredPrint("No SD", MEDIUM_TEXT), false)
-			#endif
-				: _fpBuildLfs();
+			bool ok = fpSelectedSd ? _fpBuildSd() : _fpBuildLfs();
 			if (!ok) {
 				fpActive = false;
 				changeProcess(_fpCancel);
@@ -280,82 +166,5 @@ bool filePickerLoop() {
 		}
 	}
 
-	return true;
-}
-
-/**
- * Reads a file into a single String.
- * Uses fpSelectedSd to decide between SD and LittleFS.
- *
- * @param path Full path to the file (e.g. "/script.txt")
- * @param out Set to file contents on success.
- * @return true on success, false if the file could not be opened or is empty.
- */
-bool readFileString(const String& path, String& out) {
-	out = "";
-	File f;
-	#if HAS_SD
-		if (fpSelectedSd) {
-			if (!sdBegin()) return false;
-			f = SD.open(path.c_str());
-		} else {
-	#endif
-			if (!lfsBegin()) return false;
-			f = LittleFS.open(path.c_str());
-	#if HAS_SD
-		}
-	#endif
-	if (!f) return false;
-	out = f.readString();
-	f.close();
-	return out.length() > 0;
-}
-
-/**
- * Reads a text file line-by-line into a dynamically allocated String array.
- * Uses fpSelectedSd to decide between SD and LittleFS.
- *
- * @param path Full path to the file (e.g. "/wordlist.txt")
- * @param outLines Set to a newly allocated String[] on success; caller must delete[].
- * @param outCount Set to the number of lines on success.
- * @return true on success, false if the file could not be opened or is empty.
- */
-bool readFileLines(const String& path, String*& outLines, int& outCount) {
-	outLines = nullptr;
-	outCount = 0;
-
-	File f;
-	#if HAS_SD
-		if (fpSelectedSd) {
-			if (!sdBegin()) return false;
-			f = SD.open(path.c_str());
-		} else {
-	#endif
-			if (!lfsBegin()) return false;
-			f = LittleFS.open(path.c_str());
-	#if HAS_SD
-		}
-	#endif
-	if (!f) return false;
-
-	int count = 0;
-	while (f.available()) {
-		String line = f.readStringUntil('\n');
-		line.trim();
-		if (line.length() > 0) count++;
-	}
-	if (count == 0) { f.close(); return false; }
-
-	outLines = new String[count];
-	outCount = count;
-
-	f.seek(0);
-	int i = 0;
-	while (f.available() && i < count) {
-		String line = f.readStringUntil('\n');
-		line.trim();
-		if (line.length() > 0) outLines[i++] = line;
-	}
-	f.close();
 	return true;
 }

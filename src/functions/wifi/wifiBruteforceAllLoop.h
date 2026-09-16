@@ -104,7 +104,7 @@ void wifiBruteforceAllLoop() {
 		if (filePickerLoop()) return;
 		if (selectedFilePath == "") return; // cancelled
 
-		if (!readFileLines(selectedFilePath, _bfaPasswords, _bfaTotal)) {
+		if (!Storage::readLines(selectedFilePath, _bfaPasswords, _bfaTotal, !fpSelectedSd)) {
 			centeredPrint(L->TXT_BT_FILE_ERROR, MEDIUM_TEXT);
 			_bfaRestart();
 			return;

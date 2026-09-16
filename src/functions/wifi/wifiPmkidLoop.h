@@ -213,7 +213,7 @@ void wifiPmkidLoop() {
 			pmkidTotalCaptured++;
 
 			// Lazy-open file on first successful capture
-			if (!fileOpen && sdBegin()) {
+			if (!fileOpen && Storage::mountSD()) {
 				String s = pmkTargetSsid;
 				s.replace(" ", "_");
 				s.replace("/", "_");
@@ -226,9 +226,9 @@ void wifiPmkidLoop() {
 				s.replace(">", "_");
 				s.replace("|", "_");
 
-				pmkidCapturePath = generateUniqueFilename("/pmkid_" + s, ".hc22000", false);
+				pmkidCapturePath = Storage::uniquePath("/pmkid_" + s, ".hc22000", false);
 
-				pmkidFile = SD.open(pmkidCapturePath, FILE_WRITE);
+				pmkidFile = Storage::open(pmkidCapturePath.c_str(), "w", false);
 				if (pmkidFile) {
 					fileOpen = true;
 					Serial.printf("PMKID: %s\n", pmkidCapturePath.c_str());

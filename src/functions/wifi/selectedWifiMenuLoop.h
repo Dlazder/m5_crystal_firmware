@@ -25,8 +25,8 @@ void selectedWifiMenuLoop() {
 			wifiAuthMode = WiFi.encryptionType(wifiScanIndex);
 			wifiHasWps = false;
 			wifiHasFtPsk = false;
-			cursor = 0;
 		}
+		cursor = 0;
 		drawMenu(selectedWifiMenu, selectedWifiMenuSize);
 	}
 	menuLoop(selectedWifiMenu, selectedWifiMenuSize);

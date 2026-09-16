@@ -1,7 +1,5 @@
 // PID::WEB_SERVER
 
-#include <LittleFS.h>
-
 IPAddress WEB_SERVER_GATEWAY(172, 0, 0, 1);
 IPAddress WEB_SERVER_SUBNET(255, 255, 255, 0);
 
@@ -23,8 +21,7 @@ static void _webServerServeFsFile(const String& uri, const String& htmlPath, boo
 		}
 	}
 
-	File f;
-	f = useSd ? SD.open(path) : LittleFS.open(path);
+	File f = Storage::open(path.c_str(), "r", !useSd);
 	if (f) {
 		webServer.streamFile(f, getContentType(path));
 		f.close();
