@@ -75,8 +75,8 @@ static bool _wsParseLine(const String& line, String& outSsid, String& outPass) {
  */
 String loadWifiPassword(const String& targetSsid) {
 	// Mount littleFS if not already mounted
-	if (!lfsBegin()) return "";
-	
+	if (!Storage::mountLittleFS()) return "";
+
 	if (!LittleFS.exists(WIFI_PASSWORDS_FILE)) return "";
 	File f = LittleFS.open(WIFI_PASSWORDS_FILE, "r");
 	if (!f) return "";
@@ -102,7 +102,7 @@ String loadWifiPassword(const String& targetSsid) {
  */
 void saveWifiPassword(const String& targetSsid, const String& password) {
 	// Mount littleFS if not already mounted
-	if (!lfsBegin()) return;
+	if (!Storage::mountLittleFS()) return;
 
 	String newContent;
 	bool found = false;

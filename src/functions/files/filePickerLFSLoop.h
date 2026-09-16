@@ -4,8 +4,6 @@ int lfsFileCount = 0;
 MENU* lfsFileMenu = nullptr;
 String* lfsFileFullPaths = nullptr;
 String lfsCurrentDir = "/";
-static int _lfsStoredReturnPid = 0;
-static int _lfsStoredCancelPid = 0;
 
 void _lfsBuildMenu() {
 	if (lfsFileMenu != nullptr) { delete[] lfsFileMenu; lfsFileMenu = nullptr; }
@@ -22,10 +20,8 @@ void _lfsBuildMenu() {
 	lfsFileMenu = new MENU[lfsFileCount + 2];
 	lfsFileFullPaths = new String[lfsFileCount];
 
-	int backPid = (lfsCurrentDir == "/")
-		? (_lfsStoredCancelPid != 0 ? _lfsStoredCancelPid : PID::FILES_MENU)
-		: 0;
-	int filePid = (_lfsStoredReturnPid != 0) ? _lfsStoredReturnPid : PID::SELECTED_FILE_MENU;
+	int backPid = (lfsCurrentDir == "/") ? PID::FILES_MENU : 0;
+	int filePid = PID::SELECTED_FILE_MENU;
 
 	lfsFileMenu[0] = { backPid, L->MENU_BACK, Icons::back };
 	lfsFileMenu[1] = { PID::FILE_CREATE, "create", Icons::create };
@@ -42,10 +38,6 @@ void _lfsBuildMenu() {
 
 void filePickerLFSLoop() {
 	if (isSetup()) {
-		_lfsStoredReturnPid = lfsReturnPid;
-		_lfsStoredCancelPid = lfsCancelPid;
-		lfsReturnPid = 0;
-		lfsCancelPid = 0;
 		cursor = 0;
 		lfsCurrentDir = "/";
 		_lfsBuildMenu();
@@ -72,7 +64,7 @@ void filePickerLFSLoop() {
 	if (isBtnAWasPressed() || isKbEnterPressed()) {
 		if (cursor == 0) {
 			if (lfsCurrentDir == "/") {
-				changeProcess(_lfsStoredCancelPid != 0 ? _lfsStoredCancelPid : PID::FILES_MENU);
+				changeProcess(PID::FILES_MENU);
 			} else {
 				_goParentDir(lfsCurrentDir);
 				_lfsBuildMenu();

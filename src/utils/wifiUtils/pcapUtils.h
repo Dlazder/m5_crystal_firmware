@@ -99,7 +99,7 @@ static void writePcapPacket(File& f, const uint8_t* data, uint16_t len,
 // Returns true if a handshake was found and the hash file was written.
 
 static bool pcapToFTHash(const String& pcapPath, bool useLittleFS = false) {
-	bool storageReady = useLittleFS ? lfsBegin() : sdBegin();
+	bool storageReady = useLittleFS ? Storage::mountLittleFS() : Storage::mountSD();
 	if (!storageReady) {
 		Serial.printf("pcapToFTHash: storage init failed (LFS=%d)\n", useLittleFS);
 		return false;

@@ -3,11 +3,7 @@
 // Takes a BMP screenshot of the full display and saves it to SD card.
 // Returns the file path on success, or error message on failure.
 void screenshotCommand(Print& out) {
-#if !HAS_SD
-    out.println("Error: no SD card support");
-    return;
-#else
-    if (!sdBegin()) {
+    if (!Storage::mountSD()) {
         out.println("Error: SD init failed");
         return;
     }
@@ -69,5 +65,4 @@ void screenshotCommand(Print& out) {
 
     f.close();
     out.println("Screenshot saved: " + filePath);
-#endif
 }

@@ -5,7 +5,7 @@
 // firmware must NOT touch the SD card itself or the filesystem will corrupt:
 // we end our own SD mount, hand the card to USBMSC, and only the PC reads/writes.
 
-#if defined(ESP32S3) && HAS_SD
+#if defined(ESP32S3)
 
 #include "USB.h"
 #include "USBMSC.h"
@@ -87,7 +87,7 @@ void usbStorageLoop() {
 	}
 }
 
-#else // native USB device mode unavailable, or no SD card
+#else // native USB device mode unavailable
 
 void usbStorageLoop() {
 	if (isSetup()) {

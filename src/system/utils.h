@@ -20,8 +20,6 @@
 #include "../utils/procManagmentUtils.h"
 #include "../utils/menuUtils.h"
 // 3rd layer utilities
-#include "../utils/littleFSUtils.h"
-#include "../utils/sdUtils.h"
 #include "../utils/filePickerUtils.h"
 #include "../utils/wifiUtils/wifiStorageUtils.h"
 #include "../utils/wifiUtils/pcapUtils.h"
