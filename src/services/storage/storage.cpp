@@ -21,6 +21,7 @@ bool mountSD() {
 	if (sdBegun) return true;
 	SPI.begin(SD_CLK_PIN, SD_MISO_PIN, SD_MOSI_PIN, SD_CS_PIN);
 	sdBegun = SD.begin(SD_CS_PIN);
+	if (sdBegun) SD.mkdir("/crystal"); // ensure capture dir exists
 	return sdBegun;
 }
 
@@ -180,10 +181,21 @@ bool readLines(const String& path, String*& outLines, int& outCount, bool useLit
 
 String uniquePath(const String& basePath, const String& ext, bool useLittleFS) {
 	fs::FS& fs = fsFor(useLittleFS);
+
+	// New captures on SD always live under /crystal, regardless of the mount
+	// toggle (that toggle only changes where the file browser opens).
+	String base = basePath;
+	if (!useLittleFS) {
+		const char* root = "/crystal";
+		if (base != root && !base.startsWith(String(root) + "/")) {
+			base = String(root) + base;
+		}
+	}
+
 	String path;
 	int n = 1;
 	do {
-		path = basePath + "_" + String(n) + ext;
+		path = base + "_" + String(n) + ext;
 		n++;
 	} while (fs.exists(path));
 	return path;

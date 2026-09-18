@@ -103,6 +103,7 @@ const Locale LANG_ID = {
     .MENU_SETTINGS_DIMMING        = "redupkan",
     .MENU_SETTINGS_WEBSERVER_FS   = "web server FS",
     .MENU_SETTINGS_TIMEZONE       = "zona waktu",
+    .MENU_SETTINGS_SD_ROOT        = "pasang SD di /crystal",
 
     // Other menu
     .MENU_OTHER                   = "lainnya",

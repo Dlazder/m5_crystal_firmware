@@ -103,6 +103,7 @@ const Locale LANG_RU = {
 	.MENU_SETTINGS_DIMMING       = "диммер",
 	.MENU_SETTINGS_WEBSERVER_FS  = "веб-сервер FS",
 	.MENU_SETTINGS_TIMEZONE      = "часовой пояс",
+	.MENU_SETTINGS_SD_ROOT       = "монтировать SD в /crystal",
 
 	// Other menu
 	.MENU_OTHER                  = "другое",

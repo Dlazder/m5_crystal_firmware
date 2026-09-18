@@ -10,6 +10,7 @@ void settingsMenuLoop() {
 		{PID::PLACEHOLDER,         L->MENU_SETTINGS_KB_GYRO, nullptr, "kbGyro"},
 		{PID::PLACEHOLDER,         L->MENU_SETTINGS_WEBSERVER_FS, nullptr, "webServerFs"},
 		{PID::SETTINGS_SSID,       L->MENU_SETTINGS_WIFI_SSID},
+		{PID::PLACEHOLDER,         L->MENU_SETTINGS_SD_ROOT, nullptr, "sdMountCrystal"},
 		{PID::SETTINGS_CLOCK,      L->MENU_SETTINGS_TIME, Icons::clock},
 		{PID::SETTINGS_TIMEZONE,   L->MENU_SETTINGS_TIMEZONE, Icons::clock},
 	};

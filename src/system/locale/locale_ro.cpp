@@ -103,6 +103,7 @@ const Locale LANG_RO = {
 	.MENU_SETTINGS_DIMMING       = "ecran somn",
 	.MENU_SETTINGS_WEBSERVER_FS  = "server FS",
 	.MENU_SETTINGS_TIMEZONE      = "fus orar",
+	.MENU_SETTINGS_SD_ROOT       = "montează SD în /crystal",
 
 	// Other menu
 	.MENU_OTHER                  = "altele",

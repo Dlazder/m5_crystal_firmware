@@ -67,4 +67,9 @@ void handleSettingToggle(const char* key) {
 		uartLogEnabled = !uartLogEnabled;
 		setData("uartLog", uartLogEnabled);
 	}
+
+	if (strcmp(key, "sdMountCrystal") == 0) {
+		sdMountCrystal = !sdMountCrystal;
+		setData("sdMountCrystal", sdMountCrystal);
+	}
 }

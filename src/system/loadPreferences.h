@@ -65,5 +65,8 @@ void loadPreferences() {
 	uartLogEnabled = getData("uartLog", uartLogEnabled);
 	Serial.printf("UART log to file: %s\n", uartLogEnabled ? "enabled" : "disabled");
 
+	sdMountCrystal = getData("sdMountCrystal", sdMountCrystal);
+	Serial.printf("SD mount at /crystal: %s\n", sdMountCrystal ? "enabled" : "disabled");
+
 	Serial.println("Preferences loaded");
 }

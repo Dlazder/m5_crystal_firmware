@@ -37,3 +37,7 @@ bool iconsEnabled = true;
 
 // Timezone offset from UTC in seconds (default 0 = UTC, e.g. 10800 = UTC+3)
 int timezoneOffset = 0;
+
+
+// false = mount SD at "/", true = mount SD at "/crystal"
+bool sdMountCrystal = true;

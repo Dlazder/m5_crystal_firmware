@@ -10,11 +10,28 @@ static MENU _fpSourceMenu[3];
 static String _fpCurrentDir = "/";
 
 /**
+ * @brief Root directory for the active picker source (SD uses sdRootDir(),
+ * LittleFS is always "/").
+ */
+static String _fpRoot() { return fpSelectedSd ? sdRootDir() : "/"; }
+
+/**
  * @brief Navigates `dir` to its parent. If already at root, stays at "/".
  */
 static void _goParentDir(String& dir) {
 	int lastSlash = dir.lastIndexOf('/');
 	dir = (lastSlash <= 0) ? "/" : dir.substring(0, lastSlash);
+}
+
+/**
+ * @brief Like _goParentDir, but never navigates above `root`.
+ */
+static void _goParentDirTo(String& dir, const String& root) {
+	if (dir == root) return;
+	int lastSlash = dir.lastIndexOf('/');
+	dir = (lastSlash <= 0 || dir.substring(0, lastSlash).length() < root.length())
+		? root
+		: dir.substring(0, lastSlash);
 }
 
 /**
@@ -120,7 +137,7 @@ bool filePickerLoop() {
 				return false;
 			}
 			fpSelectedSd = (cursor == 2);
-			_fpCurrentDir = "/";
+			_fpCurrentDir = _fpRoot();
 			bool ok = fpSelectedSd ? _fpBuildSd() : _fpBuildLfs();
 			if (!ok) {
 				fpActive = false;
@@ -143,14 +160,14 @@ bool filePickerLoop() {
 		drawMenu(_fpMenu, _fpCount + 1);
 	} else if (isBtnAWasPressed() || isKbEnterPressed()) {
 		if (cursor == 0) {
-			if (_fpCurrentDir == "/") {
+			if (_fpCurrentDir == _fpRoot()) {
 				_fpFree();
 				_fpSourceSelected = false;
 				cursor = 0;
 				drawMenu(_fpSourceMenu, 3);
 				return true;
 			}
-			_goParentDir(_fpCurrentDir);
+			_goParentDirTo(_fpCurrentDir, _fpRoot());
 			_fpRebuildAndDraw();
 			return true;
 		}

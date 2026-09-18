@@ -103,6 +103,7 @@ const Locale LANG_TR = {
 	.MENU_SETTINGS_DIMMING       = "ekran karartma",
 	.MENU_SETTINGS_WEBSERVER_FS  = "web sunucu FS",
 	.MENU_SETTINGS_TIMEZONE      = "saat dilimi",
+	.MENU_SETTINGS_SD_ROOT       = "SD'yi /crystal'e bağla",
 
 	// Other menu
 	.MENU_OTHER                  = "diğer",

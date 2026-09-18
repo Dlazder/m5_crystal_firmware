@@ -36,7 +36,7 @@ void _sdBuildMenu() {
 void filePickerSDLoop() {
 	if (isSetup()) {
 		cursor = 0;
-		sdCurrentDir = "/";
+		sdCurrentDir = sdRootDir();
 		_sdBuildMenu();
 		if (sdFileMenu == nullptr) return;
 		drawMenu(sdFileMenu, sdFileCount + 2);
@@ -60,10 +60,10 @@ void filePickerSDLoop() {
 
 	if (isBtnAWasPressed() || isKbEnterPressed()) {
 		if (cursor == 0) {
-			if (sdCurrentDir == "/") {
+			if (sdCurrentDir == sdRootDir()) {
 				changeProcess(PID::FILES_MENU);
 			} else {
-				_goParentDir(sdCurrentDir);
+				_goParentDirTo(sdCurrentDir, sdRootDir());
 				_sdBuildMenu();
 				cursor = 0;
 				drawMenu(sdFileMenu, sdFileCount + 2);

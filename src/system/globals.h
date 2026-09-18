@@ -152,6 +152,8 @@ String selectedFilePath = "";
 String createFileCurrentDir = "/";
 int fileOptionsSourcePid = PID::FILE_PICKER;
 
+String sdRootDir() { return sdMountCrystal ? "/crystal" : "/"; }
+
 // wifi deauth
 String ssid;
 String mac;

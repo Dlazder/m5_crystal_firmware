@@ -103,6 +103,7 @@ const Locale LANG_FR = {
 	.MENU_SETTINGS_DIMMING       = "écran veille",
 	.MENU_SETTINGS_WEBSERVER_FS  = "serveur web FS",
 	.MENU_SETTINGS_TIMEZONE      = "fuseau horaire",
+	.MENU_SETTINGS_SD_ROOT       = "monter SD dans /crystal",
 
 	// Other menu
 	.MENU_OTHER                  = "autre",
