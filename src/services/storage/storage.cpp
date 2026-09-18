@@ -17,6 +17,12 @@ bool mountLittleFS() {
 	return lfsBegun;
 }
 
+void unmountLittleFS() {
+	if (!lfsBegun) return;
+	LittleFS.end();
+	lfsBegun = false;
+}
+
 bool mountSD() {
 	if (sdBegun) return true;
 	SPI.begin(SD_CLK_PIN, SD_MISO_PIN, SD_MOSI_PIN, SD_CS_PIN);

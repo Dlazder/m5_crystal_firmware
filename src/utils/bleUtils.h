@@ -2,6 +2,12 @@ bool bleConnected = false;
 
 void bleConnect() {
 	if (!bleCompositeBegan) {
+		// Free the SD card before BLE init: Bluedroid needs a large contiguous
+		// block of internal RAM, and the SD driver + script (already loaded into
+		// badUsbLines) are no longer needed once the file has been read. On the
+		// Cardputer ADV (no PSRAM) this is the difference between a successful
+		// BLE init and xSemaphoreCreateBinary() returning NULL (heap exhaustion).
+		Storage::unmountSD();
 		bleKeyboard.begin();
 		bleCompositeBegan = true;
 	}

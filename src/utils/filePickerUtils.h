@@ -87,6 +87,8 @@ static bool _fpBuildLfs() {
 }
 
 static bool _fpBuildSd() {
+	// LittleFS may still be mounted from a prior LFS pick (holding ~10 KB of regular RAM).
+	Storage::unmountLittleFS();
 	if (!Storage::mountSD()) { centeredPrint("SD error", MEDIUM_TEXT); return false; }
 
 	String* names = nullptr;

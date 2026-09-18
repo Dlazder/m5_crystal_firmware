@@ -59,6 +59,11 @@ int rotation = 0;  // 0 = normal (DISP rotation 1), 1 = inverted (DISP rotation 
 M5Canvas canvas(&DISP);
 M5Canvas statusBarCanvas(&DISP);
 
+// Color depth of the canvas sprite: 8 = RGB332 (256 colors), 16 = RGB565.
+// 8 halves the sprite's RAM (55 KB -> 27 KB), which is what lets the SD
+// driver mount alongside Bluedroid BLE on the no-PSRAM Cardputer ADV.
+uint8_t canvasColorDepth = 8;
+
 uint16_t BGCOLOR=TFT_BLACK;
 uint16_t FGCOLOR=TFT_WHITE;
 uint16_t colors[] = {TFT_WHITE, TFT_RED, TFT_ORANGE, TFT_YELLOW, TFT_GREEN, TFT_CYAN, TFT_BLUE, TFT_VIOLET, TFT_MAGENTA};

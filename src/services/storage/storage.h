@@ -22,6 +22,9 @@ namespace Storage {
 /// Mounts LittleFS (idempotent). Returns true when available.
 bool mountLittleFS();
 
+/// Unmounts LittleFS, releasing its cache. Idempotent (no-op if not mounted).
+void unmountLittleFS();
+
 /// Mounts SD over SPI (idempotent). Returns true when a card is present.
 bool mountSD();
 
