@@ -23,7 +23,7 @@ const Locale LANG_DE = {
 	.MENU_WIFI_HANDSHAKE         = "handshake erfassen",
 	.MENU_WIFI_PMKID             = "PMKID erfassen",
 	.MENU_WIFI_PIXIE_DUST        = "pixie dust",
-.MENU_WIFI_WPS_PBC          = "wps pbc",
+	.MENU_WIFI_WPS_PBC          = "wps pbc",
 	.MENU_WIFI_CHANNEL_ANALYZER  = "Kanal-Analyse",
 	.MENU_WIFI_WEB_SERVER       = "WebServer",
 	.MENU_SETTINGS_WIFI_SSID      = "Wi-Fi SSID",
@@ -55,12 +55,15 @@ const Locale LANG_DE = {
 	.MENU_FILES_FOLDER_INFO   = "ordner info",
 	.MENU_FILES_DELETE_DIR    = "ordner löschen",
 	.MENU_FILES_RENAME_DIR   = "ordner umbenennen",
+	.MENU_FILES_COPY         = "kopieren",
+	.MENU_FILES_PASTE        = "einfügen",
 
 	// Files text
 	.TXT_DELETE_DIR           = "ordner löschen?",
 	.TXT_DELETE_RECURSIVE     = "rekursiv löschen?",
 	.TXT_DELETE_RECURSIVE_HINT = "alle inhalte werden gelöscht",
 	.TXT_FOLDER_COUNTS        = "%d dateien, %d ordner",
+	.TXT_CLIPBOARD_EMPTY      = "zwischenablage leer",
 
 	// NFC menu
 	.MENU_NFC                    = "NFC",

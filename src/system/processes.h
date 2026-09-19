@@ -77,6 +77,8 @@
     X(FILE_DELETE_DIR,    512, deleteDirLoop) \
     X(FILE_FOLDER_INFO,   513, folderInfoLoop) \
     X(FILE_RENAME_DIR,    514, renameDirLoop) \
+    X(FILE_COPY,          515, copyFileLoop) \
+    X(FILE_PASTE,         516, pasteFileLoop) \
     \
     /* IR (600-699) */ \
     X(IR,                 600, irMenuLoop) \

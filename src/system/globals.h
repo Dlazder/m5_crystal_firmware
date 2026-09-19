@@ -157,6 +157,12 @@ String selectedFilePath = "";
 String createFileCurrentDir = "/";
 int fileOptionsSourcePid = PID::FILE_PICKER;
 
+// file clipboard (copy/paste): holds a pending file while the user navigates
+// to a destination directory, then paste streams it across backends.
+bool clipboardHasFile = false;
+String clipboardPath = "";
+bool clipboardIsLittleFS = true;
+
 String sdRootDir() { return sdMountCrystal ? "/crystal" : "/"; }
 
 // wifi deauth

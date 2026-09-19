@@ -62,6 +62,8 @@
 #include "../functions/files/renameFileLoop.h"
 #include "../functions/files/readFileLoop.h"
 #include "../functions/files/editFileLoop.h"
+#include "../functions/files/copyFileLoop.h"
+#include "../functions/files/pasteFileLoop.h"
 
 // Bluetooth functions
 #include "../functions/bluetooth/bluetoothMenuLoop.h"

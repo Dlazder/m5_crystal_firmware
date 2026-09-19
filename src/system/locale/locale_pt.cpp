@@ -55,12 +55,15 @@ const Locale LANG_PT = {
 	.MENU_FILES_FOLDER_INFO   = "info da pasta",
 	.MENU_FILES_DELETE_DIR    = "apagar pasta",
 	.MENU_FILES_RENAME_DIR   = "renomear pasta",
+	.MENU_FILES_COPY         = "copiar",
+	.MENU_FILES_PASTE        = "colar",
 
 	// Files text
 	.TXT_DELETE_DIR           = "apagar pasta?",
 	.TXT_DELETE_RECURSIVE     = "apagar recursivamente?",
 	.TXT_DELETE_RECURSIVE_HINT = "todo o conteúdo será removido",
 	.TXT_FOLDER_COUNTS        = "%d arquivos, %d pastas",
+	.TXT_CLIPBOARD_EMPTY      = "área de transferência vazia",
 
 	// NFC menu
 	.MENU_NFC                    = "NFC",

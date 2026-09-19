@@ -23,7 +23,7 @@ const Locale LANG_RU = {
 	.MENU_WIFI_HANDSHAKE         = "захват рукопожатия",
 	.MENU_WIFI_PMKID             = "pmkid захват",
 	.MENU_WIFI_PIXIE_DUST        = "pixie dust",
-.MENU_WIFI_WPS_PBC          = "wps pbc",
+	.MENU_WIFI_WPS_PBC          = "wps pbc",
 	.MENU_WIFI_CHANNEL_ANALYZER  = "анализатор каналов",
 	.MENU_WIFI_WEB_SERVER       = "веб-сервер",
 	.MENU_SETTINGS_WIFI_SSID      = "Wi-Fi SSID",
@@ -55,12 +55,15 @@ const Locale LANG_RU = {
 	.MENU_FILES_FOLDER_INFO   = "инфо папки",
 	.MENU_FILES_DELETE_DIR    = "удалить папку",
 	.MENU_FILES_RENAME_DIR   = "переименовать папку",
+	.MENU_FILES_COPY         = "копировать",
+	.MENU_FILES_PASTE        = "вставить",
 
 	// Files text
 	.TXT_DELETE_DIR           = "удалить папку?",
 	.TXT_DELETE_RECURSIVE     = "удалить рекурсивно?",
 	.TXT_DELETE_RECURSIVE_HINT = "всё содержимое будет удалено",
 	.TXT_FOLDER_COUNTS        = "%d файлов, %d папок",
+	.TXT_CLIPBOARD_EMPTY      = "буфер обмена пуст",
 
 	// NFC menu
 	.MENU_NFC                    = "NFC",

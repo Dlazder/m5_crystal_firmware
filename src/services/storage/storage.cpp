@@ -185,6 +185,28 @@ bool readLines(const String& path, String*& outLines, int& outCount, bool useLit
 	return true;
 }
 
+bool copy(const char* srcPath, const char* dstPath, bool srcLittleFS, bool dstLittleFS) {
+	File in = open(srcPath, "r", srcLittleFS);
+	File out = open(dstPath, FILE_WRITE, dstLittleFS);
+	if (!in || !out) {
+		if (in) in.close();
+		if (out) out.close();
+		return false;
+	}
+
+	// Static buffer keeps the copy off the heap regardless of file size.
+	static uint8_t buf[1024];
+	bool ok = true;
+	while (in.available()) {
+		int n = in.read(buf, sizeof(buf));
+		if (n < 0 || (n > 0 && out.write(buf, n) != n)) { ok = false; break; }
+	}
+
+	in.close();
+	out.close();
+	return ok;
+}
+
 String uniquePath(const String& basePath, const String& ext, bool useLittleFS) {
 	fs::FS& fs = fsFor(useLittleFS);
 

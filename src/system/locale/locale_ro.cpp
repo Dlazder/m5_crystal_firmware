@@ -55,12 +55,15 @@ const Locale LANG_RO = {
 	.MENU_FILES_FOLDER_INFO   = "info folder",
 	.MENU_FILES_DELETE_DIR    = "șterge folderul",
 	.MENU_FILES_RENAME_DIR   = "redenumește folderul",
+	.MENU_FILES_COPY         = "copiază",
+	.MENU_FILES_PASTE        = "lipește",
 
 	// Files text
 	.TXT_DELETE_DIR           = "ștergi folderul?",
 	.TXT_DELETE_RECURSIVE     = "ștergi recursiv?",
 	.TXT_DELETE_RECURSIVE_HINT = "tot conținutul va fi șters",
 	.TXT_FOLDER_COUNTS        = "%d fișiere, %d foldere",
+	.TXT_CLIPBOARD_EMPTY      = "clipboard gol",
 
 	// NFC menu
 	.MENU_NFC                    = "NFC",

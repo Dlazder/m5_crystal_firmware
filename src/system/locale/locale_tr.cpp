@@ -55,12 +55,15 @@ const Locale LANG_TR = {
 	.MENU_FILES_FOLDER_INFO   = "klasör bilgisi",
 	.MENU_FILES_DELETE_DIR    = "klasörü sil",
 	.MENU_FILES_RENAME_DIR   = "klasör yeniden adlandır",
+	.MENU_FILES_COPY         = "kopyala",
+	.MENU_FILES_PASTE        = "yapıştır",
 
 	// Files text
 	.TXT_DELETE_DIR           = "klasör silinsin mi?",
 	.TXT_DELETE_RECURSIVE     = "özyinelemeli sil?",
 	.TXT_DELETE_RECURSIVE_HINT = "tüm içerik kaldırılacak",
 	.TXT_FOLDER_COUNTS        = "%d dosya, %d klasör",
+	.TXT_CLIPBOARD_EMPTY      = "pano boş",
 
 	// NFC menu
 	.MENU_NFC                    = "NFC",

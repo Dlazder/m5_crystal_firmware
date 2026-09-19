@@ -23,7 +23,7 @@ const Locale LANG_ID = {
     .MENU_WIFI_HANDSHAKE         = "tangkap handshake",
     .MENU_WIFI_PMKID             = "tangkap PMKID",
     .MENU_WIFI_PIXIE_DUST        = "pixie dust",
-.MENU_WIFI_WPS_PBC          = "wps pbc",
+    .MENU_WIFI_WPS_PBC          = "wps pbc",
     .MENU_WIFI_CHANNEL_ANALYZER  = "analisis saluran",
     .MENU_WIFI_WEB_SERVER       = "server web",
     .MENU_SETTINGS_WIFI_SSID      = "Wi-Fi SSID",
@@ -55,12 +55,15 @@ const Locale LANG_ID = {
     .MENU_FILES_FOLDER_INFO   = "info folder",
     .MENU_FILES_DELETE_DIR    = "hapus folder",
     .MENU_FILES_RENAME_DIR   = "ganti nama folder",
+    .MENU_FILES_COPY         = "salin",
+    .MENU_FILES_PASTE        = "tempel",
 
     // Files text
     .TXT_DELETE_DIR           = "hapus folder?",
     .TXT_DELETE_RECURSIVE     = "hapus rekursif?",
     .TXT_DELETE_RECURSIVE_HINT = "semua isi akan dihapus",
     .TXT_FOLDER_COUNTS        = "%d file, %d folder",
+    .TXT_CLIPBOARD_EMPTY      = "clipboard kosong",
 
     // NFC menu
     .MENU_NFC                     = "NFC",

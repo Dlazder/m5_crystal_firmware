@@ -67,6 +67,12 @@ bool readString(const String& path, String& out, bool useLittleFS);
 /// Blank lines are skipped. Backend is explicit (see readString).
 bool readLines(const String& path, String*& outLines, int& outCount, bool useLittleFS);
 
+/// Streams a file from one backend to the other (or within the same backend),
+/// chunk by chunk, so RAM use is independent of file size. Both backends are
+/// mounted lazily on demand and may be live simultaneously for the duration
+/// of the copy.
+bool copy(const char* srcPath, const char* dstPath, bool srcLittleFS, bool dstLittleFS);
+
 /// Generates a unique path by appending "_N" before the extension.
 String uniquePath(const String& basePath, const String& ext, bool useLittleFS = autoDetect());
 

@@ -55,12 +55,15 @@ const Locale LANG_FR = {
 	.MENU_FILES_FOLDER_INFO   = "info dossier",
 	.MENU_FILES_DELETE_DIR    = "supprimer le dossier",
 	.MENU_FILES_RENAME_DIR   = "renommer le dossier",
+	.MENU_FILES_COPY         = "copier",
+	.MENU_FILES_PASTE        = "coller",
 
 	// Files text
 	.TXT_DELETE_DIR           = "supprimer le dossier ?",
 	.TXT_DELETE_RECURSIVE     = "supprimer récursivement ?",
 	.TXT_DELETE_RECURSIVE_HINT = "tout le contenu sera supprimé",
 	.TXT_FOLDER_COUNTS        = "%d fichiers, %d dossiers",
+	.TXT_CLIPBOARD_EMPTY      = "presse-papiers vide",
 
 	// NFC menu
 	.MENU_NFC                    = "NFC",

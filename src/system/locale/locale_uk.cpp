@@ -23,7 +23,7 @@ const Locale LANG_UK = {
 	.MENU_WIFI_HANDSHAKE         = "захоплення рукостискання",
 	.MENU_WIFI_PMKID             = "pmkid захоплення",
 	.MENU_WIFI_PIXIE_DUST        = "pixie dust",
-.MENU_WIFI_WPS_PBC          = "wps pbc",
+	.MENU_WIFI_WPS_PBC          = "wps pbc",
 	.MENU_WIFI_CHANNEL_ANALYZER  = "аналіз каналів",
 	.MENU_WIFI_WEB_SERVER       = "веб-сервер",
 	.MENU_SETTINGS_WIFI_SSID      = "Wi-Fi SSID",
@@ -55,12 +55,15 @@ const Locale LANG_UK = {
 	.MENU_FILES_FOLDER_INFO   = "інфо папки",
 	.MENU_FILES_DELETE_DIR    = "видалити папку",
 	.MENU_FILES_RENAME_DIR   = "перейменувати папку",
+	.MENU_FILES_COPY         = "копіювати",
+	.MENU_FILES_PASTE        = "вставити",
 
 	// Files text
 	.TXT_DELETE_DIR           = "видалити папку?",
 	.TXT_DELETE_RECURSIVE     = "видалити рекурсивно?",
 	.TXT_DELETE_RECURSIVE_HINT = "весь вміст буде видалено",
 	.TXT_FOLDER_COUNTS        = "%d файлів, %d папок",
+	.TXT_CLIPBOARD_EMPTY      = "буфер обміну порожній",
 
 	// NFC menu
 	.MENU_NFC                    = "NFC",
