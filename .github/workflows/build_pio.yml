@@ -129,7 +129,13 @@ jobs:
 
       - name: Publish to M5Burner
         env:
-          M5_AUTH_TOKEN: ${{ secrets.M5_AUTH_TOKEN }}
+          M5_AUTH_EMAIL: ${{ secrets.M5_AUTH_EMAIL }}
+          M5_AUTH_PASSWORD: ${{ secrets.M5_AUTH_PASSWORD }}
         run: |
+          export M5_AUTH_TOKEN="$(npx -y m5-burner login "$M5_AUTH_EMAIL" "$M5_AUTH_PASSWORD" | jq -r '.token')"
+          if [ -z "$M5_AUTH_TOKEN" ] || [ "$M5_AUTH_TOKEN" = "null" ]; then
+            echo "::error::Failed to obtain M5Burner auth token from login"
+            exit 1
+          fi
           chmod +x scripts/publish_m5burner.sh
           bash scripts/publish_m5burner.sh ${{ env.VERSION }}
