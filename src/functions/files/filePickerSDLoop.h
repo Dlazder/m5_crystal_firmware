@@ -49,6 +49,18 @@ void filePickerSDLoop() {
 
 	int totalItems = sdFileCount + 2;
 
+	if (isKbEscPressed()) {
+		if (sdCurrentDir == sdRootDir()) {
+			changeProcess(PID::FILES_MENU);
+		} else {
+			_goParentDirTo(sdCurrentDir, sdRootDir());
+			_sdBuildMenu();
+			cursor = 0;
+			drawMenu(sdFileMenu, sdFileCount + 2);
+		}
+		return;
+	}
+
 	if (isBtnBWasPressed() || isKbDownPressed() || isWebControlDownWasPressed()) {
 		cursor++;
 		drawMenu(sdFileMenu, totalItems);

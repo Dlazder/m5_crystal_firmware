@@ -52,6 +52,18 @@ void filePickerLFSLoop() {
 
 	int totalItems = lfsFileCount + 2;
 
+	if (isKbEscPressed()) {
+		if (lfsCurrentDir == "/") {
+			changeProcess(PID::FILES_MENU);
+		} else {
+			_goParentDir(lfsCurrentDir);
+			_lfsBuildMenu();
+			cursor = 0;
+			drawMenu(lfsFileMenu, lfsFileCount + 2);
+		}
+		return;
+	}
+
 	if (isBtnBWasPressed() || isKbDownPressed() || isWebControlDownWasPressed()) {
 		cursor++;
 		drawMenu(lfsFileMenu, totalItems);

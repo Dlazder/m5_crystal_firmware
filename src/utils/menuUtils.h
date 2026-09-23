@@ -79,6 +79,12 @@ void drawMenu(MENU menu[], int size) {
 }
 
 void menuLoop(MENU menu[], int size) {
+	// ESC returns to this menu's parent (the "Back" item at index 0).
+	if (isKbEscPressed()) {
+		if (process == PID::MAIN_MENU) return; // root menu has no parent
+		changeProcess(menu[0].command);
+		return;
+	}
 	if (isBtnBWasPressed() || isKbDownPressed() || isWebControlDownWasPressed()) {
 		cursor++;
 		drawMenu(menu, size);
