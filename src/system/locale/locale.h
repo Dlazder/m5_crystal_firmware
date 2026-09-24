@@ -176,7 +176,6 @@ struct Locale {
 	const char* TXT_WIFI_EVIL_TWIN_RUNNING;
 	const char* TXT_WIFI_WEB_SERVER_RUNNING;
 	const char* TXT_SETTINGS_WIFI_SSID;
-	const char* TXT_WIFI_HANDSHAKE_CAPTURING;
 	const char* TXT_WIFI_HANDSHAKE_PACKETS;
 
 	const char* TXT_WIFI_NO_SCAN_DATA;

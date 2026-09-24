@@ -2,7 +2,7 @@
 
 const Locale LANG_ES = {
 	// Common menu items
-	.MENU_BACK = "atras",
+	.MENU_BACK = "atrás",
 	.MENU_SCAN = "buscar",
 	.MENU_RESCAN = "rebuscar",
 
@@ -33,7 +33,7 @@ const Locale LANG_ES = {
 	.MENU_BT_INFO= "info",
 	.MENU_BT_FIND= "buscar",
 	.MENU_BT_KEYBOARD= "teclado",
-	.MENU_BT_AIR_MOUSE = "raton aire",
+	.MENU_BT_AIR_MOUSE = "ratón aire",
 	.MENU_BT_MOUSE_JIGGLER = "mouse jiggler",
 	.MENU_BT_PRESENTER = "presentador",
 	.MENU_BT_SHUTTER = "obturador",
@@ -94,7 +94,7 @@ const Locale LANG_ES = {
 	.MENU_SETTINGS_TIME = "hora",
 	.MENU_SETTINGS_BRIGHTNESS = "brillo",
 	.MENU_SETTINGS_VOLUME     = "volumen",
-	.MENU_SETTINGS_ROTATION = "invertir rotacion",
+	.MENU_SETTINGS_ROTATION = "invertir rotación",
 	.MENU_SETTINGS_COLORS = "colores",
 	.MENU_SETTINGS_ICONS = "iconos",
 	.MENU_SETTINGS_STATUS_BAR = "barra estado",
@@ -121,14 +121,14 @@ const Locale LANG_ES = {
 	.MENU_USB = "USB",
 	.MENU_USB_BAD_USB = "bad USB",
 	.MENU_USB_MOUSE_JIGGLER = "mouse jiggler",
-	.MENU_USB_MOUSE = "raton aire",
+	.MENU_USB_MOUSE = "ratón aire",
 	.MENU_USB_KEYBOARD = "teclado",
 	.MENU_USB_STORAGE = "almacenamiento",
 
 	// System menu
 	.MENU_SYSTEM_INFO = "info",
 	.MENU_SYSTEM_SHUTDOWN = "apagar",
-	.MENU_SYSTEM_BATTERY_INFO = "bateria",
+	.MENU_SYSTEM_BATTERY_INFO = "batería",
 
 	// Common text
 	.TXT_PRESS_A = "pulsa A",
@@ -146,11 +146,11 @@ const Locale LANG_ES = {
 	.TXT_CONNECTED = "Conectado",
 	.TXT_DISCONNECTED = "Desconectado",
 	.TXT_DISCONNECTING = "Desconectando...",
-	.TXT_WAITING_CONNECTION = "Esperando conexion",
+	.TXT_WAITING_CONNECTION = "Esperando conexión",
 	.TXT_WORKING = "Trabajando",
 	.TXT_NOT_CONNECTED = "No conectado",
 	.TXT_FAILED = "Error",
-	.TXT_SUCCESS = "Exito",
+	.TXT_SUCCESS = "Éxito",
 	.TXT_ERROR = "Error",
 	.TXT_NA = "n/d",
 	.TXT_UNNAMED   = "sin nombre",
@@ -161,7 +161,7 @@ const Locale LANG_ES = {
 	.TXT_WIFI_AP_ENABLED = "WiFi AP activado",
 	.TXT_WIFI_SSID_NOT_FOUND = "Red no encontrada",
 	.TXT_WIFI_TIMEOUT= "Tiempo agotado",
-	.TXT_WIFI_WRONG_PASSWORD = "Contrasena incorrecta",
+	.TXT_WIFI_WRONG_PASSWORD = "Contraseña incorrecta",
 	.TXT_WIFI_SYNC_FAILED = "Sync fallido",
 	.TXT_WIFI_TIME_SYNCED = "Hora sincronizada",
 	.TXT_WIFI_NOT_CONNECTED = "Sin WiFi",
@@ -195,7 +195,7 @@ const Locale LANG_ES = {
 	// NFC text
 	.TXT_NFC_NO_UID_STORED = "Sin UID guardado",
 	.TXT_NFC_READ_TAG_FIRST= "Lee una etiqueta primero",
-	.TXT_NFC_INVALID_UID = "UID invalido",
+	.TXT_NFC_INVALID_UID = "UID inválido",
 	.TXT_NFC_UID_4BYTE_REQUIRED= "Se requiere UID de 4 bytes",
 	.TXT_NFC_WRITE_SUCCESS = "Escritura exitosa!",
 	.TXT_NFC_UID_WRITTEN = "UID escrito en etiqueta",
@@ -209,7 +209,7 @@ const Locale LANG_ES = {
 	.TXT_SETTINGS_VOLUME     = "volumen: ",
 	.TXT_SETTINGS_COLOR= "color: ",
 	.TXT_SETTINGS_FONT = "Fuente:",
-	.TXT_SETTINGS_ROTATION = "invertir rotacion",
+	.TXT_SETTINGS_ROTATION = "invertir rotación",
 	.TXT_SETTINGS_SOUND= "Sonido: ",
 	.TXT_SETTINGS_STATUS_BAR = "barra estado: ",
 	.TXT_SETTINGS_PID= "PID: ",

@@ -92,7 +92,7 @@ const Locale LANG_IT = {
     .MENU_SETTINGS                = "impostazioni",
     .MENU_SETTINGS_UI             = "UI e schermo",
     .MENU_SETTINGS_TIME           = "ora",
-    .MENU_SETTINGS_BRIGHTNESS     = "luminosita",
+    .MENU_SETTINGS_BRIGHTNESS     = "luminosità",
     .MENU_SETTINGS_VOLUME         = "volume",
     .MENU_SETTINGS_ROTATION       = "inverti rotazione",
     .MENU_SETTINGS_COLORS         = "colori",
@@ -205,7 +205,7 @@ const Locale LANG_IT = {
 
     // Settings text
     .TXT_SETTINGS_LANGUAGE        = "Lingua: ",
-    .TXT_SETTINGS_BRIGHTNESS      = "luminosita: ",
+    .TXT_SETTINGS_BRIGHTNESS      = "luminosità: ",
     .TXT_SETTINGS_VOLUME          = "volume: ",
     .TXT_SETTINGS_COLOR           = "colore: ",
     .TXT_SETTINGS_FONT            = "Carattere:",

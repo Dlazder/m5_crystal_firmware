@@ -4,7 +4,7 @@ const Locale LANG_DE = {
 	// Common menu items
 	.MENU_BACK                   = "zurück",
 	.MENU_SCAN                   = "scan",
-	.MENU_RESCAN                 = "erneut scan.",
+	.MENU_RESCAN                 = "erneut scannen",
 
 	// Wi-Fi menu
 	.MENU_WIFI                   = "Wi-Fi",
@@ -35,7 +35,7 @@ const Locale LANG_DE = {
 	.MENU_BT_KEYBOARD            = "tastatur",
 	.MENU_BT_AIR_MOUSE           = "air mouse",
 	.MENU_BT_MOUSE_JIGGLER       = "Maus-Jiggler",
-	.MENU_BT_PRESENTER           = "präsent.",
+	.MENU_BT_PRESENTER           = "präsentator",
 	.MENU_BT_SHUTTER             = "auslöser",
 	.MENU_BT_BAD_BLE             = "bad BLE",
 	.MENU_BT_SNIFFER             = "BLE sniffer",
@@ -159,10 +159,10 @@ const Locale LANG_DE = {
 
 	// Wi-Fi text
 	.TXT_WIFI_AP_ENABLED         = "WiFi AP aktiv",
-	.TXT_WIFI_SSID_NOT_FOUND     = "SSID nicht gef.",
-	.TXT_WIFI_TIMEOUT            = "Zeitüberschr.",
+	.TXT_WIFI_SSID_NOT_FOUND     = "SSID nicht gefunden",
+	.TXT_WIFI_TIMEOUT            = "Zeitüberschreitung",
 	.TXT_WIFI_WRONG_PASSWORD     = "Falsches Passwort",
-	.TXT_WIFI_SYNC_FAILED        = "Sync fehlgesch.",
+	.TXT_WIFI_SYNC_FAILED        = "Sync fehlgeschlagen",
 	.TXT_WIFI_TIME_SYNCED        = "Zeit synchronisiert",
 	.TXT_WIFI_NOT_CONNECTED      = "Kein WLAN",
 	.TXT_WIFI_BF_LOADED          = "Geladen: %d",
@@ -193,15 +193,15 @@ const Locale LANG_DE = {
 	.TXT_USB_STORAGE_HINT        = "Auswerfen zum Beenden",
 
 	// NFC text
-	.TXT_NFC_NO_UID_STORED       = "Kein UID gespeich.",
+	.TXT_NFC_NO_UID_STORED       = "Kein UID gespeichert",
 	.TXT_NFC_READ_TAG_FIRST      = "Erst Tag lesen",
-	.TXT_NFC_INVALID_UID         = "Ungült. UID",
+	.TXT_NFC_INVALID_UID         = "Ungültige UID",
 	.TXT_NFC_UID_4BYTE_REQUIRED  = "4-Byte UID nötig",
-	.TXT_NFC_WRITE_SUCCESS       = "Schreiben erfolgr.!",
+	.TXT_NFC_WRITE_SUCCESS       = "Schreiben erfolgreich!",
 	.TXT_NFC_UID_WRITTEN         = "UID geschrieben",
-	.TXT_NFC_WRITE_FAILED        = "Schreiben fehlg.",
+	.TXT_NFC_WRITE_FAILED        = "Schreiben fehlgeschlagen",
 	.TXT_NFC_WRITE_ERROR         = "Kein Tag/Fehler",
-	.TXT_NFC_READY_TO_WRITE      = "Bereit zum Schreib.",
+	.TXT_NFC_READY_TO_WRITE      = "Bereit zum Schreiben",
 
 	// Settings text
 	.TXT_SETTINGS_LANGUAGE       = "Sprache: ",

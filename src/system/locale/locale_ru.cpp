@@ -4,7 +4,7 @@ const Locale LANG_RU = {
 	// Common menu items
 	.MENU_BACK                   = "назад",
 	.MENU_SCAN                   = "сканировать",
-	.MENU_RESCAN                 = "сканировать",
+	.MENU_RESCAN                 = "пересканировать",
 
 	// Wi-Fi menu
 	.MENU_WIFI                   = "Wi-Fi",
@@ -20,7 +20,7 @@ const Locale LANG_RU = {
 	.MENU_WIFI_DEAUTH_ALL        = "деаут все",
 	.MENU_WIFI_EVIL_PORTAL       = "evil portal",
 	.MENU_WIFI_EVIL_TWIN         = "evil twin",
-	.MENU_WIFI_HANDSHAKE         = "захват рукопожатия",
+	.MENU_WIFI_HANDSHAKE         = "захват handshake",
 	.MENU_WIFI_PMKID             = "pmkid захват",
 	.MENU_WIFI_PIXIE_DUST        = "pixie dust",
 	.MENU_WIFI_WPS_PBC          = "wps pbc",
@@ -45,7 +45,7 @@ const Locale LANG_RU = {
 	.MENU_FILES_SDCARD           = "SD card",
 	.MENU_FILES_DELETE           = "удалить",
 	.MENU_FILES_INFO             = "инфо",
-	.MENU_FILES_RENAME           = "переим.",
+	.MENU_FILES_RENAME           = "переименовать",
 	.MENU_FILES_VIEW             = "просмотр",
 	.MENU_FILES_EDIT             = "редактировать",
 	.MENU_FILES_LITTLEFS               = "littleFS",
@@ -101,9 +101,9 @@ const Locale LANG_RU = {
 	.MENU_SETTINGS_STATUS_BAR_PID = "PID",
 	.MENU_SETTINGS_STARTUP_SOUND = "звук запуска",
 	.MENU_SETTINGS_FONT          = "шрифт",
-	.MENU_SETTINGS_KB_GYRO       = "гиро клав.",
+	.MENU_SETTINGS_KB_GYRO       = "гиро клавиатура",
 	.MENU_SETTINGS_LANGUAGE      = "язык",
-	.MENU_SETTINGS_DIMMING       = "диммер",
+	.MENU_SETTINGS_DIMMING       = "затемнение экрана",
 	.MENU_SETTINGS_WEBSERVER_FS  = "веб-сервер FS",
 	.MENU_SETTINGS_TIMEZONE      = "часовой пояс",
 	.MENU_SETTINGS_SD_ROOT       = "монтировать SD в /crystal",
@@ -128,7 +128,7 @@ const Locale LANG_RU = {
 	// System menu
 	.MENU_SYSTEM_INFO            = "инфо",
 	.MENU_SYSTEM_SHUTDOWN        = "выключить",
-	.MENU_SYSTEM_BATTERY_INFO    = "батарея",
+	.MENU_SYSTEM_BATTERY_INFO    = "инфо батареи",
 
 	// Common text
 	.TXT_PRESS_A                 = "нажмите A",
@@ -146,7 +146,7 @@ const Locale LANG_RU = {
 	.TXT_CONNECTED               = "Подключено",
 	.TXT_DISCONNECTED            = "Отключено",
 	.TXT_DISCONNECTING           = "Отключение...",
-	.TXT_WAITING_CONNECTION      = "Ожидание...",
+	.TXT_WAITING_CONNECTION      = "Ожидание подключения",
 	.TXT_WORKING                 = "Работает",
 	.TXT_NOT_CONNECTED           = "Не подключено",
 	.TXT_FAILED                  = "Ошибка",
@@ -158,12 +158,12 @@ const Locale LANG_RU = {
 	.TXT_SAVED_LFS               = "Сохранено на LFS",
 
 	// Wi-Fi text
-	.TXT_WIFI_AP_ENABLED         = "WiFi AP вкл.",
+	.TXT_WIFI_AP_ENABLED         = "WiFi AP включена",
 	.TXT_WIFI_SSID_NOT_FOUND     = "SSID не найден",
 	.TXT_WIFI_TIMEOUT            = "Таймаут",
-	.TXT_WIFI_WRONG_PASSWORD     = "Неверн. пароль",
-	.TXT_WIFI_SYNC_FAILED        = "Ошибка синхр.",
-	.TXT_WIFI_TIME_SYNCED        = "Время синхр.",
+	.TXT_WIFI_WRONG_PASSWORD     = "Неверный пароль",
+	.TXT_WIFI_SYNC_FAILED        = "Ошибка синхронизации",
+	.TXT_WIFI_TIME_SYNCED        = "Время синхронизировано",
 	.TXT_WIFI_NOT_CONNECTED      = "Нет Wi-Fi",
 	.TXT_WIFI_BF_LOADED          = "Загружено: %d",
 	.TXT_WIFI_BF_DONE            = "Проверено: %d",
@@ -194,13 +194,13 @@ const Locale LANG_RU = {
 
 	// NFC text
 	.TXT_NFC_NO_UID_STORED       = "UID не сохранён",
-	.TXT_NFC_READ_TAG_FIRST      = "Сначала прочитай тег",
+	.TXT_NFC_READ_TAG_FIRST      = "Сначала прочитайте тег",
 	.TXT_NFC_INVALID_UID         = "Неверный UID",
-	.TXT_NFC_UID_4BYTE_REQUIRED  = "Нужен 4-байт.",
+	.TXT_NFC_UID_4BYTE_REQUIRED  = "Нужен 4-байт. UID",
 	.TXT_NFC_WRITE_SUCCESS       = "Запись успешна!",
 	.TXT_NFC_UID_WRITTEN         = "UID записан",
-	.TXT_NFC_WRITE_FAILED        = "Запись не удал.",
-	.TXT_NFC_WRITE_ERROR         = "Нет тега/ошибка",
+	.TXT_NFC_WRITE_FAILED        = "Запись не удалась",
+	.TXT_NFC_WRITE_ERROR         = "Нет тега или ошибка записи",
 	.TXT_NFC_READY_TO_WRITE      = "Готов к записи...",
 
 	// Settings text
@@ -213,7 +213,7 @@ const Locale LANG_RU = {
 	.TXT_SETTINGS_SOUND          = "звук: ",
 	.TXT_SETTINGS_STATUS_BAR     = "статус бар: ",
 	.TXT_SETTINGS_PID            = "PID: ",
-	.TXT_SETTINGS_KB_GYRO        = "гиро клав.: ",
+	.TXT_SETTINGS_KB_GYRO        = "гиро клавиатура: ",
 	.TXT_SETTINGS_WEBSERVER_FS   = "Веб-сервер FS: ",
 	.TXT_SETTINGS_TIMEZONE       = "Часовой пояс: ",
 	.MENU_UART = "UART",

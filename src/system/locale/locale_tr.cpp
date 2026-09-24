@@ -114,7 +114,7 @@ const Locale LANG_TR = {
 	.MENU_OTHER_CLOCK            = "saat",
 	.MENU_OTHER_SOUND_LEVEL      = "ses seviyesi",
 	.MENU_OTHER_FLASHLIGHT       = "el feneri",
-	.MENU_OTHER_FLICKER          = "titreşim",
+	.MENU_OTHER_FLICKER          = "titreme",
 	.MENU_OTHER_LEVEL_TOOL       = "su terazisi",
 
 	// USB menu
