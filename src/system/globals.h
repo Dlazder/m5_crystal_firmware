@@ -51,6 +51,10 @@ int cursor = 0;
 int process = PID::MAIN_MENU;
 int previousProcess = PID::MAIN_MENU;
 bool isSwitching = true;
+
+// Universal error screen (see errorUtils.h / errorLoop.h)
+String errorMessage = "";
+int errorReturnPid = PID::MAIN_MENU;
 int rotation = 0;  // 0 = normal (DISP rotation 1), 1 = inverted (DISP rotation 3)
 
 #define DEVICE M5

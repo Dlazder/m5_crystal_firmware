@@ -192,6 +192,10 @@ struct Locale {
 	const char* TXT_USB_STORAGE_ACTIVE;
 	const char* TXT_USB_STORAGE_HINT;
 
+	// Storage text
+	const char* TXT_STORAGE_LITTLEFS_ERROR;
+	const char* TXT_STORAGE_SD_ERROR;
+
 	// NFC text
 	const char* TXT_NFC_NO_UID_STORED;
 	const char* TXT_NFC_READ_TAG_FIRST;

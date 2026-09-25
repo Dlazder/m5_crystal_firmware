@@ -65,7 +65,7 @@ static void _fpFree() {
 }
 
 static bool _fpBuildLfs() {
-	if (!Storage::mountLittleFS()) { centeredPrint("LittleFS error", MEDIUM_TEXT); return false; }
+	if (!Storage::requireLittleFS(_fpCancel)) return false;
 
 	String* names = nullptr;
 	bool* isDir = nullptr;
@@ -89,7 +89,7 @@ static bool _fpBuildLfs() {
 static bool _fpBuildSd() {
 	// LittleFS may still be mounted from a prior LFS pick (holding ~10 KB of regular RAM).
 	Storage::unmountLittleFS();
-	if (!Storage::mountSD()) { centeredPrint("SD error", MEDIUM_TEXT); return false; }
+	if (!Storage::requireSD(_fpCancel)) return false;
 
 	String* names = nullptr;
 	bool* isDir = nullptr;
@@ -143,7 +143,6 @@ bool filePickerLoop() {
 			bool ok = fpSelectedSd ? _fpBuildSd() : _fpBuildLfs();
 			if (!ok) {
 				fpActive = false;
-				changeProcess(_fpCancel);
 				return false;
 			}
 			_fpSourceSelected = true;

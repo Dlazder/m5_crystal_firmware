@@ -10,7 +10,7 @@ void _sdBuildMenu() {
 	if (sdFileFullPaths != nullptr) { delete[] sdFileFullPaths; sdFileFullPaths = nullptr; }
 	sdFileCount = 0;
 
-	if (!Storage::mountSD()) { centeredPrint("SD error", MEDIUM_TEXT); return; }
+	if (!Storage::requireSD()) return;
 
 	String* names = nullptr;
 	bool* isDir = nullptr;

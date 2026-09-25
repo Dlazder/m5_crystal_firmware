@@ -116,6 +116,9 @@
     X(UART_CONFIG_RX,     814, uartConfigRxLoop) \
     X(UART_CONFIG_TX,     815, uartConfigTxLoop) \
     X(UART_CONFIG_BAUD,   816, uartConfigBaudLoop) \
+    \
+    /* Error screen (900-999) */ \
+    X(ERROR_SCREEN,       999, errorLoop) \
 
 namespace PID {
     #define X(name, id, fn) const int name = id;

@@ -191,6 +191,9 @@ const Locale LANG_ID = {
     .TXT_USB_STORAGE_NO_SD        = "Tidak ada kartu SD",
     .TXT_USB_STORAGE_ACTIVE       = "Penyimpanan USB aktif",
     .TXT_USB_STORAGE_HINT         = "Keluarkan untuk keluar",
+    // Storage text
+    .TXT_STORAGE_LITTLEFS_ERROR = "Kesalahan LittleFS",
+    .TXT_STORAGE_SD_ERROR       = "Kesalahan SD",
 
     // NFC text
     .TXT_NFC_NO_UID_STORED        = "Tidak ada UID",
@@ -220,3 +223,4 @@ const Locale LANG_ID = {
 	.MENU_UART_TERMINAL = "terminal",
 	.MENU_UART_SAVE_LOGS = "simpan log",
 };
+

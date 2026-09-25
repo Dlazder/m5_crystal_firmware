@@ -191,6 +191,9 @@ const Locale LANG_UK = {
 	.TXT_USB_STORAGE_NO_SD       = "Немає SD карти",
 	.TXT_USB_STORAGE_ACTIVE      = "USB накопичувач активний",
 	.TXT_USB_STORAGE_HINT        = "Витягніть для виходу",
+	// Storage text
+	.TXT_STORAGE_LITTLEFS_ERROR = "Помилка LittleFS",
+	.TXT_STORAGE_SD_ERROR       = "Помилка SD",
 
 	// NFC text
 	.TXT_NFC_NO_UID_STORED       = "UID не збережено",
@@ -220,3 +223,4 @@ const Locale LANG_UK = {
 	.MENU_UART_TERMINAL = "термінал",
 	.MENU_UART_SAVE_LOGS = "зберегти логи",
 };
+

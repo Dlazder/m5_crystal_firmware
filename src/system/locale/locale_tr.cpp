@@ -191,6 +191,9 @@ const Locale LANG_TR = {
 	.TXT_USB_STORAGE_NO_SD       = "SD kart yok",
 	.TXT_USB_STORAGE_ACTIVE      = "USB depolama etkin",
 	.TXT_USB_STORAGE_HINT        = "Çıkmak için çıkar",
+	// Storage text
+	.TXT_STORAGE_LITTLEFS_ERROR = "LittleFS hatası",
+	.TXT_STORAGE_SD_ERROR       = "SD hatası",
 
 	// NFC text
 	.TXT_NFC_NO_UID_STORED       = "Kayıtlı UID yok",
@@ -220,3 +223,4 @@ const Locale LANG_TR = {
 	.MENU_UART_TERMINAL = "terminal",
 	.MENU_UART_SAVE_LOGS = "logları kaydet",
 };
+

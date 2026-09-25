@@ -34,6 +34,22 @@ void unmountSD();
 bool isLittleFS();
 bool isSD();
 
+/// Mount-or-report wrappers for the universal error screen (see errorUtils.h
+/// for the full mechanism and how to revert it). Unlike mountLittleFS/mountSD,
+/// which are SILENT probes, these report a mount failure through the weak
+/// `reportMountError` hook and return false so the caller can `return`.
+/// `returnPid` is where to go when the user dismisses the error; a negative
+/// value means `previousProcess` (pass the current `process` to stay in the
+/// current screen, e.g. IR save so its captured data isn't lost).
+bool requireLittleFS(int returnPid = -1);
+bool requireSD(int returnPid = -1);
+
+/// Weak mount-error hook. The no-op default lives in storage.cpp so this
+/// translation unit never depends on the UI; the firmware's UI layer provides
+/// a STRONG override (errorUtils.h) that shows the error screen. Do not call
+/// this directly — use requireLittleFS/requireSD.
+void reportMountError(bool useLittleFS, int returnPid);
+
 /// Default backend for new captures: SD if a card is present, else LittleFS.
 /// May mount on first call — this is the lazy-mount entry point.
 bool autoDetect();

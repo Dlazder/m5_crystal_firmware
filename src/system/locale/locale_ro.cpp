@@ -191,6 +191,9 @@ const Locale LANG_RO = {
 	.TXT_USB_STORAGE_NO_SD       = "Fără card SD",
 	.TXT_USB_STORAGE_ACTIVE      = "Stocare USB activă",
 	.TXT_USB_STORAGE_HINT        = "Scoate pentru ieșire",
+	// Storage text
+	.TXT_STORAGE_LITTLEFS_ERROR = "Eroare LittleFS",
+	.TXT_STORAGE_SD_ERROR       = "Eroare SD",
 
 	// NFC text
 	.TXT_NFC_NO_UID_STORED       = "Niciun UID stocat",
@@ -220,3 +223,4 @@ const Locale LANG_RO = {
 	.MENU_UART_TERMINAL = "terminal",
 	.MENU_UART_SAVE_LOGS = "salvează loguri",
 };
+

@@ -48,11 +48,7 @@ void _irDrawUi() {
 }
 
 void _irSaveToLFS(const char* filename) {
-	if (!Storage::mountLittleFS()) {
-		centeredPrint("LittleFS error", MEDIUM_TEXT);
-		delay(800);
-		return;
-	}
+	if (!Storage::requireLittleFS(process)) return;
 	char rawHex[11];
 	snprintf(rawHex, sizeof(rawHex), "0x%08lX", (unsigned long)irLastRaw);
 	String path = "/" + String(filename) + ".ir";
@@ -201,11 +197,7 @@ void _irDrawUi() {
 }
 
 void _irSaveToLFS(const char* filename) {
-	if (!Storage::mountLittleFS()) {
-		centeredPrint("LittleFS error", MEDIUM_TEXT);
-		delay(800);
-		return;
-	}
+	if (!Storage::requireLittleFS(process)) return;
 	char rawHex[11];
 	snprintf(rawHex, sizeof(rawHex), "0x%08lX", (unsigned long)irLastRaw);
 	String path = "/" + String(filename) + ".ir";

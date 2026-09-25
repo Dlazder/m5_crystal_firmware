@@ -191,6 +191,9 @@ const Locale LANG_RU = {
 	.TXT_USB_STORAGE_NO_SD       = "Нет SD карты",
 	.TXT_USB_STORAGE_ACTIVE      = "USB накопитель активен",
 	.TXT_USB_STORAGE_HINT        = "Извлеките для выхода",
+	// Storage text
+	.TXT_STORAGE_LITTLEFS_ERROR = "Ошибка LittleFS",
+	.TXT_STORAGE_SD_ERROR       = "Ошибка SD",
 
 	// NFC text
 	.TXT_NFC_NO_UID_STORED       = "UID не сохранён",
@@ -220,3 +223,4 @@ const Locale LANG_RU = {
 	.MENU_UART_TERMINAL = "терминал",
 	.MENU_UART_SAVE_LOGS = "сохранить логи",
 };
+

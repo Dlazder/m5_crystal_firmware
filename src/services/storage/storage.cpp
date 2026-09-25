@@ -40,6 +40,28 @@ void unmountSD() {
 bool isLittleFS() { return lfsBegun; }
 bool isSD() { return sdBegun; }
 
+// Weak no-op mount-error hook. The firmware's UI layer overrides this with a
+// STRONG definition (errorUtils.h) that shows the error screen. This weak
+// default exists so storage.cpp stays UI-free (no globals.h / L / canvas) and
+// so silent mount probes in native/emulation builds report nothing.
+// See errorUtils.h for the full mechanism.
+__attribute__((weak)) void reportMountError(bool useLittleFS, int returnPid) {
+	(void)useLittleFS;
+	(void)returnPid;
+}
+
+bool requireLittleFS(int returnPid) {
+	if (mountLittleFS()) return true;
+	reportMountError(true, returnPid);
+	return false;
+}
+
+bool requireSD(int returnPid) {
+	if (mountSD()) return true;
+	reportMountError(false, returnPid);
+	return false;
+}
+
 bool autoDetect() {
 	if (mountSD()) return false; // SD available → use SD
 	return mountLittleFS();      // else fall back to LittleFS

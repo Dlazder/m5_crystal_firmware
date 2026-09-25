@@ -10,7 +10,7 @@ void _lfsBuildMenu() {
 	if (lfsFileFullPaths != nullptr) { delete[] lfsFileFullPaths; lfsFileFullPaths = nullptr; }
 	lfsFileCount = 0;
 
-	if (!Storage::mountLittleFS()) { centeredPrint("LittleFS error", MEDIUM_TEXT); return; }
+	if (!Storage::requireLittleFS()) return;
 
 	String* names = nullptr;
 	bool* isDir = nullptr;

@@ -191,6 +191,9 @@ const Locale LANG_FR = {
 	.TXT_USB_STORAGE_NO_SD       = "Pas de carte SD",
 	.TXT_USB_STORAGE_ACTIVE      = "Stockage USB actif",
 	.TXT_USB_STORAGE_HINT        = "Éjecter pour quitter",
+	// Storage text
+	.TXT_STORAGE_LITTLEFS_ERROR = "Erreur LittleFS",
+	.TXT_STORAGE_SD_ERROR       = "Erreur SD",
 
 	// NFC text
 	.TXT_NFC_NO_UID_STORED       = "Aucun UID stocké",
@@ -220,3 +223,4 @@ const Locale LANG_FR = {
 	.MENU_UART_TERMINAL = "terminal",
 	.MENU_UART_SAVE_LOGS = "enregistrer les logs",
 };
+

@@ -30,6 +30,7 @@
 #include "../utils/wifiUtils/ntpUtils.h"
 #include "../utils/badUsbUtils.h"
 #include "../utils/bleUtils.h"
+#include "../utils/errorUtils.h"
 
 #include "../utils/commandUtils/screenshotCommand.h"
 #include "../utils/commandUtils/info.h"
