@@ -1,6 +1,11 @@
 /*
  * irRmtHal.cpp — RMT-based IR (ESP-IDF 4.x, driver/rmt.h)
+ *
+ * Only compiled when IR_USE_RMT is defined (see platformio.ini, M5StickS3 env).
+ * Other boards use the IRremote-based path in the IR loop files.
  */
+
+#ifdef IR_USE_RMT
 
 #include "irRmtHal.h"
 
@@ -131,7 +136,7 @@ static rmt_channel_t rmt_find_free_channel(rmt_mode_t mode) {
 		memset(&probe, 0, sizeof(probe));
 		probe.rmt_mode = mode;
 		probe.channel = (rmt_channel_t)ch;
-		probe.gpio_num = (mode == RMT_MODE_RX) ? (gpio_num_t)irRxPin
+		probe.gpio_num = (mode == RMT_MODE_RX) ? (gpio_num_t)irRmtRxPin
 												: (gpio_num_t)irTxPin;
 		probe.clk_div = 80;
 		probe.mem_block_num = 1;
@@ -183,7 +188,7 @@ void recvIR(void* param) {
 	memset(&rx_conf, 0, sizeof(rx_conf));
 	rx_conf.rmt_mode = RMT_MODE_RX;
 	rx_conf.channel = rx_ch;
-	rx_conf.gpio_num = static_cast<gpio_num_t>(irRxPin);
+	rx_conf.gpio_num = static_cast<gpio_num_t>(irRmtRxPin);
 	rx_conf.clk_div = 80;
 	rx_conf.mem_block_num = 2;
 	rx_conf.rx_config.idle_threshold = 12000;
@@ -200,7 +205,7 @@ void recvIR(void* param) {
 	rxChannel = rx_ch;
 	rxTaskHandle = xTaskGetCurrentTaskHandle();
 
-	Serial.printf("IR: RMT RX ready on pin %d ch %d\n", irRxPin, (int)rx_ch);
+	Serial.printf("IR: RMT RX ready on pin %d ch %d\n", irRmtRxPin, (int)rx_ch);
 
 	uint32_t lastHeartbeat = 0;
 	for (;;) {
@@ -248,7 +253,7 @@ void recvIR(void* param) {
 
 		// Heartbeat every 10 seconds
 		if (millis() - lastHeartbeat > 10000) {
-			Serial.printf("IR: RX alive, ch %d, pin %d\n", (int)rx_ch, irRxPin);
+			Serial.printf("IR: RX alive, ch %d, pin %d\n", (int)rx_ch, irRmtRxPin);
 			lastHeartbeat = millis();
 		}
 
@@ -396,3 +401,5 @@ void sendIR(irproto brand, uint32_t code, uint8_t bits,
 	// Keep TX driver installed; rmt_write_items with wait=true already finished
 	irTX = 0;
 }
+
+#endif // IR_USE_RMT

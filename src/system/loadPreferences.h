@@ -56,6 +56,10 @@ void loadPreferences() {
 	irRxPin = getData("irRxPin", IR_RECEIVE_PIN);
 	irTxPin = getData("irTxPin", IR_SEND_PIN);
 	Serial.printf("IR pins: RX=%d TX=%d\n", irRxPin, irTxPin);
+#ifdef IR_USE_RMT
+	irRxUseGpio = getData("irRxGpio", irRxUseGpio);
+	Serial.printf("IR RX backend: %s\n", irRxUseGpio ? "GPIO" : "RMT");
+#endif
 
 	uartRxPin = getData("uartRxPin", UART_RX_PIN);
 	uartTxPin = getData("uartTxPin", UART_TX_PIN);

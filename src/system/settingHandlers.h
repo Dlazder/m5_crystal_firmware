@@ -72,4 +72,11 @@ void handleSettingToggle(const char* key) {
 		sdMountCrystal = !sdMountCrystal;
 		setData("sdMountCrystal", sdMountCrystal);
 	}
+
+#ifdef IR_USE_RMT
+	if (strcmp(key, "irRxGpio") == 0) {
+		irRxUseGpio = !irRxUseGpio;
+		setData("irRxGpio", irRxUseGpio);
+	}
+#endif
 }

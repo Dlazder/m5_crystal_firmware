@@ -77,6 +77,7 @@ extern const ir_protocol_t proto[PROTO_COUNT];
 
 extern uint8_t irRxPin;
 extern uint8_t irTxPin;
+extern uint8_t irRmtRxPin; // fixed built-in RMT RX pin (M5StickS3 photodiode)
 
 // ── TX/RX synchronisation ──
 

@@ -7,6 +7,9 @@ void irMenuLoop() {
 		{PID::IR_SEND, L->MENU_IR_SEND},
 		{PID::IR_TV_B_GONE, L->MENU_IR_TV_B_GONE},
 		{PID::IR_CONFIG_PINS, "configure pins", Icons::settings},
+#ifdef IR_USE_RMT
+		{PID::PLACEHOLDER, "IR RX: GPIO", nullptr, "irRxGpio"},
+#endif
 	};
 	int irMenuSize = sizeof(irMenu) / sizeof(MENU);
 
