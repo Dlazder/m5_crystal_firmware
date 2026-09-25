@@ -210,7 +210,8 @@ bool bleCompositeBegan = false;
 // byte-identical to the one BleCombo already defined but counts as a conflicting
 // declaration. Rename USB's typedef to UsbKeyReport for the duration of the
 // include so both can coexist in this translation unit. Both KEY_* macro sets
-// are identical standard HID usages, so reusing badUsbResolveKey stays valid.
+// use identical ESP32 HID "special key" codes (0x80+), so the Duckyscript
+// service's own Key::* constants stay valid for both transports.
 #ifdef ESP32S3
 #define KeyReport UsbKeyReport
 #include "USB.h"
