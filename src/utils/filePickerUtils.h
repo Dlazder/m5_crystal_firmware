@@ -50,8 +50,8 @@ void filePickerSetup(int cancelPid) {
 	_fpSourceSelected = false;
 	_fpCancel = cancelPid;
 	_fpSourceMenu[0] = { 0, L->MENU_BACK, Icons::back };
-	_fpSourceMenu[1] = { 0, L->MENU_FILES_LITTLEFS };
-	_fpSourceMenu[2] = { 0, L->MENU_FILES_SDCARD };
+	_fpSourceMenu[1] = { 0, L->MENU_FILES_LITTLEFS, Icons::lfs };
+	_fpSourceMenu[2] = { 0, L->MENU_FILES_SDCARD, Icons::sd };
 	cursor = 0;
 	drawMenu(_fpSourceMenu, 3);
 }
