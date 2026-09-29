@@ -126,7 +126,7 @@ void wifiBruteforceLoop() {
 		_bfDone    = true;
 		WiFi.disconnect(true);
 		wifiPassword = _bfCurrentPass;
-		saveWifiPassword(ssid, wifiPassword);
+		Wifi::saveWifiPassword(ssid, wifiPassword);
 		String lines[] = { String(L->TXT_SUCCESS), _bfCurrentPass.substring(0, 20) };
 		centeredPrintRows(lines, 2, MEDIUM_TEXT);
 		soundSuccess();

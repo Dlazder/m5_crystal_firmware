@@ -31,7 +31,7 @@ void wifiConnectLoop() {
 			kbEnd();
 			startWifiConnection("");
 		} else {
-			String saved = loadWifiPassword(ssid);
+			String saved = Wifi::loadWifiPassword(ssid);
 			if (saved.length() > 0) {
 				wifiConnectPasswordDone = true;
 				kbEnd();
@@ -68,12 +68,12 @@ void wifiConnectLoop() {
 		if (status == WL_CONNECTED) {
 			wifiConnectResultShown = true;
 			if (wifiPassword.length() > 0)
-				saveWifiPassword(ssid, wifiPassword);
+				Wifi::saveWifiPassword(ssid, wifiPassword);
 			String ip = WiFi.localIP().toString();
 			String lines[] = { L->TXT_CONNECTED, ssid.substring(0, 16), ip };
 			centeredPrintRows(lines, 3, MEDIUM_TEXT);
 			soundSuccess();
-			autoNtpSync();
+			Wifi::autoNtpSync(timezoneOffset);
 		} else if (status == WL_CONNECT_FAILED || status == WL_NO_SSID_AVAIL || timedOut) {
 			wifiConnectResultShown = true;
 			WiFi.disconnect(true);

@@ -25,7 +25,7 @@ void evilTwinSaveCreds(String email, String password) {
 
 // evilTwinSendDeauthFrame — thin wrapper kept for local readability
 static void evilTwinSendDeauthFrame(const uint8_t* bssid, int chan) {
-	deauthSendFrame(bssid, chan);
+	Wifi::deauthSendFrame(bssid, chan);
 }
 
 // Shared captive portal detection endpoints (same as evil portal)
@@ -131,7 +131,7 @@ void evilTwinLoop() {
 		dnsServer.start(53, "*", EVIL_TWIN_GATEWAY);
 
 		// Init deauth frame
-		memcpy(deauth_frame, deauth_frame_default, sizeof(deauth_frame_default));
+		Wifi::deauthResetFrame();
 
 		_evilTwinRegisterCaptiveEndpoints();
 		_evilTwinRegisterLogin();

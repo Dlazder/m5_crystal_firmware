@@ -143,7 +143,7 @@ void wifiBruteforceAllLoop() {
 
 	if (_bfaConnected) {
 		_bfaCracked++;
-		saveWifiPassword(_bfaCurrentSsid, _bfaCurrentPass);
+		Wifi::saveWifiPassword(_bfaCurrentSsid, _bfaCurrentPass);
 		soundSuccess();
 		for (int i = _bfaNetIndex; i < _bfaNetCount - 1; i++) _bfaNetIndices[i] = _bfaNetIndices[i + 1];
 		_bfaNetCount--;

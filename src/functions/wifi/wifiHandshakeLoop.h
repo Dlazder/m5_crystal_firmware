@@ -280,7 +280,7 @@ void wifiHandshakeLoop() {
 		fileOpen = false;
 		deauthEnabled = false;
 		lastDeauthTime = 0;
-		hsReset();
+		Wifi::hsReset();
 
 		// Snapshot target params (BSSID pointer from scan may become stale)
 		memcpy(hsTargetBssid, bssid, 6);
@@ -320,7 +320,7 @@ void wifiHandshakeLoop() {
 		WiFi.softAP("x", "", hsTargetChannel, 1, 1, true);
 
 		// Copy deauth frame template for targeted deauth
-		memcpy(deauth_frame, deauth_frame_default, sizeof(deauth_frame_default));
+		Wifi::deauthResetFrame();
 
 		// Enable promiscuous sniffing
 		esp_wifi_set_promiscuous(true);
@@ -355,13 +355,13 @@ void wifiHandshakeLoop() {
 		// Detect EAPOL handshake frames — lazy-open file on first hit
 		uint16_t fc = pkt.data[0] | (pkt.data[1] << 8);
 		if (((fc >> 2) & 0x3) == 2) { // Data frame (EAPOL)
-			if (hsProcessFrame(pkt.data)) {
+			if (Wifi::hsProcessFrame(pkt.data)) {
 				handshakeTotalPackets++;
 				// Open file on first handshake packet
 				if (!fileOpen && handshakeCapturePath.length() > 0) {
 					pcapFile = Storage::open(handshakeCapturePath.c_str(), "w", useLittleFS);
 					if (pcapFile) {
-						writePcapGlobalHeader(pcapFile);
+						Wifi::writePcapGlobalHeader(pcapFile);
 						fileOpen = true;
 					}
 				}
@@ -371,7 +371,7 @@ void wifiHandshakeLoop() {
 
 		// Write packet to PCAP (only after file is open)
 		if (fileOpen && pcapFile) {
-			writePcapPacket(pcapFile, pkt.data, pkt.len, pkt.rssi, pkt.timestamp, hsTargetChannel);
+			Wifi::writePcapPacket(pcapFile, pkt.data, pkt.len, pkt.rssi, pkt.timestamp, hsTargetChannel);
 		}
 	}
 
@@ -393,7 +393,7 @@ void wifiHandshakeLoop() {
 		uint32_t now = millis();
 		if (now - lastDeauthTime >= DEAUTH_INTERVAL_MS) {
 			lastDeauthTime = now;
-			deauthSendFrame(hsTargetBssid, hsTargetChannel);
+			Wifi::deauthSendFrame(hsTargetBssid, hsTargetChannel);
 		}
 	}
 
@@ -402,7 +402,7 @@ void wifiHandshakeLoop() {
 		canvas.clear();
 		canvas.setTextColor(FGCOLOR, BGCOLOR);
 
-		_hsDrawProgress(hsGetDisplayStep(), handshakeTotalPackets);
+		_hsDrawProgress(Wifi::hsGetDisplayStep(), handshakeTotalPackets);
 
 		canvas.setTextSize(SMALL_TEXT);
 		const int startY = 40; // topMargin(5) + sqH(20) + manual margin(15)

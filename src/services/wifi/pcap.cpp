@@ -1,17 +1,20 @@
-// PCAP file format utilities: structures and helpers for writing .pcap files
-// with IEEE 802.11 + Radiotap headers (LINKTYPE_IEEE802_11_RADIOTAP = 127).
+#include "wifi.h"
+#include "../storage/storage.h"
 
-// --- PCAP file format structures -------------------------------------------
+namespace Wifi {
+
+
+// PCAP file format structures
 // __attribute__((packed)) ensures exact on-disk layout (no compiler padding).
 
 struct __attribute__((packed)) pcap_hdr_s {
-	uint32_t magic_number;   // 0xa1b2c3d4
-	uint16_t version_major;  // 2
-	uint16_t version_minor;  // 4
-	int32_t  thiszone;       // GMT to local offset (0)
-	uint32_t sigfigs;        // timestamp accuracy (0)
-	uint32_t snaplen;        // max packet length
-	uint32_t network;        // link type: 127 = IEEE 802.11 + radiotap
+	uint32_t magic_number; // 0xa1b2c3d4
+	uint16_t version_major; // 2
+	uint16_t version_minor; // 4
+	int32_t thiszone; 			// GMT to local offset (0)
+	uint32_t sigfigs; 			// timestamp accuracy (0)
+	uint32_t snaplen; 			// max packet length
+	uint32_t network; 			// link type: 127 = IEEE 802.11 + radiotap
 };
 
 struct __attribute__((packed)) pcaprec_hdr_s {
@@ -23,56 +26,54 @@ struct __attribute__((packed)) pcaprec_hdr_s {
 
 // --- Radiotap header (16 bytes, packed) ------------------------------------
 // Present bits: 1 (Flags) | 3 (Channel) | 5 (dBm Signal)
-// Fields must appear in increasing present-bit order: 1, 3, 5.
-// flags = 0x10 (FCS at end) — ESP32 sig_len includes FCS (4 bytes).
 
 struct __attribute__((packed)) radiotap_hdr {
-	uint8_t  it_version;     // 0
-	uint8_t  it_pad;         // 1
-	uint16_t it_len;         // 2-3
-	uint32_t it_present;     // 4-7: bitmask of present fields
-	uint8_t  flags;          // 8:  bit 1 — Flags (0x10 = FCS at end)
-	uint8_t  pad1;           // 9:  align Channel to 2 bytes
-	uint16_t chan_freq;      // 10-11: bit 3 — Channel freq (MHz)
-	uint16_t chan_flags;     // 12-13: bit 3 — Channel flags
-	int8_t   ant_signal;     // 14: bit 5 — dBm Antenna Signal
-	uint8_t  pad2;           // 15: pad to 16 bytes
+	uint8_t it_version; // 0
+	uint8_t it_pad; // 1
+	uint16_t it_len; // 2-3
+	uint32_t it_present; // 4-7: bitmask of present fields
+	uint8_t flags; // 8: bit 1 — Flags (0x10 = FCS at end)
+	uint8_t pad1; 			// 9: align Channel to 2 bytes
+	uint16_t chan_freq; // 10-11: bit 3 — Channel freq (MHz)
+	uint16_t chan_flags; // 12-13: bit 3 — Channel flags
+	int8_t ant_signal; // 14: bit 5 — dBm Antenna Signal
+	uint8_t pad2; // 15: pad to 16 bytes
 };
 
-// --- Channel helpers --------------------------------------------------------
+// Channel helpers
 
 static uint16_t channelToFreq(int ch) {
 	if (ch >= 1 && ch <= 13) return 2412 + (ch - 1) * 5;
-	if (ch == 14)            return 2484;
+	if (ch == 14) 					return 2484;
 	if (ch >= 36 && ch <= 196) return 5000 + ch * 5;
 	return 2412; // fallback
 }
 
 static uint16_t channelFlagsFor(int ch) {
-	return (ch >= 1 && ch <= 14) ? 0x000a   // CCK + 2 GHz spectrum
-	                             : 0x0014;  // OFDM + 5 GHz spectrum
+	return (ch >= 1 && ch <= 14) ? 0x000a // CCK + 2 GHz spectrum
+																: 0x0014; // OFDM + 5 GHz spectrum
 }
 
-// --- PCAP write helpers -----------------------------------------------------
+// PCAP write helpers
 
-static void writePcapGlobalHeader(File& f) {
+void writePcapGlobalHeader(File& f) {
 	pcap_hdr_s hdr;
-	hdr.magic_number  = 0xa1b2c3d4;
+	hdr.magic_number = 0xa1b2c3d4;
 	hdr.version_major = 2;
 	hdr.version_minor = 4;
-	hdr.thiszone      = 0;
-	hdr.sigfigs       = 0;
-	hdr.snaplen       = 65535;
-	hdr.network       = 127; // LINKTYPE_IEEE802_11_RADIOTAP
+	hdr.thiszone = 0;
+	hdr.sigfigs = 0;
+	hdr.snaplen = 65535;
+	hdr.network = 127; // LINKTYPE_IEEE802_11_RADIOTAP
 	f.write((uint8_t*)&hdr, sizeof(hdr));
 }
 
-static void writePcapPacket(File& f, const uint8_t* data, uint16_t len,
-                            int8_t rssi, uint32_t timestamp, int channel) {
+void writePcapPacket(File& f, const uint8_t* data, uint16_t len,
+										int8_t rssi, uint32_t timestamp, int channel) {
 	// PCAP record header
 	pcaprec_hdr_s rec;
-	rec.ts_sec   = timestamp / 1000000;
-	rec.ts_usec  = timestamp % 1000000;
+	rec.ts_sec = timestamp / 1000000;
+	rec.ts_usec = timestamp % 1000000;
 	rec.incl_len = sizeof(radiotap_hdr) + len;
 	rec.orig_len = sizeof(radiotap_hdr) + len;
 	f.write((uint8_t*)&rec, sizeof(rec));
@@ -81,10 +82,10 @@ static void writePcapPacket(File& f, const uint8_t* data, uint16_t len,
 	radiotap_hdr rt;
 	memset(&rt, 0, sizeof(rt));
 	rt.it_version = 0;
-	rt.it_len     = sizeof(radiotap_hdr);
+	rt.it_len = sizeof(radiotap_hdr);
 	rt.it_present = (1 << 1) | (1 << 3) | (1 << 5); // Flags + Channel + Signal
-	rt.flags      = 0x00; // No FCS flag (see radiotap_hdr comment)
-	rt.chan_freq  = channelToFreq(channel);
+	rt.flags = 0x00; // No FCS flag (see radiotap_hdr comment)
+	rt.chan_freq = channelToFreq(channel);
 	rt.chan_flags = channelFlagsFor(channel);
 	rt.ant_signal = rssi;
 	f.write((uint8_t*)&rt, sizeof(rt));
@@ -93,18 +94,11 @@ static void writePcapPacket(File& f, const uint8_t* data, uint16_t len,
 	f.write(data, len);
 }
 
-// --- PCAP to FT Hash conversion -------------------------------------------
-// Reads a .pcap file (SD or LittleFS), extracts EAPOL handshake data, writes a
-// .hash file for FT-Crack / hashcat mode 22000 (WPA*04*...).
-// Returns true if a handshake was found and the hash file was written.
-
-static bool pcapToFTHash(const String& pcapPath, bool useLittleFS = false) {
-	bool storageReady = useLittleFS ? Storage::mountLittleFS() : Storage::mountSD();
-	if (!storageReady) {
-		Serial.printf("pcapToFTHash: storage init failed (LFS=%d)\n", useLittleFS);
-		return false;
-	}
-	File f = useLittleFS ? LittleFS.open(pcapPath.c_str()) : SD.open(pcapPath.c_str());
+// PCAP to FT Hash conversion
+// Reads a .pcap file, extracts EAPOL handshake data, writes a .hash file for
+// FT-Crack / hashcat mode 22000 (WPA*04*...).
+bool pcapToFTHash(const String& pcapPath, bool useLittleFS) {
+	File f = Storage::open(pcapPath.c_str(), "r", useLittleFS);
 	if (!f) {
 		Serial.printf("pcapToFTHash: cannot open %s\n", pcapPath.c_str());
 		return false;
@@ -121,23 +115,23 @@ static bool pcapToFTHash(const String& pcapPath, bool useLittleFS = false) {
 	if (network != 127) { f.close(); return false; } // must be LINKTYPE_IEEE802_11_RADIOTAP
 
 	// --- Storage for extracted handshake data ---
-	uint8_t  apMac[6];     bool hasApMac   = false;
-	uint8_t  staMac[6];    bool hasStaMac  = false;
-	char     ssid[33];     uint8_t ssidLen = 0;
-	uint8_t  mdid[2];      bool hasMdid    = false;
-	uint8_t  anonce[32];   bool hasAnonce  = false;
-	uint8_t  m2pdu[512];   uint16_t m2pduLen = 0;
-	uint8_t  m2mic[16];
-	uint8_t  mp = 0; // message pair bitmask
-	uint8_t  r0khid[48];   uint8_t r0khidLen = 0;
+	uint8_t apMac[6]; bool hasApMac = false;
+	uint8_t staMac[6]; bool hasStaMac = false;
+	char ssid[33]; uint8_t ssidLen = 0;
+	uint8_t mdid[2]; bool hasMdid = false;
+	uint8_t anonce[32]; bool hasAnonce = false;
+	uint8_t m2pdu[512]; uint16_t m2pduLen = 0;
+	uint8_t m2mic[16];
+	uint8_t mp = 0; // message pair bitmask
+	uint8_t r0khid[48]; uint8_t r0khidLen = 0;
 
-	uint8_t  pktBuf[512];
-	uint8_t  recHdr[16];
+	uint8_t pktBuf[512];
+	uint8_t recHdr[16];
 
 	while (f.read(recHdr, 16) == 16) {
 		// PCAP record header (little-endian)
 		uint32_t incl_len = recHdr[8] | ((uint32_t)recHdr[9]<<8)
-		                  | ((uint32_t)recHdr[10]<<16) | ((uint32_t)recHdr[11]<<24);
+												| ((uint32_t)recHdr[10]<<16) | ((uint32_t)recHdr[11]<<24);
 		if (incl_len > sizeof(pktBuf) || incl_len < 16) break;
 		if (f.read(pktBuf, incl_len) != (int)incl_len) break;
 
@@ -150,12 +144,12 @@ static bool pcapToFTHash(const String& pcapPath, bool useLittleFS = false) {
 
 		// 802.11 Frame Control
 		uint16_t fc = dot11[0] | (dot11[1] << 8);
-		uint8_t  frameType = (fc >> 2) & 0x3;
-		uint8_t  subtype   = (fc >> 4) & 0xF;
-		bool     toDS      = (fc >> 8) & 1;
-		bool     fromDS    = (fc >> 9) & 1;
+		uint8_t frameType = (fc >> 2) & 0x3;
+		uint8_t subtype = (fc >> 4) & 0xF;
+		bool toDS = (fc >> 8) & 1;
+		bool fromDS = (fc >> 9) & 1;
 
-		// --- Beacon (MGMT, subtype 8) ---
+		// Beacon (MGMT, subtype 8)
 		if (frameType == 0 && subtype == 8 && !hasApMac) {
 			memcpy(apMac, dot11 + 16, 6);
 			hasApMac = true;
@@ -181,15 +175,15 @@ static bool pcapToFTHash(const String& pcapPath, bool useLittleFS = false) {
 				// RSN IE: look for R0KH-ID sub-element (type 0x01)
 				if (tag == 0x30 && r0khidLen == 0 && tlen >= 20) {
 					const uint8_t* rsn = dot11 + pos + 2;
-					int off = 2;                               // version
-					off += 4;                                  // group cipher
+					int off = 2;         // version
+					off += 4;            // group cipher
 					uint16_t pwCnt = rsn[off] | (rsn[off+1]<<8);
-					off += 2 + pwCnt * 4;                      // pairwise list
+					off += 2 + pwCnt * 4; // pairwise list
 					if (off + 2 > tlen) goto beacon_next_ie;
 					uint16_t akmCnt = rsn[off] | (rsn[off+1]<<8);
-					off += 2 + akmCnt * 4;                     // AKM list
+					off += 2 + akmCnt * 4; // AKM list
 					if (off + 2 > tlen) goto beacon_next_ie;
-					off += 2;                                  // RSN capabilities
+					off += 2;            // RSN capabilities
 					if (off + 2 <= tlen) {
 						uint16_t pmkidCnt = rsn[off] | (rsn[off+1]<<8);
 						off += 2 + pmkidCnt * 16;
@@ -211,20 +205,20 @@ static bool pcapToFTHash(const String& pcapPath, bool useLittleFS = false) {
 			continue;
 		}
 
-		// --- Data frames ---
+		// Data frames
 		if (frameType != 2) continue;
 
 		int hdrLen = 24;
-		if (toDS && fromDS) hdrLen += 6;        // Addr4
-		if (subtype & 0x8) {                     // QoS Data
+		if (toDS && fromDS) hdrLen += 6; // Addr4
+		if (subtype & 0x8) { // QoS Data
 			hdrLen += 2;
-			if ((fc >> 15) & 1) hdrLen += 4;    // +HTC
+			if ((fc >> 15) & 1) hdrLen += 4; // +HTC
 		}
 
 		if (dot11Len < hdrLen + 8 + 4 + 77 + 16) continue; // need LLC + EAPOL hdr + MIC
 
 		// Check LLC/SNAP: AA AA 03 00 00 00 88 8E
-		if (dot11[hdrLen]   != 0xAA || dot11[hdrLen+1] != 0xAA
+		if (dot11[hdrLen] != 0xAA || dot11[hdrLen+1] != 0xAA
 		 || dot11[hdrLen+2] != 0x03 || dot11[hdrLen+6] != 0x88
 		 || dot11[hdrLen+7] != 0x8E) continue;
 
@@ -233,11 +227,11 @@ static bool pcapToFTHash(const String& pcapPath, bool useLittleFS = false) {
 
 		// Key Info at EAPOL body offset 1 (big-endian)
 		uint16_t keyInfo = (dot11[hdrLen + 13] << 8) | dot11[hdrLen + 14];
-		bool kAck   = (keyInfo >> 7) & 1;
-		bool kMic   = (keyInfo >> 8) & 1;
+		bool kAck = (keyInfo >> 7) & 1;
+		bool kMic = (keyInfo >> 8) & 1;
 		bool kSecure = (keyInfo >> 9) & 1;
 
-		// --- M1: ANonce ---
+		// M1: ANonce
 		if (kAck && !kMic && !hasAnonce) {
 			if (dot11Len >= hdrLen + 25 + 32 + 4) { // ANonce(32) + FCS(4)
 				memcpy(anonce, dot11 + hdrLen + 25, 32);
@@ -306,11 +300,8 @@ static bool pcapToFTHash(const String& pcapPath, bool useLittleFS = false) {
 	}
 
 	// --- Build hash line ---
-	// Worst case: 8(WPA*04*) + 32(MIC) + 12*6(addrs) + 64(ssid) + 64(anonce)
-	//   + 948(EAPOL max 474*2) + 2(mp) + 4(mdid) + 96(r0kh) + separators(~12) + newline
-	//   = ~1300 bytes. 1536 gives safety margin.
 	char hashLine[1536];
-	int  hl = 0;
+	int hl = 0;
 	#define HL_SAFE (hl < (int)sizeof(hashLine) - 2)
 
 	// Helper: append raw string
@@ -331,11 +322,11 @@ static bool pcapToFTHash(const String& pcapPath, bool useLittleFS = false) {
 	// Format: WPA*04*MIC*MAC_AP*MAC_CLIENT*ESSID*NONCE_AP*EAPOL_CLIENT*MESSAGEPAIR*MD-ID*R0KH-ID*R1KH-ID
 	HASH_ADD("WPA*04*");
 
-	HASH_HEX(m2mic, 16);      hashLine[hl++] = '*';
-	HASH_HEX(apMac, 6);       hashLine[hl++] = '*';
+	HASH_HEX(m2mic, 16); hashLine[hl++] = '*';
+	HASH_HEX(apMac, 6); hashLine[hl++] = '*';
 	HASH_HEX(hasStaMac ? staMac : apMac, 6); hashLine[hl++] = '*';
-	HASH_HEX((uint8_t*)ssid, ssidLen);       hashLine[hl++] = '*';
-	HASH_HEX(anonce, 32);                    hashLine[hl++] = '*';
+	HASH_HEX((uint8_t*)ssid, ssidLen); hashLine[hl++] = '*';
+	HASH_HEX(anonce, 32); hashLine[hl++] = '*';
 
 	// EAPOL_CLIENT with MIC zeroed
 	{
@@ -370,7 +361,7 @@ static bool pcapToFTHash(const String& pcapPath, bool useLittleFS = false) {
 	// R1KH-ID = BSSID
 	HASH_HEX(apMac, 6);
 	hashLine[hl++] = '\n';
-	hashLine[hl]   = '\0';
+	hashLine[hl] = '\0';
 
 	#undef HASH_ADD
 	#undef HASH_HEX
@@ -382,10 +373,12 @@ static bool pcapToFTHash(const String& pcapPath, bool useLittleFS = false) {
 
 	Serial.printf("pcapToFTHash: hashLine %d bytes, starts: %.80s\n", hl, hashLine);
 
-	File hf = useLittleFS ? LittleFS.open(hashPath.c_str(), FILE_WRITE) : SD.open(hashPath.c_str(), FILE_WRITE);
+	File hf = Storage::open(hashPath.c_str(), FILE_WRITE, useLittleFS);
 	if (!hf) { Serial.println("pcapToFTHash: cannot write hash file"); return false; }
 	hf.write((uint8_t*)hashLine, hl);
 	hf.close();
 	Serial.printf("pcapToFTHash: wrote %d bytes to %s\n", hl, hashPath.c_str());
 	return true;
+}
+
 }

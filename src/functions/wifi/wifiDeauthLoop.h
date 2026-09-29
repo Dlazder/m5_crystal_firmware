@@ -9,7 +9,7 @@ void wifiDeauthLoop() {
 	if (isSetup()) {
 		WiFi.mode(WIFI_AP);
 		WiFi.softAP(ssid, "", channel, 1, 4, false);
-		memcpy(deauth_frame, deauth_frame_default, sizeof(deauth_frame_default));
+		Wifi::deauthResetFrame();
 	}
 
 	String lines[] = {
@@ -20,7 +20,7 @@ void wifiDeauthLoop() {
 	drawSpinner();
 	canvas.pushSprite(0, getStatusBarHeight());
 
-	deauthSendFrame(bssid, channel);
+	Wifi::deauthSendFrame(bssid, channel);
 
 	checkExit();
 }
