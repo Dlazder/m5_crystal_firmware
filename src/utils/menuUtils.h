@@ -28,7 +28,7 @@ const int MENU_CHECKBOX_SCROLLBAR_GAP = 3; // gap between checkbox and scrollbar
 const int MENU_VISIBLE_ITEMS = 5; // max menu items rendered at once
 
 void drawMenu(MENU menu[], int size) {
-	if (cursor == size) cursor = cursor % size;
+	if (cursor >= size) cursor = cursor % size;
 	if (cursor < 0) cursor = size - 1;
 	if (cursor > 2 && size <= 2) cursor = 0;
 
@@ -79,6 +79,12 @@ void drawMenu(MENU menu[], int size) {
 }
 
 void menuLoop(MENU menu[], int size) {
+	// ESC returns to this menu's parent (the "Back" item at index 0).
+	if (isKbEscPressed()) {
+		if (process == PID::MAIN_MENU) return; // root menu has no parent
+		changeProcess(menu[0].command);
+		return;
+	}
 	if (isBtnBWasPressed() || isKbDownPressed() || isWebControlDownWasPressed()) {
 		cursor++;
 		drawMenu(menu, size);

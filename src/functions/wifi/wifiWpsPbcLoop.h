@@ -73,9 +73,10 @@ static void wpbcEventHandler(void* arg, esp_event_base_t event_base,
 // --- Save credentials to file ------------------------------------------------
 static void wpbcSaveFile() {
 	if (wpbcFileWritten) return;
-	bool sdOk = sdBegin();
-	if (!sdOk) {
-		wpbcUseLittleFS = lfsBegin();
+	if (Storage::mountSD()) {
+		wpbcUseLittleFS = false;
+	} else {
+		wpbcUseLittleFS = Storage::mountLittleFS();
 		if (!wpbcUseLittleFS) return;
 	}
 
@@ -85,10 +86,8 @@ static void wpbcSaveFile() {
 	safe.replace("*", "_"); safe.replace("?", "_"); safe.replace("\"", "_");
 	safe.replace("<", "_"); safe.replace(">", "_"); safe.replace("|", "_");
 
-	wpbcFilePath = generateUniqueFilename("/wps_pbc_" + safe, ".txt", wpbcUseLittleFS);
-	File f = wpbcUseLittleFS
-		? LittleFS.open(wpbcFilePath, FILE_WRITE)
-		: SD.open(wpbcFilePath, FILE_WRITE);
+	wpbcFilePath = Storage::uniquePath("/wps_pbc_" + safe, ".txt", wpbcUseLittleFS);
+	File f = Storage::open(wpbcFilePath.c_str(), "w", wpbcUseLittleFS);
 	if (!f) { Serial.println("WPS_PBC: file open failed"); return; }
 
 	f.print("# WPS PBC result\n");

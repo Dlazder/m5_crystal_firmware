@@ -4,7 +4,7 @@ Multifunctional firmware for pentesting and everyday use.
 - IR: read and save signal, send signal, TV-B-Gone.
 - NFC (PN-532): read and write 4-byte UID, tag info.
 - USB: BAD USB, mouse jiggler, air mouse, keyboard, mass storage
-- Files: edit, create, delete, rename files, view images.
+- Files: edit, create, delete, rename files/folders, view images.
 - UART terminal: recieving and sending text. baud rate and pins settings
 - Settings: time, timezone, rotation, colors, fonts, brightness, status bar, volume, startup sound, language (12 languages) etc.
 - Other: clock, battery, level tool, flashlight, sound level, system info

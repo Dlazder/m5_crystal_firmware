@@ -5,7 +5,7 @@
 // firmware must NOT touch the SD card itself or the filesystem will corrupt:
 // we end our own SD mount, hand the card to USBMSC, and only the PC reads/writes.
 
-#if defined(ESP32S3) && HAS_SD
+#if defined(ESP32S3)
 
 #include "USB.h"
 #include "USBMSC.h"
@@ -41,7 +41,7 @@ void usbStorageLoop() {
 	if (isSetup()) {
 		// (Re)mount the SD just to read its geometry, then release it so the
 		// host owns the card while MSC is active.
-		if (!sdBegin()) {
+		if (!Storage::mountSD()) {
 			centeredPrint(L->TXT_USB_STORAGE_NO_SD, MEDIUM_TEXT);
 			usbMscStarted = false;
 			return;
@@ -50,7 +50,7 @@ void usbStorageLoop() {
 		uint32_t sectorCount = SD.numSectors();
 		uint16_t sectorSize  = SD.sectorSize();
 		if (sectorCount == 0 || sectorSize == 0) {
-			sdEnd();
+			Storage::unmountSD();
 			centeredPrint(L->TXT_USB_STORAGE_NO_SD, MEDIUM_TEXT);
 			usbMscStarted = false;
 			return;
@@ -81,13 +81,13 @@ void usbStorageLoop() {
 			usbMsc.end();
 			usbMscStarted = false;
 			// Re-mount so the firmware's own file browser works again.
-			sdEnd();
-			sdBegin();
+			Storage::unmountSD();
+			Storage::mountSD();
 		}
 	}
 }
 
-#else // native USB device mode unavailable, or no SD card
+#else // native USB device mode unavailable
 
 void usbStorageLoop() {
 	if (isSetup()) {

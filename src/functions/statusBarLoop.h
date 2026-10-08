@@ -56,6 +56,18 @@ void statusBarLoop() {
 		statusBarCanvas.drawBitmap(bx, 2, Icons::bluetooth, MENU_ICON_W, MENU_ICON_H, FGCOLOR);
 	}
 
+	// Clipboard indicator (a file is staged for paste)
+	if (clipboardHasFile) {
+		int cx = batteryX - STATUS_BAR_GAP - MENU_ICON_W;
+		if (WiFi.isConnected()) {
+			cx -= MENU_ICON_W + STATUS_BAR_GAP;
+		}
+		if (bleCompositeBegan && bleKeyboard.isConnected()) {
+			cx -= MENU_ICON_W + STATUS_BAR_GAP;
+		}
+		statusBarCanvas.drawBitmap(cx, 2, Icons::file, MENU_ICON_W, MENU_ICON_H, FGCOLOR);
+	}
+
 	statusBarCanvas.setCursor(batteryX, 4);
 	statusBarCanvas.printf("%d%%", battery);
 

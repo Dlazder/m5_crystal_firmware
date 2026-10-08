@@ -1,9 +1,12 @@
+#include "wifi.h"
+#include <WiFi.h>
 #include <WiFiUdp.h>
 #include <NTPClient.h>
+#include <sys/time.h>
 
-// Lightweight NTP sync — call after WiFi connects.
-// Tries a few quick attempts, returns silently.
-static void autoNtpSync() {
+namespace Wifi {
+
+void autoNtpSync(int timezoneOffset) {
 	if (!WiFi.isConnected()) return;
 
 	WiFiUDP udp;
@@ -22,4 +25,6 @@ static void autoNtpSync() {
 		delay(500);
 	}
 	client.end();
+}
+
 }

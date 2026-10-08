@@ -2,6 +2,11 @@
 
 #ifdef ESP32S3
 
+static void usbSinkWrite(uint8_t c) { usbKeyboard.write(c); }
+static void usbSinkPress(uint8_t c) { usbKeyboard.press(c); }
+static void usbSinkReleaseAll() { usbKeyboard.releaseAll(); }
+static const Duckyscript::Sink usbSink = { usbSinkWrite, usbSinkPress, usbSinkReleaseAll };
+
 void badUsbLoop() {
 	static bool scriptRunning = false;
 	static bool scriptDone = false;
@@ -22,12 +27,15 @@ void badUsbLoop() {
 
 		if (selectedFilePath == "") return; // cancelled, changeProcess already called
 
-		if (!badUsbSetScript()) {
+		String* lines = nullptr;
+		int count = 0;
+		if (!Storage::readLines(selectedFilePath, lines, count, !fpSelectedSd)) {
 			centeredPrint(L->TXT_BT_FILE_ERROR, MEDIUM_TEXT);
 			selectedFilePath = "";
 			filePickerSetup(PID::OTHER);
 			return;
 		}
+		Duckyscript::begin(lines, count, usbSink);
 
 		// Initialize the native USB HID keyboard once and let the host enumerate it.
 		if (!usbHidBegan) {
@@ -54,31 +62,27 @@ void badUsbLoop() {
 			usbReady = false;
 			selectedFilePath = "";
 			fpActive = false;
-			badUsbFreeLines();
+			Duckyscript::end();
 		}
 		return;
 	}
 
 	// Script execution phase
 	if (!scriptDone) {
-		if ((!scriptRunning && isBtnAWasPressed()) || (isKbEnterPressed())) {
-			badUsbCurrentLine = 0;
-			badUsbDelayUntil = 0;
+		if ((!scriptRunning && isBtnAWasPressed()) || (!scriptRunning && isKbEnterPressed())) {
+			Duckyscript::rewind();
 			scriptRunning = true;
-			drawScript(badUsbLines, badUsbLineCount, badUsbCurrentLine);
+			drawScript(Duckyscript::lines(), Duckyscript::lineCount(), Duckyscript::currentLine());
 		}
 		if (scriptRunning) {
-			if (badUsbIsDelaying()) {
-				checkExit();
-				return;
-			}
-			if (!badUsbNextLine()) {
+			Duckyscript::Progress p = Duckyscript::step();
+			if (p == Duckyscript::Progress::Finished) {
 				scriptRunning = false;
 				scriptDone = true;
 				centeredPrint(L->TXT_BT_DONE, MEDIUM_TEXT);
 				soundSuccess();
-			} else {
-				drawScript(badUsbLines, badUsbLineCount, badUsbCurrentLine);
+			} else if (p == Duckyscript::Progress::LineAdvanced) {
+				drawScript(Duckyscript::lines(), Duckyscript::lineCount(), Duckyscript::currentLine());
 			}
 		}
 	}
@@ -89,7 +93,7 @@ void badUsbLoop() {
 		usbReady = false;
 		selectedFilePath = "";
 		fpActive = false;
-		badUsbFreeLines();
+		Duckyscript::end();
 	}
 }
 

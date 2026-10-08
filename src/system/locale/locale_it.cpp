@@ -23,7 +23,7 @@ const Locale LANG_IT = {
     .MENU_WIFI_HANDSHAKE         = "cattura handshake",
     .MENU_WIFI_PMKID             = "cattura PMKID",
     .MENU_WIFI_PIXIE_DUST        = "pixie dust",
-.MENU_WIFI_WPS_PBC          = "wps pbc",
+    .MENU_WIFI_WPS_PBC          = "wps pbc",
     .MENU_WIFI_CHANNEL_ANALYZER  = "analizzatore canali",
     .MENU_WIFI_WEB_SERVER       = "web server",
     .MENU_SETTINGS_WIFI_SSID      = "Wi-Fi SSID",
@@ -49,6 +49,21 @@ const Locale LANG_IT = {
     .MENU_FILES_VIEW              = "visualizza",
     .MENU_FILES_EDIT              = "modifica",
     .MENU_FILES_LITTLEFS                = "littleFS",
+    .MENU_FILES_OPTIONS       = "opzioni",
+    .MENU_FILES_CREATE_FILE   = "crea file",
+    .MENU_FILES_CREATE_DIR    = "crea cartella",
+    .MENU_FILES_FOLDER_INFO   = "info cartella",
+    .MENU_FILES_DELETE_DIR    = "elimina cartella",
+    .MENU_FILES_RENAME_DIR   = "rinomina cartella",
+    .MENU_FILES_COPY         = "copia",
+    .MENU_FILES_PASTE        = "incolla",
+
+    // Files text
+    .TXT_DELETE_DIR           = "eliminare cartella?",
+    .TXT_DELETE_RECURSIVE     = "eliminare ricorsivamente?",
+    .TXT_DELETE_RECURSIVE_HINT = "tutto il contenuto sarà rimosso",
+    .TXT_FOLDER_COUNTS        = "%d file, %d cartelle",
+    .TXT_CLIPBOARD_EMPTY      = "appunti vuoti",
 
     // NFC menu
     .MENU_NFC                     = "NFC",
@@ -77,7 +92,7 @@ const Locale LANG_IT = {
     .MENU_SETTINGS                = "impostazioni",
     .MENU_SETTINGS_UI             = "UI e schermo",
     .MENU_SETTINGS_TIME           = "ora",
-    .MENU_SETTINGS_BRIGHTNESS     = "luminosita",
+    .MENU_SETTINGS_BRIGHTNESS     = "luminosità",
     .MENU_SETTINGS_VOLUME         = "volume",
     .MENU_SETTINGS_ROTATION       = "inverti rotazione",
     .MENU_SETTINGS_COLORS         = "colori",
@@ -91,6 +106,7 @@ const Locale LANG_IT = {
     .MENU_SETTINGS_DIMMING        = "oscura",
     .MENU_SETTINGS_WEBSERVER_FS   = "web server FS",
     .MENU_SETTINGS_TIMEZONE       = "fuso orario",
+    .MENU_SETTINGS_SD_ROOT        = "monta SD in /crystal",
 
     // Other menu
     .MENU_OTHER                   = "altro",
@@ -175,6 +191,9 @@ const Locale LANG_IT = {
     .TXT_USB_STORAGE_NO_SD        = "Nessuna scheda SD",
     .TXT_USB_STORAGE_ACTIVE       = "Archiviazione USB attiva",
     .TXT_USB_STORAGE_HINT         = "Espelli per uscire",
+    // Storage text
+    .TXT_STORAGE_LITTLEFS_ERROR = "Errore LittleFS",
+    .TXT_STORAGE_SD_ERROR       = "Errore SD",
 
     // NFC text
     .TXT_NFC_NO_UID_STORED        = "Nessun UID salvato",
@@ -189,7 +208,7 @@ const Locale LANG_IT = {
 
     // Settings text
     .TXT_SETTINGS_LANGUAGE        = "Lingua: ",
-    .TXT_SETTINGS_BRIGHTNESS      = "luminosita: ",
+    .TXT_SETTINGS_BRIGHTNESS      = "luminosità: ",
     .TXT_SETTINGS_VOLUME          = "volume: ",
     .TXT_SETTINGS_COLOR           = "colore: ",
     .TXT_SETTINGS_FONT            = "Carattere:",
@@ -204,3 +223,4 @@ const Locale LANG_IT = {
 	.MENU_UART_TERMINAL = "terminale",
 	.MENU_UART_SAVE_LOGS = "salva log",
 };
+

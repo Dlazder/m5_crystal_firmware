@@ -7,13 +7,6 @@
 #define HAS_RTC         false
 #define HAS_PHYSICAL_KB false
 #define HAS_SPEAKER     true
-#define HAS_SD          true
-
-// SD card SPI pins (HAT connector — Hat2-Bus: G7=CS, G5=SCK, G6=MOSI, G4=MISO)
-#define SD_CS_PIN 7
-#define SD_CLK_PIN 5
-#define SD_MOSI_PIN 6
-#define SD_MISO_PIN 4
 
 // IMU axis mapping for Sticks3 orientation (horizontal / landscape)
 #define IMU_MOUSE_X(ax, ay) ( -(ax) )
@@ -32,11 +25,11 @@
 #define NFC_SDA 9
 #define NFC_SCL 10
 
-// IR — RMT-based receiver (Arduino 3.x / ESP-IDF 5.x required)
-#define IR_USE_RMT
+// IR — RMT-based receiver (Arduino 3.x / ESP-IDF 5.x required).
+// IR_USE_RMT is a build flag in platformio.ini (this board only).
 // IR transmitter — built-in LED
 #define IR_SEND_PIN 46
-// IR receiver — external module connected to G5
+// IR receiver — built-in photodiode on GPIO42; read via RMT only (IRremote can't)
 #define IR_RECEIVE_PIN 42
 
 // UART terminal — GROVE port (G1=TX, G2=RX)

@@ -49,6 +49,21 @@ const Locale LANG_TR = {
 	.MENU_FILES_VIEW             = "görüntüle",
 	.MENU_FILES_EDIT             = "düzenle",
 	.MENU_FILES_LITTLEFS         = "littleFS",
+	.MENU_FILES_OPTIONS       = "seçenekler",
+	.MENU_FILES_CREATE_FILE   = "dosya oluştur",
+	.MENU_FILES_CREATE_DIR    = "klasör oluştur",
+	.MENU_FILES_FOLDER_INFO   = "klasör bilgisi",
+	.MENU_FILES_DELETE_DIR    = "klasörü sil",
+	.MENU_FILES_RENAME_DIR   = "klasör yeniden adlandır",
+	.MENU_FILES_COPY         = "kopyala",
+	.MENU_FILES_PASTE        = "yapıştır",
+
+	// Files text
+	.TXT_DELETE_DIR           = "klasör silinsin mi?",
+	.TXT_DELETE_RECURSIVE     = "özyinelemeli sil?",
+	.TXT_DELETE_RECURSIVE_HINT = "tüm içerik kaldırılacak",
+	.TXT_FOLDER_COUNTS        = "%d dosya, %d klasör",
+	.TXT_CLIPBOARD_EMPTY      = "pano boş",
 
 	// NFC menu
 	.MENU_NFC                    = "NFC",
@@ -91,6 +106,7 @@ const Locale LANG_TR = {
 	.MENU_SETTINGS_DIMMING       = "ekran karartma",
 	.MENU_SETTINGS_WEBSERVER_FS  = "web sunucu FS",
 	.MENU_SETTINGS_TIMEZONE      = "saat dilimi",
+	.MENU_SETTINGS_SD_ROOT       = "SD'yi /crystal'e bağla",
 
 	// Other menu
 	.MENU_OTHER                  = "diğer",
@@ -98,7 +114,7 @@ const Locale LANG_TR = {
 	.MENU_OTHER_CLOCK            = "saat",
 	.MENU_OTHER_SOUND_LEVEL      = "ses seviyesi",
 	.MENU_OTHER_FLASHLIGHT       = "el feneri",
-	.MENU_OTHER_FLICKER          = "titreşim",
+	.MENU_OTHER_FLICKER          = "titreme",
 	.MENU_OTHER_LEVEL_TOOL       = "su terazisi",
 
 	// USB menu
@@ -175,6 +191,9 @@ const Locale LANG_TR = {
 	.TXT_USB_STORAGE_NO_SD       = "SD kart yok",
 	.TXT_USB_STORAGE_ACTIVE      = "USB depolama etkin",
 	.TXT_USB_STORAGE_HINT        = "Çıkmak için çıkar",
+	// Storage text
+	.TXT_STORAGE_LITTLEFS_ERROR = "LittleFS hatası",
+	.TXT_STORAGE_SD_ERROR       = "SD hatası",
 
 	// NFC text
 	.TXT_NFC_NO_UID_STORED       = "Kayıtlı UID yok",
@@ -204,3 +223,4 @@ const Locale LANG_TR = {
 	.MENU_UART_TERMINAL = "terminal",
 	.MENU_UART_SAVE_LOGS = "logları kaydet",
 };
+

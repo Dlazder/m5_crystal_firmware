@@ -80,7 +80,7 @@ void wifiBruteforceLoop() {
 
 		if (selectedFilePath == "") return;
 
-		if (!readFileLines(selectedFilePath, _bfPasswords, _bfTotal)) {
+		if (!Storage::readLines(selectedFilePath, _bfPasswords, _bfTotal, !fpSelectedSd)) {
 			centeredPrint(L->TXT_BT_FILE_ERROR, MEDIUM_TEXT);
 			delay(1200);
 			_bfRestart();
@@ -126,7 +126,7 @@ void wifiBruteforceLoop() {
 		_bfDone    = true;
 		WiFi.disconnect(true);
 		wifiPassword = _bfCurrentPass;
-		saveWifiPassword(ssid, wifiPassword);
+		Wifi::saveWifiPassword(ssid, wifiPassword);
 		String lines[] = { String(L->TXT_SUCCESS), _bfCurrentPass.substring(0, 20) };
 		centeredPrintRows(lines, 2, MEDIUM_TEXT);
 		soundSuccess();

@@ -1,25 +1,22 @@
-// Handshake session tracker — counts only complete M1→M2→M3→M4 sequences.
-// Call hsProcessFrame() for each captured EAPOL-Key data frame;
-// returns true when a full 4-way handshake completes for a given client.
+#include "wifi.h"
 
-#pragma once
-#include <stdint.h>
+namespace Wifi {
 
 #define HS_MAX_SESSIONS 4
-#define HS_TIMEOUT_MS   30000
+#define HS_TIMEOUT_MS 30000
 
 struct hs_session_t {
 	uint8_t client[6];
 	uint8_t ap[6];
-	uint8_t step;       // 0=idle, 1=M1, 2=M2, 3=M3
+	uint8_t step; // 0=idle, 1=M1, 2=M2, 3=M3
 	uint64_t replay;
 	uint32_t lastUpdate;
 };
 static hs_session_t hs_sessions[HS_MAX_SESSIONS];
-static int hsDisplayStep = 0; // 0-4, exposed for UI
+static int hsDisplayStep = 0; // 0-4, exposed via hsGetDisplayStep()
 
 // Returns true when this EAPOL-Key frame completes a 4-way handshake.
-static bool hsProcessFrame(const uint8_t* data) {
+bool hsProcessFrame(const uint8_t* data) {
 	// --- 802.11 header ---
 	uint16_t fc = data[0] | (data[1] << 8);
 	bool toDS = (fc >> 8) & 1;
@@ -48,9 +45,9 @@ static bool hsProcessFrame(const uint8_t* data) {
 	// --- Client / AP MAC ---
 	const uint8_t *clientMac, *apMac;
 	if (toDS && !fromDS) {
-		clientMac = data + 10; apMac = data + 4;   // STA→AP
+		clientMac = data + 10; apMac = data + 4; // STA→AP
 	} else {
-		clientMac = data + 4;  apMac = data + 10;  // AP→STA
+		clientMac = data + 4; apMac = data + 10; // AP→STA
 	}
 
 	// --- Replay counter ---
@@ -101,7 +98,7 @@ static bool hsProcessFrame(const uint8_t* data) {
 	} else if (msg == 2) {
 		// M2 or M4 — distinguished by state + replay
 		if (s.step == 1 && replay == s.replay) {
-			s.step = 2;                     // M1→M2
+			s.step = 2; // M1→M2
 			s.lastUpdate = now;
 			hsDisplayStep = 2;
 			Serial.printf("HS %02x:%02x:%02x: M1→M2\n",
@@ -129,11 +126,13 @@ static bool hsProcessFrame(const uint8_t* data) {
 	return false;
 }
 
-static void hsReset() {
+void hsReset() {
 	memset(hs_sessions, 0, sizeof(hs_sessions));
 	hsDisplayStep = 0;
 }
 
-static int hsGetDisplayStep() {
+int hsGetDisplayStep() {
 	return hsDisplayStep;
 }
+
+} // namespace Wifi

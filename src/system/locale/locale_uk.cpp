@@ -23,7 +23,7 @@ const Locale LANG_UK = {
 	.MENU_WIFI_HANDSHAKE         = "захоплення рукостискання",
 	.MENU_WIFI_PMKID             = "pmkid захоплення",
 	.MENU_WIFI_PIXIE_DUST        = "pixie dust",
-.MENU_WIFI_WPS_PBC          = "wps pbc",
+	.MENU_WIFI_WPS_PBC          = "wps pbc",
 	.MENU_WIFI_CHANNEL_ANALYZER  = "аналіз каналів",
 	.MENU_WIFI_WEB_SERVER       = "веб-сервер",
 	.MENU_SETTINGS_WIFI_SSID      = "Wi-Fi SSID",
@@ -49,6 +49,21 @@ const Locale LANG_UK = {
 	.MENU_FILES_VIEW             = "перегляд",
 	.MENU_FILES_EDIT             = "редагувати",
 	.MENU_FILES_LITTLEFS               = "littleFS",
+	.MENU_FILES_OPTIONS       = "опції",
+	.MENU_FILES_CREATE_FILE   = "створити файл",
+	.MENU_FILES_CREATE_DIR    = "створити папку",
+	.MENU_FILES_FOLDER_INFO   = "інфо папки",
+	.MENU_FILES_DELETE_DIR    = "видалити папку",
+	.MENU_FILES_RENAME_DIR   = "перейменувати папку",
+	.MENU_FILES_COPY         = "копіювати",
+	.MENU_FILES_PASTE        = "вставити",
+
+	// Files text
+	.TXT_DELETE_DIR           = "видалити папку?",
+	.TXT_DELETE_RECURSIVE     = "видалити рекурсивно?",
+	.TXT_DELETE_RECURSIVE_HINT = "весь вміст буде видалено",
+	.TXT_FOLDER_COUNTS        = "%d файлів, %d папок",
+	.TXT_CLIPBOARD_EMPTY      = "буфер обміну порожній",
 
 	// NFC menu
 	.MENU_NFC                    = "NFC",
@@ -91,6 +106,7 @@ const Locale LANG_UK = {
 	.MENU_SETTINGS_DIMMING       = "димінг",
 	.MENU_SETTINGS_WEBSERVER_FS  = "веб-сервер FS",
 	.MENU_SETTINGS_TIMEZONE      = "часовий пояс",
+	.MENU_SETTINGS_SD_ROOT       = "монтувати SD у /crystal",
 
 	// Other menu
 	.MENU_OTHER                  = "інше",
@@ -175,6 +191,9 @@ const Locale LANG_UK = {
 	.TXT_USB_STORAGE_NO_SD       = "Немає SD карти",
 	.TXT_USB_STORAGE_ACTIVE      = "USB накопичувач активний",
 	.TXT_USB_STORAGE_HINT        = "Витягніть для виходу",
+	// Storage text
+	.TXT_STORAGE_LITTLEFS_ERROR = "Помилка LittleFS",
+	.TXT_STORAGE_SD_ERROR       = "Помилка SD",
 
 	// NFC text
 	.TXT_NFC_NO_UID_STORED       = "UID не збережено",
@@ -204,3 +223,4 @@ const Locale LANG_UK = {
 	.MENU_UART_TERMINAL = "термінал",
 	.MENU_UART_SAVE_LOGS = "зберегти логи",
 };
+

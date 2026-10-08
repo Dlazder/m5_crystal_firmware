@@ -5,24 +5,23 @@ MENU* sdFileMenu = nullptr;
 String* sdFileFullPaths = nullptr;
 String sdCurrentDir = "/";
 
-#if HAS_SD
 void _sdBuildMenu() {
 	if (sdFileMenu != nullptr) { delete[] sdFileMenu; sdFileMenu = nullptr; }
 	if (sdFileFullPaths != nullptr) { delete[] sdFileFullPaths; sdFileFullPaths = nullptr; }
 	sdFileCount = 0;
 
-	if (!sdBegin()) { centeredPrint("SD error", MEDIUM_TEXT); return; }
+	if (!Storage::requireSD()) return;
 
 	String* names = nullptr;
 	bool* isDir = nullptr;
-	sdFileCount = _scanDir(SD, sdCurrentDir, names, isDir);
+	sdFileCount = Storage::list(sdCurrentDir, false, names, isDir);
 	if (sdFileCount < 0) return;
 
 	sdFileMenu = new MENU[sdFileCount + 2];
 	sdFileFullPaths = new String[sdFileCount];
 
 	sdFileMenu[0] = { PID::FILES_MENU, L->MENU_BACK, Icons::back };
-	sdFileMenu[1] = { PID::FILE_CREATE, "create", Icons::create };
+	sdFileMenu[1] = { PID::FILE_OPTIONS, L->MENU_FILES_OPTIONS, Icons::other };
 
 	for (int i = 0; i < sdFileCount; i++) {
 		sdFileFullPaths[i] = _fpMakePath(sdCurrentDir, names[i]);
@@ -33,13 +32,11 @@ void _sdBuildMenu() {
 	delete[] names;
 	delete[] isDir;
 }
-#endif
 
 void filePickerSDLoop() {
-#if HAS_SD
 	if (isSetup()) {
 		cursor = 0;
-		sdCurrentDir = "/";
+		sdCurrentDir = sdRootDir();
 		_sdBuildMenu();
 		if (sdFileMenu == nullptr) return;
 		drawMenu(sdFileMenu, sdFileCount + 2);
@@ -52,6 +49,18 @@ void filePickerSDLoop() {
 
 	int totalItems = sdFileCount + 2;
 
+	if (isKbEscPressed()) {
+		if (sdCurrentDir == sdRootDir()) {
+			changeProcess(PID::FILES_MENU);
+		} else {
+			_goParentDirTo(sdCurrentDir, sdRootDir());
+			_sdBuildMenu();
+			cursor = 0;
+			drawMenu(sdFileMenu, sdFileCount + 2);
+		}
+		return;
+	}
+
 	if (isBtnBWasPressed() || isKbDownPressed() || isWebControlDownWasPressed()) {
 		cursor++;
 		drawMenu(sdFileMenu, totalItems);
@@ -63,10 +72,10 @@ void filePickerSDLoop() {
 
 	if (isBtnAWasPressed() || isKbEnterPressed()) {
 		if (cursor == 0) {
-			if (sdCurrentDir == "/") {
+			if (sdCurrentDir == sdRootDir()) {
 				changeProcess(PID::FILES_MENU);
 			} else {
-				_goParentDir(sdCurrentDir);
+				_goParentDirTo(sdCurrentDir, sdRootDir());
 				_sdBuildMenu();
 				cursor = 0;
 				drawMenu(sdFileMenu, sdFileCount + 2);
@@ -76,7 +85,8 @@ void filePickerSDLoop() {
 
 		if (cursor == 1) {
 			createFileCurrentDir = sdCurrentDir;
-			changeProcess(PID::FILE_CREATE);
+			fileOptionsSourcePid = PID::FILE_PICKER_SD;
+			changeProcess(PID::FILE_OPTIONS);
 			return;
 		}
 
@@ -97,10 +107,4 @@ void filePickerSDLoop() {
 	if (isWebDataRequested()) {
 		webData = generateWebData("menu", generateMenuString(sdFileMenu, totalItems));
 	}
-#else
-	if (isSetup()) {
-		centeredPrint("No SD", MEDIUM_TEXT);
-	}
-	checkExit(PID::FILES_MENU);
-#endif
 }

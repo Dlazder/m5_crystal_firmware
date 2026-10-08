@@ -10,7 +10,7 @@ void wifiDeauthAllLoop() {
 		}
 		WiFi.mode(WIFI_AP);
 		WiFi.softAP("deauth_all", "", 1, 1, 4, false);
-		memcpy(deauth_frame, deauth_frame_default, sizeof(deauth_frame_default));
+		Wifi::deauthResetFrame();
 		_daIndex = 0;
 	}
 
@@ -34,7 +34,7 @@ void wifiDeauthAllLoop() {
 	drawSpinner();
 	canvas.pushSprite(0, getStatusBarHeight());
 
-	deauthSendFrame(targetBssid, targetChannel);
+	Wifi::deauthSendFrame(targetBssid, targetChannel);
 
 	_daIndex = (_daIndex + 1) % wifiCount;
 }

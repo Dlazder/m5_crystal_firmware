@@ -63,7 +63,7 @@
     \
     /* Files (500-599) */ \
     X(FILES_MENU,         500, filesMenuLoop) \
-    X(FILE_PICKER,        501, lfsFilePickerLoop) \
+    X(FILE_PICKER,        501, filePickerLFSLoop) \
     X(FILE_PICKER_SD,     502, filePickerSDLoop) \
     X(SELECTED_FILE_MENU, 503, selectedFileMenuLoop) \
     X(FILE_DELETE,        504, deleteFileLoop) \
@@ -72,6 +72,13 @@
     X(FILE_RENAME,        507, renameFileLoop) \
     X(FILE_VIEW,          508, readFileLoop) \
     X(FILE_EDIT,          509, editFileLoop) \
+    X(FILE_OPTIONS,       510, fileOptionsLoop) \
+    X(FILE_CREATE_DIR,    511, createDirLoop) \
+    X(FILE_DELETE_DIR,    512, deleteDirLoop) \
+    X(FILE_FOLDER_INFO,   513, folderInfoLoop) \
+    X(FILE_RENAME_DIR,    514, renameDirLoop) \
+    X(FILE_COPY,          515, copyFileLoop) \
+    X(FILE_PASTE,         516, pasteFileLoop) \
     \
     /* IR (600-699) */ \
     X(IR,                 600, irMenuLoop) \
@@ -109,6 +116,9 @@
     X(UART_CONFIG_RX,     814, uartConfigRxLoop) \
     X(UART_CONFIG_TX,     815, uartConfigTxLoop) \
     X(UART_CONFIG_BAUD,   816, uartConfigBaudLoop) \
+    \
+    /* Error screen (900-999) */ \
+    X(ERROR_SCREEN,       999, errorLoop) \
 
 namespace PID {
     #define X(name, id, fn) const int name = id;

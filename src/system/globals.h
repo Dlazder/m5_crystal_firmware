@@ -51,6 +51,10 @@ int cursor = 0;
 int process = PID::MAIN_MENU;
 int previousProcess = PID::MAIN_MENU;
 bool isSwitching = true;
+
+// Universal error screen (see errorUtils.h / errorLoop.h)
+String errorMessage = "";
+int errorReturnPid = PID::MAIN_MENU;
 int rotation = 0;  // 0 = normal (DISP rotation 1), 1 = inverted (DISP rotation 3)
 
 #define DEVICE M5
@@ -58,6 +62,11 @@ int rotation = 0;  // 0 = normal (DISP rotation 1), 1 = inverted (DISP rotation 
 
 M5Canvas canvas(&DISP);
 M5Canvas statusBarCanvas(&DISP);
+
+// Color depth of the canvas sprite: 8 = RGB332 (256 colors), 16 = RGB565.
+// 8 halves the sprite's RAM (55 KB -> 27 KB), which is what lets the SD
+// driver mount alongside Bluedroid BLE on the no-PSRAM Cardputer ADV.
+uint8_t canvasColorDepth = 8;
 
 uint16_t BGCOLOR=TFT_BLACK;
 uint16_t FGCOLOR=TFT_WHITE;
@@ -150,6 +159,15 @@ int dimmingPreviousTimer = 0;
 // files
 String selectedFilePath = "";
 String createFileCurrentDir = "/";
+int fileOptionsSourcePid = PID::FILE_PICKER;
+
+// file clipboard (copy/paste): holds a pending file while the user navigates
+// to a destination directory, then paste streams it across backends.
+bool clipboardHasFile = false;
+String clipboardPath = "";
+bool clipboardIsLittleFS = true;
+
+String sdRootDir() { return sdMountCrystal ? "/crystal" : "/"; }
 
 // wifi deauth
 String ssid;
@@ -192,7 +210,8 @@ bool bleCompositeBegan = false;
 // byte-identical to the one BleCombo already defined but counts as a conflicting
 // declaration. Rename USB's typedef to UsbKeyReport for the duration of the
 // include so both can coexist in this translation unit. Both KEY_* macro sets
-// are identical standard HID usages, so reusing badUsbResolveKey stays valid.
+// use identical ESP32 HID "special key" codes (0x80+), so the Duckyscript
+// service's own Key::* constants stay valid for both transports.
 #ifdef ESP32S3
 #define KeyReport UsbKeyReport
 #include "USB.h"
@@ -210,6 +229,14 @@ bool usbHidBegan = false;
 // IR pins — configurable via IR → configure pins; defaults come from the device header
 uint8_t irRxPin = IR_RECEIVE_PIN;
 uint8_t irTxPin = IR_SEND_PIN;
+#ifdef IR_USE_RMT
+// IR RX backend (M5StickS3 only): false = RMT (built-in), true = GPIO IRremote.
+// Testing toggle — switch on the fly to compare the two receivers.
+bool irRxUseGpio = false;
+// RMT reads the built-in photodiode on a FIXED pin; irRxPin above is the
+// configurable external module used by the GPIO/IRremote path.
+uint8_t irRmtRxPin = IR_RECEIVE_PIN;
+#endif
 
 // UART terminal — configurable pins/baud; defaults come from the device header
 uint8_t uartRxPin = UART_RX_PIN;

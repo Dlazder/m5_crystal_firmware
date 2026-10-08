@@ -1,5 +1,10 @@
 // PID::BAD_BLE
 
+static void bleSinkWrite(uint8_t c) { bleKeyboard.write(c); }
+static void bleSinkPress(uint8_t c) { bleKeyboard.press(c); }
+static void bleSinkReleaseAll() { bleKeyboard.releaseAll(); }
+static const Duckyscript::Sink bleSink = { bleSinkWrite, bleSinkPress, bleSinkReleaseAll };
+
 void badBleLoop() {
 	static bool scriptRunning = false;
 	static bool scriptDone = false;
@@ -19,12 +24,15 @@ void badBleLoop() {
 
 		if (selectedFilePath == "") return; // cancelled, changeProcess already called
 
-		if (!badUsbSetScript()) {
+		String* lines = nullptr;
+		int count = 0;
+		if (!Storage::readLines(selectedFilePath, lines, count, !fpSelectedSd)) {
 			centeredPrint(L->TXT_BT_FILE_ERROR, MEDIUM_TEXT);
 			selectedFilePath = "";
 			filePickerSetup(PID::BLUETOOTH);
 			return;
 		}
+		Duckyscript::begin(lines, count, bleSink);
 		bleConnect();
 		return;
 	}
@@ -37,24 +45,20 @@ void badBleLoop() {
 
 	// Script execution phase
 	if (bleConnected && !scriptDone) {
-		if (!scriptRunning && isBtnAWasPressed() || (isKbEnterPressed())) {
-			badUsbCurrentLine = 0;
-			badUsbDelayUntil = 0;
+		if (!scriptRunning && isBtnAWasPressed() || (!scriptRunning && isKbEnterPressed())) {
+			Duckyscript::rewind();
 			scriptRunning = true;
-			drawScript(badUsbLines, badUsbLineCount, badUsbCurrentLine);
+			drawScript(Duckyscript::lines(), Duckyscript::lineCount(), Duckyscript::currentLine());
 		}
 		if (scriptRunning) {
-			if (badUsbIsDelaying()) {
-				checkExit();
-				return;
-			}
-			if (!badBleNextLine()) {
+			Duckyscript::Progress p = Duckyscript::step();
+			if (p == Duckyscript::Progress::Finished) {
 				scriptRunning = false;
 				scriptDone = true;
 				centeredPrint(L->TXT_BT_DONE, MEDIUM_TEXT);
 				soundSuccess();
-			} else {
-				drawScript(badUsbLines, badUsbLineCount, badUsbCurrentLine);
+			} else if (p == Duckyscript::Progress::LineAdvanced) {
+				drawScript(Duckyscript::lines(), Duckyscript::lineCount(), Duckyscript::currentLine());
 			}
 		}
 	}
@@ -65,6 +69,6 @@ void badBleLoop() {
 		scriptDone = false;
 		selectedFilePath = "";
 		fpActive = false;
-		badUsbFreeLines();
+		Duckyscript::end();
 	}
 }

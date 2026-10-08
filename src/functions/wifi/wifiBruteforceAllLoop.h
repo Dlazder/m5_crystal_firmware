@@ -104,7 +104,7 @@ void wifiBruteforceAllLoop() {
 		if (filePickerLoop()) return;
 		if (selectedFilePath == "") return; // cancelled
 
-		if (!readFileLines(selectedFilePath, _bfaPasswords, _bfaTotal)) {
+		if (!Storage::readLines(selectedFilePath, _bfaPasswords, _bfaTotal, !fpSelectedSd)) {
 			centeredPrint(L->TXT_BT_FILE_ERROR, MEDIUM_TEXT);
 			_bfaRestart();
 			return;
@@ -143,7 +143,7 @@ void wifiBruteforceAllLoop() {
 
 	if (_bfaConnected) {
 		_bfaCracked++;
-		saveWifiPassword(_bfaCurrentSsid, _bfaCurrentPass);
+		Wifi::saveWifiPassword(_bfaCurrentSsid, _bfaCurrentPass);
 		soundSuccess();
 		for (int i = _bfaNetIndex; i < _bfaNetCount - 1; i++) _bfaNetIndices[i] = _bfaNetIndices[i + 1];
 		_bfaNetCount--;

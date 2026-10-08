@@ -49,6 +49,21 @@ const Locale LANG_FR = {
 	.MENU_FILES_VIEW             = "afficher",
 	.MENU_FILES_EDIT             = "éditer",
 	.MENU_FILES_LITTLEFS         = "littleFS",
+	.MENU_FILES_OPTIONS       = "options",
+	.MENU_FILES_CREATE_FILE   = "créer un fichier",
+	.MENU_FILES_CREATE_DIR    = "créer un dossier",
+	.MENU_FILES_FOLDER_INFO   = "info dossier",
+	.MENU_FILES_DELETE_DIR    = "supprimer le dossier",
+	.MENU_FILES_RENAME_DIR   = "renommer le dossier",
+	.MENU_FILES_COPY         = "copier",
+	.MENU_FILES_PASTE        = "coller",
+
+	// Files text
+	.TXT_DELETE_DIR           = "supprimer le dossier ?",
+	.TXT_DELETE_RECURSIVE     = "supprimer récursivement ?",
+	.TXT_DELETE_RECURSIVE_HINT = "tout le contenu sera supprimé",
+	.TXT_FOLDER_COUNTS        = "%d fichiers, %d dossiers",
+	.TXT_CLIPBOARD_EMPTY      = "presse-papiers vide",
 
 	// NFC menu
 	.MENU_NFC                    = "NFC",
@@ -91,6 +106,7 @@ const Locale LANG_FR = {
 	.MENU_SETTINGS_DIMMING       = "écran veille",
 	.MENU_SETTINGS_WEBSERVER_FS  = "serveur web FS",
 	.MENU_SETTINGS_TIMEZONE      = "fuseau horaire",
+	.MENU_SETTINGS_SD_ROOT       = "monter SD dans /crystal",
 
 	// Other menu
 	.MENU_OTHER                  = "autre",
@@ -175,6 +191,9 @@ const Locale LANG_FR = {
 	.TXT_USB_STORAGE_NO_SD       = "Pas de carte SD",
 	.TXT_USB_STORAGE_ACTIVE      = "Stockage USB actif",
 	.TXT_USB_STORAGE_HINT        = "Éjecter pour quitter",
+	// Storage text
+	.TXT_STORAGE_LITTLEFS_ERROR = "Erreur LittleFS",
+	.TXT_STORAGE_SD_ERROR       = "Erreur SD",
 
 	// NFC text
 	.TXT_NFC_NO_UID_STORED       = "Aucun UID stocké",
@@ -204,3 +223,4 @@ const Locale LANG_FR = {
 	.MENU_UART_TERMINAL = "terminal",
 	.MENU_UART_SAVE_LOGS = "enregistrer les logs",
 };
+

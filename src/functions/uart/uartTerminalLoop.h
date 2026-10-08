@@ -34,7 +34,7 @@ static void _uartReset() {
 // --- file logging (SD card first, LittleFS fallback) ---
 
 static void _uartLogOpen() {
-	_uartLogFile = openUniqueFile("/uart", ".log");
+	_uartLogFile = Storage::openUnique("/uart", ".log");
 }
 
 static void _uartLogWrite(const String& line) {

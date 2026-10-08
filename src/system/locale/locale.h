@@ -49,6 +49,21 @@ struct Locale {
 	const char* MENU_FILES_VIEW;
 	const char* MENU_FILES_EDIT;
 	const char* MENU_FILES_LITTLEFS;
+	const char* MENU_FILES_OPTIONS;
+	const char* MENU_FILES_CREATE_FILE;
+	const char* MENU_FILES_CREATE_DIR;
+	const char* MENU_FILES_FOLDER_INFO;
+	const char* MENU_FILES_DELETE_DIR;
+	const char* MENU_FILES_RENAME_DIR;
+	const char* MENU_FILES_COPY;
+	const char* MENU_FILES_PASTE;
+
+	// Files text
+	const char* TXT_DELETE_DIR;
+	const char* TXT_DELETE_RECURSIVE;
+	const char* TXT_DELETE_RECURSIVE_HINT;
+	const char* TXT_FOLDER_COUNTS;
+	const char* TXT_CLIPBOARD_EMPTY;
 
 	// NFC menu
 	const char* MENU_NFC;
@@ -91,6 +106,7 @@ struct Locale {
 	const char* MENU_SETTINGS_DIMMING;
 	const char* MENU_SETTINGS_WEBSERVER_FS;
 	const char* MENU_SETTINGS_TIMEZONE;
+	const char* MENU_SETTINGS_SD_ROOT;
 
 	// Other menu
 	const char* MENU_OTHER;
@@ -160,7 +176,6 @@ struct Locale {
 	const char* TXT_WIFI_EVIL_TWIN_RUNNING;
 	const char* TXT_WIFI_WEB_SERVER_RUNNING;
 	const char* TXT_SETTINGS_WIFI_SSID;
-	const char* TXT_WIFI_HANDSHAKE_CAPTURING;
 	const char* TXT_WIFI_HANDSHAKE_PACKETS;
 
 	const char* TXT_WIFI_NO_SCAN_DATA;
@@ -176,6 +191,10 @@ struct Locale {
 	const char* TXT_USB_STORAGE_NO_SD;
 	const char* TXT_USB_STORAGE_ACTIVE;
 	const char* TXT_USB_STORAGE_HINT;
+
+	// Storage text
+	const char* TXT_STORAGE_LITTLEFS_ERROR;
+	const char* TXT_STORAGE_SD_ERROR;
 
 	// NFC text
 	const char* TXT_NFC_NO_UID_STORED;

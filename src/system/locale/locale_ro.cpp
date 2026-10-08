@@ -49,6 +49,21 @@ const Locale LANG_RO = {
 	.MENU_FILES_VIEW             = "vizualizează",
 	.MENU_FILES_EDIT             = "editează",
 	.MENU_FILES_LITTLEFS         = "littleFS",
+	.MENU_FILES_OPTIONS       = "opțiuni",
+	.MENU_FILES_CREATE_FILE   = "creare fișier",
+	.MENU_FILES_CREATE_DIR    = "creare folder",
+	.MENU_FILES_FOLDER_INFO   = "info folder",
+	.MENU_FILES_DELETE_DIR    = "șterge folderul",
+	.MENU_FILES_RENAME_DIR   = "redenumește folderul",
+	.MENU_FILES_COPY         = "copiază",
+	.MENU_FILES_PASTE        = "lipește",
+
+	// Files text
+	.TXT_DELETE_DIR           = "ștergi folderul?",
+	.TXT_DELETE_RECURSIVE     = "ștergi recursiv?",
+	.TXT_DELETE_RECURSIVE_HINT = "tot conținutul va fi șters",
+	.TXT_FOLDER_COUNTS        = "%d fișiere, %d foldere",
+	.TXT_CLIPBOARD_EMPTY      = "clipboard gol",
 
 	// NFC menu
 	.MENU_NFC                    = "NFC",
@@ -91,6 +106,7 @@ const Locale LANG_RO = {
 	.MENU_SETTINGS_DIMMING       = "ecran somn",
 	.MENU_SETTINGS_WEBSERVER_FS  = "server FS",
 	.MENU_SETTINGS_TIMEZONE      = "fus orar",
+	.MENU_SETTINGS_SD_ROOT       = "montează SD în /crystal",
 
 	// Other menu
 	.MENU_OTHER                  = "altele",
@@ -175,6 +191,9 @@ const Locale LANG_RO = {
 	.TXT_USB_STORAGE_NO_SD       = "Fără card SD",
 	.TXT_USB_STORAGE_ACTIVE      = "Stocare USB activă",
 	.TXT_USB_STORAGE_HINT        = "Scoate pentru ieșire",
+	// Storage text
+	.TXT_STORAGE_LITTLEFS_ERROR = "Eroare LittleFS",
+	.TXT_STORAGE_SD_ERROR       = "Eroare SD",
 
 	// NFC text
 	.TXT_NFC_NO_UID_STORED       = "Niciun UID stocat",
@@ -204,3 +223,4 @@ const Locale LANG_RO = {
 	.MENU_UART_TERMINAL = "terminal",
 	.MENU_UART_SAVE_LOGS = "salvează loguri",
 };
+

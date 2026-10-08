@@ -33,7 +33,7 @@ void pcapToHashLoop() {
 		centeredPrint("Processing...", MEDIUM_TEXT);
 		canvas.pushSprite(0, getStatusBarHeight());
 
-		success = pcapToFTHash(selectedFilePath, !fpSelectedSd);
+		success = Wifi::pcapToFTHash(selectedFilePath, !fpSelectedSd);
 		converted = true;
 		return;
 	}

@@ -18,6 +18,8 @@ void setup() {
   Serial2.begin(uartBaud, SERIAL_8N1, uartRxPin, uartTxPin);
   Serial2.setTimeout(50);
 
+  // RGB332 sprite keeps the buffer at half size (see canvasColorDepth in globals.h).
+  canvas.setColorDepth(canvasColorDepth);
   canvas.createSprite(DISP.width(), DISP.height() - getStatusBarHeight());
   canvas.setTextColor(FGCOLOR, BGCOLOR);
   canvas.setTextSize(MEDIUM_TEXT);

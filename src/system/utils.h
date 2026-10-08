@@ -1,5 +1,10 @@
 // All files from the utils/ folder
 
+// Services
+#include "../services/storage/storage.h"
+#include "../services/duckyscript/duckyscript.h"
+#include "../services/wifi/wifi.h"
+
 // 1st layer utilities
 #include "../utils/statusBarUtils.h"
 #include "../utils/btnUtils.h"
@@ -17,18 +22,9 @@
 #include "../utils/procManagmentUtils.h"
 #include "../utils/menuUtils.h"
 // 3rd layer utilities
-#include "../utils/littleFSUtils.h"
-#include "../utils/sdUtils.h"
 #include "../utils/filePickerUtils.h"
-#include "../utils/wifiUtils/wifiStorageUtils.h"
-#include "../utils/wifiUtils/pcapUtils.h"
-#include "../utils/wifiUtils/deauthUtils.h"
-#include "../utils/wifiUtils/handshakeSession.h"
-#include "../utils/wifiUtils/pmkidUtils.h"
-#include "../utils/wifiUtils/infoUtils.h"
-#include "../utils/wifiUtils/ntpUtils.h"
-#include "../utils/badUsbUtils.h"
 #include "../utils/bleUtils.h"
+#include "../utils/errorUtils.h"
 
 #include "../utils/commandUtils/screenshotCommand.h"
 #include "../utils/commandUtils/info.h"

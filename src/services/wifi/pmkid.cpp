@@ -1,17 +1,10 @@
-// PMKID utilities: hashcat mode 22000 (.hc22000) writer, RSN IE parsing,
-// and raw 802.11 frame builders for PMKID capture.
-//
-// Format: WPA*01*PMKID*MAC_AP*MAC_STA*ESSID***
-// Mode 22000 = WPA-PMKID-PBKDF2 (PMKID-based attack, no handshake needed).
+#include "wifi.h"
 
-#pragma once
-#include <SD.h>
-#include "esp_wifi.h"
+namespace Wifi {
 
-// --- PMKID extraction from RSN IE (tag 0x30) --------------------------------
+// PMKID extraction from RSN IE (tag 0x30)
 
 // Parse an RSN IE body (after tag+length) and extract the first PMKID.
-// Returns true if a PMKID was found.
 static bool pmkExtractPmkid(const uint8_t* rsn, int tlen, uint8_t* out) {
 	int ro = 2;
 	if (ro + 4 > tlen) return false;
@@ -40,8 +33,7 @@ static bool pmkExtractPmkid(const uint8_t* rsn, int tlen, uint8_t* out) {
 }
 
 // Walk tagged IEs looking for RSN IE (tag 0x30) with PMKID.
-// Returns true if a PMKID was found and copied to out.
-static bool pmkScanIEs(const uint8_t* data, int len, uint8_t* out) {
+bool pmkScanIEs(const uint8_t* data, int len, uint8_t* out) {
 	int pos = 0;
 	while (pos + 2 <= len) {
 		uint8_t tag = data[pos];
@@ -55,20 +47,14 @@ static bool pmkScanIEs(const uint8_t* data, int len, uint8_t* out) {
 	return false;
 }
 
-// --- Hash line writer --------------------------------------------------------
+// Hash line writer
 
-// Write a single hash line to an open SD file.
-// pmkid: 16-byte PMKID from EAPOL M1 Key Data
-// apMac: 6-byte AP BSSID
-// staMac: 6-byte spoofed STA MAC
-// ssid: pointer to SSID bytes (may contain binary data)
-// ssidLen: length of SSID in bytes
-static void writePmkidHashLine(File& f,
-							const uint8_t* pmkid,
-							const uint8_t* apMac,
-							const uint8_t* staMac,
-							const uint8_t* ssid,
-							uint8_t ssidLen) {
+void writePmkidHashLine(File& f,
+						const uint8_t* pmkid,
+						const uint8_t* apMac,
+						const uint8_t* staMac,
+						const uint8_t* ssid,
+						uint8_t ssidLen) {
 	char line[256];
 	int pos = 0;
 
@@ -105,34 +91,31 @@ static void writePmkidHashLine(File& f,
 #endif
 }
 
-// --- Raw 802.11 frame builders (via esp_wifi_80211_tx) -----------------------
+// Raw 802.11 frame builders (via esp_wifi_80211_tx)
 
-// Send a raw 802.11 frame via the AP interface.
-static void pmkSendRawFrame(const uint8_t* buf, int len) {
+void pmkSendRawFrame(const uint8_t* buf, int len) {
 	ESP_ERROR_CHECK(esp_wifi_80211_tx(WIFI_IF_AP, buf, len, false));
 }
 
 // Build Open System Authentication frame (seq 1, STA -> AP).
-// Frame: FC(2) + Dur(2) + Addr1/2/3(18) + SeqCtl(2) + AuthBody(6) = 30 bytes.
-static void pmkBuildAuthFrame(uint8_t* buf,
+void pmkBuildAuthFrame(uint8_t* buf,
 	const uint8_t* bssid, const uint8_t* staMac, uint16_t seq)
 {
 	memset(buf, 0, 30);
-	buf[0] = 0xB0; buf[1] = 0x00;          // FC: Management, Auth subtype
-	buf[2] = 0x3A; buf[3] = 0x01;          // Duration
-	memcpy(buf + 4, bssid, 6);             // Addr1 = RA = BSSID
-	memcpy(buf + 10, staMac, 6);           // Addr2 = TA = our STA MAC
-	memcpy(buf + 16, bssid, 6);            // Addr3 = BSSID
-	buf[22] = seq & 0xFF;                  // Sequence Control
+	buf[0] = 0xB0; buf[1] = 0x00; // FC: Management, Auth subtype
+	buf[2] = 0x3A; buf[3] = 0x01; // Duration
+	memcpy(buf + 4, bssid, 6);    // Addr1 = RA = BSSID
+	memcpy(buf + 10, staMac, 6);  // Addr2 = TA = our STA MAC
+	memcpy(buf + 16, bssid, 6);   // Addr3 = BSSID
+	buf[22] = seq & 0xFF;         // Sequence Control
 	buf[23] = (seq >> 8) & 0x0F;
-	buf[24] = 0x00; buf[25] = 0x00;        // Auth Algorithm = 0 (Open)
-	buf[26] = 0x01; buf[27] = 0x00;        // Auth Seq = 1
-	buf[28] = 0x00; buf[29] = 0x00;        // Status Code = 0
+	buf[24] = 0x00; buf[25] = 0x00; // Auth Algorithm = 0 (Open)
+	buf[26] = 0x01; buf[27] = 0x00; // Auth Seq = 1
+	buf[28] = 0x00; buf[29] = 0x00; // Status Code = 0
 }
 
 // Build Association Request frame with RSN IE containing a fake PMKID.
-// Returns total frame length.
-static int pmkBuildAssocFrame(uint8_t* buf,
+int pmkBuildAssocFrame(uint8_t* buf,
 	const uint8_t* bssid, const uint8_t* staMac,
 	const uint8_t* ssid, int ssidLen, uint16_t seq)
 {
@@ -140,12 +123,12 @@ static int pmkBuildAssocFrame(uint8_t* buf,
 	int pos = 0;
 
 	// 802.11 header
-	buf[pos++] = 0x00; buf[pos++] = 0x00;  // FC: Management, Assoc Req
-	buf[pos++] = 0x3A; buf[pos++] = 0x01;  // Duration
+	buf[pos++] = 0x00; buf[pos++] = 0x00; // FC: Management, Assoc Req
+	buf[pos++] = 0x3A; buf[pos++] = 0x01; // Duration
 	memcpy(buf + pos, bssid, 6); pos += 6; // Addr1 = RA = BSSID
 	memcpy(buf + pos, staMac, 6); pos += 6; // Addr2 = TA
 	memcpy(buf + pos, bssid, 6); pos += 6; // Addr3 = BSSID
-	buf[pos++] = seq & 0xFF;               // Sequence Control
+	buf[pos++] = seq & 0xFF; // Sequence Control
 	buf[pos++] = (seq >> 8) & 0x0F;
 
 	// Capability Info: ESS + Privacy + ShortPreamble + ShortSlot = 0x0411
@@ -171,7 +154,7 @@ static int pmkBuildAssocFrame(uint8_t* buf,
 	int lenPos = pos++;
 
 	int rsnStart = pos;
-	buf[pos++] = 0x01; buf[pos++] = 0x00;  // Version
+	buf[pos++] = 0x01; buf[pos++] = 0x00; // Version
 
 	// Group Cipher Suite: 00-0F-AC-04 (CCMP)
 	buf[pos++] = 0x00; buf[pos++] = 0x0F;
@@ -199,7 +182,9 @@ static int pmkBuildAssocFrame(uint8_t* buf,
 	buf[pos++] = 0xDE; buf[pos++] = 0xAD;
 	buf[pos++] = 0xBE; buf[pos++] = 0xEF;
 
-	buf[lenPos] = pos - rsnStart;  // backfill RSN IE length
+	buf[lenPos] = pos - rsnStart;	// backfill RSN IE length
 
 	return pos;
+}
+
 }

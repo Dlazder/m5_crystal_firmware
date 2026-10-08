@@ -49,6 +49,21 @@ const Locale LANG_EN = {
 	.MENU_FILES_VIEW             = "view",
 	.MENU_FILES_EDIT             = "edit",
 	.MENU_FILES_LITTLEFS               = "littleFS",
+	.MENU_FILES_OPTIONS       = "options",
+	.MENU_FILES_CREATE_FILE   = "create file",
+	.MENU_FILES_CREATE_DIR    = "create dir",
+	.MENU_FILES_FOLDER_INFO   = "folder info",
+	.MENU_FILES_DELETE_DIR    = "delete dir",
+	.MENU_FILES_RENAME_DIR   = "rename dir",
+	.MENU_FILES_COPY         = "copy",
+	.MENU_FILES_PASTE        = "paste",
+
+	// Files text
+	.TXT_DELETE_DIR           = "delete dir?",
+	.TXT_DELETE_RECURSIVE     = "delete recursively?",
+	.TXT_DELETE_RECURSIVE_HINT = "all contents will be removed",
+	.TXT_FOLDER_COUNTS        = "%d files, %d dirs",
+	.TXT_CLIPBOARD_EMPTY      = "clipboard empty",
 
 	// NFC menu
 	.MENU_NFC                    = "NFC",
@@ -91,6 +106,7 @@ const Locale LANG_EN = {
 	.MENU_SETTINGS_DIMMING       = "dim screen",
 	.MENU_SETTINGS_WEBSERVER_FS  = "web server FS",
 	.MENU_SETTINGS_TIMEZONE      = "timezone",
+	.MENU_SETTINGS_SD_ROOT       = "mount SD in /crystal",
 
 	// Other menu
 	.MENU_OTHER                  = "other",
@@ -175,6 +191,9 @@ const Locale LANG_EN = {
 	.TXT_USB_STORAGE_NO_SD       = "No SD card",
 	.TXT_USB_STORAGE_ACTIVE      = "USB storage active",
 	.TXT_USB_STORAGE_HINT        = "Eject to exit",
+	// Storage text
+	.TXT_STORAGE_LITTLEFS_ERROR = "LittleFS error",
+	.TXT_STORAGE_SD_ERROR       = "SD error",
 
 	// NFC text
 	.TXT_NFC_NO_UID_STORED       = "No UID stored",
@@ -204,3 +223,4 @@ const Locale LANG_EN = {
 	.MENU_UART_TERMINAL = "terminal",
 	.MENU_UART_SAVE_LOGS = "save logs",
 };
+

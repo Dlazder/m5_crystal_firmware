@@ -4,6 +4,7 @@
 #include "../functions/defaultLoop.h"
 #include "../functions/mainMenuLoop.h"
 #include "../functions/statusBarLoop.h"
+#include "../functions/errorLoop.h"
 // #include "../functions/lfsFilePickerLoop.h" // replaced by files/lfsFilePickerLoop.h
 
 
@@ -48,15 +49,22 @@
 
 // Files
 #include "../functions/files/filesMenuLoop.h"
-#include "../functions/files/lfsFilePickerLoop.h"
+#include "../functions/files/filePickerLFSLoop.h"
 #include "../functions/files/filePickerSDLoop.h"
 #include "../functions/files/selectedFileMenuLoop.h"
 #include "../functions/files/deleteFileLoop.h"
 #include "../functions/files/createFileLoop.h"
+#include "../functions/files/fileOptionsLoop.h"
+#include "../functions/files/createDirLoop.h"
+#include "../functions/files/deleteDirLoop.h"
+#include "../functions/files/folderInfoLoop.h"
+#include "../functions/files/renameDirLoop.h"
 #include "../functions/files/fileInfoLoop.h"
 #include "../functions/files/renameFileLoop.h"
 #include "../functions/files/readFileLoop.h"
 #include "../functions/files/editFileLoop.h"
+#include "../functions/files/copyFileLoop.h"
+#include "../functions/files/pasteFileLoop.h"
 
 // Bluetooth functions
 #include "../functions/bluetooth/bluetoothMenuLoop.h"

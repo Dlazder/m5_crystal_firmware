@@ -4,7 +4,7 @@ const Locale LANG_DE = {
 	// Common menu items
 	.MENU_BACK                   = "zurück",
 	.MENU_SCAN                   = "scan",
-	.MENU_RESCAN                 = "erneut scan.",
+	.MENU_RESCAN                 = "erneut scannen",
 
 	// Wi-Fi menu
 	.MENU_WIFI                   = "Wi-Fi",
@@ -23,7 +23,7 @@ const Locale LANG_DE = {
 	.MENU_WIFI_HANDSHAKE         = "handshake erfassen",
 	.MENU_WIFI_PMKID             = "PMKID erfassen",
 	.MENU_WIFI_PIXIE_DUST        = "pixie dust",
-.MENU_WIFI_WPS_PBC          = "wps pbc",
+	.MENU_WIFI_WPS_PBC          = "wps pbc",
 	.MENU_WIFI_CHANNEL_ANALYZER  = "Kanal-Analyse",
 	.MENU_WIFI_WEB_SERVER       = "WebServer",
 	.MENU_SETTINGS_WIFI_SSID      = "Wi-Fi SSID",
@@ -35,7 +35,7 @@ const Locale LANG_DE = {
 	.MENU_BT_KEYBOARD            = "tastatur",
 	.MENU_BT_AIR_MOUSE           = "air mouse",
 	.MENU_BT_MOUSE_JIGGLER       = "Maus-Jiggler",
-	.MENU_BT_PRESENTER           = "präsent.",
+	.MENU_BT_PRESENTER           = "präsentator",
 	.MENU_BT_SHUTTER             = "auslöser",
 	.MENU_BT_BAD_BLE             = "bad BLE",
 	.MENU_BT_SNIFFER             = "BLE sniffer",
@@ -49,6 +49,21 @@ const Locale LANG_DE = {
 	.MENU_FILES_VIEW             = "ansehen",
 	.MENU_FILES_EDIT             = "bearbeiten",
 	.MENU_FILES_LITTLEFS               = "littleFS",
+	.MENU_FILES_OPTIONS       = "optionen",
+	.MENU_FILES_CREATE_FILE   = "datei erstellen",
+	.MENU_FILES_CREATE_DIR    = "ordner erstellen",
+	.MENU_FILES_FOLDER_INFO   = "ordner info",
+	.MENU_FILES_DELETE_DIR    = "ordner löschen",
+	.MENU_FILES_RENAME_DIR   = "ordner umbenennen",
+	.MENU_FILES_COPY         = "kopieren",
+	.MENU_FILES_PASTE        = "einfügen",
+
+	// Files text
+	.TXT_DELETE_DIR           = "ordner löschen?",
+	.TXT_DELETE_RECURSIVE     = "rekursiv löschen?",
+	.TXT_DELETE_RECURSIVE_HINT = "alle inhalte werden gelöscht",
+	.TXT_FOLDER_COUNTS        = "%d dateien, %d ordner",
+	.TXT_CLIPBOARD_EMPTY      = "zwischenablage leer",
 
 	// NFC menu
 	.MENU_NFC                    = "NFC",
@@ -91,6 +106,7 @@ const Locale LANG_DE = {
 	.MENU_SETTINGS_DIMMING       = "abdunkeln",
 	.MENU_SETTINGS_WEBSERVER_FS  = "WebServer FS",
 	.MENU_SETTINGS_TIMEZONE      = "Zeitzone",
+	.MENU_SETTINGS_SD_ROOT       = "SD in /crystal einhängen",
 
 	// Other menu
 	.MENU_OTHER                  = "sonstiges",
@@ -143,10 +159,10 @@ const Locale LANG_DE = {
 
 	// Wi-Fi text
 	.TXT_WIFI_AP_ENABLED         = "WiFi AP aktiv",
-	.TXT_WIFI_SSID_NOT_FOUND     = "SSID nicht gef.",
-	.TXT_WIFI_TIMEOUT            = "Zeitüberschr.",
+	.TXT_WIFI_SSID_NOT_FOUND     = "SSID nicht gefunden",
+	.TXT_WIFI_TIMEOUT            = "Zeitüberschreitung",
 	.TXT_WIFI_WRONG_PASSWORD     = "Falsches Passwort",
-	.TXT_WIFI_SYNC_FAILED        = "Sync fehlgesch.",
+	.TXT_WIFI_SYNC_FAILED        = "Sync fehlgeschlagen",
 	.TXT_WIFI_TIME_SYNCED        = "Zeit synchronisiert",
 	.TXT_WIFI_NOT_CONNECTED      = "Kein WLAN",
 	.TXT_WIFI_BF_LOADED          = "Geladen: %d",
@@ -175,17 +191,20 @@ const Locale LANG_DE = {
 	.TXT_USB_STORAGE_NO_SD       = "Keine SD-Karte",
 	.TXT_USB_STORAGE_ACTIVE      = "USB-Speicher aktiv",
 	.TXT_USB_STORAGE_HINT        = "Auswerfen zum Beenden",
+	// Storage text
+	.TXT_STORAGE_LITTLEFS_ERROR = "LittleFS-Fehler",
+	.TXT_STORAGE_SD_ERROR       = "SD-Fehler",
 
 	// NFC text
-	.TXT_NFC_NO_UID_STORED       = "Kein UID gespeich.",
+	.TXT_NFC_NO_UID_STORED       = "Kein UID gespeichert",
 	.TXT_NFC_READ_TAG_FIRST      = "Erst Tag lesen",
-	.TXT_NFC_INVALID_UID         = "Ungült. UID",
+	.TXT_NFC_INVALID_UID         = "Ungültige UID",
 	.TXT_NFC_UID_4BYTE_REQUIRED  = "4-Byte UID nötig",
-	.TXT_NFC_WRITE_SUCCESS       = "Schreiben erfolgr.!",
+	.TXT_NFC_WRITE_SUCCESS       = "Schreiben erfolgreich!",
 	.TXT_NFC_UID_WRITTEN         = "UID geschrieben",
-	.TXT_NFC_WRITE_FAILED        = "Schreiben fehlg.",
+	.TXT_NFC_WRITE_FAILED        = "Schreiben fehlgeschlagen",
 	.TXT_NFC_WRITE_ERROR         = "Kein Tag/Fehler",
-	.TXT_NFC_READY_TO_WRITE      = "Bereit zum Schreib.",
+	.TXT_NFC_READY_TO_WRITE      = "Bereit zum Schreiben",
 
 	// Settings text
 	.TXT_SETTINGS_LANGUAGE       = "Sprache: ",
@@ -204,3 +223,4 @@ const Locale LANG_DE = {
 	.MENU_UART_TERMINAL = "Terminal",
 	.MENU_UART_SAVE_LOGS = "Logs speichern",
 };
+

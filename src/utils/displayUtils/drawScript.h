@@ -8,7 +8,7 @@
  * @param lineCount    number of lines in the array
  * @param currentLine  index of the line to highlight (the one about to run)
  */
-void drawScript(String* lines, int lineCount, int currentLine) {
+void drawScript(const String* lines, int lineCount, int currentLine) {
   if (lines == nullptr || lineCount == 0) return;
 
   canvas.clear();

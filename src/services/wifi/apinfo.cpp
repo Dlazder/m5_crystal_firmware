@@ -1,24 +1,24 @@
-// WiFi AP info detection: beacon capture for WPS + FT-PSK, auth-mode labelling.
-// Call wiuBegin() once, then wiuUpdate() each frame until wiuDone().
-// wiuCleanup() on exit.
+#include "wifi.h"
+#include <WiFi.h>
 
-#pragma once
-#include "esp_wifi.h"
+namespace Wifi {
 
-// ---- Internal state ----------------------------------------------------------
-static uint8_t  _wiuBssid[6];
-static int      _wiuChannel = 0;
+// ═══════════════════════════════════════════════════════════════════════
+// AP info probe (WPS / FT-PSK beacon detection)
+// ═══════════════════════════════════════════════════════════════════════
+
+static uint8_t _wiuBssid[6];
+static int     _wiuChannel = 0;
 
 static volatile bool _wiuBeaconDone = false;
-static volatile bool _wiuHasWps    = false;
-static volatile bool _wiuHasFt     = false;
+static volatile bool _wiuHasWps = false;
+static volatile bool _wiuHasFt = false;
 
 static enum { WIU_IDLE, WIU_WAIT, WIU_DONE } _wiuState = WIU_IDLE;
 static uint32_t _wiuTimer = 0;
-static bool     _wiuResultWps = false;
-static bool     _wiuResultFt  = false;
+static bool _wiuResultWps = false;
+static bool _wiuResultFt = false;
 
-// ---- Promiscuous callback ----------------------------------------------------
 static void _wiuBeaconCb(void* buf, wifi_promiscuous_pkt_type_t type) {
 	if (_wiuBeaconDone) return;
 	if (type != WIFI_PKT_MGMT) return;
@@ -29,7 +29,7 @@ static void _wiuBeaconCb(void* buf, wifi_promiscuous_pkt_type_t type) {
 
 	uint8_t* frame = pkt->payload;
 	uint16_t fc = frame[0] | (frame[1] << 8);
-	if (((fc >> 2) & 0x3) != 0) return;            // not MGMT
+	if (((fc >> 2) & 0x3) != 0) return; // not MGMT
 	if (((fc >> 4) & 0xF) != 8) return;             // not Beacon
 	if (memcmp(frame + 16, _wiuBssid, 6) != 0) return; // not our BSSID
 
@@ -74,17 +74,14 @@ static void _wiuBeaconCb(void* buf, wifi_promiscuous_pkt_type_t type) {
 	_wiuBeaconDone = true;
 }
 
-// ---- Public API --------------------------------------------------------------
-
-/// Start detection: snapshot target, enter promiscuous mode.
-static void wiuBegin(uint8_t* targetBssid, int targetChannel) {
+void wiuBegin(uint8_t* targetBssid, int targetChannel) {
 	memcpy(_wiuBssid, targetBssid, 6);
-	_wiuChannel      = targetChannel;
-	_wiuBeaconDone   = false;
-	_wiuHasWps       = false;
-	_wiuHasFt        = false;
-	_wiuResultWps    = false;
-	_wiuResultFt     = false;
+	_wiuChannel = targetChannel;
+	_wiuBeaconDone = false;
+	_wiuHasWps = false;
+	_wiuHasFt = false;
+	_wiuResultWps = false;
+	_wiuResultFt = false;
 
 	WiFi.mode(WIFI_STA);
 	delay(50);
@@ -96,25 +93,22 @@ static void wiuBegin(uint8_t* targetBssid, int targetChannel) {
 	_wiuState = WIU_WAIT;
 }
 
-/// Call each frame — checks for beacon arrival or timeout.
-static void wiuUpdate() {
+void wiuUpdate() {
 	if (_wiuState != WIU_WAIT) return;
 	if (_wiuBeaconDone || (millis() - _wiuTimer > 2500)) {
 		esp_wifi_set_promiscuous(false);
 		esp_wifi_set_promiscuous_rx_cb(nullptr);
 		_wiuResultWps = _wiuHasWps;
-		_wiuResultFt  = _wiuHasFt;
-		_wiuState     = WIU_DONE;
+		_wiuResultFt = _wiuHasFt;
+		_wiuState = WIU_DONE;
 	}
 }
 
-/// True when detection finished (or timed out).
-static bool wiuDone()   { return _wiuState == WIU_DONE; }
-static bool wiuHasWps() { return _wiuResultWps; }
-static bool wiuHasFt()  { return _wiuResultFt; }
+bool wiuDone() { return _wiuState == WIU_DONE; }
+bool wiuHasWps() { return _wiuResultWps; }
+bool wiuHasFt() { return _wiuResultFt; }
 
-/// Force-stop promiscuous mode — call on exit if still detecting.
-static void wiuCleanup() {
+void wiuCleanup() {
 	if (_wiuState == WIU_WAIT) {
 		esp_wifi_set_promiscuous(false);
 		esp_wifi_set_promiscuous_rx_cb(nullptr);
@@ -122,8 +116,7 @@ static void wiuCleanup() {
 	_wiuState = WIU_IDLE;
 }
 
-/// Map wifi_auth_mode_t to short label.
-static const char* wiuAuthStr(wifi_auth_mode_t m) {
+const char* wiuAuthStr(wifi_auth_mode_t m) {
 	switch (m) {
 		case WIFI_AUTH_OPEN:            return "Open";
 		case WIFI_AUTH_WEP:             return "WEP";
@@ -138,3 +131,5 @@ static const char* wiuAuthStr(wifi_auth_mode_t m) {
 		default: return "?";
 	}
 }
+
+} // namespace Wifi

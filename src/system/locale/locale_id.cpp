@@ -23,7 +23,7 @@ const Locale LANG_ID = {
     .MENU_WIFI_HANDSHAKE         = "tangkap handshake",
     .MENU_WIFI_PMKID             = "tangkap PMKID",
     .MENU_WIFI_PIXIE_DUST        = "pixie dust",
-.MENU_WIFI_WPS_PBC          = "wps pbc",
+    .MENU_WIFI_WPS_PBC          = "wps pbc",
     .MENU_WIFI_CHANNEL_ANALYZER  = "analisis saluran",
     .MENU_WIFI_WEB_SERVER       = "server web",
     .MENU_SETTINGS_WIFI_SSID      = "Wi-Fi SSID",
@@ -49,6 +49,21 @@ const Locale LANG_ID = {
     .MENU_FILES_VIEW              = "lihat",
     .MENU_FILES_EDIT              = "edit",
     .MENU_FILES_LITTLEFS                = "littleFS",
+    .MENU_FILES_OPTIONS       = "opsi",
+    .MENU_FILES_CREATE_FILE   = "buat file",
+    .MENU_FILES_CREATE_DIR    = "buat folder",
+    .MENU_FILES_FOLDER_INFO   = "info folder",
+    .MENU_FILES_DELETE_DIR    = "hapus folder",
+    .MENU_FILES_RENAME_DIR   = "ganti nama folder",
+    .MENU_FILES_COPY         = "salin",
+    .MENU_FILES_PASTE        = "tempel",
+
+    // Files text
+    .TXT_DELETE_DIR           = "hapus folder?",
+    .TXT_DELETE_RECURSIVE     = "hapus rekursif?",
+    .TXT_DELETE_RECURSIVE_HINT = "semua isi akan dihapus",
+    .TXT_FOLDER_COUNTS        = "%d file, %d folder",
+    .TXT_CLIPBOARD_EMPTY      = "clipboard kosong",
 
     // NFC menu
     .MENU_NFC                     = "NFC",
@@ -91,6 +106,7 @@ const Locale LANG_ID = {
     .MENU_SETTINGS_DIMMING        = "redupkan",
     .MENU_SETTINGS_WEBSERVER_FS   = "web server FS",
     .MENU_SETTINGS_TIMEZONE       = "zona waktu",
+    .MENU_SETTINGS_SD_ROOT        = "pasang SD di /crystal",
 
     // Other menu
     .MENU_OTHER                   = "lainnya",
@@ -175,6 +191,9 @@ const Locale LANG_ID = {
     .TXT_USB_STORAGE_NO_SD        = "Tidak ada kartu SD",
     .TXT_USB_STORAGE_ACTIVE       = "Penyimpanan USB aktif",
     .TXT_USB_STORAGE_HINT         = "Keluarkan untuk keluar",
+    // Storage text
+    .TXT_STORAGE_LITTLEFS_ERROR = "Kesalahan LittleFS",
+    .TXT_STORAGE_SD_ERROR       = "Kesalahan SD",
 
     // NFC text
     .TXT_NFC_NO_UID_STORED        = "Tidak ada UID",
@@ -204,3 +223,4 @@ const Locale LANG_ID = {
 	.MENU_UART_TERMINAL = "terminal",
 	.MENU_UART_SAVE_LOGS = "simpan log",
 };
+
