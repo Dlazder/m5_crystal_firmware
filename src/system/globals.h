@@ -244,4 +244,12 @@ uint8_t uartTxPin = UART_TX_PIN;
 uint32_t uartBaud = UART_BAUD_DEFAULT;
 bool uartLogEnabled = false; // write UART terminal traffic (RX/TX) to a log file
 
+#include "../hal/cc1101Pins.h"
+// CC1101 pins — configurable via RF → configure pins; defaults come from hal/cc1101Pins.h
+uint8_t rfCsPin = CC1101_CS_PIN;
+uint8_t rfSckPin = CC1101_SCK_PIN;
+uint8_t rfMosiPin = CC1101_MOSI_PIN;
+uint8_t rfMisoPin = CC1101_MISO_PIN;
+uint8_t rfGdo0Pin = CC1101_GDO0_PIN;
+
 Adafruit_PN532 nfc(NFC_SDA, NFC_SCL, &Wire);

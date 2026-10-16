@@ -88,6 +88,11 @@ struct Locale {
 	const char* TXT_IR_TVB_RUNNING;
 	const char* TXT_IR_TVB_DONE;
 
+	// RF menu
+	const char* MENU_RF_SPECTRUM;
+	const char* MENU_RF_RAW_SNIFFER;
+	const char* MENU_RF_CONFIG_PINS;
+
 	// Settings menu
 	const char* MENU_SETTINGS;
 	const char* MENU_SETTINGS_UI;

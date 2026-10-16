@@ -88,6 +88,11 @@ const Locale LANG_UK = {
 	.TXT_IR_TVB_RUNNING          = "Надсилання...",
 	.TXT_IR_TVB_DONE             = "Готово!",
 
+	// RF menu
+	.MENU_RF_SPECTRUM            = "аналізатор спектра",
+	.MENU_RF_RAW_SNIFFER         = "raw сніфер",
+	.MENU_RF_CONFIG_PINS         = "налаштувати піни",
+
 	// Settings menu
 	.MENU_SETTINGS               = "налаштування",
 	.MENU_SETTINGS_UI            = "інтерфейс та екран",

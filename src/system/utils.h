@@ -4,6 +4,7 @@
 #include "../services/storage/storage.h"
 #include "../services/duckyscript/duckyscript.h"
 #include "../services/wifi/wifi.h"
+#include "../services/cc1101/cc1101.h"
 
 // 1st layer utilities
 #include "../utils/statusBarUtils.h"

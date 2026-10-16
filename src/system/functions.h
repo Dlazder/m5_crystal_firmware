@@ -99,6 +99,19 @@
 #include "../functions/ir/irConfigureResetLoop.h"
 
 
+// RF / sub-GHz CC1101
+#include "../functions/rf/rfMenuLoop.h"
+#include "../functions/rf/rfRadioUtils.h"
+#include "../functions/rf/cc1101SpectrumAnalyzerLoop.h"
+#include "../functions/rf/cc1101RawSnifferLoop.h"
+#include "../functions/rf/rfConfigurePinsMenuLoop.h"
+#include "../functions/rf/rfConfigureCsLoop.h"
+#include "../functions/rf/rfConfigureSckLoop.h"
+#include "../functions/rf/rfConfigureMosiLoop.h"
+#include "../functions/rf/rfConfigureMisoLoop.h"
+#include "../functions/rf/rfConfigureGdo0Loop.h"
+#include "../functions/rf/rfConfigureResetLoop.h"
+
 // UART
 #include "../functions/uart/uartMenuLoop.h"
 #include "../functions/uart/uartTerminalLoop.h"

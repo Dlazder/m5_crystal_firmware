@@ -117,6 +117,18 @@
     X(UART_CONFIG_TX,     815, uartConfigTxLoop) \
     X(UART_CONFIG_BAUD,   816, uartConfigBaudLoop) \
     \
+    /* RF / sub-GHz CC1101 (1000-1099) */ \
+    X(RF,             1000, rfMenuLoop) \
+    X(RF_SPECTRUM,    1001, cc1101SpectrumAnalyzerLoop) \
+    X(RF_RAW_SNIFFER, 1002, cc1101RawSnifferLoop) \
+    X(RF_CONFIG_PINS, 1003, rfConfigurePinsMenuLoop) \
+    X(RF_CONFIG_CS,   1004, rfConfigureCsLoop) \
+    X(RF_CONFIG_SCK,  1005, rfConfigureSckLoop) \
+    X(RF_CONFIG_MOSI, 1006, rfConfigureMosiLoop) \
+    X(RF_CONFIG_MISO, 1007, rfConfigureMisoLoop) \
+    X(RF_CONFIG_GDO0, 1008, rfConfigureGdo0Loop) \
+    X(RF_CONFIG_RESET, 1009, rfConfigureResetLoop) \
+    \
     /* Error screen (900-999) */ \
     X(ERROR_SCREEN,       999, errorLoop) \
 

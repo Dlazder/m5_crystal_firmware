@@ -88,6 +88,11 @@ const Locale LANG_TR = {
 	.TXT_IR_TVB_RUNNING          = "Gönderiliyor...",
 	.TXT_IR_TVB_DONE             = "Tamam!",
 
+	// RF menu
+	.MENU_RF_SPECTRUM            = "spektrum analizörü",
+	.MENU_RF_RAW_SNIFFER         = "ham sniffer",
+	.MENU_RF_CONFIG_PINS         = "pinleri yapılandır",
+
 	// Settings menu
 	.MENU_SETTINGS               = "ayarlar",
 	.MENU_SETTINGS_UI            = "UI & ekran",

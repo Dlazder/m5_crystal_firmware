@@ -88,6 +88,11 @@ const Locale LANG_RO = {
 	.TXT_IR_TVB_RUNNING          = "Trimitere...",
 	.TXT_IR_TVB_DONE             = "Gata!",
 
+	// RF menu
+	.MENU_RF_SPECTRUM            = "analizor de spectru",
+	.MENU_RF_RAW_SNIFFER         = "sniffer brut",
+	.MENU_RF_CONFIG_PINS         = "configurează pinii",
+
 	// Settings menu
 	.MENU_SETTINGS               = "setări",
 	.MENU_SETTINGS_UI            = "UI & ecran",

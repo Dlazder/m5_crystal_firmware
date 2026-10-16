@@ -66,6 +66,13 @@ void loadPreferences() {
 	uartBaud = getData("uartBaud", UART_BAUD_DEFAULT);
 	Serial.printf("UART: RX=%d TX=%d baud=%lu\n", uartRxPin, uartTxPin, (unsigned long)uartBaud);
 
+	rfCsPin = getData("rfCsPin", CC1101_CS_PIN);
+	rfSckPin = getData("rfSckPin", CC1101_SCK_PIN);
+	rfMosiPin = getData("rfMosiPin", CC1101_MOSI_PIN);
+	rfMisoPin = getData("rfMisoPin", CC1101_MISO_PIN);
+	rfGdo0Pin = getData("rfGdo0Pin", CC1101_GDO0_PIN);
+	Serial.printf("CC1101 pins: CS=%d SCK=%d MOSI=%d MISO=%d GDO0=%d\n", rfCsPin, rfSckPin, rfMosiPin, rfMisoPin, rfGdo0Pin);
+
 	uartLogEnabled = getData("uartLog", uartLogEnabled);
 	Serial.printf("UART log to file: %s\n", uartLogEnabled ? "enabled" : "disabled");
 

@@ -88,6 +88,11 @@ const Locale LANG_FR = {
 	.TXT_IR_TVB_RUNNING          = "Envoi...",
 	.TXT_IR_TVB_DONE             = "Terminé!",
 
+	// RF menu
+	.MENU_RF_SPECTRUM            = "analyseur de spectre",
+	.MENU_RF_RAW_SNIFFER         = "sniffer brut",
+	.MENU_RF_CONFIG_PINS         = "configurer les broches",
+
 	// Settings menu
 	.MENU_SETTINGS               = "paramètres",
 	.MENU_SETTINGS_UI            = "IU & écran",

@@ -88,6 +88,11 @@ const Locale LANG_ID = {
     .TXT_IR_TVB_RUNNING           = "Mengirim...",
     .TXT_IR_TVB_DONE              = "Selesai!",
 
+    // RF menu
+    .MENU_RF_SPECTRUM             = "penganalisis spektrum",
+    .MENU_RF_RAW_SNIFFER          = "sniffer mentah",
+    .MENU_RF_CONFIG_PINS          = "atur pin",
+
     // Settings menu
     .MENU_SETTINGS                = "pengaturan",
     .MENU_SETTINGS_UI             = "UI & layar",

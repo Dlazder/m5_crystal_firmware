@@ -7,6 +7,7 @@ void mainMenuLoop() {
 		{PID::NFC, L->MENU_NFC, Icons::nfc},
 		{PID::IR, L->MENU_IR, Icons::ir},
 		{PID::USB, L->MENU_USB, Icons::usb},
+		{PID::RF, "RF", Icons::rf},
 		{PID::UART, L->MENU_UART, Icons::terminal},
 		{PID::SETTINGS, L->MENU_SETTINGS, Icons::settings},
 		{PID::FILES_MENU, L->MENU_FILES, Icons::folder},
