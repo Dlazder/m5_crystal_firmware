@@ -1,12 +1,21 @@
 // PID::RF_RAW_SNIFFER
 
+// Edge timing runs in a GPIO interrupt. On the classic ESP32 (M5StickC Plus2) IRAM is
+// almost full, so the handler stays in flash there; that is safe because the sniffer
+// never writes flash (LittleFS/NVS) while listening. Other boards keep it in IRAM.
+#ifdef ESP32S3
+	#define RF_EDGE_ISR_ATTR IRAM_ATTR
+#else
+	#define RF_EDGE_ISR_ATTR
+#endif
+
 static const int RF_EDGE_BUF = 512;
 static volatile uint16_t rfEdgeBuf[RF_EDGE_BUF]; // duration (µs) of the state that just ended
 static volatile uint16_t rfEdgeHead = 0;
 static volatile uint16_t rfEdgeTail = 0;
 static volatile uint32_t rfEdgeLast = 0;
 
-static void IRAM_ATTR rfEdgeIsr() {
+static void RF_EDGE_ISR_ATTR rfEdgeIsr() {
 	uint32_t now = micros();
 	uint32_t dt = now - rfEdgeLast;
 	rfEdgeLast = now;
