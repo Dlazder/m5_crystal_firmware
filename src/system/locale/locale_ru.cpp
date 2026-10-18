@@ -212,18 +212,15 @@ const Locale LANG_RU = {
 	.TXT_NFC_READY_TO_WRITE      = "Готов к записи...",
 
 	// Settings text
-	.TXT_SETTINGS_LANGUAGE       = "язык: ",
 	.TXT_SETTINGS_BRIGHTNESS     = "яркость: ",
 	.TXT_SETTINGS_VOLUME         = "громкость: ",
 	.TXT_SETTINGS_COLOR          = "цвет: ",
-	.TXT_SETTINGS_FONT           = "шрифт:",
 	.TXT_SETTINGS_ROTATION       = "переворот экрана",
 	.TXT_SETTINGS_SOUND          = "звук: ",
 	.TXT_SETTINGS_STATUS_BAR     = "статус бар: ",
 	.TXT_SETTINGS_PID            = "PID: ",
 	.TXT_SETTINGS_KB_GYRO        = "гиро клавиатура: ",
 	.TXT_SETTINGS_WEBSERVER_FS   = "Веб-сервер FS: ",
-	.TXT_SETTINGS_TIMEZONE       = "Часовой пояс: ",
 	.MENU_UART = "UART",
 	.MENU_UART_TERMINAL = "терминал",
 	.MENU_UART_SAVE_LOGS = "сохранить логи",

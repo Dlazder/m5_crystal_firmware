@@ -15,7 +15,7 @@ void statusBarLoop() {
 	statusBarCanvas.setTextSize(1.5);
 	
 	// PID
-	if (getData("statusBarPid", statusBarPid)) {
+	if (statusBarPid) {
 		statusBarCanvas.printf("#:%d; ", process);
 	}
 	

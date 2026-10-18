@@ -212,18 +212,15 @@ const Locale LANG_UK = {
 	.TXT_NFC_READY_TO_WRITE      = "Готовий до запису...",
 
 	// Settings text
-	.TXT_SETTINGS_LANGUAGE       = "Мова: ",
 	.TXT_SETTINGS_BRIGHTNESS     = "яскравість: ",
 	.TXT_SETTINGS_VOLUME         = "гучність: ",
 	.TXT_SETTINGS_COLOR          = "колір: ",
-	.TXT_SETTINGS_FONT           = "Шрифт:",
 	.TXT_SETTINGS_ROTATION       = "переворот",
 	.TXT_SETTINGS_SOUND          = "Звук: ",
 	.TXT_SETTINGS_STATUS_BAR     = "стат. рядок: ",
 	.TXT_SETTINGS_PID            = "PID: ",
 	.TXT_SETTINGS_KB_GYRO        = "гіро клав.: ",
 	.TXT_SETTINGS_WEBSERVER_FS   = "Веб-сервер FS: ",
-	.TXT_SETTINGS_TIMEZONE       = "Часовий пояс: ",
 	.MENU_UART = "UART",
 	.MENU_UART_TERMINAL = "термінал",
 	.MENU_UART_SAVE_LOGS = "зберегти логи",

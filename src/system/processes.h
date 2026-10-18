@@ -9,14 +9,7 @@
     X(SETTINGS,              100, settingsMenuLoop) \
     X(SETTINGS_CLOCK,        101, settingsClockLoop) \
     X(SETTINGS_STATUS_BAR,   102, settingsStatusBarMenuLoop) \
-    X(BRIGHTNESS,            103, brightnessLoop) \
-    X(COLORS,                105, colorsLoop) \
-    X(FONTS,                 106, fontsLoop) \
-    X(LANGUAGE,              111, languageLoop) \
-    X(DIMMING,               112, dimmingLoop) \
-    X(VOLUME,                113, volumeLoop) \
     X(SETTINGS_SSID,         115, setSsidLoop) \
-    X(SETTINGS_TIMEZONE,     118, settingsTimezoneLoop) \
     X(SETTINGS_UI,           119, settingsUIMenuLoop) \
     \
     /* Wi-Fi (200-299) */ \
@@ -86,8 +79,6 @@
     X(IR_SEND,            602, irSendLoop) \
     X(IR_TV_B_GONE,       603, irTvBGoneLoop) \
     X(IR_CONFIG_PINS,     604, irConfigurePinsMenuLoop) \
-    X(IR_CONFIG_TX,       605, irConfigureTxLoop) \
-    X(IR_CONFIG_RX,       606, irConfigureRxLoop) \
     X(IR_CONFIG_RESET,    607, irConfigureResetLoop) \
     \
     X(USB,                700, usbMenuLoop) \
@@ -113,20 +104,12 @@
     /* UART (812-819) */ \
     X(UART,               812, uartMenuLoop) \
     X(UART_TERMINAL,      813, uartTerminalLoop) \
-    X(UART_CONFIG_RX,     814, uartConfigRxLoop) \
-    X(UART_CONFIG_TX,     815, uartConfigTxLoop) \
-    X(UART_CONFIG_BAUD,   816, uartConfigBaudLoop) \
     \
     /* RF / sub-GHz CC1101 (1000-1099) */ \
     X(RF,             1000, rfMenuLoop) \
     X(RF_SPECTRUM,    1001, cc1101SpectrumAnalyzerLoop) \
     X(RF_RAW_SNIFFER, 1002, cc1101RawSnifferLoop) \
     X(RF_CONFIG_PINS, 1003, rfConfigurePinsMenuLoop) \
-    X(RF_CONFIG_CS,   1004, rfConfigureCsLoop) \
-    X(RF_CONFIG_SCK,  1005, rfConfigureSckLoop) \
-    X(RF_CONFIG_MOSI, 1006, rfConfigureMosiLoop) \
-    X(RF_CONFIG_MISO, 1007, rfConfigureMisoLoop) \
-    X(RF_CONFIG_GDO0, 1008, rfConfigureGdo0Loop) \
     X(RF_CONFIG_RESET, 1009, rfConfigureResetLoop) \
     \
     /* Error screen (900-999) */ \

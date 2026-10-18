@@ -213,18 +213,15 @@ struct Locale {
 	const char* TXT_NFC_READY_TO_WRITE;
 
 	// Settings text
-	const char* TXT_SETTINGS_LANGUAGE;
 	const char* TXT_SETTINGS_BRIGHTNESS;
 	const char* TXT_SETTINGS_VOLUME;
 	const char* TXT_SETTINGS_COLOR;
-	const char* TXT_SETTINGS_FONT;
 	const char* TXT_SETTINGS_ROTATION;
 	const char* TXT_SETTINGS_SOUND;
 	const char* TXT_SETTINGS_STATUS_BAR;
 	const char* TXT_SETTINGS_PID;
 	const char* TXT_SETTINGS_KB_GYRO;
 	const char* TXT_SETTINGS_WEBSERVER_FS;
-	const char* TXT_SETTINGS_TIMEZONE;
 
 	// UART menu
 	const char* MENU_UART;

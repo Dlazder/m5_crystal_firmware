@@ -212,18 +212,15 @@ const Locale LANG_RO = {
 	.TXT_NFC_READY_TO_WRITE      = "Gata de scriere...",
 
 	// Settings text
-	.TXT_SETTINGS_LANGUAGE       = "Limbă: ",
 	.TXT_SETTINGS_BRIGHTNESS     = "luminozitate: ",
 	.TXT_SETTINGS_VOLUME         = "volum: ",
 	.TXT_SETTINGS_COLOR          = "culoare: ",
-	.TXT_SETTINGS_FONT           = "Font:",
 	.TXT_SETTINGS_ROTATION       = "rotație ecran",
 	.TXT_SETTINGS_SOUND          = "Sunet: ",
 	.TXT_SETTINGS_STATUS_BAR     = "bară stare: ",
 	.TXT_SETTINGS_PID            = "PID: ",
 	.TXT_SETTINGS_KB_GYRO        = "Giro tastatură: ",
 	.TXT_SETTINGS_WEBSERVER_FS   = "Server FS: ",
-	.TXT_SETTINGS_TIMEZONE       = "Fus orar: ",
 	.MENU_UART = "UART",
 	.MENU_UART_TERMINAL = "terminal",
 	.MENU_UART_SAVE_LOGS = "salvează loguri",

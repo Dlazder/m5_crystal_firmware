@@ -212,18 +212,15 @@ const Locale LANG_TR = {
 	.TXT_NFC_READY_TO_WRITE      = "Yazmaya hazır...",
 
 	// Settings text
-	.TXT_SETTINGS_LANGUAGE       = "Dil: ",
 	.TXT_SETTINGS_BRIGHTNESS     = "parlaklık: ",
 	.TXT_SETTINGS_VOLUME         = "ses: ",
 	.TXT_SETTINGS_COLOR          = "renk: ",
-	.TXT_SETTINGS_FONT           = "Yazı tipi:",
 	.TXT_SETTINGS_ROTATION       = "ekranı döndür",
 	.TXT_SETTINGS_SOUND          = "Ses: ",
 	.TXT_SETTINGS_STATUS_BAR     = "durum çubuğu: ",
 	.TXT_SETTINGS_PID            = "PID: ",
 	.TXT_SETTINGS_KB_GYRO        = "Gyro klavye: ",
 	.TXT_SETTINGS_WEBSERVER_FS   = "Web sunucu FS: ",
-	.TXT_SETTINGS_TIMEZONE       = "Saat dilimi: ",
 	.MENU_UART = "UART",
 	.MENU_UART_TERMINAL = "terminal",
 	.MENU_UART_SAVE_LOGS = "logları kaydet",

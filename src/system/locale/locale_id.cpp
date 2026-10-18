@@ -212,18 +212,15 @@ const Locale LANG_ID = {
     .TXT_NFC_READY_TO_WRITE       = "Siap menulis...",
 
     // Settings text
-    .TXT_SETTINGS_LANGUAGE        = "Bahasa: ",
     .TXT_SETTINGS_BRIGHTNESS      = "kecerahan: ",
     .TXT_SETTINGS_VOLUME          = "volume: ",
     .TXT_SETTINGS_COLOR           = "warna: ",
-    .TXT_SETTINGS_FONT            = "Font:",
     .TXT_SETTINGS_ROTATION        = "balik rotasi",
     .TXT_SETTINGS_SOUND           = "Suara: ",
     .TXT_SETTINGS_STATUS_BAR      = "bilah status: ",
     .TXT_SETTINGS_PID             = "PID: ",
     .TXT_SETTINGS_KB_GYRO         = "Giroskop: ",
     .TXT_SETTINGS_WEBSERVER_FS    = "WebServer FS: ",
-    .TXT_SETTINGS_TIMEZONE        = "Zona waktu: ",
 	.MENU_UART = "UART",
 	.MENU_UART_TERMINAL = "terminal",
 	.MENU_UART_SAVE_LOGS = "simpan log",

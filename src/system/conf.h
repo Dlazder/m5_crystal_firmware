@@ -2,8 +2,6 @@
 bool statusBar = true;
 // set to false to hide current PID in statusBar
 bool statusBarPid = false;
-// set to false to hide battery percents in statusBar
-bool statusBarBattery = true;
 // set to false to hide seconds in statusBar
 bool statusBarSeconds = true;
 

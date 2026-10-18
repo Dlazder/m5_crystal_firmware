@@ -40,7 +40,7 @@
 // Available GPIOs broken out on the headers, used for IR TX/RX pin configuration.
 // Some pins drive built-in peripherals (SD: 4/5/6/7, NFC: 9/10, SYS I2C: 11/12, USB: 19/20) —
 // picking one of those for IR will disable the peripheral while it is in use.
-static const uint8_t devicePins[] = {
+static const int devicePins[] = {
 	0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 43, 44
 };
 static constexpr uint8_t devicePinsCount = sizeof(devicePins) / sizeof(devicePins[0]);

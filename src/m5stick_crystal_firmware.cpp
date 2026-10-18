@@ -3,7 +3,6 @@
 #include "./system/serialCommandHandler.h"
 #include "./system/functions.h"
 #include "./system/switcher.h"
-#include "./system/loadPreferences.h"
 
 void setup() {
   deviceInit();
@@ -12,7 +11,7 @@ void setup() {
   Serial.printf("[DEBUG] Detected board: %d (14=M5Cardputer, 24=M5CardputerADV)\n", (int)DEVICE.getBoard());
   Serial.printf("[DEBUG] SDA=%d  SCL=%d\n", SDA, SCL);
   preferences.begin("storage", false);
-  loadPreferences();
+  Settings::load();
 
   // GPIO UART — also accepts serial commands (in addition to USB Serial).
   Serial2.begin(uartBaud, SERIAL_8N1, uartRxPin, uartTxPin);

@@ -1,5 +1,3 @@
-#include "../system/settingHandlers.h"
-
 void drawScrollbar(int currentCursor, int totalItems, int visibleItems) {
 	static int SCROLLBAR_WIDTH = 5;
 	int SCROLLBAR_X = canvas.width() - SCROLLBAR_WIDTH;
@@ -26,6 +24,18 @@ const int MENU_ICON_TEXT_GAP = 5;  // pixels between icon and text
 const int MENU_CHECKBOX_SIZE = 10; // 10x10 pixels for toggle checkboxes
 const int MENU_CHECKBOX_SCROLLBAR_GAP = 3; // gap between checkbox and scrollbar
 const int MENU_VISIBLE_ITEMS = 5; // max menu items rendered at once
+
+// Inline editing of a pin/range setting registered in the settings service
+// (MENU::settingKey found in the registry). While editing, the pending value
+// lives here and is only persisted on confirm. Toggles are flipped directly.
+static bool menuEditing = false;
+static int menuEditValue = 0;
+static int menuEditOriginal = 0; // value before editing, restored by ESC on live settings
+
+// The registered setting bound to a menu item, or nullptr for plain items.
+static const Setting* menuItemSetting(const MENU& item) {
+	return item.settingKey != nullptr ? Settings::find(item.settingKey) : nullptr;
+}
 
 void drawMenu(MENU menu[], int size) {
 	if (cursor >= size) cursor = cursor % size;
@@ -58,15 +68,41 @@ void drawMenu(MENU menu[], int size) {
 		} else {
 			textX = 5;
 		}
+		String label = menu[i].name.substring(0, MENU_LABEL_MAX_CHARS);
+
+		// Value of a pin/range setting, right-aligned; "!" marks a conflicting pin,
+		// "<...>" marks the item being edited.
+		const Setting* setting = menuItemSetting(menu[i]);
+		bool isToggle = (setting != nullptr && setting->type == SettingType::TOGGLE);
+		bool hasValue = (setting != nullptr && !isToggle);
+		String valueText = "";
+		int valueX = 0;
+		if (hasValue) {
+			bool editing = menuEditing && selected;
+			int v = editing ? menuEditValue : Settings::get(setting);
+			valueText = Settings::format(setting, v);
+			if (Settings::hasConflict(setting, v)) valueText = "!" + valueText;
+			if (editing) valueText = "<" + valueText + ">";
+			valueX = canvas.width() - 5 /*SCROLLBAR_WIDTH*/ - MENU_CHECKBOX_SCROLLBAR_GAP - canvas.textWidth(valueText.c_str());
+			// Keep the label clear of the value.
+			while (label.length() > 1 && textX + canvas.textWidth(label.c_str()) + MENU_ICON_TEXT_GAP > valueX) {
+				label.remove(label.length() - 1);
+			}
+		}
+
 		canvas.setCursor(textX, y);
-		canvas.print(menu[i].name.substring(0, MENU_LABEL_MAX_CHARS).c_str());
+		canvas.print(label.c_str());
+		if (hasValue) {
+			canvas.setCursor(valueX, y);
+			canvas.print(valueText.c_str());
+		}
 
 		// Draw toggle checkbox for settings items
-		if (menu[i].settingKey != nullptr) {
+		if (isToggle) {
 			int cbX = canvas.width() - 5 /*SCROLLBAR_WIDTH*/ - MENU_CHECKBOX_SCROLLBAR_GAP - MENU_CHECKBOX_SIZE;
 			int cbY = y + (lineHeight - MENU_CHECKBOX_SIZE) / 2;
 			int cbColor = selected ? BGCOLOR : FGCOLOR;
-			bool isChecked = (getData(menu[i].settingKey, 0) == 1);
+			bool isChecked = (Settings::get(setting) != 0);
 			canvas.drawRect(cbX, cbY, MENU_CHECKBOX_SIZE, MENU_CHECKBOX_SIZE, cbColor);
 			if (isChecked) {
 				canvas.fillRect(cbX + 2, cbY + 2, MENU_CHECKBOX_SIZE - 4, MENU_CHECKBOX_SIZE - 4, cbColor);
@@ -78,7 +114,44 @@ void drawMenu(MENU menu[], int size) {
 	canvas.pushSprite(0, getStatusBarOffset());
 }
 
+// Input while a setting is being edited. Keyboard: left/right (or up/down) change the
+// value, Enter confirms, ESC cancels. Buttons: B / PWR change it, A confirms.
+static void menuEditLoop(MENU menu[], int size) {
+	const Setting* s = menuItemSetting(menu[cursor]);
+
+	if (isKbEscPressed()) {
+		if (s->live) Settings::set(s, menuEditOriginal, false);
+		menuEditing = false;
+		drawMenu(menu, size);
+		return;
+	}
+	if (isBtnAWasPressed() || isKbEnterPressed()) {
+		// Live settings were already applied step by step: only persist.
+		if (s->live) Settings::commit(s);
+		else Settings::set(s, menuEditValue);
+		menuEditing = false;
+		drawMenu(menu, size);
+		return;
+	}
+	int dir = 0;
+	if (isBtnBWasPressed() || isKbRightPressed() || isKbDownPressed() || isWebControlDownWasPressed()) dir = 1;
+	if (isBtnPWRWasPressed() || isKbLeftPressed() || isKbUpPressed() || isWebControlUpWasPressed()) dir = -1;
+	if (dir != 0) {
+		menuEditValue = Settings::step(s, menuEditValue, dir);
+		if (s->live) Settings::set(s, menuEditValue, false);
+		drawMenu(menu, size);
+	}
+	if (isWebDataRequested()) {
+		webData = generateWebData("menu", generateMenuString(menu, size));
+	}
+}
+
 void menuLoop(MENU menu[], int size) {
+	// A setting is being edited: the menu navigation below is suspended.
+	if (menuEditing) {
+		menuEditLoop(menu, size);
+		return;
+	}
 	// ESC returns to this menu's parent (the "Back" item at index 0).
 	if (isKbEscPressed()) {
 		if (process == PID::MAIN_MENU) return; // root menu has no parent
@@ -90,10 +163,19 @@ void menuLoop(MENU menu[], int size) {
 		drawMenu(menu, size);
 	}
 	if (isBtnAWasPressed() || isKbEnterPressed()) {
-		if (menu[cursor].settingKey != nullptr) {
-			// toggle settings
-			handleSettingToggle(menu[cursor].settingKey);
+		const Setting* setting = menuItemSetting(menu[cursor]);
+		if (setting != nullptr && setting->type == SettingType::TOGGLE) {
+			Settings::set(setting, Settings::step(setting, Settings::get(setting), 1));
 			drawMenu(menu, size);
+			return;
+		} else if (setting != nullptr) {
+			// pin/range setting: start inline editing
+			menuEditing = true;
+			menuEditValue = menuEditOriginal = Settings::get(setting);
+			drawMenu(menu, size);
+			return;
+		} else if (menu[cursor].settingKey != nullptr) {
+			// key not in the registry (e.g. a feature compiled out): nothing to change
 			return;
 		} else {
 			// toggle process (default behavior)

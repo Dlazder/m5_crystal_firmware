@@ -12,14 +12,7 @@
 #include "../functions/settings/settingsMenuLoop.h"
 #include "../functions/settings/settingsClockLoop.h"
 #include "../functions/settings/settingsStatusBarMenuLoop.h"
-#include "../functions/settings/brightnessLoop.h"
-#include "../functions/settings/fontsLoop.h"
-#include "../functions/settings/colorsLoop.h"
-#include "../functions/settings/languageLoop.h"
-#include "../functions/settings/dimmingLoop.h"
-#include "../functions/settings/volumeLoop.h"
 #include "../functions/settings/ssidLoop.h"
-#include "../functions/settings/settingsTimezoneLoop.h"
 #include "../functions/settings/UIMenuLoop.h"
 
 
@@ -94,8 +87,6 @@
 #include "../functions/ir/irSendLoop.h"
 #include "../functions/ir/irTvBGoneLoop.h"
 #include "../functions/ir/irConfigurePinsMenuLoop.h"
-#include "../functions/ir/irConfigureTxLoop.h"
-#include "../functions/ir/irConfigureRxLoop.h"
 #include "../functions/ir/irConfigureResetLoop.h"
 
 
@@ -105,19 +96,11 @@
 #include "../functions/rf/cc1101SpectrumAnalyzerLoop.h"
 #include "../functions/rf/cc1101RawSnifferLoop.h"
 #include "../functions/rf/rfConfigurePinsMenuLoop.h"
-#include "../functions/rf/rfConfigureCsLoop.h"
-#include "../functions/rf/rfConfigureSckLoop.h"
-#include "../functions/rf/rfConfigureMosiLoop.h"
-#include "../functions/rf/rfConfigureMisoLoop.h"
-#include "../functions/rf/rfConfigureGdo0Loop.h"
 #include "../functions/rf/rfConfigureResetLoop.h"
 
 // UART
 #include "../functions/uart/uartMenuLoop.h"
 #include "../functions/uart/uartTerminalLoop.h"
-#include "../functions/uart/uartConfigRxLoop.h"
-#include "../functions/uart/uartConfigTxLoop.h"
-#include "../functions/uart/uartConfigBaudLoop.h"
 
 
 // USB

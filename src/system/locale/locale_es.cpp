@@ -212,18 +212,15 @@ const Locale LANG_ES = {
 	.TXT_NFC_READY_TO_WRITE= "Listo para escribir...",
 
 	// Settings text
-	.TXT_SETTINGS_LANGUAGE = "Idioma: ",
 	.TXT_SETTINGS_BRIGHTNESS = "brillo: ",
 	.TXT_SETTINGS_VOLUME     = "volumen: ",
 	.TXT_SETTINGS_COLOR= "color: ",
-	.TXT_SETTINGS_FONT = "Fuente:",
 	.TXT_SETTINGS_ROTATION = "invertir rotación",
 	.TXT_SETTINGS_SOUND= "Sonido: ",
 	.TXT_SETTINGS_STATUS_BAR = "barra estado: ",
 	.TXT_SETTINGS_PID= "PID: ",
 	.TXT_SETTINGS_KB_GYRO= "Giroscopio: ",
 	.TXT_SETTINGS_WEBSERVER_FS = "WebServer FS: ",
-	.TXT_SETTINGS_TIMEZONE      = "Zona horaria: ",
 	.MENU_UART = "UART",
 	.MENU_UART_TERMINAL = "terminal",
 	.MENU_UART_SAVE_LOGS = "guardar logs",

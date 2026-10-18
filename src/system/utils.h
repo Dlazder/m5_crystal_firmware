@@ -14,6 +14,7 @@
 #include "../utils/webControlUtils.h"
 #include "../utils/webResponseUtils.h"
 #include "../utils/storageUtils.h"
+#include "../services/settings/settings.h" // needs storageUtils.h; must precede menuUtils.h
 #include "../utils/keyboardUtils/cardputerKbUtils.h"
 #include "../utils/keyboardUtils/kbUtils.h"
 #include "../utils/soundUtils.h"

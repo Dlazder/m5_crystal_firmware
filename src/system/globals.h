@@ -42,7 +42,7 @@ struct MENU {
   int command;
   String name;
   const uint8_t* icon;       // nullptr if no icon (14x14 1-bit bitmap)
-  const char* settingKey;    // nullptr if not a toggle; if set, toggles the boolean pref and ignores command
+  const char* settingKey;    // nullptr if not a setting; if set, key of a setting in the settings registry (services/settings): Enter flips a toggle or edits a pin/range inline, and ignores command
 };
 
 bool hasImu = false;
@@ -144,14 +144,18 @@ static const int BRIGHTNESS_HW_MAX  = 255;
 static const int BRIGHTNESS_HW_STEP = BRIGHTNESS_HW_MAX / BRIGHTNESS_STEPS;
 inline int brightnessToHw(int step) { return step * BRIGHTNESS_HW_STEP; }
 
-// Volume
-int volumeMax = 255;
-int volumeStep = 10;
-int volumeDividor = volumeMax / volumeStep;
-int volume = defaultVolumeLevel * volumeDividor;
+// Volume (stored as a step value 1-10)
+int volume = defaultVolumeLevel;
+static const int volumeMax = 255;
+static const int volumeStep = 10;
+static const int volumeDividor = volumeMax / volumeStep;
+inline int volumeToHw(int level) { return level * volumeDividor; }
 int volumeMin = 0;
 
 // Screen dimming
+const int dimTimeouts[] = { 0, 30000, 60000, 180000, 300000 };
+const int dimTimeoutsCount = sizeof(dimTimeouts) / sizeof(dimTimeouts[0]);
+int dimTimeoutIndex = defaultDimTimeoutIndex;
 int screenDimTimeout = 0;
 bool screenIsDimmed = false;
 int dimmingPreviousTimer = 0;

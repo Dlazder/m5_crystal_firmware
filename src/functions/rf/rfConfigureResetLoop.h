@@ -17,16 +17,7 @@ void rfConfigureResetLoop() {
 	}
 
 	if ((isBtnAWasPressed() || isKbEnterPressed()) && checkTimer(100)) {
-		rfCsPin = CC1101_CS_PIN;
-		rfSckPin = CC1101_SCK_PIN;
-		rfMosiPin = CC1101_MOSI_PIN;
-		rfMisoPin = CC1101_MISO_PIN;
-		rfGdo0Pin = CC1101_GDO0_PIN;
-		setData("rfCsPin", rfCsPin);
-		setData("rfSckPin", rfSckPin);
-		setData("rfMosiPin", rfMosiPin);
-		setData("rfMisoPin", rfMisoPin);
-		setData("rfGdo0Pin", rfGdo0Pin);
+		Settings::resetGroup(SettingGroup::RF_PINS);
 		Serial.printf("CC1101 pins reset: %s\n", _rfPinsSummary().c_str());
 
 		String lines[] = {
