@@ -67,9 +67,10 @@ const Locale LANG_IT = {
 
     // NFC menu
     .MENU_NFC                     = "NFC",
-    .MENU_NFC_READ_UID            = "leggi UID",
+    .MENU_NFC_READ_UID            = "leggi",
+    .MENU_NFC_WRITE          = "scrivi",
     .MENU_NFC_WRITE_UID           = "scrivi UID",
-    .MENU_NFC_ADVANCED_INFO       = "info avanzata",
+    .MENU_NFC_WRITE_SECTORS  = "scrivi settori",
 
     // IR menu
     .MENU_IR                      = "IR",
@@ -210,6 +211,14 @@ const Locale LANG_IT = {
     .TXT_NFC_WRITE_FAILED         = "Scrittura fallita!",
     .TXT_NFC_WRITE_ERROR          = "Nessun tag o errore",
     .TXT_NFC_READY_TO_WRITE       = "Pronto a scrivere...",
+    .TXT_NFC_PLACE_TAG          = "Place tag",
+    .TXT_NFC_READING            = "Reading...",
+    .TXT_NFC_SECTORS            = "Sectors",
+    .TXT_NFC_PAGES              = "Pages",
+    .TXT_NFC_SAVE_ERROR         = "Save failed",
+    .TXT_NFC_WRITING            = "Scrittura...",
+    .TXT_NFC_NOT_CLASSIC        = "Non Mifare Classic",
+    .TXT_NFC_SECTORS_WRITTEN    = "Settori scritti",
 
     // Settings text
     .TXT_SETTINGS_BRIGHTNESS      = "luminosità: ",

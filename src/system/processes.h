@@ -49,10 +49,11 @@
     X(BT_SNIFFER,   311, bluetoothSnifferLoop) \
     \
     /* NFC (400-499) */ \
-    X(NFC,       400, nfcMenuLoop) \
-    X(NFC_READ,  401, nfcReadLoop) \
-    X(NFC_WRITE, 402, nfcWriteLoop) \
-    X(NFC_ADVANCED_INFO, 403, nfcAdvancedInfoLoop) \
+    X(NFC,               400, nfcMenuLoop) \
+    X(NFC_READ,          401, nfcReadLoop) \
+    X(NFC_WRITE,         402, nfcWriteLoop) \
+    X(NFC_WRITE_UID,     405, nfcWriteUidLoop) \
+    X(NFC_WRITE_SECTORS, 406, nfcWriteSectorsLoop) \
     \
     /* Files (500-599) */ \
     X(FILES_MENU,         500, filesMenuLoop) \

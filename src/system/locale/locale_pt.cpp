@@ -67,9 +67,10 @@ const Locale LANG_PT = {
 
 	// NFC menu
 	.MENU_NFC                    = "NFC",
-	.MENU_NFC_READ_UID           = "ler UID",
+	.MENU_NFC_READ_UID           = "ler",
+	.MENU_NFC_WRITE          = "gravar",
 	.MENU_NFC_WRITE_UID          = "gravar UID",
-	.MENU_NFC_ADVANCED_INFO      = "info avançada",
+	.MENU_NFC_WRITE_SECTORS  = "gravar setores",
 
 	// IR menu
 	.MENU_IR                     = "IR",
@@ -210,6 +211,14 @@ const Locale LANG_PT = {
 	.TXT_NFC_WRITE_FAILED        = "Falha na gravação!",
 	.TXT_NFC_WRITE_ERROR         = "Sem tag / erro gravação",
 	.TXT_NFC_READY_TO_WRITE      = "Pronto para gravar...",
+	.TXT_NFC_PLACE_TAG          = "Place tag",
+	.TXT_NFC_READING            = "Reading...",
+	.TXT_NFC_SECTORS            = "Sectors",
+	.TXT_NFC_PAGES              = "Pages",
+	.TXT_NFC_SAVE_ERROR         = "Save failed",
+	.TXT_NFC_WRITING            = "Gravando...",
+	.TXT_NFC_NOT_CLASSIC        = "Não é Mifare Classic",
+	.TXT_NFC_SECTORS_WRITTEN    = "Setores gravados",
 
 	// Settings text
 	.TXT_SETTINGS_BRIGHTNESS     = "brilho : ",

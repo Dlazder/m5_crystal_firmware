@@ -68,8 +68,9 @@ struct Locale {
 	// NFC menu
 	const char* MENU_NFC;
 	const char* MENU_NFC_READ_UID;
+	const char* MENU_NFC_WRITE;
 	const char* MENU_NFC_WRITE_UID;
-	const char* MENU_NFC_ADVANCED_INFO;
+	const char* MENU_NFC_WRITE_SECTORS;
 
 	// IR menu
 	const char* MENU_IR;
@@ -211,6 +212,14 @@ struct Locale {
 	const char* TXT_NFC_WRITE_FAILED;
 	const char* TXT_NFC_WRITE_ERROR;
 	const char* TXT_NFC_READY_TO_WRITE;
+	const char* TXT_NFC_PLACE_TAG;
+	const char* TXT_NFC_READING;
+	const char* TXT_NFC_SECTORS;
+	const char* TXT_NFC_PAGES;
+	const char* TXT_NFC_SAVE_ERROR;
+	const char* TXT_NFC_WRITING;
+	const char* TXT_NFC_NOT_CLASSIC;
+	const char* TXT_NFC_SECTORS_WRITTEN;
 
 	// Settings text
 	const char* TXT_SETTINGS_BRIGHTNESS;

@@ -67,9 +67,10 @@ const Locale LANG_UK = {
 
 	// NFC menu
 	.MENU_NFC                    = "NFC",
-	.MENU_NFC_READ_UID           = "читати UID",
+	.MENU_NFC_READ_UID           = "читати",
+	.MENU_NFC_WRITE          = "записати",
 	.MENU_NFC_WRITE_UID          = "записати UID",
-	.MENU_NFC_ADVANCED_INFO    = "розширена інфо",
+	.MENU_NFC_WRITE_SECTORS  = "записати сектори",
 
 	// IR menu
 	.MENU_IR                     = "IR",
@@ -210,6 +211,14 @@ const Locale LANG_UK = {
 	.TXT_NFC_WRITE_FAILED        = "Запис не вдався",
 	.TXT_NFC_WRITE_ERROR         = "Нема тегу/помилка",
 	.TXT_NFC_READY_TO_WRITE      = "Готовий до запису...",
+	.TXT_NFC_PLACE_TAG          = "Прикладіть мітку",
+	.TXT_NFC_READING            = "Читання...",
+	.TXT_NFC_SECTORS            = "Сектори",
+	.TXT_NFC_PAGES              = "Сторінки",
+	.TXT_NFC_SAVE_ERROR         = "Помилка збереження",
+	.TXT_NFC_WRITING            = "Запис...",
+	.TXT_NFC_NOT_CLASSIC        = "Не Mifare Classic",
+	.TXT_NFC_SECTORS_WRITTEN    = "Сектори записано",
 
 	// Settings text
 	.TXT_SETTINGS_BRIGHTNESS     = "яскравість: ",

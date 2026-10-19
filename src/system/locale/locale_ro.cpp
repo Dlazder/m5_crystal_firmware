@@ -67,9 +67,10 @@ const Locale LANG_RO = {
 
 	// NFC menu
 	.MENU_NFC                    = "NFC",
-	.MENU_NFC_READ_UID           = "citește UID",
+	.MENU_NFC_READ_UID           = "citește",
+	.MENU_NFC_WRITE          = "scrie",
 	.MENU_NFC_WRITE_UID          = "scrie UID",
-	.MENU_NFC_ADVANCED_INFO      = "info avansate",
+	.MENU_NFC_WRITE_SECTORS  = "scrie sectoare",
 
 	// IR menu
 	.MENU_IR                     = "IR",
@@ -210,6 +211,14 @@ const Locale LANG_RO = {
 	.TXT_NFC_WRITE_FAILED        = "Scriere eșuată!",
 	.TXT_NFC_WRITE_ERROR         = "Fără tag / eroare scriere",
 	.TXT_NFC_READY_TO_WRITE      = "Gata de scriere...",
+	.TXT_NFC_PLACE_TAG          = "Place tag",
+	.TXT_NFC_READING            = "Reading...",
+	.TXT_NFC_SECTORS            = "Sectors",
+	.TXT_NFC_PAGES              = "Pages",
+	.TXT_NFC_SAVE_ERROR         = "Save failed",
+	.TXT_NFC_WRITING            = "Se scrie...",
+	.TXT_NFC_NOT_CLASSIC        = "Nu e Mifare Classic",
+	.TXT_NFC_SECTORS_WRITTEN    = "Sectoare scrise",
 
 	// Settings text
 	.TXT_SETTINGS_BRIGHTNESS     = "luminozitate: ",

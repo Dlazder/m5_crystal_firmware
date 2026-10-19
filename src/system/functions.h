@@ -78,7 +78,8 @@
 #include "../functions/nfc/nfcMenuLoop.h"
 #include "../functions/nfc/nfcReadLoop.h"
 #include "../functions/nfc/nfcWriteLoop.h"
-#include "../functions/nfc/nfcAdvancedInfoLoop.h"
+#include "../functions/nfc/nfcWriteUidLoop.h"
+#include "../functions/nfc/nfcWriteSectorsLoop.h"
 
 
 // IR functions

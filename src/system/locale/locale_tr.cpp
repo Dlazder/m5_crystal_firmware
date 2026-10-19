@@ -67,9 +67,10 @@ const Locale LANG_TR = {
 
 	// NFC menu
 	.MENU_NFC                    = "NFC",
-	.MENU_NFC_READ_UID           = "UID oku",
+	.MENU_NFC_READ_UID           = "oku",
+	.MENU_NFC_WRITE          = "yaz",
 	.MENU_NFC_WRITE_UID          = "UID yaz",
-	.MENU_NFC_ADVANCED_INFO      = "gelişmiş bilgi",
+	.MENU_NFC_WRITE_SECTORS  = "sektör yaz",
 
 	// IR menu
 	.MENU_IR                     = "IR",
@@ -210,6 +211,14 @@ const Locale LANG_TR = {
 	.TXT_NFC_WRITE_FAILED        = "Yazma başarısız!",
 	.TXT_NFC_WRITE_ERROR         = "Etiket yok / yazma hatası",
 	.TXT_NFC_READY_TO_WRITE      = "Yazmaya hazır...",
+	.TXT_NFC_PLACE_TAG          = "Place tag",
+	.TXT_NFC_READING            = "Reading...",
+	.TXT_NFC_SECTORS            = "Sectors",
+	.TXT_NFC_PAGES              = "Pages",
+	.TXT_NFC_SAVE_ERROR         = "Save failed",
+	.TXT_NFC_WRITING            = "Yazılıyor...",
+	.TXT_NFC_NOT_CLASSIC        = "Mifare Classic değil",
+	.TXT_NFC_SECTORS_WRITTEN    = "Sektörler yazıldı",
 
 	// Settings text
 	.TXT_SETTINGS_BRIGHTNESS     = "parlaklık: ",

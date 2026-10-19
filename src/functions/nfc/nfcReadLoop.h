@@ -1,119 +1,120 @@
 // PID::NFC_READ
 
-uint8_t lastReadUID[7] = {0};  // 7 bytes - enough for all standard tags
-uint8_t lastReadUIDLength = 0;
-bool hasValidUID = false;
+Nfc::Tag nfcReadTag;
+bool nfcReadHasTag = false;
 
-// Flag to avoid repeated connect/disconnect notifications
-bool nfcModuleWasConnected = false;
-
-bool isPN532Connected() {
-	Wire.beginTransmission(0x24);
-	return Wire.endTransmission() == 0;
-}
-
-void displayNotConnectedError() {
-	nfcModuleWasConnected = false;
+void _nfcReadDisplayNotConnectedError() {
+	Nfc::setWasConnected(false);
 	connectionGuideNFC();
 	Serial.println("PN532: disconnected");
 	DEVICE.Power.setLed(1);
 	soundError();
 }
 
-String uidToString(const uint8_t* uid, uint8_t uidLength) {
-	String uidString = "";
-	for (uint8_t i = 0; i < uidLength; i++) {
-		if (uid[i] < 0x10) uidString += "0";
-		uidString += String(uid[i], HEX);
-		if (i < uidLength - 1) uidString += ":";
-	}
-	return uidString;
+void _nfcReadDrawWaiting() {
+	String lines[] = {
+		"PN532: connected",
+		L->TXT_NFC_PLACE_TAG
+	};
+	centeredPrintRows(lines, 2, MEDIUM_TEXT);
 }
 
+void _nfcReadDrawTag() {
+	const Nfc::Tag& t = nfcReadTag;
+	String lines[4];
+	int n = 0;
+
+	switch (t.type) {
+		case Nfc::TagType::MIFARE_CLASSIC:
+			lines[n++] = String("Mifare Classic ") + t.subtype;
+			break;
+		case Nfc::TagType::ULTRALIGHT:
+			lines[n++] = t.subtype;
+			break;
+		default:
+			lines[n++] = "ISO14443-3A";
+	}
+	lines[n++] = "UID: " + Nfc::uidToString(t.uid, t.uidLen);
+	if (t.type == Nfc::TagType::MIFARE_CLASSIC) {
+		lines[n++] = String(L->TXT_NFC_SECTORS) + ": " + t.sectorsRead + "/" + t.sectorsTotal;
+	} else if (t.type == Nfc::TagType::ULTRALIGHT) {
+		lines[n++] = String(L->TXT_NFC_PAGES) + ": " + t.pagesRead + "/" + t.pagesTotal;
+	}
+	centeredPrintRows(lines, n, SMALL_TEXT);
+	drawHintCustom("enter: save", "A: save");
+}
+
+void _nfcReadProgress(uint8_t percent) {
+	String lines[] = {
+		L->TXT_NFC_READING,
+		String(percent) + "%"
+	};
+	centeredPrintRows(lines, 2, MEDIUM_TEXT);
+}
 
 void nfcReadLoop() {
 	if (isSetup()) {
+		nfcReadHasTag = false;
+		nfcReadTag.release();
 		connectionGuideNFC();
 
-		// End any existing I2C session (e.g. internal bus brought up by the
-		// device init) so the bus is re-bound to the NFC GROVE pins. On ESP32
-		// Arduino core 2.x a repeated Wire.begin() with new pins is ignored
-		// unless the bus is released first.
-		Wire.end();
-		Wire.begin(NFC_SDA, NFC_SCL);
-		if (isPN532Connected()) {
-			nfc.begin();
-			uint32_t versiondata = nfc.getFirmwareVersion();
-			if (versiondata) {
-				String lines[] = {
-					"PN532: connected",
-					L->TXT_SCANNING
-				};
-				centeredPrintRows(lines, 2, MEDIUM_TEXT);
-
-				Serial.println("PN532: connected");
-				Serial.printf("PN532 firmware version: %lu\n", versiondata);
-
-			} else displayNotConnectedError();
-		} else displayNotConnectedError();
+		if (Nfc::begin(NFC_SDA, NFC_SCL)) {
+			Nfc::setWasConnected(true);
+			_nfcReadDrawWaiting();
+		} else {
+			_nfcReadDisplayNotConnectedError();
+		}
 	}
 
-	if (checkTimer(3000)) {
-		// first module connection check
-		if (!isPN532Connected()) {
-			if (nfcModuleWasConnected) displayNotConnectedError();
-			return;
+	// A tag is on screen: A / Enter saves it, then scanning resumes
+	if (nfcReadHasTag) {
+		if (isBtnAWasPressed() || isKbEnterPressed()) {
+			String path;
+			bool useLittleFS = false;
+			if (Nfc::save(nfcReadTag, path, useLittleFS)) {
+				String lines[] = {
+					useLittleFS ? L->TXT_SAVED_LFS : L->TXT_SAVED_SD,
+					path
+				};
+				centeredPrintRows(lines, 2, SMALL_TEXT);
+				soundSuccess();
+			} else {
+				centeredPrint(L->TXT_NFC_SAVE_ERROR, MEDIUM_TEXT);
+				soundError();
+			}
+			delay(1200);
+			nfcReadHasTag = false;
+			nfcReadTag.release();
+			_nfcReadDrawWaiting();
+			updateTimer();
 		}
-
-		nfc.begin();
-		uint32_t versionData = nfc.getFirmwareVersion();
-
-		// Update module status
-		if (!versionData) {
-			if (nfcModuleWasConnected) displayNotConnectedError();
-			return;
+	} else if (checkTimer(500)) {
+		if (!Nfc::isConnected()) {
+			if (Nfc::wasConnected()) _nfcReadDisplayNotConnectedError();
 		} else {
-			if (!nfcModuleWasConnected) {
-				nfcModuleWasConnected = true;
+			if (!Nfc::wasConnected() && Nfc::begin(NFC_SDA, NFC_SCL)) {
+				Nfc::setWasConnected(true);
 				DEVICE.Power.setLed(0);
 				soundSuccess();
-
-				String lines[] = {
-					"PN532: connected",
-					L->TXT_SCANNING
-				};
-				centeredPrintRows(lines, 2, MEDIUM_TEXT);
-				Serial.println("PN532: connected");
+				_nfcReadDrawWaiting();
 			}
-		}
+			if (Nfc::wasConnected() && Nfc::readTag(nfcReadTag, 100, _nfcReadProgress)) {
+				nfcReadHasTag = true;
 
-		// Scanning
-		uint8_t success;
-		uint8_t uid[] = { 0, 0, 0, 0, 0, 0, 0 };
-		uint8_t uidLength;
+				// Keep the write screen working: it writes a stored 4-byte UID.
+				Nfc::setLastUID(nfcReadTag.uid, nfcReadTag.uidLen);
 
-		Serial.println("Scanning...");
-		success = nfc.readPassiveTargetID(PN532_MIFARE_ISO14443A, uid, &uidLength, 100);
-
-		if (success) {
-			updateTimer();
-			String uidString = uidToString(uid, uidLength);
-
-			Serial.printf("Tag found: %s\n", uidString.c_str());
-			centeredPrint(uidString.c_str(), MEDIUM_TEXT);
-			soundBeep();
-
-			// Saving UID for writing
-			memset(lastReadUID, 0, sizeof(lastReadUID));
-			memcpy(lastReadUID, uid, uidLength);
-			lastReadUIDLength = uidLength;
-			hasValidUID = true;
-			Serial.println("UID stored for writing:" + uidString);
+				_nfcReadDrawTag();
+				soundBeep();
+				Serial.printf("NFC: tag %s, %s\n", Nfc::uidToString(nfcReadTag.uid, nfcReadTag.uidLen).c_str(), nfcReadTag.subtype);
+			}
 		}
 	}
 
 	if (checkExit()) {
 		DEVICE.Power.setLed(0);
-		nfcModuleWasConnected = false;
-	};
+		Nfc::setWasConnected(false);
+		nfcReadHasTag = false;
+		nfcReadTag.release();
+	}
 }
