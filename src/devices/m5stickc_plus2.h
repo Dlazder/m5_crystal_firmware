@@ -30,10 +30,17 @@
 // IR receiver pin (OUT of the module connected to G26)
 #define IR_RECEIVE_PIN 26
 
-// UART terminal — GROVE port (G33=TX, G32=RX)
-#define UART_TX_PIN 33
-#define UART_RX_PIN 32
+// UART terminal — default to the header pins (G0/G36), not the Grove port:
+// G32/G33 is where the CH9329 USB-HID bridge is wired by default (see CH9329_*
+// below), and the two must not share a HardwareSerial/GPIO pair.
+#define UART_TX_PIN 0
+#define UART_RX_PIN 36
 #define UART_BAUD_DEFAULT 115200
+
+// CH9329 (USB-HID-over-UART bridge) — Grove port (G33=TX, G32=RX), matching the
+// module's usual 4-pin wiring (5V/TX/RX/GND) on this board's only Grove header.
+#define CH9329_TX_PIN 33
+#define CH9329_RX_PIN 32
 
 // Available GPIOs broken out on the headers, used for IR TX/RX pin configuration.
 // Some pins drive built-in peripherals (SD: 0/26/32/36, Grove I2C: 32/33, buzzer: 2) —

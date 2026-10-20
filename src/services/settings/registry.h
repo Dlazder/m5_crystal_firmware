@@ -165,6 +165,15 @@ static const Setting settingsRegistry[] = {
 	PIN_SETTING("uartTxPin", UART_PINS, uartTxPin, UART_TX_PIN),
 	LIST_SETTING("uartBaud", uartBaud, uartBauds, uartBaudsCount, UART_BAUD_DEFAULT, nullptr, nullptr),
 
+	// CH9329 (USB-HID-over-UART bridge, Settings → USB) uses its own
+	// HardwareSerial (Serial1). Sharing the UART_PINS group with
+	// uartRxPin/uartTxPin lets hasConflict() flag it if a pin ends up assigned
+	// to both the UART terminal (Serial2) and CH9329 at once.
+	TOGGLE_SETTING("ch9329Enabled", ch9329Enabled, nullptr),
+	PIN_SETTING("ch9329RxPin", UART_PINS, ch9329RxPin, CH9329_RX_PIN),
+	PIN_SETTING("ch9329TxPin", UART_PINS, ch9329TxPin, CH9329_TX_PIN),
+	LIST_SETTING("ch9329Baud", ch9329Baud, uartBauds, uartBaudsCount, 9600, nullptr, nullptr),
+
 	LIST_SETTING("timezone", timezoneOffset, timezoneOffsets, timezoneOffsetsCount, SETTING_DEF_INITIAL, fmtUtcOffset, nullptr),
 };
 static const int settingsCount = sizeof(settingsRegistry) / sizeof(settingsRegistry[0]);

@@ -1,6 +1,9 @@
 // PID::USB_MOUSE
+//
+// Works on any board: native USB HID on ESP32-S3 boards, or an external CH9329
+// USB-HID-over-UART bridge when enabled in Settings → USB (see usbHid.h).
 
-#ifdef ESP32S3
+#include "../../services/ch9329/usbHid.h"
 
 // Sensitivity settings (shared with the BLE air mouse)
 #define USB_MOUSE_DEADZONE 0.05f
@@ -42,13 +45,20 @@ void usbMouseLoop() {
 		usbReady = false;
 		smoothedX = 0;
 		smoothedY = 0;
-		if (!usbHidBegan) {
-			usbMouse.begin();
-			USB.begin();
-			usbHidBegan = true;
+
+		if (!usbHidActive()) {
+			centeredPrint(L->TXT_USB_HID_UNSOPPORTED, MEDIUM_TEXT);
+			return;
 		}
+
+		usbHidBegin();
 		centeredPrint(L->TXT_WAITING_CONNECTION, MEDIUM_TEXT);
 		updateTimer();
+	}
+
+	if (!usbHidActive()) {
+		checkExit();
+		return;
 	}
 
 	if (!usbReady) {
@@ -80,33 +90,23 @@ void usbMouseLoop() {
 	int deltaY = (smoothedY > 0) ? speedY : -speedY;
 
 	if (deltaX != 0 || deltaY != 0) {
-		usbMouse.move(deltaX, deltaY);
+		usbMouseMove(deltaX, deltaY);
 	}
 
 	if (isBtnPWRWasPressed() && checkTimer(100, true)) {
-		usbMouse.click(MOUSE_RIGHT);
+		usbMouseClick(MOUSE_RIGHT);
 	}
 
 	if (DEVICE.BtnA.isPressed()) {
-		usbMouse.press(MOUSE_LEFT);
+		usbMousePress(MOUSE_LEFT);
 	} else {
-		usbMouse.release(MOUSE_LEFT);
+		usbMouseRelease(MOUSE_LEFT);
 	}
 
 	if (checkExit()) {
 		usbReady = false;
 		smoothedX = 0;
 		smoothedY = 0;
+		usbHidEnd();
 	}
 }
-
-#else // !ESP32S3 — USB HID unsupported on this board
-
-void usbMouseLoop() {
-	if (isSetup()) {
-		centeredPrint(L->TXT_USB_HID_UNSOPPORTED, MEDIUM_TEXT);
-	}
-	checkExit();
-}
-
-#endif // ESP32S3

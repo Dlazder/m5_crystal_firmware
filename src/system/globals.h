@@ -248,6 +248,16 @@ uint8_t uartTxPin = UART_TX_PIN;
 uint32_t uartBaud = UART_BAUD_DEFAULT;
 bool uartLogEnabled = false; // write UART terminal traffic (RX/TX) to a log file
 
+// CH9329 (USB-HID-over-UART bridge) — optional add-on module. Off by default
+// since it is external hardware, not a built-in header like the UART terminal.
+// Uses its own HardwareSerial (Serial1) and its own pin pair (CH9329_RX_PIN/
+// CH9329_TX_PIN, defined per device header) so it never collides with the UART
+// terminal's Serial2.
+bool ch9329Enabled = false;
+uint8_t ch9329RxPin = CH9329_RX_PIN;
+uint8_t ch9329TxPin = CH9329_TX_PIN;
+uint32_t ch9329Baud = 9600; // CH9329 factory default serial baud rate
+
 #include "../hal/cc1101Pins.h"
 // CC1101 pins — configurable via RF → configure pins; defaults come from hal/cc1101Pins.h
 uint8_t rfCsPin = CC1101_CS_PIN;

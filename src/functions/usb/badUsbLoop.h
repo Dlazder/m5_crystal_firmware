@@ -1,10 +1,15 @@
 // PID::BAD_USB
+//
+// Works on any board: native USB HID on ESP32-S3 boards, or an external CH9329
+// USB-HID-over-UART bridge when enabled in Settings → USB (see usbHid.h).
+// On a board with neither (classic ESP32 boards with CH9329 disabled), falls
+// through to the "unsupported" message, same as before usbHid.h existed.
 
-#ifdef ESP32S3
+#include "../../services/ch9329/usbHid.h"
 
-static void usbSinkWrite(uint8_t c) { usbKeyboard.write(c); }
-static void usbSinkPress(uint8_t c) { usbKeyboard.press(c); }
-static void usbSinkReleaseAll() { usbKeyboard.releaseAll(); }
+static void usbSinkWrite(uint8_t c) { usbKbWrite(c); }
+static void usbSinkPress(uint8_t c) { usbKbPress(c); }
+static void usbSinkReleaseAll() { usbKbReleaseAll(); }
 static const Duckyscript::Sink usbSink = { usbSinkWrite, usbSinkPress, usbSinkReleaseAll };
 
 void badUsbLoop() {
@@ -16,10 +21,21 @@ void badUsbLoop() {
 		scriptRunning = false;
 		scriptDone = false;
 		usbReady = false;
+
+		if (!usbHidActive()) {
+			centeredPrint(L->TXT_USB_HID_UNSOPPORTED, MEDIUM_TEXT);
+			return;
+		}
 		if (selectedFilePath == "") {
 			filePickerSetup(PID::OTHER);
 		}
 	}
+
+	if (!usbHidActive()) {
+		checkExit();
+		return;
+	}
+	usbHidPoll();
 
 	// File picker phase
 	if (fpActive) {
@@ -37,12 +53,7 @@ void badUsbLoop() {
 		}
 		Duckyscript::begin(lines, count, usbSink);
 
-		// Initialize the native USB HID keyboard once and let the host enumerate it.
-		if (!usbHidBegan) {
-			usbKeyboard.begin();
-			USB.begin();
-			usbHidBegan = true;
-		}
+		usbHidBegin();
 		usbReady = false;
 		centeredPrint(L->TXT_WAITING_CONNECTION, MEDIUM_TEXT);
 		updateTimer();
@@ -63,6 +74,7 @@ void badUsbLoop() {
 			selectedFilePath = "";
 			fpActive = false;
 			Duckyscript::end();
+			usbHidEnd();
 		}
 		return;
 	}
@@ -94,16 +106,6 @@ void badUsbLoop() {
 		selectedFilePath = "";
 		fpActive = false;
 		Duckyscript::end();
+		usbHidEnd();
 	}
 }
-
-#else // !ESP32S3 — USB HID unsupported on this board
-
-void badUsbLoop() {
-	if (isSetup()) {
-		centeredPrint(L->TXT_USB_HID_UNSOPPORTED, MEDIUM_TEXT);
-	}
-	checkExit();
-}
-
-#endif // ESP32S3

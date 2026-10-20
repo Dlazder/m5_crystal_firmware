@@ -1,6 +1,9 @@
 // PID::USB_KEYBOARD
+//
+// Works on any board: native USB HID on ESP32-S3 boards, or an external CH9329
+// USB-HID-over-UART bridge when enabled in Settings → USB (see usbHid.h).
 
-#ifdef ESP32S3
+#include "../../services/ch9329/usbHid.h"
 
 void usbKeyboardLoop() {
 	static bool usbReady = false;
@@ -8,14 +11,22 @@ void usbKeyboardLoop() {
 	if (isSetup()) {
 		usbReady = false;
 		kbReset();
-		if (!usbHidBegan) {
-			usbKeyboard.begin();
-			USB.begin();
-			usbHidBegan = true;
+
+		if (!usbHidActive()) {
+			centeredPrint(L->TXT_USB_HID_UNSOPPORTED, MEDIUM_TEXT);
+			return;
 		}
+
+		usbHidBegin();
 		centeredPrint(L->TXT_WAITING_CONNECTION, MEDIUM_TEXT);
 		updateTimer();
 	}
+
+	if (!usbHidActive()) {
+		checkExit();
+		return;
+	}
+	usbHidPoll();
 
 	if (!usbReady) {
 		if (checkTimer(1000, true)) {
@@ -27,36 +38,26 @@ void usbKeyboardLoop() {
 		return;
 	}
 
-	if (isKbCursorUpPressed()) usbKeyboard.write(KEY_UP_ARROW);
-	if (isKbCursorDownPressed()) usbKeyboard.write(KEY_DOWN_ARROW);
-	if (isKbCursorLeftPressed()) usbKeyboard.write(KEY_LEFT_ARROW);
-	if (isKbCursorRightPressed()) usbKeyboard.write(KEY_RIGHT_ARROW);
+	if (isKbCursorUpPressed()) usbKbWrite(KEY_UP_ARROW);
+	if (isKbCursorDownPressed()) usbKbWrite(KEY_DOWN_ARROW);
+	if (isKbCursorLeftPressed()) usbKbWrite(KEY_LEFT_ARROW);
+	if (isKbCursorRightPressed()) usbKbWrite(KEY_RIGHT_ARROW);
 
 	keyboardLoop(
 		[]() {
 			kbEnd();
 			usbReady = false;
+			usbHidEnd();
 			DISP.clear();
 			changeProcess(PID::USB);
 		},
 		[](const char* buf) {
-			usbKeyboard.write(KEY_RETURN);
+			usbKbWrite(KEY_RETURN);
 		},
 		[](char ch) {
 			// correct HID value
-			if (ch == '\b') usbKeyboard.write(BLE_KEY_BACKSPACE);
-			else usbKeyboard.write((uint8_t)ch);
+			if (ch == '\b') usbKbWrite(BLE_KEY_BACKSPACE);
+			else usbKbWrite((uint8_t)ch);
 		}
 	);
 }
-
-#else // !ESP32S3 — USB HID unsupported on this board
-
-void usbKeyboardLoop() {
-	if (isSetup()) {
-		centeredPrint(L->TXT_USB_HID_UNSOPPORTED, MEDIUM_TEXT);
-	}
-	checkExit();
-}
-
-#endif // ESP32S3
