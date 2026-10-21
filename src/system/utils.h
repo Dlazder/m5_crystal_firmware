@@ -4,6 +4,7 @@
 #include "../services/storage/storage.h"
 #include "../services/duckyscript/duckyscript.h"
 #include "../services/wifi/wifi.h"
+#include "../services/ble/ble.h"
 #include "../services/cc1101/cc1101.h"
 #include "../services/nfc/nfc.h"
 

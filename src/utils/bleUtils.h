@@ -1,31 +1,12 @@
-bool bleConnected = false;
+// UI-side hook for the BLE service (src/services/ble/) — same weak/strong
+// pattern as Storage::reportMountError in errorUtils.h.
+//
+// Ble::begin() is UI-free; it calls the weak Ble::reportBeginWaiting() no-op
+// in ble.cpp. This STRONG definition overrides it at link time and shows the
+// "waiting for connection" screen that every BLE HID loop (bad BLE, keyboard,
+// mouse, mouse jiggler, presenter, shutter) expects right after begin().
 
-void bleConnect() {
-	if (!bleCompositeBegan) {
-		// Free the SD card before BLE init: Bluedroid needs a large contiguous
-		// block of internal RAM, and the SD driver + script (already loaded by
-		// the Duckyscript service) are no longer needed once the file has been read.
-		// Cardputer ADV (no PSRAM) this is the difference between a successful
-		// BLE init and xSemaphoreCreateBinary() returning NULL (heap exhaustion).
-		Storage::unmountSD();
-		bleKeyboard.begin();
-		bleCompositeBegan = true;
-	}
-	bleConnected = false;
+void Ble::reportBeginWaiting() {
 	centeredPrint(L->TXT_WAITING_CONNECTION, MEDIUM_TEXT);
 	updateTimer();
-}
-
-void bleHandleConnection(void (*onConnect)(), void (*onDisconnect)()) {
-	if (bleKeyboard.isConnected()) {
-		if (!bleConnected) {
-			bleConnected = true;
-			onConnect();
-		}
-	} else {
-		if (bleConnected) {
-			bleConnected = false;
-			onDisconnect();
-		}
-	}
 }

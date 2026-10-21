@@ -1,23 +1,23 @@
 // PID::BT_PRESENTER
 
 void bluetoothPresenterLoop() {
-	if (isSetup()) bleConnect();
+	if (isSetup()) Ble::begin();
 
-	bleHandleConnection(
+	Ble::handleConnection(
 		[]() { centeredPrint(L->TXT_CONNECTED, MEDIUM_TEXT); soundSuccess(); },
 		[]() { centeredPrint(L->TXT_NOT_CONNECTED, MEDIUM_TEXT); soundError(); }
 	);
 
 	if (isBtnAWasPressed() && checkTimer(100, true)) {
-		bleKeyboard.write(KEY_RIGHT_ARROW);
+		Ble::keyboard.write(KEY_RIGHT_ARROW);
 	}
 
 	if (isBtnPWRWasPressed() && checkTimer(100, true)) {
-		bleKeyboard.write(KEY_LEFT_ARROW);
+		Ble::keyboard.write(KEY_LEFT_ARROW);
 	}
 
 	if (checkExit()) {
-		bleConnected = false;
+		Ble::connected = false;
 		centeredPrint(L->TXT_DISCONNECTING, MEDIUM_TEXT);
 	}
 }

@@ -173,41 +173,17 @@ bool clipboardIsLittleFS = true;
 
 String sdRootDir() { return sdMountCrystal ? "/crystal" : "/"; }
 
-// wifi deauth
-String ssid;
-String mac;
-int channel;
-uint8_t* bssid;
-int rssi;
-String wifiPassword;
-int wifiScanIndex;
-wifi_auth_mode_t wifiAuthMode = WIFI_AUTH_OPEN;
-bool wifiHasWps = false;
-bool wifiHasFtPsk = false;
+// wifi: the currently selected network now lives in Wifi::selected
+// (src/services/wifi/wifi.h), set by selectedWifiMenuLoop.
 
-
-// bluetooth
+// bluetooth: the composite HID transport and the currently selected/discovered
+// device now live in the Ble service (src/services/ble/ble.h).
 #include <BLEDevice.h>
 #include <BLEScan.h>
 #include <BleCombo.h>
 
 #include <BLEAdvertising.h>
 #include <esp_gap_ble_api.h>
-
-String bleName;
-String bleAddress;
-int bleRssi;
-String bleManufacturer;
-String bleManufacturerRaw;
-int8_t bleTxPower = -128;
-uint8_t bleAdvFlags = 0xFF;
-String bleServiceUUIDs;
-String bleAppearance;
-
-BleComboKeyboard bleKeyboard("M5 Crystal", "M5 Crystal");
-BleComboMouse bleMouse(&bleKeyboard);
-
-bool bleCompositeBegan = false;
 
 // Native USB HID keyboard (ESP32-S3 only; e.g. Cardputer ADV).
 // USBHIDKeyboard.h declares its own `typedef struct {...} KeyReport;`, which is
@@ -259,7 +235,6 @@ uint8_t ch9329TxPin = CH9329_TX_PIN;
 uint32_t ch9329Baud = 9600; // CH9329 factory default serial baud rate
 
 #include "../hal/cc1101Pins.h"
-// CC1101 pins — configurable via RF → configure pins; defaults come from hal/cc1101Pins.h
 uint8_t rfCsPin = CC1101_CS_PIN;
 uint8_t rfSckPin = CC1101_SCK_PIN;
 uint8_t rfMosiPin = CC1101_MOSI_PIN;

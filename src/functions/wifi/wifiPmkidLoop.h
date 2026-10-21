@@ -137,11 +137,11 @@ void wifiPmkidLoop() {
 		pmkStateTimer = millis();
 		fileOpen = false;
 
-		memcpy(pmkTargetBssid, bssid, 6);
-		pmkTargetChannel = channel;
-		pmkTargetSsid = ssid;
-		pmkTargetSsidLen = min((size_t)ssid.length(), sizeof(pmkTargetSsidRaw));
-		memcpy(pmkTargetSsidRaw, ssid.c_str(), pmkTargetSsidLen);
+		memcpy(pmkTargetBssid, Wifi::selected.bssid, 6);
+		pmkTargetChannel = Wifi::selected.channel;
+		pmkTargetSsid = Wifi::selected.ssid;
+		pmkTargetSsidLen = min((size_t)Wifi::selected.ssid.length(), sizeof(pmkTargetSsidRaw));
+		memcpy(pmkTargetSsidRaw, Wifi::selected.ssid.c_str(), pmkTargetSsidLen);
 
 		// Get our STA MAC for spoofing
 		esp_read_mac(pmkStaMac, ESP_MAC_WIFI_STA);

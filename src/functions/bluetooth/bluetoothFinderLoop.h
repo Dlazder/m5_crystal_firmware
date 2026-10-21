@@ -7,7 +7,7 @@ void onBleScanComplete(BLEScanResults results) {
 	bleFoundRssi = -100;
 	for (int i = 0; i < results.getCount(); i++) {
 		BLEAdvertisedDevice device = results.getDevice(i);
-		if (String(device.getAddress().toString().c_str()) == bleAddress) {
+		if (String(device.getAddress().toString().c_str()) == Ble::selected.address) {
 			bleFoundRssi = device.getRSSI();
 			break;
 		}
@@ -24,8 +24,8 @@ void drawFinderScreen(int currentRssi) {
 	canvas.clear();
 	canvas.setTextSize(MEDIUM_TEXT);
 	canvas.setTextColor(FGCOLOR);
-	canvas.drawCenterString(bleName.substring(0, 14), DISP.width() / 2, 0);
-	canvas.drawCenterString(bleAddress, DISP.width() / 2, canvas.getCursorY());
+	canvas.drawCenterString(Ble::selected.name.substring(0, 14), DISP.width() / 2, 0);
+	canvas.drawCenterString(Ble::selected.address, DISP.width() / 2, canvas.getCursorY());
 	canvas.setTextColor(color);
 	String rssiStr = (currentRssi == -100) ? "n/a" : String(currentRssi);
 	canvas.drawCenterString(rssiStr, DISP.width() / 2, canvas.getCursorY() + canvas.fontHeight());

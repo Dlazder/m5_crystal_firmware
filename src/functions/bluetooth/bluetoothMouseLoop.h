@@ -36,9 +36,9 @@ void bluetoothMouseLoop() {
 	static float smoothedY = 0;
 
 	float accX, accY, accZ;
-	if (isSetup()) bleConnect();
+	if (isSetup()) Ble::begin();
 
-	bleHandleConnection(
+	Ble::handleConnection(
 		[]() { centeredPrint(L->TXT_CONNECTED, MEDIUM_TEXT); soundSuccess(); },
 		[]() {
 			centeredPrint(L->TXT_NOT_CONNECTED, MEDIUM_TEXT);
@@ -48,7 +48,7 @@ void bluetoothMouseLoop() {
 		}
 	);
 
-	if (bleConnected) {
+	if (Ble::connected) {
 		DEVICE.Imu.getAccelData(&accX, &accY, &accZ);
 
 		float rawMoveX = IMU_MOUSE_X(accX, accY);
@@ -70,22 +70,22 @@ void bluetoothMouseLoop() {
 		int deltaY = (smoothedY > 0) ? speedY : -speedY;
 
 		if (deltaX != 0 || deltaY != 0) {
-			bleMouse.move(deltaX, deltaY);
+			Ble::mouse.move(deltaX, deltaY);
 		}
 	}
 
 	if (isBtnPWRWasPressed() && checkTimer(100, true)) {
-		bleMouse.click(MOUSE_RIGHT);
+		Ble::mouse.click(MOUSE_RIGHT);
 	}
 
 	if (DEVICE.BtnA.isPressed()) {
-		bleMouse.press(MOUSE_LEFT);
+		Ble::mouse.press(MOUSE_LEFT);
 	} else {
-		bleMouse.release(MOUSE_LEFT);
+		Ble::mouse.release(MOUSE_LEFT);
 	}
 
 	if (checkExit()) {
-		bleConnected = false;
+		Ble::connected = false;
 		smoothedX = 0;
 		smoothedY = 0;
 		centeredPrint(L->TXT_DISCONNECTING, MEDIUM_TEXT);

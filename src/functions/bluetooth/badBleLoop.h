@@ -1,8 +1,8 @@
 // PID::BAD_BLE
 
-static void bleSinkWrite(uint8_t c) { bleKeyboard.write(c); }
-static void bleSinkPress(uint8_t c) { bleKeyboard.press(c); }
-static void bleSinkReleaseAll() { bleKeyboard.releaseAll(); }
+static void bleSinkWrite(uint8_t c) { Ble::keyboard.write(c); }
+static void bleSinkPress(uint8_t c) { Ble::keyboard.press(c); }
+static void bleSinkReleaseAll() { Ble::keyboard.releaseAll(); }
 static const Duckyscript::Sink bleSink = { bleSinkWrite, bleSinkPress, bleSinkReleaseAll };
 
 void badBleLoop() {
@@ -10,7 +10,7 @@ void badBleLoop() {
 	static bool scriptDone = false;
 
 	if (isSetup()) {
-		bleConnected = false;
+		Ble::connected = false;
 		scriptRunning = false;
 		scriptDone = false;
 		if (selectedFilePath == "") {
@@ -33,18 +33,18 @@ void badBleLoop() {
 			return;
 		}
 		Duckyscript::begin(lines, count, bleSink);
-		bleConnect();
+		Ble::begin();
 		return;
 	}
 
 	// BLE connection phase
-	bleHandleConnection(
+	Ble::handleConnection(
 		[]() { centeredPrint(L->TXT_BT_PRESS_A_TO_RUN, MEDIUM_TEXT); soundSuccess(); },
 		[]() { scriptRunning = false; centeredPrint(L->TXT_DISCONNECTED, MEDIUM_TEXT); soundError(); }
 	);
 
 	// Script execution phase
-	if (bleConnected && !scriptDone) {
+	if (Ble::connected && !scriptDone) {
 		if (!scriptRunning && isBtnAWasPressed() || (!scriptRunning && isKbEnterPressed())) {
 			Duckyscript::rewind();
 			scriptRunning = true;
@@ -64,7 +64,7 @@ void badBleLoop() {
 	}
 
 	if (checkExit()) {
-		bleConnected = false;
+		Ble::connected = false;
 		scriptRunning	= false;
 		scriptDone = false;
 		selectedFilePath = "";

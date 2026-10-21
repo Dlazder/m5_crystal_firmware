@@ -2,17 +2,17 @@
 
 void wifiInfoLoop() {
 	if (isSetup()) {
-		Wifi::wiuBegin(bssid, channel);
+		Wifi::wiuBegin(Wifi::selected.bssid, Wifi::selected.channel);
 	}
 	Wifi::wiuUpdate();
 
 	String lines[] = {
-		ssid,
-		"MAC: " + mac,
-		"Security: " + String(Wifi::wiuAuthStr(wifiAuthMode)),
+		Wifi::selected.ssid,
+		"MAC: " + Wifi::selected.mac,
+		"Security: " + String(Wifi::wiuAuthStr(Wifi::selected.authMode)),
 		"WPS: "     + String(Wifi::wiuDone() ? (Wifi::wiuHasWps() ? "ON" : "OFF") : "..."),
 		"FT-PSK: "  + String(Wifi::wiuDone() ? (Wifi::wiuHasFt()  ? "ON" : "OFF") : "..."),
-		"Ch:" + String(channel) + "  RSSI:" + String(rssi),
+		"Ch:" + String(Wifi::selected.channel) + "  RSSI:" + String(Wifi::selected.rssi),
 	};
 	centeredPrintRows(lines, 6, TINY_TEXT);
 

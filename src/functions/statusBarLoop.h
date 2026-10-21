@@ -48,7 +48,7 @@ void statusBarLoop() {
 	}
 
 	// Bluetooth indicator
-	if (bleCompositeBegan && bleKeyboard.isConnected()) {
+	if (Ble::compositeBegan && Ble::keyboard.isConnected()) {
 		int bx = batteryX - STATUS_BAR_GAP - MENU_ICON_W;
 		if (WiFi.isConnected()) {
 			bx -= MENU_ICON_W + STATUS_BAR_GAP;
@@ -62,7 +62,7 @@ void statusBarLoop() {
 		if (WiFi.isConnected()) {
 			cx -= MENU_ICON_W + STATUS_BAR_GAP;
 		}
-		if (bleCompositeBegan && bleKeyboard.isConnected()) {
+		if (Ble::compositeBegan && Ble::keyboard.isConnected()) {
 			cx -= MENU_ICON_W + STATUS_BAR_GAP;
 		}
 		statusBarCanvas.drawBitmap(cx, 2, Icons::file, MENU_ICON_W, MENU_ICON_H, FGCOLOR);

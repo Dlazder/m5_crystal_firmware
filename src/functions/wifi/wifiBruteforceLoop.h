@@ -55,7 +55,7 @@ static void _bfStartAttempt() {
 	WiFi.disconnect(true);
 	delay(50);
 	WiFi.mode(WIFI_STA);
-	WiFi.begin(ssid.c_str(), _bfCurrentPass.c_str());
+	WiFi.begin(Wifi::selected.ssid.c_str(), _bfCurrentPass.c_str());
 	_bfAttemptStart = millis();
 	_bfDrawProgress();
 }
@@ -91,7 +91,7 @@ void wifiBruteforceLoop() {
 
 		char buf[20];
 		snprintf(buf, sizeof(buf), L->TXT_WIFI_BF_LOADED, _bfTotal);
-		String lines[] = { ssid.substring(0, 16), String(buf) };
+		String lines[] = { Wifi::selected.ssid.substring(0, 16), String(buf) };
 		centeredPrintRows(lines, 2, SMALL_TEXT, true);
 		drawHintCustom("enter: start", "A: start");
 		return;
@@ -125,8 +125,8 @@ void wifiBruteforceLoop() {
 		_bfRunning = false;
 		_bfDone    = true;
 		WiFi.disconnect(true);
-		wifiPassword = _bfCurrentPass;
-		Wifi::saveWifiPassword(ssid, wifiPassword);
+		Wifi::selected.password = _bfCurrentPass;
+		Wifi::saveWifiPassword(Wifi::selected.ssid, Wifi::selected.password);
 		String lines[] = { String(L->TXT_SUCCESS), _bfCurrentPass.substring(0, 20) };
 		centeredPrintRows(lines, 2, MEDIUM_TEXT);
 		soundSuccess();

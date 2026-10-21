@@ -8,13 +8,13 @@ static bool wifiConnectPasswordDone = false;
 
 static void startWifiConnection(const char* password) {
 	isWebInterfaceEnabled = false;
-	wifiPassword = String(password);
+	Wifi::selected.password = String(password);
 	WiFi.mode(WIFI_STA);
 	delay(100);
-	if (wifiPassword.length() > 0)
-		WiFi.begin(ssid.c_str(), wifiPassword.c_str());
+	if (Wifi::selected.password.length() > 0)
+		WiFi.begin(Wifi::selected.ssid.c_str(), Wifi::selected.password.c_str());
 	else
-		WiFi.begin(ssid.c_str());
+		WiFi.begin(Wifi::selected.ssid.c_str());
 	wifiConnectStart = millis();
 	centeredPrint(L->TXT_CONNECTING, MEDIUM_TEXT);
 }
@@ -26,18 +26,18 @@ void wifiConnectLoop() {
 		wifiConnectResultShown  = false;
 		kbReset();
 
-		if (WiFi.encryptionType(wifiScanIndex) == WIFI_AUTH_OPEN) {
+		if (WiFi.encryptionType(Wifi::selected.scanIndex) == WIFI_AUTH_OPEN) {
 			wifiConnectPasswordDone = true;
 			kbEnd();
 			startWifiConnection("");
 		} else {
-			String saved = Wifi::loadWifiPassword(ssid);
+			String saved = Wifi::loadWifiPassword(Wifi::selected.ssid);
 			if (saved.length() > 0) {
 				wifiConnectPasswordDone = true;
 				kbEnd();
 				startWifiConnection(saved.c_str());
 			} else {
-				wifiPassword = "";
+				Wifi::selected.password = "";
 				drawKeyboardUi();
 			}
 		}
@@ -67,10 +67,10 @@ void wifiConnectLoop() {
 
 		if (status == WL_CONNECTED) {
 			wifiConnectResultShown = true;
-			if (wifiPassword.length() > 0)
-				Wifi::saveWifiPassword(ssid, wifiPassword);
+			if (Wifi::selected.password.length() > 0)
+				Wifi::saveWifiPassword(Wifi::selected.ssid, Wifi::selected.password);
 			String ip = WiFi.localIP().toString();
-			String lines[] = { L->TXT_CONNECTED, ssid.substring(0, 16), ip };
+			String lines[] = { L->TXT_CONNECTED, Wifi::selected.ssid.substring(0, 16), ip };
 			centeredPrintRows(lines, 3, MEDIUM_TEXT);
 			soundSuccess();
 			Wifi::autoNtpSync(timezoneOffset);
