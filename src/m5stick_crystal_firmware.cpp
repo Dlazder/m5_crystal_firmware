@@ -53,17 +53,20 @@ void loop() {
   globalTimer = millis();
   deviceUpdate();
 
-  // Serial command handlers — skipped while the terminal is active, since the
-  // terminal reads both USB and GPIO UART itself (and runs commands from them).
-  if (process != PID::UART_TERMINAL) {
-    handleSerialCommands(Serial);
-    handleSerialCommands(Serial2);
-  }
-
   dimmerUpdate();
 
   if (statusBar) {
     statusBarLoop();
+  }
+
+  // Serial command handlers — skipped while the terminal is active, since the
+  // terminal reads both USB and GPIO UART itself (and runs commands from them).
+  // Must run right before switcher(): /up /down /select /back emulate button
+  // presses via one-shot flags, and dimmerUpdate() above also consumes those
+  // flags, so running it after dimmerUpdate() would make the flag a no-op.
+  if (process != PID::UART_TERMINAL) {
+    handleSerialCommands(Serial);
+    handleSerialCommands(Serial2);
   }
 
   /* global process functions switcher */

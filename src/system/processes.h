@@ -121,3 +121,18 @@ namespace PID {
     PROCESS_LIST
     #undef X
 }
+
+// Name/ID lookup table, generated from PROCESS_LIST, used by the serial
+// "/goto" command to resolve a process by its PID macro name (e.g. "WIFI_SCAN").
+struct ProcessTableEntry {
+    const char* name;
+    int id;
+};
+
+const ProcessTableEntry PROCESS_TABLE[] = {
+    #define X(name, id, fn) { #name, id },
+    PROCESS_LIST
+    #undef X
+};
+
+const int PROCESS_TABLE_SIZE = sizeof(PROCESS_TABLE) / sizeof(PROCESS_TABLE[0]);

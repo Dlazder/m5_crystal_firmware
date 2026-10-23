@@ -34,3 +34,5 @@
 #include "../utils/commandUtils/info.h"
 #include "../utils/commandUtils/help.h"
 #include "../utils/commandUtils/shutdown.h"
+#include "../utils/commandUtils/goto.h"
+#include "../utils/commandUtils/navigate.h"
