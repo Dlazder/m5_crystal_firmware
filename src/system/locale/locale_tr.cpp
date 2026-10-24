@@ -113,6 +113,7 @@ const Locale LANG_TR = {
 	.MENU_SETTINGS_WEBSERVER_FS  = "web sunucu FS",
 	.MENU_SETTINGS_TIMEZONE      = "saat dilimi",
 	.MENU_SETTINGS_SD_ROOT       = "SD'yi /crystal'e bağla",
+	.MENU_SETTINGS_CUSTOMIZE_MENU = "menüyü özelleştir",
 
 	// Other menu
 	.MENU_OTHER                  = "diğer",

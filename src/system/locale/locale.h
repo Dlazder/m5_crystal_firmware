@@ -113,6 +113,7 @@ struct Locale {
 	const char* MENU_SETTINGS_WEBSERVER_FS;
 	const char* MENU_SETTINGS_TIMEZONE;
 	const char* MENU_SETTINGS_SD_ROOT;
+	const char* MENU_SETTINGS_CUSTOMIZE_MENU;
 
 	// Other menu
 	const char* MENU_OTHER;

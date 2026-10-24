@@ -14,6 +14,7 @@
 #include "../functions/settings/settingsStatusBarMenuLoop.h"
 #include "../functions/settings/ssidLoop.h"
 #include "../functions/settings/UIMenuLoop.h"
+#include "../functions/settings/settingsMenuItemsLoop.h"
 
 
 // Wi-Fi functions

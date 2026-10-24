@@ -113,6 +113,7 @@ const Locale LANG_UK = {
 	.MENU_SETTINGS_WEBSERVER_FS  = "веб-сервер FS",
 	.MENU_SETTINGS_TIMEZONE      = "часовий пояс",
 	.MENU_SETTINGS_SD_ROOT       = "монтувати SD у /crystal",
+	.MENU_SETTINGS_CUSTOMIZE_MENU = "налаштувати меню",
 
 	// Other menu
 	.MENU_OTHER                  = "інше",

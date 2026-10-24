@@ -140,6 +140,15 @@ static const Setting settingsRegistry[] = {
 	TOGGLE_SETTING("sbSeconds",      statusBarSeconds, nullptr),
 	TOGGLE_SETTING("uartLog",        uartLogEnabled,   nullptr),
 	TOGGLE_SETTING("sdMountCrystal", sdMountCrystal,   nullptr),
+	TOGGLE_SETTING("showMenuWifi",   showMenuWifi,     nullptr),
+	TOGGLE_SETTING("showMenuBt",     showMenuBt,       nullptr),
+	TOGGLE_SETTING("showMenuNfc",    showMenuNfc,      nullptr),
+	TOGGLE_SETTING("showMenuIr",     showMenuIr,       nullptr),
+	TOGGLE_SETTING("showMenuUsb",    showMenuUsb,      nullptr),
+	TOGGLE_SETTING("showMenuRf",     showMenuRf,       nullptr),
+	TOGGLE_SETTING("showMenuUart",   showMenuUart,     nullptr),
+	TOGGLE_SETTING("showMenuFiles",  showMenuFiles,    nullptr),
+	TOGGLE_SETTING("showMenuOther",  showMenuOther,    nullptr),
 #ifdef IR_USE_RMT
 	TOGGLE_SETTING("irRxGpio",       irRxUseGpio,      nullptr),
 #endif

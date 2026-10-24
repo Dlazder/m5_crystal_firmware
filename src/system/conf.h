@@ -33,6 +33,17 @@ int defaultDimTimeoutIndex = 1;
 
 bool iconsEnabled = true;
 
+// Visibility of these sections on the main menu (settings > UI > customize menu)
+bool showMenuWifi = true;
+bool showMenuBt = true;
+bool showMenuNfc = true;
+bool showMenuIr = true;
+bool showMenuUsb = true;
+bool showMenuRf = true;
+bool showMenuUart = true;
+bool showMenuFiles = true;
+bool showMenuOther = true;
+
 // Timezone offset from UTC in seconds (default 0 = UTC, e.g. 10800 = UTC+3)
 int timezoneOffset = 0;
 

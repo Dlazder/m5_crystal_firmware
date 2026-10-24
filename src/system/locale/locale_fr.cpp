@@ -113,6 +113,7 @@ const Locale LANG_FR = {
 	.MENU_SETTINGS_WEBSERVER_FS  = "serveur web FS",
 	.MENU_SETTINGS_TIMEZONE      = "fuseau horaire",
 	.MENU_SETTINGS_SD_ROOT       = "monter SD dans /crystal",
+	.MENU_SETTINGS_CUSTOMIZE_MENU = "personnaliser le menu",
 
 	// Other menu
 	.MENU_OTHER                  = "autre",
