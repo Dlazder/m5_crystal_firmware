@@ -6,9 +6,13 @@
 // "Flipper NFC device" text format (version 4), so saved files open in the Flipper
 // app and on the Flipper itself.
 //
-// Supported: ISO14443-3A (UID only), MIFARE Classic Mini/1K/4K (sectors that open
-// with a well-known key), MIFARE Ultralight EV1 / NTAG213/215/216.
+// Two readers are supported, picked by which begin() the caller uses:
+//  - PN532 (I2C): ISO14443-3A, MIFARE Classic Mini/1K/4K (sectors that open with a
+//    well-known key), MIFARE Ultralight EV1 / NTAG213/215/216.
+//  - RC522 (SPI): reading is UID level only (UID + ATQA + SAK), no dump.
+// Both write MIFARE Classic (writeUid / writeClassicSectors).
 // Anything else is saved as a plain ISO14443-3A tag (UID + ATQA + SAK).
+// isConnected()/readTag()/end() act on the reader started by the last begin().
 
 #include <Arduino.h>
 
@@ -56,13 +60,29 @@ typedef void (*ProgressFn)(uint8_t percent);
 
 // Reader lifecycle
 
+enum class Module : uint8_t { PN532, RC522 };
+
+struct Rc522Pins {
+	uint8_t ss, sck, mosi, miso, rst;
+};
+
 /// Binds I2C to the given pins and wakes the PN532. Returns true when it answers.
 bool begin(int sda, int scl);
 
-/// True when a PN532 ACKs on the I2C bus (cheap, no bus rebinding).
+/// Binds SPI to the given pins and starts the RC522. Returns true when it answers.
+bool begin(const Rc522Pins& pins);
+
+/// Releases the reader's bus (the RC522 shares SPI with the SD card) and clears wasConnected().
+void end();
+
+/// The reader started by the last begin(), even if that call failed.
+Module activeModule();
+const char* moduleName(); // "PN532" / "RC522"
+
+/// True when the active reader answers (PN532: ACK on I2C, RC522: version register).
 bool isConnected();
 
-/// Tracks whether the PN532 answered on the previous poll, so callers can tell a
+/// Tracks whether the reader answered on the previous poll, so callers can tell a
 /// connect/disconnect edge apart from "still connected"/"still disconnected" and
 /// avoid repeating the same notification every tick.
 bool wasConnected();
@@ -77,7 +97,7 @@ uint8_t lastUIDLength();
 
 // Reading
 
-/// Looks for a tag and dumps as much of it as possible. Returns false when no tag
+/// Looks for a tag and dumps as much of it as possible (the RC522 reads the UID only). Returns false when no tag
 /// answers within `timeoutMs`. A tag that is only partly readable still returns true;
 /// see `sectorsRead` / `pagesRead`.
 bool readTag(Tag& tag, uint16_t timeoutMs = 100, ProgressFn progress = nullptr);
@@ -103,7 +123,7 @@ bool save(const Tag& tag, String& path, bool& usedLittleFS);
 // Writing
 
 /// Writes block 0 (UID + BCC + SAK + ATQA) to a magic/CUID Mifare Classic card in the
-/// field, using `tag.uid`. Requires a 4-byte UID; returns false otherwise or if no
+/// field of the active reader, using `tag.uid`. Requires a 4-byte UID; returns false otherwise or if no
 /// magic card answers the block-0 authentication.
 bool writeUid(const Tag& tag);
 

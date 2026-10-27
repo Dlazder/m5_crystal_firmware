@@ -28,6 +28,7 @@
 // 3rd layer utilities
 #include "../utils/filePickerUtils.h"
 #include "../utils/bleUtils.h"
+#include "../utils/nfcUtils.h"
 #include "../utils/errorUtils.h"
 
 #include "../utils/commandUtils/screenshotCommand.h"

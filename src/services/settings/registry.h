@@ -62,6 +62,8 @@ static void onDimTimeoutChanged(int v) {
 	updateTimer(&dimmingPreviousTimer);
 }
 
+static String fmtNfcModule(int i) { return i == NFC_MODULE_RC522 ? "RC522" : "PN532"; }
+
 // Allowed UART baud rates (the stored value is the rate itself, not an index).
 static const int uartBauds[] = {
 	1200, 2400, 4800, 9600, 19200, 38400, 57600, 115200, 230400, 460800, 921600
@@ -156,6 +158,8 @@ static const Setting settingsRegistry[] = {
 	RANGE_SETTING("brightness", brightness, 1, BRIGHTNESS_STEPS, nullptr, true, onBrightnessChanged),
 	RANGE_SETTING("volume",     volume,     1, volumeStep,       nullptr, true, onVolumeChanged),
 
+	RANGE_SETTING("nfcModule", nfcModule, 0, 1, fmtNfcModule, false, nullptr),
+
 	RANGE_SETTING("fontIndex",     currentFontIndex, 0, sizeof(systemFonts) / sizeof(systemFonts[0]) - 1, fmtFont,       true,  onFontChanged),
 	RANGE_SETTING("colorIndex",    colorIndex,       0, sizeof(colors) / sizeof(colors[0]) - 1,           fmtColor,      true,  onColorChanged),
 	RANGE_SETTING("languageIndex", languageIndex,    0, sizeof(locales) / sizeof(locales[0]) - 1,         fmtLanguage,   false, onLanguageChanged),
@@ -166,6 +170,15 @@ static const Setting settingsRegistry[] = {
 	PIN_SETTING("rfMosiPin", RF_PINS, rfMosiPin, CC1101_MOSI_PIN),
 	PIN_SETTING("rfMisoPin", RF_PINS, rfMisoPin, CC1101_MISO_PIN),
 	PIN_SETTING("rfGdo0Pin", RF_PINS, rfGdo0Pin, CC1101_GDO0_PIN),
+
+	PIN_SETTING("pn532SdaPin", PN532_PINS, pn532SdaPin, NFC_SDA),
+	PIN_SETTING("pn532SclPin", PN532_PINS, pn532SclPin, NFC_SCL),
+
+	PIN_SETTING("rc522SsPin",   RC522_PINS, rc522SsPin,   RC522_SS_PIN),
+	PIN_SETTING("rc522SckPin",  RC522_PINS, rc522SckPin,  RC522_SCK_PIN),
+	PIN_SETTING("rc522MosiPin", RC522_PINS, rc522MosiPin, RC522_MOSI_PIN),
+	PIN_SETTING("rc522MisoPin", RC522_PINS, rc522MisoPin, RC522_MISO_PIN),
+	PIN_SETTING("rc522RstPin",  RC522_PINS, rc522RstPin,  RC522_RST_PIN),
 
 	PIN_SETTING("irTxPin",   IR_PINS, irTxPin,   IR_SEND_PIN),
 	PIN_SETTING("irRxPin",   IR_PINS, irRxPin,   IR_RECEIVE_PIN),

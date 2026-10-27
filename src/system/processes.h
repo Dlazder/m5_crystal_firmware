@@ -57,6 +57,11 @@
     X(NFC_WRITE,         402, nfcWriteLoop) \
     X(NFC_WRITE_UID,     403, nfcWriteUidLoop) \
     X(NFC_WRITE_SECTORS, 404, nfcWriteSectorsLoop) \
+    X(NFC_RC522_PINS,    405, nfcRc522ConfigurePinsMenuLoop) \
+    X(NFC_RC522_RESET,   406, nfcRc522ConfigureResetLoop) \
+    X(NFC_CONFIG_PINS,   407, nfcConfigurePinsMenuLoop) \
+    X(NFC_PN532_PINS,    408, nfcPn532ConfigurePinsMenuLoop) \
+    X(NFC_PN532_RESET,   409, nfcPn532ConfigureResetLoop) \
     \
     /* RF / sub-GHz CC1101 (450-499) */ \
     X(RF,              450, rfMenuLoop) \

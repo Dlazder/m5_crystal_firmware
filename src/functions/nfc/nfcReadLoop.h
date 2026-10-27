@@ -3,17 +3,20 @@
 Nfc::Tag nfcReadTag;
 bool nfcReadHasTag = false;
 
+// The RC522 shares the SPI bus with the SD card
+bool _nfcReadUsesRc522() { return Nfc::activeModule() == Nfc::Module::RC522; }
+
 void _nfcReadDisplayNotConnectedError() {
 	Nfc::setWasConnected(false);
-	connectionGuideNFC();
-	Serial.println("PN532: disconnected");
+	nfcConnectionGuide();
+	Serial.printf("%s: disconnected\n", Nfc::moduleName());
 	DEVICE.Power.setLed(1);
 	soundError();
 }
 
 void _nfcReadDrawWaiting() {
 	String lines[] = {
-		"PN532: connected",
+		String(Nfc::moduleName()) + ": connected",
 		L->TXT_NFC_PLACE_TAG
 	};
 	centeredPrintRows(lines, 2, MEDIUM_TEXT);
@@ -32,7 +35,7 @@ void _nfcReadDrawTag() {
 			lines[n++] = t.subtype;
 			break;
 		default:
-			lines[n++] = "ISO14443-3A";
+			lines[n++] = t.subtype[0] ? t.subtype : "ISO14443-3A"; // the RC522 names the tag family by SAK
 	}
 	lines[n++] = "UID: " + Nfc::uidToString(t.uid, t.uidLen);
 	if (t.type == Nfc::TagType::MIFARE_CLASSIC) {
@@ -56,9 +59,9 @@ void nfcReadLoop() {
 	if (isSetup()) {
 		nfcReadHasTag = false;
 		nfcReadTag.release();
-		connectionGuideNFC();
+		nfcConnectionGuide();
 
-		if (Nfc::begin(NFC_SDA, NFC_SCL)) {
+		if (nfcBegin()) {
 			Nfc::setWasConnected(true);
 			_nfcReadDrawWaiting();
 		} else {
@@ -69,6 +72,8 @@ void nfcReadLoop() {
 	// A tag is on screen: A / Enter saves it, then scanning resumes
 	if (nfcReadHasTag) {
 		if (isBtnAWasPressed() || isKbEnterPressed()) {
+			// The RC522 shares the SPI bus with the SD card: release it for the save, restart it after
+			if (_nfcReadUsesRc522()) Nfc::end();
 			String path;
 			bool useLittleFS = false;
 			if (Nfc::save(nfcReadTag, path, useLittleFS)) {
@@ -85,14 +90,19 @@ void nfcReadLoop() {
 			delay(1200);
 			nfcReadHasTag = false;
 			nfcReadTag.release();
-			_nfcReadDrawWaiting();
+			if (_nfcReadUsesRc522() && !nfcBegin()) {
+				_nfcReadDisplayNotConnectedError();
+			} else {
+				if (_nfcReadUsesRc522()) Nfc::setWasConnected(true);
+				_nfcReadDrawWaiting();
+			}
 			updateTimer();
 		}
 	} else if (checkTimer(500)) {
 		if (!Nfc::isConnected()) {
 			if (Nfc::wasConnected()) _nfcReadDisplayNotConnectedError();
 		} else {
-			if (!Nfc::wasConnected() && Nfc::begin(NFC_SDA, NFC_SCL)) {
+			if (!Nfc::wasConnected() && nfcBegin()) {
 				Nfc::setWasConnected(true);
 				DEVICE.Power.setLed(0);
 				soundSuccess();
@@ -113,7 +123,7 @@ void nfcReadLoop() {
 
 	if (checkExit()) {
 		DEVICE.Power.setLed(0);
-		Nfc::setWasConnected(false);
+		Nfc::end();
 		nfcReadHasTag = false;
 		nfcReadTag.release();
 	}

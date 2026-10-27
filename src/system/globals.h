@@ -26,8 +26,6 @@ const char* localeNames[] = { "English", "Espanol", "Italiano", "Indonesia", "Р
 int languageIndex = 0;
 int localesCount = sizeof(locales) / sizeof(locales[0]);
 
-// NFC PN532
-#include <Adafruit_PN532.h>
 #include <Wire.h>
 
 
@@ -241,4 +239,19 @@ uint8_t rfMosiPin = CC1101_MOSI_PIN;
 uint8_t rfMisoPin = CC1101_MISO_PIN;
 uint8_t rfGdo0Pin = CC1101_GDO0_PIN;
 
-Adafruit_PN532 nfc(NFC_SDA, NFC_SCL, &Wire);
+// RC522 (MFRC522) module — SPI pins, defaults from hal/rc522Pins.h
+#include "../hal/rc522Pins.h"
+uint8_t rc522SsPin = RC522_SS_PIN;
+uint8_t rc522SckPin = RC522_SCK_PIN;
+uint8_t rc522MosiPin = RC522_MOSI_PIN;
+uint8_t rc522MisoPin = RC522_MISO_PIN;
+uint8_t rc522RstPin = RC522_RST_PIN;
+
+// Reader used by the NFC menu: PN532 (I2C) or RC522 (SPI)
+#define NFC_MODULE_PN532 0
+#define NFC_MODULE_RC522 1
+uint8_t nfcModule = NFC_MODULE_PN532;
+
+// PN532 I2C pins, defaults from the device header
+uint8_t pn532SdaPin = NFC_SDA;
+uint8_t pn532SclPin = NFC_SCL;

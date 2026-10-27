@@ -2,8 +2,8 @@
 
 void _nfcWriteUidDisplayNotConnectedError() {
 	Nfc::setWasConnected(false);
-	connectionGuideNFC();
-	Serial.println("PN532: disconnected");
+	nfcConnectionGuide();
+	Serial.printf("%s: disconnected\n", Nfc::moduleName());
 	DEVICE.Power.setLed(1);
 	soundError();
 }
@@ -45,7 +45,7 @@ void nfcWriteUidLoop() {
 			return;
 		}
 
-		if (!Nfc::begin(NFC_SDA, NFC_SCL)) {
+		if (!nfcBegin()) {
 			_nfcWriteUidDisplayNotConnectedError();
 			return;
 		}
@@ -77,7 +77,7 @@ void nfcWriteUidLoop() {
 
 	if (checkExit()) {
 		DEVICE.Power.setLed(0);
-		Nfc::setWasConnected(false);
+		Nfc::end();
 		nfcWriteUidFileLoaded = false;
 		nfcWriteUidTag.release();
 	}

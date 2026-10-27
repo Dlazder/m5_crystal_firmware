@@ -81,6 +81,11 @@
 #include "../functions/nfc/nfcWriteLoop.h"
 #include "../functions/nfc/nfcWriteUidLoop.h"
 #include "../functions/nfc/nfcWriteSectorsLoop.h"
+#include "../functions/nfc/nfcConfigurePinsMenuLoop.h"
+#include "../functions/nfc/nfcPn532ConfigurePinsMenuLoop.h"
+#include "../functions/nfc/nfcPn532ConfigureResetLoop.h"
+#include "../functions/nfc/nfcRc522ConfigurePinsMenuLoop.h"
+#include "../functions/nfc/nfcRc522ConfigureResetLoop.h"
 
 
 // IR functions

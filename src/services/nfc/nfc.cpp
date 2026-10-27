@@ -1,10 +1,10 @@
 #include "nfc.h"
 #include <Wire.h>
 #include <Adafruit_PN532.h>
+#include "nfcRc522.h"
 #include "../storage/storage.h"
 
-// The PN532 instance and the library's shared packet buffer (globals.h / Adafruit_PN532.cpp).
-extern Adafruit_PN532 nfc;
+// The library's shared packet buffer (Adafruit_PN532.cpp).
 extern byte pn532_packetbuffer[];
 
 namespace Nfc {
@@ -40,25 +40,57 @@ void Tag::release() {
 
 // Lifecycle
 
+static Module _active = Module::PN532;
+
+// Created by begin(sda, scl) so the pins can follow the settings.
+static Adafruit_PN532* pn532 = nullptr;
+static int pn532Sda = -1, pn532Scl = -1;
+
+static bool pn532IsConnected() {
+	Wire.beginTransmission(PN532_I2C_ADDR);
+	return Wire.endTransmission() == 0;
+}
+
 bool begin(int sda, int scl) {
+	_active = Module::PN532;
+	// The library's I2C constructor takes (irq, reset) and configures those two pins, so,
+	// as it always has, it is given the bus pins; build it before the bus is rebound below.
+	if (!pn532 || sda != pn532Sda || scl != pn532Scl) {
+		delete pn532;
+		pn532 = new Adafruit_PN532(sda, scl, &Wire);
+		pn532Sda = sda;
+		pn532Scl = scl;
+	}
 	// End any existing I2C session (e.g. the internal bus brought up by device init) so
 	// the bus is re-bound to the NFC pins; on ESP32 Arduino core 2.x a repeated
 	// Wire.begin() with new pins is ignored unless the bus is released first.
 	Wire.end();
 	Wire.begin(sda, scl);
-	if (!isConnected()) return false;
-	nfc.begin();
-	if (!nfc.getFirmwareVersion()) return false;
-	nfc.SAMConfig();
+	if (!pn532IsConnected()) return false;
+	pn532->begin();
+	if (!pn532->getFirmwareVersion()) return false;
+	pn532->SAMConfig();
 	return true;
 }
 
-bool isConnected() {
-	Wire.beginTransmission(PN532_I2C_ADDR);
-	return Wire.endTransmission() == 0;
+bool begin(const Rc522Pins& pins) {
+	_active = Module::RC522;
+	return rc522::begin(pins);
 }
 
 static bool _wasConnected = false;
+
+void end() {
+	if (_active == Module::RC522) rc522::end();
+	_wasConnected = false;
+}
+
+Module activeModule() { return _active; }
+const char* moduleName() { return _active == Module::RC522 ? "RC522" : "PN532"; }
+
+bool isConnected() {
+	return _active == Module::RC522 ? rc522::isConnected() : pn532IsConnected();
+}
 
 bool wasConnected() { return _wasConnected; }
 void setWasConnected(bool connected) { _wasConnected = connected; }
@@ -82,7 +114,7 @@ uint8_t lastUIDLength() { return _lastUIDLen; }
 /// the library's API, but it leaves the target frame in its packet buffer:
 /// b9..10 = SENS_RES (ATQA, MSB first), b11 = SEL_RES (SAK).
 static bool selectTag(uint8_t* uid, uint8_t& uidLen, uint8_t* atqa, uint8_t* sak, uint16_t timeoutMs) {
-	if (!nfc.readPassiveTargetID(PN532_MIFARE_ISO14443A, uid, &uidLen, timeoutMs)) return false;
+	if (!pn532->readPassiveTargetID(PN532_MIFARE_ISO14443A, uid, &uidLen, timeoutMs)) return false;
 	if (atqa) {
 		atqa[0] = pn532_packetbuffer[9];
 		atqa[1] = pn532_packetbuffer[10];
@@ -91,11 +123,32 @@ static bool selectTag(uint8_t* uid, uint8_t& uidLen, uint8_t* atqa, uint8_t* sak
 	return true;
 }
 
+// Tag access primitives of the active reader, used by the writers and reselect().
+
+static bool tagSelect(uint8_t* uid, uint8_t& uidLen, uint16_t timeoutMs) {
+	if (_active == Module::RC522) return rc522::select(uid, uidLen, timeoutMs);
+	return selectTag(uid, uidLen, nullptr, nullptr, timeoutMs);
+}
+
+static bool tagAuthenticate(const uint8_t* uid, uint8_t uidLen, uint16_t block, uint8_t keyType, const uint8_t* key) {
+	if (_active == Module::RC522) return rc522::authenticate(block, keyType, key);
+	uint8_t keyCopy[6];
+	memcpy(keyCopy, key, sizeof(keyCopy)); // the library takes a non-const key
+	return pn532->mifareclassic_AuthenticateBlock((uint8_t*)uid, uidLen, block, keyType, keyCopy);
+}
+
+static bool tagWriteBlock(uint16_t block, const uint8_t* data) {
+	if (_active == Module::RC522) return rc522::writeBlock(block, data);
+	uint8_t dataCopy[16];
+	memcpy(dataCopy, data, sizeof(dataCopy));
+	return pn532->mifareclassic_WriteDataBlock(block, dataCopy);
+}
+
 /// Re-selects the same tag after a failed auth/read dropped it out of the active state.
 static bool reselect(const Tag& tag) {
 	uint8_t uid[10];
 	uint8_t len = 0;
-	if (!selectTag(uid, len, nullptr, nullptr, 100)) return false;
+	if (!tagSelect(uid, len, 100)) return false;
 	return len == tag.uidLen && memcmp(uid, tag.uid, len) == 0;
 }
 
@@ -105,7 +158,7 @@ static bool reselect(const Tag& tag) {
 static bool commThru(const uint8_t* tx, uint8_t txLen, uint8_t* rx, uint8_t& rxLen) {
 	pn532_packetbuffer[0] = 0x42;
 	memcpy(pn532_packetbuffer + 1, tx, txLen);
-	if (!nfc.sendCommandCheckAck(pn532_packetbuffer, txLen + 1, 100)) return false;
+	if (!pn532->sendCommandCheckAck(pn532_packetbuffer, txLen + 1, 100)) return false;
 
 	// Wait for the "ready" status byte
 	uint32_t start = millis();
@@ -174,7 +227,7 @@ static bool dumpClassic(Tag& tag, ProgressFn onProgress) {
 				uint8_t k = (n + lastKey) % KEY_COUNT;
 				uint8_t key[6];
 				memcpy(key, KEYS[k], 6);
-				if (nfc.mifareclassic_AuthenticateBlock(tag.uid, tag.uidLen, first, kt, key)) {
+				if (pn532->mifareclassic_AuthenticateBlock(tag.uid, tag.uidLen, first, kt, key)) {
 					opened = true;
 					usedKey = k;
 					usedType = kt;
@@ -189,7 +242,7 @@ static bool dumpClassic(Tag& tag, ProgressFn onProgress) {
 			bool allRead = true;
 			for (uint8_t i = 0; i < count; i++) {
 				uint16_t b = first + i;
-				if (nfc.mifareclassic_ReadDataBlock(b, tag.blocks + b * 16)) tag.blockKnown[b] = 1;
+				if (pn532->mifareclassic_ReadDataBlock(b, tag.blocks + b * 16)) tag.blockKnown[b] = 1;
 				else allRead = false;
 			}
 			if (tag.blockKnown[trailer]) {
@@ -279,7 +332,7 @@ static bool dumpUltralight(Tag& tag, ProgressFn onProgress) {
 
 // Public reading entry point
 
-bool readTag(Tag& tag, uint16_t timeoutMs, ProgressFn onProgress) {
+static bool pn532ReadTag(Tag& tag, uint16_t timeoutMs, ProgressFn onProgress) {
 	tag.release();
 	if (!selectTag(tag.uid, tag.uidLen, tag.atqa, &tag.sak, timeoutMs)) return false;
 
@@ -316,6 +369,11 @@ bool readTag(Tag& tag, uint16_t timeoutMs, ProgressFn onProgress) {
 	return true;
 }
 
+bool readTag(Tag& tag, uint16_t timeoutMs, ProgressFn onProgress) {
+	if (_active == Module::RC522) return rc522::readTag(tag);
+	return pn532ReadTag(tag, timeoutMs, onProgress);
+}
+
 // Saving
 
 bool save(const Tag& tag, String& path, bool& usedLittleFS) {
@@ -347,11 +405,11 @@ bool writeUid(const Tag& tag) {
 	if (tag.uidLen != 4) return false; // CUID block 0 only supports a 4-byte UID
 
 	uint8_t uid[10], uidLen;
-	if (!nfc.readPassiveTargetID(PN532_MIFARE_ISO14443A, uid, &uidLen, 500)) return false;
+	if (!tagSelect(uid, uidLen, 500)) return false;
 	if (uidLen != 4) return false;
 
 	static const uint8_t DEFAULT_KEY[6] = {0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF};
-	if (!nfc.mifareclassic_AuthenticateBlock(uid, uidLen, 0, 0, (uint8_t*)DEFAULT_KEY)) return false;
+	if (!tagAuthenticate(uid, uidLen, 0, 0, DEFAULT_KEY)) return false;
 
 	uint8_t block0[16] = {0};
 	memcpy(block0, tag.uid, 4);
@@ -360,10 +418,10 @@ bool writeUid(const Tag& tag) {
 	block0[6] = tag.atqa[1]; // ATQA is stored MSB-first; block 0 wants LSB first
 	block0[7] = tag.atqa[0];
 
-	if (!nfc.mifareclassic_WriteDataBlock(0, block0)) return false;
+	if (!tagWriteBlock(0, block0)) return false;
 	delay(200);
 
-	if (!nfc.readPassiveTargetID(PN532_MIFARE_ISO14443A, uid, &uidLen, 500)) return false;
+	if (!tagSelect(uid, uidLen, 500)) return false;
 	return uidLen == 4 && memcmp(uid, tag.uid, 4) == 0;
 }
 
@@ -371,7 +429,7 @@ bool writeClassicSectors(const Tag& tag, ProgressFn onProgress) {
 	if (tag.type != TagType::MIFARE_CLASSIC || !tag.blocks || !tag.blockKnown) return false;
 
 	uint8_t uid[10], uidLen;
-	if (!nfc.readPassiveTargetID(PN532_MIFARE_ISO14443A, uid, &uidLen, 500)) return false;
+	if (!tagSelect(uid, uidLen, 500)) return false;
 
 	Tag onCard; // only uid/uidLen are used, to drive reselect() after a dropped auth
 	memcpy(onCard.uid, uid, uidLen);
@@ -400,7 +458,7 @@ bool writeClassicSectors(const Tag& tag, ProgressFn onProgress) {
 				uint8_t k = (n + lastKey) % KEY_COUNT;
 				uint8_t key[6];
 				memcpy(key, KEYS[k], 6);
-				if (nfc.mifareclassic_AuthenticateBlock(uid, uidLen, first, kt, key)) {
+				if (tagAuthenticate(uid, uidLen, first, kt, key)) {
 					opened = true;
 					lastKey = k;
 					usedType = kt;
@@ -413,7 +471,7 @@ bool writeClassicSectors(const Tag& tag, ProgressFn onProgress) {
 
 		for (uint8_t i = 0; i < count - 1; i++) { // trailer (key + access bits) is left alone
 			uint16_t b = first + i;
-			if (tag.blockKnown[b]) nfc.mifareclassic_WriteDataBlock(b, tag.blocks + b * 16);
+			if (tag.blockKnown[b]) tagWriteBlock(b, tag.blocks + b * 16);
 		}
 		progress(onProgress, s + 1, tag.sectorsTotal);
 	}

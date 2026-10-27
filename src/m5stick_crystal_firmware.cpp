@@ -77,4 +77,10 @@ void loop() {
   if (isWebInterfaceEnabled && !webDataRequested) {
     webServer.handleClient();
   }
+
+  // Yields the CPU for 1 tick so FreeRTOS can run the idle task between
+  // iterations — without this, loop() never blocks and the scheduler never
+  // sees idle time, which keeps automatic frequency scaling / light sleep
+  // from engaging even when nothing is happening (button polling, etc.).
+  delay(1);
 }
