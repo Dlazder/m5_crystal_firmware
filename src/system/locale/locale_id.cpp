@@ -67,9 +67,10 @@ const Locale LANG_ID = {
 
     // NFC menu
     .MENU_NFC                     = "NFC",
-    .MENU_NFC_READ_UID            = "baca UID",
+    .MENU_NFC_READ_UID            = "baca",
+    .MENU_NFC_WRITE          = "tulis",
     .MENU_NFC_WRITE_UID           = "tulis UID",
-    .MENU_NFC_ADVANCED_INFO       = "info lanjutan",
+    .MENU_NFC_WRITE_SECTORS  = "tulis sektor",
 
     // IR menu
     .MENU_IR                      = "IR",
@@ -87,6 +88,11 @@ const Locale LANG_ID = {
     .TXT_IR_PARSE_ERROR           = "Error file",
     .TXT_IR_TVB_RUNNING           = "Mengirim...",
     .TXT_IR_TVB_DONE              = "Selesai!",
+
+    // RF menu
+    .MENU_RF_SPECTRUM             = "penganalisis spektrum",
+    .MENU_RF_RAW_SNIFFER          = "sniffer mentah",
+    .MENU_RF_CONFIG_PINS          = "atur pin",
 
     // Settings menu
     .MENU_SETTINGS                = "pengaturan",
@@ -107,6 +113,7 @@ const Locale LANG_ID = {
     .MENU_SETTINGS_WEBSERVER_FS   = "web server FS",
     .MENU_SETTINGS_TIMEZONE       = "zona waktu",
     .MENU_SETTINGS_SD_ROOT        = "pasang SD di /crystal",
+    .MENU_SETTINGS_CUSTOMIZE_MENU = "sesuaikan menu",
 
     // Other menu
     .MENU_OTHER                   = "lainnya",
@@ -205,20 +212,25 @@ const Locale LANG_ID = {
     .TXT_NFC_WRITE_FAILED         = "Penulisan gagal!",
     .TXT_NFC_WRITE_ERROR          = "Tidak ada tag/error",
     .TXT_NFC_READY_TO_WRITE       = "Siap menulis...",
+    .TXT_NFC_PLACE_TAG          = "Place tag",
+    .TXT_NFC_READING            = "Reading...",
+    .TXT_NFC_SECTORS            = "Sectors",
+    .TXT_NFC_PAGES              = "Pages",
+    .TXT_NFC_SAVE_ERROR         = "Save failed",
+    .TXT_NFC_WRITING            = "Menulis...",
+    .TXT_NFC_NOT_CLASSIC        = "Bukan Mifare Classic",
+    .TXT_NFC_SECTORS_WRITTEN    = "Sektor ditulis",
 
     // Settings text
-    .TXT_SETTINGS_LANGUAGE        = "Bahasa: ",
     .TXT_SETTINGS_BRIGHTNESS      = "kecerahan: ",
     .TXT_SETTINGS_VOLUME          = "volume: ",
     .TXT_SETTINGS_COLOR           = "warna: ",
-    .TXT_SETTINGS_FONT            = "Font:",
     .TXT_SETTINGS_ROTATION        = "balik rotasi",
     .TXT_SETTINGS_SOUND           = "Suara: ",
     .TXT_SETTINGS_STATUS_BAR      = "bilah status: ",
     .TXT_SETTINGS_PID             = "PID: ",
     .TXT_SETTINGS_KB_GYRO         = "Giroskop: ",
     .TXT_SETTINGS_WEBSERVER_FS    = "WebServer FS: ",
-    .TXT_SETTINGS_TIMEZONE        = "Zona waktu: ",
 	.MENU_UART = "UART",
 	.MENU_UART_TERMINAL = "terminal",
 	.MENU_UART_SAVE_LOGS = "simpan log",

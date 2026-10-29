@@ -2,22 +2,18 @@
 
 // Add new processes here: X(NAME, ID, loopFunction)
 #define PROCESS_LIST \
-    X(MAIN_MENU, 0, mainMenuLoop) \
-    X(PLACEHOLDER, 1, defaultLoop) \
+    /* Core (0-99) */ \
+    X(MAIN_MENU,    0, mainMenuLoop) \
+    X(PLACEHOLDER,  1, defaultLoop) \
+    X(ERROR_SCREEN, 2, errorLoop) \
     \
     /* Settings (100-199) */ \
     X(SETTINGS,              100, settingsMenuLoop) \
     X(SETTINGS_CLOCK,        101, settingsClockLoop) \
     X(SETTINGS_STATUS_BAR,   102, settingsStatusBarMenuLoop) \
-    X(BRIGHTNESS,            103, brightnessLoop) \
-    X(COLORS,                105, colorsLoop) \
-    X(FONTS,                 106, fontsLoop) \
-    X(LANGUAGE,              111, languageLoop) \
-    X(DIMMING,               112, dimmingLoop) \
-    X(VOLUME,                113, volumeLoop) \
-    X(SETTINGS_SSID,         115, setSsidLoop) \
-    X(SETTINGS_TIMEZONE,     118, settingsTimezoneLoop) \
-    X(SETTINGS_UI,           119, settingsUIMenuLoop) \
+    X(SETTINGS_SSID,         103, setSsidLoop) \
+    X(SETTINGS_UI,           104, settingsUIMenuLoop) \
+    X(SETTINGS_MENU_ITEMS,   105, settingsMenuItemsLoop) \
     \
     /* Wi-Fi (200-299) */ \
     X(WIFI,              200, wifiMenuLoop) \
@@ -28,18 +24,18 @@
     X(WIFI_ACCESS_POINT, 205, wifiApLoop) \
     X(WIFI_CONNECT,      206, wifiConnectLoop) \
     X(WIFI_DISCONNECT,   207, wifiDisconnectLoop) \
-    X(WIFI_WPA_BF,       209, wifiBruteforceLoop) \
-    X(WIFI_WPA_BF_ALL,   210, wifiBruteforceAllLoop) \
-    X(WIFI_DEAUTH_ALL,   211, wifiDeauthAllLoop) \
-    X(EVIL_PORTAL,       212, evilPortalLoop) \
-    X(EVIL_TWIN,         213, evilTwinLoop) \
-    X(WIFI_HANDSHAKE_CAPTURE, 214, wifiHandshakeLoop) \
-	X(WIFI_PCAP_TO_HASH, 215, pcapToHashLoop)    \
-	X(WIFI_PMKID_CAPTURE, 216, wifiPmkidLoop)     \
-	X(WIFI_CHANNEL_ANALYZER, 217, wifiChannelAnalyzerLoop) \
-	X(WEB_SERVER,        218, webServerLoop) \
-	X(LFS_WEB_UI,        219, lfsWebUILoop) \
-	X(WIFI_WPS_PBC,      220, wifiWpsPbcLoop) \
+    X(WIFI_WPA_BF,       208, wifiBruteforceLoop) \
+    X(WIFI_WPA_BF_ALL,   209, wifiBruteforceAllLoop) \
+    X(WIFI_DEAUTH_ALL,   210, wifiDeauthAllLoop) \
+    X(EVIL_PORTAL,       211, evilPortalLoop) \
+    X(EVIL_TWIN,         212, evilTwinLoop) \
+    X(WIFI_HANDSHAKE_CAPTURE, 213, wifiHandshakeLoop) \
+    X(WIFI_PCAP_TO_HASH, 214, pcapToHashLoop) \
+    X(WIFI_PMKID_CAPTURE, 215, wifiPmkidLoop) \
+    X(WIFI_CHANNEL_ANALYZER, 216, wifiChannelAnalyzerLoop) \
+    X(WEB_SERVER,        217, webServerLoop) \
+    X(LFS_WEB_UI,        218, lfsWebUILoop) \
+    X(WIFI_WPS_PBC,      219, wifiWpsPbcLoop) \
     \
     /* Bluetooth (300-399) */ \
     X(BLUETOOTH,    300, bluetoothMenuLoop) \
@@ -55,11 +51,24 @@
     X(BT_MOUSE_JIGGLER, 310, bluetoothMouseJigglerLoop) \
     X(BT_SNIFFER,   311, bluetoothSnifferLoop) \
     \
-    /* NFC (400-499) */ \
-    X(NFC,       400, nfcMenuLoop) \
-    X(NFC_READ,  401, nfcReadLoop) \
-    X(NFC_WRITE, 402, nfcWriteLoop) \
-    X(NFC_ADVANCED_INFO, 403, nfcAdvancedInfoLoop) \
+    /* NFC (400-449) */ \
+    X(NFC,               400, nfcMenuLoop) \
+    X(NFC_READ,          401, nfcReadLoop) \
+    X(NFC_WRITE,         402, nfcWriteLoop) \
+    X(NFC_WRITE_UID,     403, nfcWriteUidLoop) \
+    X(NFC_WRITE_SECTORS, 404, nfcWriteSectorsLoop) \
+    X(NFC_RC522_PINS,    405, nfcRc522ConfigurePinsMenuLoop) \
+    X(NFC_RC522_RESET,   406, nfcRc522ConfigureResetLoop) \
+    X(NFC_CONFIG_PINS,   407, nfcConfigurePinsMenuLoop) \
+    X(NFC_PN532_PINS,    408, nfcPn532ConfigurePinsMenuLoop) \
+    X(NFC_PN532_RESET,   409, nfcPn532ConfigureResetLoop) \
+    \
+    /* RF / sub-GHz CC1101 (450-499) */ \
+    X(RF,              450, rfMenuLoop) \
+    X(RF_SPECTRUM,     451, cc1101SpectrumAnalyzerLoop) \
+    X(RF_RAW_SNIFFER,  452, cc1101RawSnifferLoop) \
+    X(RF_CONFIG_PINS,  453, rfConfigurePinsMenuLoop) \
+    X(RF_CONFIG_RESET, 454, rfConfigureResetLoop) \
     \
     /* Files (500-599) */ \
     X(FILES_MENU,         500, filesMenuLoop) \
@@ -80,48 +89,57 @@
     X(FILE_COPY,          515, copyFileLoop) \
     X(FILE_PASTE,         516, pasteFileLoop) \
     \
-    /* IR (600-699) */ \
+    /* IR (600-649) */ \
     X(IR,                 600, irMenuLoop) \
     X(IR_READ,            601, irReadLoop) \
     X(IR_SEND,            602, irSendLoop) \
     X(IR_TV_B_GONE,       603, irTvBGoneLoop) \
     X(IR_CONFIG_PINS,     604, irConfigurePinsMenuLoop) \
-    X(IR_CONFIG_TX,       605, irConfigureTxLoop) \
-    X(IR_CONFIG_RX,       606, irConfigureRxLoop) \
-    X(IR_CONFIG_RESET,    607, irConfigureResetLoop) \
+    X(IR_CONFIG_RESET,    605, irConfigureResetLoop) \
     \
-    X(USB,                700, usbMenuLoop) \
-    X(BAD_USB,            701, badUsbLoop) \
-    X(USB_MOUSE_JIGGLER,  702, usbMouseJigglerLoop) \
-    X(USB_MOUSE,          703, usbMouseLoop) \
-    X(USB_KEYBOARD,       704, usbKeyboardLoop) \
-    X(USB_STORAGE,        705, usbStorageLoop) \
-    /* Other (800-899) */ \
-    X(OTHER,              800, otherMenuLoop) \
-    X(CLOCK,              801, clockLoop) \
-    X(BATTERY,            802, batteryLoop) \
-    X(SOUND_LEVEL,        803, soundLevelLoop) \
-    X(FLASHLIGHT_MENU,    805, flashLightMenuLoop) \
-    X(FLASHLIGHT,         804, flashLightLoop) \
-    X(FLASHLIGHT_FLICKER, 806, flickerLoop) \
-    X(LEVEL_TOOL,         807, levelToolLoop) \
-    X(SYSTEM,             808, systemMenuLoop) \
-    X(SYSTEM_INFO,        809, systemInfoLoop) \
-    X(SHUTDOWN,           810, shutdownLoop) \
-    X(WEATHER,            811, weatherLoop) \
+    /* USB (650-699) */ \
+    X(USB,                650, usbMenuLoop) \
+    X(BAD_USB,            651, badUsbLoop) \
+    X(USB_MOUSE_JIGGLER,  652, usbMouseJigglerLoop) \
+    X(USB_MOUSE,          653, usbMouseLoop) \
+    X(USB_KEYBOARD,       654, usbKeyboardLoop) \
+    X(USB_STORAGE,        655, usbStorageLoop) \
     \
-    /* UART (812-819) */ \
-    X(UART,               812, uartMenuLoop) \
-    X(UART_TERMINAL,      813, uartTerminalLoop) \
-    X(UART_CONFIG_RX,     814, uartConfigRxLoop) \
-    X(UART_CONFIG_TX,     815, uartConfigTxLoop) \
-    X(UART_CONFIG_BAUD,   816, uartConfigBaudLoop) \
+    /* Other (700-799) */ \
+    X(OTHER,              700, otherMenuLoop) \
+    X(CLOCK,              701, clockLoop) \
+    X(BATTERY,            702, batteryLoop) \
+    X(SOUND_LEVEL,        703, soundLevelLoop) \
+    X(FLASHLIGHT_MENU,    704, flashLightMenuLoop) \
+    X(FLASHLIGHT,         705, flashLightLoop) \
+    X(FLASHLIGHT_FLICKER, 706, flickerLoop) \
+    X(LEVEL_TOOL,         707, levelToolLoop) \
+    X(SYSTEM,             708, systemMenuLoop) \
+    X(SYSTEM_INFO,        709, systemInfoLoop) \
+    X(SHUTDOWN,           710, shutdownLoop) \
+    X(WEATHER,            711, weatherLoop) \
     \
-    /* Error screen (900-999) */ \
-    X(ERROR_SCREEN,       999, errorLoop) \
+    /* UART (800-849) */ \
+    X(UART,               800, uartMenuLoop) \
+    X(UART_TERMINAL,      801, uartTerminalLoop) \
 
 namespace PID {
     #define X(name, id, fn) const int name = id;
     PROCESS_LIST
     #undef X
 }
+
+// Name/ID lookup table, generated from PROCESS_LIST, used by the serial
+// "/goto" command to resolve a process by its PID macro name (e.g. "WIFI_SCAN").
+struct ProcessTableEntry {
+    const char* name;
+    int id;
+};
+
+const ProcessTableEntry PROCESS_TABLE[] = {
+    #define X(name, id, fn) { #name, id },
+    PROCESS_LIST
+    #undef X
+};
+
+const int PROCESS_TABLE_SIZE = sizeof(PROCESS_TABLE) / sizeof(PROCESS_TABLE[0]);

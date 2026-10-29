@@ -12,10 +12,7 @@ void irConfigureResetLoop() {
 	}
 
 	if ((isBtnAWasPressed() || isKbEnterPressed()) && checkTimer(100)) {
-		irTxPin = IR_SEND_PIN;
-		irRxPin = IR_RECEIVE_PIN;
-		setData("irTxPin", irTxPin);
-		setData("irRxPin", irRxPin);
+		Settings::resetGroup(SettingGroup::IR_PINS);
 		Serial.printf("IR pins reset: TX=%d RX=%d\n", irTxPin, irRxPin);
 		
 		String lines[] = {

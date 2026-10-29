@@ -67,9 +67,10 @@ const Locale LANG_PT = {
 
 	// NFC menu
 	.MENU_NFC                    = "NFC",
-	.MENU_NFC_READ_UID           = "ler UID",
+	.MENU_NFC_READ_UID           = "ler",
+	.MENU_NFC_WRITE          = "gravar",
 	.MENU_NFC_WRITE_UID          = "gravar UID",
-	.MENU_NFC_ADVANCED_INFO      = "info avançada",
+	.MENU_NFC_WRITE_SECTORS  = "gravar setores",
 
 	// IR menu
 	.MENU_IR                     = "IR",
@@ -87,6 +88,11 @@ const Locale LANG_PT = {
 	.TXT_IR_PARSE_ERROR          = "Erro de leitura",
 	.TXT_IR_TVB_RUNNING          = "Enviando...",
 	.TXT_IR_TVB_DONE             = "Pronto!",
+
+	// RF menu
+	.MENU_RF_SPECTRUM            = "analisador de espectro",
+	.MENU_RF_RAW_SNIFFER         = "sniffer bruto",
+	.MENU_RF_CONFIG_PINS         = "configurar pinos",
 
 	// Settings menu
 	.MENU_SETTINGS               = "configurações",
@@ -107,6 +113,7 @@ const Locale LANG_PT = {
 	.MENU_SETTINGS_WEBSERVER_FS  = "servidor web FS",
 	.MENU_SETTINGS_TIMEZONE      = "fuso horário",
 	.MENU_SETTINGS_SD_ROOT       = "montar SD em /crystal",
+	.MENU_SETTINGS_CUSTOMIZE_MENU = "personalizar menu",
 
 	// Other menu
 	.MENU_OTHER                  = "outro",
@@ -205,20 +212,25 @@ const Locale LANG_PT = {
 	.TXT_NFC_WRITE_FAILED        = "Falha na gravação!",
 	.TXT_NFC_WRITE_ERROR         = "Sem tag / erro gravação",
 	.TXT_NFC_READY_TO_WRITE      = "Pronto para gravar...",
+	.TXT_NFC_PLACE_TAG          = "Place tag",
+	.TXT_NFC_READING            = "Reading...",
+	.TXT_NFC_SECTORS            = "Sectors",
+	.TXT_NFC_PAGES              = "Pages",
+	.TXT_NFC_SAVE_ERROR         = "Save failed",
+	.TXT_NFC_WRITING            = "Gravando...",
+	.TXT_NFC_NOT_CLASSIC        = "Não é Mifare Classic",
+	.TXT_NFC_SECTORS_WRITTEN    = "Setores gravados",
 
 	// Settings text
-	.TXT_SETTINGS_LANGUAGE       = "Idioma : ",
 	.TXT_SETTINGS_BRIGHTNESS     = "brilho : ",
 	.TXT_SETTINGS_VOLUME         = "volume : ",
 	.TXT_SETTINGS_COLOR          = "cor : ",
-	.TXT_SETTINGS_FONT           = "Fonte :",
 	.TXT_SETTINGS_ROTATION       = "inverter rotação",
 	.TXT_SETTINGS_SOUND          = "Som : ",
 	.TXT_SETTINGS_STATUS_BAR     = "barra status : ",
 	.TXT_SETTINGS_PID            = "PID : ",
 	.TXT_SETTINGS_KB_GYRO        = "Giro teclado : ",
 	.TXT_SETTINGS_WEBSERVER_FS   = "Servidor web FS : ",
-	.TXT_SETTINGS_TIMEZONE       = "Fuso horário : ",
 	.MENU_UART = "UART",
 	.MENU_UART_TERMINAL = "terminal",
 	.MENU_UART_SAVE_LOGS = "salvar logs",

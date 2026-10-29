@@ -4,6 +4,9 @@
 #include "../services/storage/storage.h"
 #include "../services/duckyscript/duckyscript.h"
 #include "../services/wifi/wifi.h"
+#include "../services/ble/ble.h"
+#include "../services/cc1101/cc1101.h"
+#include "../services/nfc/nfc.h"
 
 // 1st layer utilities
 #include "../utils/statusBarUtils.h"
@@ -13,6 +16,7 @@
 #include "../utils/webControlUtils.h"
 #include "../utils/webResponseUtils.h"
 #include "../utils/storageUtils.h"
+#include "../services/settings/settings.h" // needs storageUtils.h; must precede menuUtils.h
 #include "../utils/keyboardUtils/cardputerKbUtils.h"
 #include "../utils/keyboardUtils/kbUtils.h"
 #include "../utils/soundUtils.h"
@@ -24,9 +28,12 @@
 // 3rd layer utilities
 #include "../utils/filePickerUtils.h"
 #include "../utils/bleUtils.h"
+#include "../utils/nfcUtils.h"
 #include "../utils/errorUtils.h"
 
 #include "../utils/commandUtils/screenshotCommand.h"
 #include "../utils/commandUtils/info.h"
 #include "../utils/commandUtils/help.h"
 #include "../utils/commandUtils/shutdown.h"
+#include "../utils/commandUtils/goto.h"
+#include "../utils/commandUtils/navigate.h"

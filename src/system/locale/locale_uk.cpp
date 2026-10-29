@@ -67,9 +67,10 @@ const Locale LANG_UK = {
 
 	// NFC menu
 	.MENU_NFC                    = "NFC",
-	.MENU_NFC_READ_UID           = "читати UID",
+	.MENU_NFC_READ_UID           = "читати",
+	.MENU_NFC_WRITE          = "записати",
 	.MENU_NFC_WRITE_UID          = "записати UID",
-	.MENU_NFC_ADVANCED_INFO    = "розширена інфо",
+	.MENU_NFC_WRITE_SECTORS  = "записати сектори",
 
 	// IR menu
 	.MENU_IR                     = "IR",
@@ -87,6 +88,11 @@ const Locale LANG_UK = {
 	.TXT_IR_PARSE_ERROR          = "Помилка файлу",
 	.TXT_IR_TVB_RUNNING          = "Надсилання...",
 	.TXT_IR_TVB_DONE             = "Готово!",
+
+	// RF menu
+	.MENU_RF_SPECTRUM            = "аналізатор спектра",
+	.MENU_RF_RAW_SNIFFER         = "raw сніфер",
+	.MENU_RF_CONFIG_PINS         = "налаштувати піни",
 
 	// Settings menu
 	.MENU_SETTINGS               = "налаштування",
@@ -107,6 +113,7 @@ const Locale LANG_UK = {
 	.MENU_SETTINGS_WEBSERVER_FS  = "веб-сервер FS",
 	.MENU_SETTINGS_TIMEZONE      = "часовий пояс",
 	.MENU_SETTINGS_SD_ROOT       = "монтувати SD у /crystal",
+	.MENU_SETTINGS_CUSTOMIZE_MENU = "налаштувати меню",
 
 	// Other menu
 	.MENU_OTHER                  = "інше",
@@ -205,20 +212,25 @@ const Locale LANG_UK = {
 	.TXT_NFC_WRITE_FAILED        = "Запис не вдався",
 	.TXT_NFC_WRITE_ERROR         = "Нема тегу/помилка",
 	.TXT_NFC_READY_TO_WRITE      = "Готовий до запису...",
+	.TXT_NFC_PLACE_TAG          = "Прикладіть мітку",
+	.TXT_NFC_READING            = "Читання...",
+	.TXT_NFC_SECTORS            = "Сектори",
+	.TXT_NFC_PAGES              = "Сторінки",
+	.TXT_NFC_SAVE_ERROR         = "Помилка збереження",
+	.TXT_NFC_WRITING            = "Запис...",
+	.TXT_NFC_NOT_CLASSIC        = "Не Mifare Classic",
+	.TXT_NFC_SECTORS_WRITTEN    = "Сектори записано",
 
 	// Settings text
-	.TXT_SETTINGS_LANGUAGE       = "Мова: ",
 	.TXT_SETTINGS_BRIGHTNESS     = "яскравість: ",
 	.TXT_SETTINGS_VOLUME         = "гучність: ",
 	.TXT_SETTINGS_COLOR          = "колір: ",
-	.TXT_SETTINGS_FONT           = "Шрифт:",
 	.TXT_SETTINGS_ROTATION       = "переворот",
 	.TXT_SETTINGS_SOUND          = "Звук: ",
 	.TXT_SETTINGS_STATUS_BAR     = "стат. рядок: ",
 	.TXT_SETTINGS_PID            = "PID: ",
 	.TXT_SETTINGS_KB_GYRO        = "гіро клав.: ",
 	.TXT_SETTINGS_WEBSERVER_FS   = "Веб-сервер FS: ",
-	.TXT_SETTINGS_TIMEZONE       = "Часовий пояс: ",
 	.MENU_UART = "UART",
 	.MENU_UART_TERMINAL = "термінал",
 	.MENU_UART_SAVE_LOGS = "зберегти логи",

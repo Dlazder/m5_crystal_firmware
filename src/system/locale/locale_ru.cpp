@@ -67,9 +67,10 @@ const Locale LANG_RU = {
 
 	// NFC menu
 	.MENU_NFC                    = "NFC",
-	.MENU_NFC_READ_UID           = "читать UID",
+	.MENU_NFC_READ_UID           = "читать",
+	.MENU_NFC_WRITE          = "записать",
 	.MENU_NFC_WRITE_UID          = "записать UID",
-	.MENU_NFC_ADVANCED_INFO    = "расширенная инфо",
+	.MENU_NFC_WRITE_SECTORS  = "записать секторы",
 
 	// IR menu
 	.MENU_IR                     = "IR",
@@ -87,6 +88,11 @@ const Locale LANG_RU = {
 	.TXT_IR_PARSE_ERROR          = "Ошибка файла",
 	.TXT_IR_TVB_RUNNING          = "Отправка...",
 	.TXT_IR_TVB_DONE             = "Готово!",
+
+	// RF menu
+	.MENU_RF_SPECTRUM            = "анализатор спектра",
+	.MENU_RF_RAW_SNIFFER         = "raw сниффер",
+	.MENU_RF_CONFIG_PINS         = "настроить пины",
 
 	// Settings menu
 	.MENU_SETTINGS               = "настройки",
@@ -107,6 +113,7 @@ const Locale LANG_RU = {
 	.MENU_SETTINGS_WEBSERVER_FS  = "веб-сервер FS",
 	.MENU_SETTINGS_TIMEZONE      = "часовой пояс",
 	.MENU_SETTINGS_SD_ROOT       = "монтировать SD в /crystal",
+	.MENU_SETTINGS_CUSTOMIZE_MENU = "настроить меню",
 
 	// Other menu
 	.MENU_OTHER                  = "другое",
@@ -205,20 +212,25 @@ const Locale LANG_RU = {
 	.TXT_NFC_WRITE_FAILED        = "Запись не удалась",
 	.TXT_NFC_WRITE_ERROR         = "Нет тега или ошибка записи",
 	.TXT_NFC_READY_TO_WRITE      = "Готов к записи...",
+	.TXT_NFC_PLACE_TAG          = "Приложите метку",
+	.TXT_NFC_READING            = "Чтение...",
+	.TXT_NFC_SECTORS            = "Секторы",
+	.TXT_NFC_PAGES              = "Страницы",
+	.TXT_NFC_SAVE_ERROR         = "Ошибка сохранения",
+	.TXT_NFC_WRITING            = "Запись...",
+	.TXT_NFC_NOT_CLASSIC        = "Не Mifare Classic",
+	.TXT_NFC_SECTORS_WRITTEN    = "Секторы записаны",
 
 	// Settings text
-	.TXT_SETTINGS_LANGUAGE       = "язык: ",
 	.TXT_SETTINGS_BRIGHTNESS     = "яркость: ",
 	.TXT_SETTINGS_VOLUME         = "громкость: ",
 	.TXT_SETTINGS_COLOR          = "цвет: ",
-	.TXT_SETTINGS_FONT           = "шрифт:",
 	.TXT_SETTINGS_ROTATION       = "переворот экрана",
 	.TXT_SETTINGS_SOUND          = "звук: ",
 	.TXT_SETTINGS_STATUS_BAR     = "статус бар: ",
 	.TXT_SETTINGS_PID            = "PID: ",
 	.TXT_SETTINGS_KB_GYRO        = "гиро клавиатура: ",
 	.TXT_SETTINGS_WEBSERVER_FS   = "Веб-сервер FS: ",
-	.TXT_SETTINGS_TIMEZONE       = "Часовой пояс: ",
 	.MENU_UART = "UART",
 	.MENU_UART_TERMINAL = "терминал",
 	.MENU_UART_SAVE_LOGS = "сохранить логи",

@@ -283,9 +283,9 @@ void wifiHandshakeLoop() {
 		Wifi::hsReset();
 
 		// Snapshot target params (BSSID pointer from scan may become stale)
-		memcpy(hsTargetBssid, bssid, 6);
-		hsTargetChannel = channel;
-		hsTargetSsid = ssid;
+		memcpy(hsTargetBssid, Wifi::selected.bssid, 6);
+		hsTargetChannel = Wifi::selected.channel;
+		hsTargetSsid = Wifi::selected.ssid;
 
 		// Open PCAP file: SD card first, fallback to LittleFS
 		useLittleFS = false;
@@ -297,7 +297,7 @@ void wifiHandshakeLoop() {
 
 		if (storageReady) {
 			// Sanitize SSID for FAT filename
-			String safeSsid = ssid;
+			String safeSsid = Wifi::selected.ssid;
 			safeSsid.replace(" ", "_");
 			safeSsid.replace("/", "_");
 			safeSsid.replace("\\", "_");
@@ -344,7 +344,7 @@ void wifiHandshakeLoop() {
 		canvas.pushSprite(0, getStatusBarHeight());
 
 		Serial.println("Handshake capture: ch=" + String(hsTargetChannel) +
-			" bssid=" + mac + " ssid=" + hsTargetSsid);
+			" bssid=" + Wifi::selected.mac + " ssid=" + hsTargetSsid);
 	}
 
 	// Drain ring buffer -> write PCAP packets

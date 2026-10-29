@@ -79,34 +79,59 @@ static void _drawPinTable(const char* title,
 void connectionGuideNFC() {
 	const char* title = "Connect PN532 module";
 
+	// Pins are configurable (NFC > configure pins > PN532), so show the current ones
+	static char sda[8], scl[8];
+	snprintf(sda, sizeof(sda), "G%d", pn532SdaPin);
+	snprintf(scl, sizeof(scl), "G%d", pn532SclPin);
+
+	const char* rows[][2] = {
+		{"VCC", "3.3V"},
+		{"GND", "GND"},
+		{"SDA", sda},
+		{"SCL", scl},
+	};
+	int rowCount = 4;
+
 	#if CARDPUTER
-		const char* rows[][2] = {
-			{"VCC","3.3V"},
-			{"GND", "GND"},
-			{"SDA", "G2"},
-			{"SCL", "G1"},
-		};
-		int rowCount = 4;
 		const char* hRight = "Cardputer (GROVE)";
 	#elif STICKS3
-		const char* rows[][2] = {
-			{"VCC", "3.3V"},
-			{"GND", "GND"},
-			{"SDA", "G9"},
-			{"SCL", "G10"},
-		};
-		int rowCount = 4;
 		const char* hRight = "StickS3";
 	#else
-		const char* rows[][2] = {
-			{"VCC", "3.3V"},
-			{"GND", "GND"},
-			{"SDA", "G32"},
-			{"SCL", "G33"},
-		};
-		int rowCount = 4;
 		const char* hRight = "StickCP2";
 	#endif
 
 	_drawPinTable(title, "PN532 (I2C)", hRight, rows, rowCount);
+}
+
+void connectionGuideRC522() {
+	const char* title = "Connect RC522 module";
+
+	// Pins are configurable (NFC > configure pins > RC522), so show the current ones
+	static char ss[8], sck[8], mosi[8], miso[8], rst[8];
+	snprintf(ss, sizeof(ss), "G%d", rc522SsPin);
+	snprintf(sck, sizeof(sck), "G%d", rc522SckPin);
+	snprintf(mosi, sizeof(mosi), "G%d", rc522MosiPin);
+	snprintf(miso, sizeof(miso), "G%d", rc522MisoPin);
+	snprintf(rst, sizeof(rst), "G%d", rc522RstPin);
+
+	const char* rows[][2] = {
+		{"SDA(SS)", ss},
+		{"SCK", sck},
+		{"MOSI", mosi},
+		{"MISO", miso},
+		{"RST", rst},
+		{"VCC", "3.3V"},
+		{"GND", "GND"},
+	};
+	int rowCount = 7;
+
+	#if CARDPUTER
+		const char* hRight = "Cardputer";
+	#elif STICKS3
+		const char* hRight = "StickS3";
+	#else
+		const char* hRight = "StickCP2";
+	#endif
+
+	_drawPinTable(title, "RC522 (SPI)", hRight, rows, rowCount);
 }

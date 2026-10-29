@@ -112,9 +112,9 @@ void wifiWpsPbcLoop() {
 		memset(wpbcPass, 0, sizeof(wpbcPass));
 		wpsStarted = false;
 
-		memcpy(wpbcTargetBssid, bssid, 6);
-		wpbcTargetChannel = channel;
-		wpbcTargetSsid = ssid;
+		memcpy(wpbcTargetBssid, Wifi::selected.bssid, 6);
+		wpbcTargetChannel = Wifi::selected.channel;
+		wpbcTargetSsid = Wifi::selected.ssid;
 
 		esp_event_handler_instance_register(WIFI_EVENT, ESP_EVENT_ANY_ID,
 			&wpbcEventHandler, NULL, &wpbcHandlerInst);

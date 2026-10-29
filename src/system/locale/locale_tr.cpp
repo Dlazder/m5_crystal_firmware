@@ -67,9 +67,10 @@ const Locale LANG_TR = {
 
 	// NFC menu
 	.MENU_NFC                    = "NFC",
-	.MENU_NFC_READ_UID           = "UID oku",
+	.MENU_NFC_READ_UID           = "oku",
+	.MENU_NFC_WRITE          = "yaz",
 	.MENU_NFC_WRITE_UID          = "UID yaz",
-	.MENU_NFC_ADVANCED_INFO      = "gelişmiş bilgi",
+	.MENU_NFC_WRITE_SECTORS  = "sektör yaz",
 
 	// IR menu
 	.MENU_IR                     = "IR",
@@ -87,6 +88,11 @@ const Locale LANG_TR = {
 	.TXT_IR_PARSE_ERROR          = "Ayrıştırma hatası",
 	.TXT_IR_TVB_RUNNING          = "Gönderiliyor...",
 	.TXT_IR_TVB_DONE             = "Tamam!",
+
+	// RF menu
+	.MENU_RF_SPECTRUM            = "spektrum analizörü",
+	.MENU_RF_RAW_SNIFFER         = "ham sniffer",
+	.MENU_RF_CONFIG_PINS         = "pinleri yapılandır",
 
 	// Settings menu
 	.MENU_SETTINGS               = "ayarlar",
@@ -107,6 +113,7 @@ const Locale LANG_TR = {
 	.MENU_SETTINGS_WEBSERVER_FS  = "web sunucu FS",
 	.MENU_SETTINGS_TIMEZONE      = "saat dilimi",
 	.MENU_SETTINGS_SD_ROOT       = "SD'yi /crystal'e bağla",
+	.MENU_SETTINGS_CUSTOMIZE_MENU = "menüyü özelleştir",
 
 	// Other menu
 	.MENU_OTHER                  = "diğer",
@@ -205,20 +212,25 @@ const Locale LANG_TR = {
 	.TXT_NFC_WRITE_FAILED        = "Yazma başarısız!",
 	.TXT_NFC_WRITE_ERROR         = "Etiket yok / yazma hatası",
 	.TXT_NFC_READY_TO_WRITE      = "Yazmaya hazır...",
+	.TXT_NFC_PLACE_TAG          = "Place tag",
+	.TXT_NFC_READING            = "Reading...",
+	.TXT_NFC_SECTORS            = "Sectors",
+	.TXT_NFC_PAGES              = "Pages",
+	.TXT_NFC_SAVE_ERROR         = "Save failed",
+	.TXT_NFC_WRITING            = "Yazılıyor...",
+	.TXT_NFC_NOT_CLASSIC        = "Mifare Classic değil",
+	.TXT_NFC_SECTORS_WRITTEN    = "Sektörler yazıldı",
 
 	// Settings text
-	.TXT_SETTINGS_LANGUAGE       = "Dil: ",
 	.TXT_SETTINGS_BRIGHTNESS     = "parlaklık: ",
 	.TXT_SETTINGS_VOLUME         = "ses: ",
 	.TXT_SETTINGS_COLOR          = "renk: ",
-	.TXT_SETTINGS_FONT           = "Yazı tipi:",
 	.TXT_SETTINGS_ROTATION       = "ekranı döndür",
 	.TXT_SETTINGS_SOUND          = "Ses: ",
 	.TXT_SETTINGS_STATUS_BAR     = "durum çubuğu: ",
 	.TXT_SETTINGS_PID            = "PID: ",
 	.TXT_SETTINGS_KB_GYRO        = "Gyro klavye: ",
 	.TXT_SETTINGS_WEBSERVER_FS   = "Web sunucu FS: ",
-	.TXT_SETTINGS_TIMEZONE       = "Saat dilimi: ",
 	.MENU_UART = "UART",
 	.MENU_UART_TERMINAL = "terminal",
 	.MENU_UART_SAVE_LOGS = "logları kaydet",

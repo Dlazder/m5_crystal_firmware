@@ -68,8 +68,9 @@ struct Locale {
 	// NFC menu
 	const char* MENU_NFC;
 	const char* MENU_NFC_READ_UID;
+	const char* MENU_NFC_WRITE;
 	const char* MENU_NFC_WRITE_UID;
-	const char* MENU_NFC_ADVANCED_INFO;
+	const char* MENU_NFC_WRITE_SECTORS;
 
 	// IR menu
 	const char* MENU_IR;
@@ -87,6 +88,11 @@ struct Locale {
 	const char* TXT_IR_PARSE_ERROR;
 	const char* TXT_IR_TVB_RUNNING;
 	const char* TXT_IR_TVB_DONE;
+
+	// RF menu
+	const char* MENU_RF_SPECTRUM;
+	const char* MENU_RF_RAW_SNIFFER;
+	const char* MENU_RF_CONFIG_PINS;
 
 	// Settings menu
 	const char* MENU_SETTINGS;
@@ -107,6 +113,7 @@ struct Locale {
 	const char* MENU_SETTINGS_WEBSERVER_FS;
 	const char* MENU_SETTINGS_TIMEZONE;
 	const char* MENU_SETTINGS_SD_ROOT;
+	const char* MENU_SETTINGS_CUSTOMIZE_MENU;
 
 	// Other menu
 	const char* MENU_OTHER;
@@ -206,20 +213,25 @@ struct Locale {
 	const char* TXT_NFC_WRITE_FAILED;
 	const char* TXT_NFC_WRITE_ERROR;
 	const char* TXT_NFC_READY_TO_WRITE;
+	const char* TXT_NFC_PLACE_TAG;
+	const char* TXT_NFC_READING;
+	const char* TXT_NFC_SECTORS;
+	const char* TXT_NFC_PAGES;
+	const char* TXT_NFC_SAVE_ERROR;
+	const char* TXT_NFC_WRITING;
+	const char* TXT_NFC_NOT_CLASSIC;
+	const char* TXT_NFC_SECTORS_WRITTEN;
 
 	// Settings text
-	const char* TXT_SETTINGS_LANGUAGE;
 	const char* TXT_SETTINGS_BRIGHTNESS;
 	const char* TXT_SETTINGS_VOLUME;
 	const char* TXT_SETTINGS_COLOR;
-	const char* TXT_SETTINGS_FONT;
 	const char* TXT_SETTINGS_ROTATION;
 	const char* TXT_SETTINGS_SOUND;
 	const char* TXT_SETTINGS_STATUS_BAR;
 	const char* TXT_SETTINGS_PID;
 	const char* TXT_SETTINGS_KB_GYRO;
 	const char* TXT_SETTINGS_WEBSERVER_FS;
-	const char* TXT_SETTINGS_TIMEZONE;
 
 	// UART menu
 	const char* MENU_UART;

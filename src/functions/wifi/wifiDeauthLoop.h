@@ -8,19 +8,19 @@ wifi_ap_record_t ap_record;
 void wifiDeauthLoop() {
 	if (isSetup()) {
 		WiFi.mode(WIFI_AP);
-		WiFi.softAP(ssid, "", channel, 1, 4, false);
+		WiFi.softAP(Wifi::selected.ssid, "", Wifi::selected.channel, 1, 4, false);
 		Wifi::deauthResetFrame();
 	}
 
 	String lines[] = {
-		ssid,
+		Wifi::selected.ssid,
 		"Deauthing..."
 	};
 	centeredPrintRows(lines, 2, MEDIUM_TEXT, true);
 	drawSpinner();
 	canvas.pushSprite(0, getStatusBarHeight());
 
-	Wifi::deauthSendFrame(bssid, channel);
+	Wifi::deauthSendFrame(Wifi::selected.bssid, Wifi::selected.channel);
 
 	checkExit();
 }

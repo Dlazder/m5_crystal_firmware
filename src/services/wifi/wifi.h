@@ -9,6 +9,27 @@
 
 namespace Wifi {
 
+// Currently selected network — the scan entry the user picked in
+// selectedWifiMenuLoop, read/written by the wifi screens (info, deauth,
+// connect, bruteforce, handshake/PMKID/WPS capture...).
+//
+// `bssid` is a borrowed pointer into WiFi.BSSID()'s internal scan-result
+// buffer — valid only until the next WiFi.scanNetworks()/scanDelete(), same
+// lifetime it always had as a global. Not owned here either.
+struct SelectedNetwork {
+	String ssid;
+	String mac;          // BSSID as a string ("aa:bb:cc:dd:ee:ff")
+	int channel = 0;
+	uint8_t* bssid = nullptr;
+	int rssi = 0;
+	String password;
+	int scanIndex = 0;
+	wifi_auth_mode_t authMode = WIFI_AUTH_OPEN;
+	bool hasWps = false;
+	bool hasFtPsk = false;
+};
+extern SelectedNetwork selected;
+
 // PCAP -> ft-crack hash line (offline)
 
 // Write the pcap global header (LINKTYPE_IEEE802_11_RADIOTAP) to an open file.

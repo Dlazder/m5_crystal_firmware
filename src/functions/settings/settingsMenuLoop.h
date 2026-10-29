@@ -5,14 +5,14 @@ void settingsMenuLoop() {
 		{PID::MAIN_MENU,           L->MENU_BACK, Icons::back},
 		{PID::SETTINGS_UI,         L->MENU_SETTINGS_UI, Icons::personalization},
 		{PID::PLACEHOLDER,         L->MENU_SETTINGS_STARTUP_SOUND, Icons::volume, "startupSound"},
-		{PID::VOLUME,              L->MENU_SETTINGS_VOLUME, Icons::volume},
-		{PID::LANGUAGE,            L->MENU_SETTINGS_LANGUAGE, Icons::language},
-		{PID::PLACEHOLDER,         L->MENU_SETTINGS_KB_GYRO, nullptr, "kbGyro"},
+		{PID::SETTINGS,            L->MENU_SETTINGS_VOLUME, Icons::volume, "volume"},
+		{PID::SETTINGS,            L->MENU_SETTINGS_LANGUAGE, Icons::language, "languageIndex"},
+		{PID::PLACEHOLDER,         L->MENU_SETTINGS_KB_GYRO, Icons::keyboard, "kbGyro"},
 		{PID::PLACEHOLDER,         L->MENU_SETTINGS_WEBSERVER_FS, nullptr, "webServerFs"},
 		{PID::SETTINGS_SSID,       L->MENU_SETTINGS_WIFI_SSID},
 		{PID::PLACEHOLDER,         L->MENU_SETTINGS_SD_ROOT, nullptr, "sdMountCrystal"},
 		{PID::SETTINGS_CLOCK,      L->MENU_SETTINGS_TIME, Icons::clock},
-		{PID::SETTINGS_TIMEZONE,   L->MENU_SETTINGS_TIMEZONE, Icons::clock},
+		{PID::SETTINGS,            L->MENU_SETTINGS_TIMEZONE, Icons::clock, "timezone"},
 	};
 	int settingsMenuSize = sizeof(settingsMenu) / sizeof(MENU);
 

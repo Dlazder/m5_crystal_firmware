@@ -39,5 +39,6 @@ void changeProcess(int proc) {
   clearKbFlags();
   btnAWasPressed = false;
   btnBWasPressed = false;
+  dimmerWake(); // a process switch (physical input, serial /goto, etc.) counts as activity
   Serial.printf("Switching to %d process\n", process);
 }

@@ -26,8 +26,6 @@ const char* localeNames[] = { "English", "Espanol", "Italiano", "Indonesia", "Р
 int languageIndex = 0;
 int localesCount = sizeof(locales) / sizeof(locales[0]);
 
-// NFC PN532
-#include <Adafruit_PN532.h>
 #include <Wire.h>
 
 
@@ -42,7 +40,7 @@ struct MENU {
   int command;
   String name;
   const uint8_t* icon;       // nullptr if no icon (14x14 1-bit bitmap)
-  const char* settingKey;    // nullptr if not a toggle; if set, toggles the boolean pref and ignores command
+  const char* settingKey;    // nullptr if not a setting; if set, key of a setting in the settings registry (services/settings): Enter flips a toggle or edits a pin/range inline, and ignores command
 };
 
 bool hasImu = false;
@@ -144,14 +142,18 @@ static const int BRIGHTNESS_HW_MAX  = 255;
 static const int BRIGHTNESS_HW_STEP = BRIGHTNESS_HW_MAX / BRIGHTNESS_STEPS;
 inline int brightnessToHw(int step) { return step * BRIGHTNESS_HW_STEP; }
 
-// Volume
-int volumeMax = 255;
-int volumeStep = 10;
-int volumeDividor = volumeMax / volumeStep;
-int volume = defaultVolumeLevel * volumeDividor;
+// Volume (stored as a step value 1-10)
+int volume = defaultVolumeLevel;
+static const int volumeMax = 255;
+static const int volumeStep = 10;
+static const int volumeDividor = volumeMax / volumeStep;
+inline int volumeToHw(int level) { return level * volumeDividor; }
 int volumeMin = 0;
 
 // Screen dimming
+const int dimTimeouts[] = { 0, 30000, 60000, 180000, 300000 };
+const int dimTimeoutsCount = sizeof(dimTimeouts) / sizeof(dimTimeouts[0]);
+int dimTimeoutIndex = defaultDimTimeoutIndex;
 int screenDimTimeout = 0;
 bool screenIsDimmed = false;
 int dimmingPreviousTimer = 0;
@@ -169,41 +171,17 @@ bool clipboardIsLittleFS = true;
 
 String sdRootDir() { return sdMountCrystal ? "/crystal" : "/"; }
 
-// wifi deauth
-String ssid;
-String mac;
-int channel;
-uint8_t* bssid;
-int rssi;
-String wifiPassword;
-int wifiScanIndex;
-wifi_auth_mode_t wifiAuthMode = WIFI_AUTH_OPEN;
-bool wifiHasWps = false;
-bool wifiHasFtPsk = false;
+// wifi: the currently selected network now lives in Wifi::selected
+// (src/services/wifi/wifi.h), set by selectedWifiMenuLoop.
 
-
-// bluetooth
+// bluetooth: the composite HID transport and the currently selected/discovered
+// device now live in the Ble service (src/services/ble/ble.h).
 #include <BLEDevice.h>
 #include <BLEScan.h>
 #include <BleCombo.h>
 
 #include <BLEAdvertising.h>
 #include <esp_gap_ble_api.h>
-
-String bleName;
-String bleAddress;
-int bleRssi;
-String bleManufacturer;
-String bleManufacturerRaw;
-int8_t bleTxPower = -128;
-uint8_t bleAdvFlags = 0xFF;
-String bleServiceUUIDs;
-String bleAppearance;
-
-BleComboKeyboard bleKeyboard("M5 Crystal", "M5 Crystal");
-BleComboMouse bleMouse(&bleKeyboard);
-
-bool bleCompositeBegan = false;
 
 // Native USB HID keyboard (ESP32-S3 only; e.g. Cardputer ADV).
 // USBHIDKeyboard.h declares its own `typedef struct {...} KeyReport;`, which is
@@ -244,4 +222,36 @@ uint8_t uartTxPin = UART_TX_PIN;
 uint32_t uartBaud = UART_BAUD_DEFAULT;
 bool uartLogEnabled = false; // write UART terminal traffic (RX/TX) to a log file
 
-Adafruit_PN532 nfc(NFC_SDA, NFC_SCL, &Wire);
+// CH9329 (USB-HID-over-UART bridge) — optional add-on module. Off by default
+// since it is external hardware, not a built-in header like the UART terminal.
+// Uses its own HardwareSerial (Serial1) and its own pin pair (CH9329_RX_PIN/
+// CH9329_TX_PIN, defined per device header) so it never collides with the UART
+// terminal's Serial2.
+bool ch9329Enabled = false;
+uint8_t ch9329RxPin = CH9329_RX_PIN;
+uint8_t ch9329TxPin = CH9329_TX_PIN;
+uint32_t ch9329Baud = 9600; // CH9329 factory default serial baud rate
+
+#include "../hal/cc1101Pins.h"
+uint8_t rfCsPin = CC1101_CS_PIN;
+uint8_t rfSckPin = CC1101_SCK_PIN;
+uint8_t rfMosiPin = CC1101_MOSI_PIN;
+uint8_t rfMisoPin = CC1101_MISO_PIN;
+uint8_t rfGdo0Pin = CC1101_GDO0_PIN;
+
+// RC522 (MFRC522) module — SPI pins, defaults from hal/rc522Pins.h
+#include "../hal/rc522Pins.h"
+uint8_t rc522SsPin = RC522_SS_PIN;
+uint8_t rc522SckPin = RC522_SCK_PIN;
+uint8_t rc522MosiPin = RC522_MOSI_PIN;
+uint8_t rc522MisoPin = RC522_MISO_PIN;
+uint8_t rc522RstPin = RC522_RST_PIN;
+
+// Reader used by the NFC menu: PN532 (I2C) or RC522 (SPI)
+#define NFC_MODULE_PN532 0
+#define NFC_MODULE_RC522 1
+uint8_t nfcModule = NFC_MODULE_PN532;
+
+// PN532 I2C pins, defaults from the device header
+uint8_t pn532SdaPin = NFC_SDA;
+uint8_t pn532SclPin = NFC_SCL;

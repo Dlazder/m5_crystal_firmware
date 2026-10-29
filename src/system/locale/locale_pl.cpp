@@ -67,9 +67,10 @@ const Locale LANG_PL = {
 
 	// NFC menu
 	.MENU_NFC                    = "NFC",
-	.MENU_NFC_READ_UID           = "odczytaj UID",
+	.MENU_NFC_READ_UID           = "odczytaj",
+	.MENU_NFC_WRITE          = "zapisz",
 	.MENU_NFC_WRITE_UID          = "zapisz UID",
-	.MENU_NFC_ADVANCED_INFO      = "zaawansowane info",
+	.MENU_NFC_WRITE_SECTORS  = "zapisz sektory",
 
 	// IR menu
 	.MENU_IR                     = "IR",
@@ -87,6 +88,11 @@ const Locale LANG_PL = {
 	.TXT_IR_PARSE_ERROR          = "Błąd analizy",
 	.TXT_IR_TVB_RUNNING          = "Wysyłanie...",
 	.TXT_IR_TVB_DONE             = "Gotowe!",
+
+	// RF menu
+	.MENU_RF_SPECTRUM            = "analizator widma",
+	.MENU_RF_RAW_SNIFFER         = "sniffer raw",
+	.MENU_RF_CONFIG_PINS         = "konfiguruj piny",
 
 	// Settings menu
 	.MENU_SETTINGS               = "ustawienia",
@@ -107,6 +113,7 @@ const Locale LANG_PL = {
 	.MENU_SETTINGS_WEBSERVER_FS  = "serwer FS",
 	.MENU_SETTINGS_TIMEZONE      = "strefa czasowa",
 	.MENU_SETTINGS_SD_ROOT       = "zamontuj SD w /crystal",
+	.MENU_SETTINGS_CUSTOMIZE_MENU = "dostosuj menu",
 
 	// Other menu
 	.MENU_OTHER                  = "inne",
@@ -205,20 +212,25 @@ const Locale LANG_PL = {
 	.TXT_NFC_WRITE_FAILED        = "Zapis nieudany!",
 	.TXT_NFC_WRITE_ERROR         = "Brak tagu / błąd zapisu",
 	.TXT_NFC_READY_TO_WRITE      = "Gotowy do zapisu...",
+	.TXT_NFC_PLACE_TAG          = "Place tag",
+	.TXT_NFC_READING            = "Reading...",
+	.TXT_NFC_SECTORS            = "Sectors",
+	.TXT_NFC_PAGES              = "Pages",
+	.TXT_NFC_SAVE_ERROR         = "Save failed",
+	.TXT_NFC_WRITING            = "Zapisywanie...",
+	.TXT_NFC_NOT_CLASSIC        = "Nie Mifare Classic",
+	.TXT_NFC_SECTORS_WRITTEN    = "Sektory zapisane",
 
 	// Settings text
-	.TXT_SETTINGS_LANGUAGE       = "Język: ",
 	.TXT_SETTINGS_BRIGHTNESS     = "jasność: ",
 	.TXT_SETTINGS_VOLUME         = "głośność: ",
 	.TXT_SETTINGS_COLOR          = "kolor: ",
-	.TXT_SETTINGS_FONT           = "Czcionka:",
 	.TXT_SETTINGS_ROTATION       = "obróć ekran",
 	.TXT_SETTINGS_SOUND          = "Dźwięk: ",
 	.TXT_SETTINGS_STATUS_BAR     = "pasek stanu: ",
 	.TXT_SETTINGS_PID            = "PID: ",
 	.TXT_SETTINGS_KB_GYRO        = "Żyro klaw.: ",
 	.TXT_SETTINGS_WEBSERVER_FS   = "Serwer FS: ",
-	.TXT_SETTINGS_TIMEZONE       = "Strefa czasowa: ",
 	.MENU_UART = "UART",
 	.MENU_UART_TERMINAL = "terminal",
 	.MENU_UART_SAVE_LOGS = "zapisz logi",

@@ -67,9 +67,10 @@ const Locale LANG_DE = {
 
 	// NFC menu
 	.MENU_NFC                    = "NFC",
-	.MENU_NFC_READ_UID           = "UID lesen",
+	.MENU_NFC_READ_UID           = "lesen",
+	.MENU_NFC_WRITE          = "schreiben",
 	.MENU_NFC_WRITE_UID          = "UID schreiben",
-	.MENU_NFC_ADVANCED_INFO    = "erweiterte Info",
+	.MENU_NFC_WRITE_SECTORS  = "Sektoren schreiben",
 
 	// IR menu
 	.MENU_IR                     = "IR",
@@ -87,6 +88,11 @@ const Locale LANG_DE = {
 	.TXT_IR_PARSE_ERROR          = "Dateifehler",
 	.TXT_IR_TVB_RUNNING          = "Senden...",
 	.TXT_IR_TVB_DONE             = "Fertig!",
+
+	// RF menu
+	.MENU_RF_SPECTRUM            = "Spektrumanalysator",
+	.MENU_RF_RAW_SNIFFER         = "Raw-Sniffer",
+	.MENU_RF_CONFIG_PINS         = "Pins konfigurieren",
 
 	// Settings menu
 	.MENU_SETTINGS               = "einstellungen",
@@ -107,6 +113,7 @@ const Locale LANG_DE = {
 	.MENU_SETTINGS_WEBSERVER_FS  = "WebServer FS",
 	.MENU_SETTINGS_TIMEZONE      = "Zeitzone",
 	.MENU_SETTINGS_SD_ROOT       = "SD in /crystal einhängen",
+	.MENU_SETTINGS_CUSTOMIZE_MENU = "Menü anpassen",
 
 	// Other menu
 	.MENU_OTHER                  = "sonstiges",
@@ -205,20 +212,25 @@ const Locale LANG_DE = {
 	.TXT_NFC_WRITE_FAILED        = "Schreiben fehlgeschlagen",
 	.TXT_NFC_WRITE_ERROR         = "Kein Tag/Fehler",
 	.TXT_NFC_READY_TO_WRITE      = "Bereit zum Schreiben",
+	.TXT_NFC_PLACE_TAG          = "Place tag",
+	.TXT_NFC_READING            = "Reading...",
+	.TXT_NFC_SECTORS            = "Sectors",
+	.TXT_NFC_PAGES              = "Pages",
+	.TXT_NFC_SAVE_ERROR         = "Save failed",
+	.TXT_NFC_WRITING            = "Schreibe...",
+	.TXT_NFC_NOT_CLASSIC        = "Keine Mifare Classic",
+	.TXT_NFC_SECTORS_WRITTEN    = "Sektoren geschrieben",
 
 	// Settings text
-	.TXT_SETTINGS_LANGUAGE       = "Sprache: ",
 	.TXT_SETTINGS_BRIGHTNESS     = "helligkeit: ",
 	.TXT_SETTINGS_VOLUME         = "lautstärke: ",
 	.TXT_SETTINGS_COLOR          = "farbe: ",
-	.TXT_SETTINGS_FONT           = "Schrift:",
 	.TXT_SETTINGS_ROTATION       = "umkehren",
 	.TXT_SETTINGS_SOUND          = "Sound: ",
 	.TXT_SETTINGS_STATUS_BAR     = "statusleiste: ",
 	.TXT_SETTINGS_PID            = "PID: ",
 	.TXT_SETTINGS_KB_GYRO        = "gyro tastatur: ",
 	.TXT_SETTINGS_WEBSERVER_FS   = "WebServer FS: ",
-	.TXT_SETTINGS_TIMEZONE       = "Zeitzone: ",
 	.MENU_UART = "UART",
 	.MENU_UART_TERMINAL = "Terminal",
 	.MENU_UART_SAVE_LOGS = "Logs speichern",

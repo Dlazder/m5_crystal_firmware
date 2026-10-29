@@ -67,9 +67,10 @@ const Locale LANG_RO = {
 
 	// NFC menu
 	.MENU_NFC                    = "NFC",
-	.MENU_NFC_READ_UID           = "citește UID",
+	.MENU_NFC_READ_UID           = "citește",
+	.MENU_NFC_WRITE          = "scrie",
 	.MENU_NFC_WRITE_UID          = "scrie UID",
-	.MENU_NFC_ADVANCED_INFO      = "info avansate",
+	.MENU_NFC_WRITE_SECTORS  = "scrie sectoare",
 
 	// IR menu
 	.MENU_IR                     = "IR",
@@ -87,6 +88,11 @@ const Locale LANG_RO = {
 	.TXT_IR_PARSE_ERROR          = "Eroare analiză",
 	.TXT_IR_TVB_RUNNING          = "Trimitere...",
 	.TXT_IR_TVB_DONE             = "Gata!",
+
+	// RF menu
+	.MENU_RF_SPECTRUM            = "analizor de spectru",
+	.MENU_RF_RAW_SNIFFER         = "sniffer brut",
+	.MENU_RF_CONFIG_PINS         = "configurează pinii",
 
 	// Settings menu
 	.MENU_SETTINGS               = "setări",
@@ -107,6 +113,7 @@ const Locale LANG_RO = {
 	.MENU_SETTINGS_WEBSERVER_FS  = "server FS",
 	.MENU_SETTINGS_TIMEZONE      = "fus orar",
 	.MENU_SETTINGS_SD_ROOT       = "montează SD în /crystal",
+	.MENU_SETTINGS_CUSTOMIZE_MENU = "personalizează meniul",
 
 	// Other menu
 	.MENU_OTHER                  = "altele",
@@ -205,20 +212,25 @@ const Locale LANG_RO = {
 	.TXT_NFC_WRITE_FAILED        = "Scriere eșuată!",
 	.TXT_NFC_WRITE_ERROR         = "Fără tag / eroare scriere",
 	.TXT_NFC_READY_TO_WRITE      = "Gata de scriere...",
+	.TXT_NFC_PLACE_TAG          = "Place tag",
+	.TXT_NFC_READING            = "Reading...",
+	.TXT_NFC_SECTORS            = "Sectors",
+	.TXT_NFC_PAGES              = "Pages",
+	.TXT_NFC_SAVE_ERROR         = "Save failed",
+	.TXT_NFC_WRITING            = "Se scrie...",
+	.TXT_NFC_NOT_CLASSIC        = "Nu e Mifare Classic",
+	.TXT_NFC_SECTORS_WRITTEN    = "Sectoare scrise",
 
 	// Settings text
-	.TXT_SETTINGS_LANGUAGE       = "Limbă: ",
 	.TXT_SETTINGS_BRIGHTNESS     = "luminozitate: ",
 	.TXT_SETTINGS_VOLUME         = "volum: ",
 	.TXT_SETTINGS_COLOR          = "culoare: ",
-	.TXT_SETTINGS_FONT           = "Font:",
 	.TXT_SETTINGS_ROTATION       = "rotație ecran",
 	.TXT_SETTINGS_SOUND          = "Sunet: ",
 	.TXT_SETTINGS_STATUS_BAR     = "bară stare: ",
 	.TXT_SETTINGS_PID            = "PID: ",
 	.TXT_SETTINGS_KB_GYRO        = "Giro tastatură: ",
 	.TXT_SETTINGS_WEBSERVER_FS   = "Server FS: ",
-	.TXT_SETTINGS_TIMEZONE       = "Fus orar: ",
 	.MENU_UART = "UART",
 	.MENU_UART_TERMINAL = "terminal",
 	.MENU_UART_SAVE_LOGS = "salvează loguri",

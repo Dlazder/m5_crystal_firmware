@@ -67,9 +67,10 @@ const Locale LANG_ES = {
 
 	// NFC menu
 	.MENU_NFC= "NFC",
-	.MENU_NFC_READ_UID = "leer UID",
+	.MENU_NFC_READ_UID = "leer",
+	.MENU_NFC_WRITE          = "escribir",
 	.MENU_NFC_WRITE_UID = "escribir UID",
-	.MENU_NFC_ADVANCED_INFO = "info avanzada",
+	.MENU_NFC_WRITE_SECTORS  = "escribir sectores",
 
 	// IR menu
 	.MENU_IR                     = "IR",
@@ -87,6 +88,11 @@ const Locale LANG_ES = {
 	.TXT_IR_PARSE_ERROR          = "Error de archivo",
 	.TXT_IR_TVB_RUNNING          = "Enviando...",
 	.TXT_IR_TVB_DONE             = "Hecho!",
+
+	// RF menu
+	.MENU_RF_SPECTRUM            = "analizador de espectro",
+	.MENU_RF_RAW_SNIFFER         = "sniffer en bruto",
+	.MENU_RF_CONFIG_PINS         = "configurar pines",
 
 	// Settings menu
 	.MENU_SETTINGS = "ajustes",
@@ -107,6 +113,7 @@ const Locale LANG_ES = {
 	.MENU_SETTINGS_WEBSERVER_FS = "servidor web FS",
 	.MENU_SETTINGS_TIMEZONE      = "zona horaria",
 	.MENU_SETTINGS_SD_ROOT       = "montar SD en /crystal",
+	.MENU_SETTINGS_CUSTOMIZE_MENU = "personalizar menú",
 
 	// Other menu
 	.MENU_OTHER = "otros",
@@ -205,20 +212,25 @@ const Locale LANG_ES = {
 	.TXT_NFC_WRITE_FAILED= "Escritura fallida!",
 	.TXT_NFC_WRITE_ERROR = "Sin etiqueta o error",
 	.TXT_NFC_READY_TO_WRITE= "Listo para escribir...",
+	.TXT_NFC_PLACE_TAG          = "Place tag",
+	.TXT_NFC_READING            = "Reading...",
+	.TXT_NFC_SECTORS            = "Sectors",
+	.TXT_NFC_PAGES              = "Pages",
+	.TXT_NFC_SAVE_ERROR         = "Save failed",
+	.TXT_NFC_WRITING            = "Escribiendo...",
+	.TXT_NFC_NOT_CLASSIC        = "No es Mifare Classic",
+	.TXT_NFC_SECTORS_WRITTEN    = "Sectores escritos",
 
 	// Settings text
-	.TXT_SETTINGS_LANGUAGE = "Idioma: ",
 	.TXT_SETTINGS_BRIGHTNESS = "brillo: ",
 	.TXT_SETTINGS_VOLUME     = "volumen: ",
 	.TXT_SETTINGS_COLOR= "color: ",
-	.TXT_SETTINGS_FONT = "Fuente:",
 	.TXT_SETTINGS_ROTATION = "invertir rotación",
 	.TXT_SETTINGS_SOUND= "Sonido: ",
 	.TXT_SETTINGS_STATUS_BAR = "barra estado: ",
 	.TXT_SETTINGS_PID= "PID: ",
 	.TXT_SETTINGS_KB_GYRO= "Giroscopio: ",
 	.TXT_SETTINGS_WEBSERVER_FS = "WebServer FS: ",
-	.TXT_SETTINGS_TIMEZONE      = "Zona horaria: ",
 	.MENU_UART = "UART",
 	.MENU_UART_TERMINAL = "terminal",
 	.MENU_UART_SAVE_LOGS = "guardar logs",

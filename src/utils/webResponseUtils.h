@@ -1,3 +1,5 @@
+// dead code
+
 String generateMenuString(MENU menu[], int size) {
   String string = "";
   for (int i = 0; i < size; i++) {

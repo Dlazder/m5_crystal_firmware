@@ -8,14 +8,30 @@ void handleSerialCommandLine(String cmd, Print& out) {
 
   cmd.trim();
 
-  if (cmd == "/screenshot") {
+  // Split off the command word from its (optional) argument, e.g.
+  // "/goto WIFI_SCAN" -> command="/goto", arg="WIFI_SCAN".
+  int spaceIdx = cmd.indexOf(' ');
+  String command = (spaceIdx == -1) ? cmd : cmd.substring(0, spaceIdx);
+  String arg = (spaceIdx == -1) ? "" : cmd.substring(spaceIdx + 1);
+
+  if (command == "/screenshot") {
     screenshotCommand(out);
-  } else if (cmd == "/info") {
+  } else if (command == "/info") {
     infoCommand(out);
-  } else if (cmd == "/help") {
+  } else if (command == "/help") {
     helpCommand(out);
-  } else if (cmd == "/shutdown") {
+  } else if (command == "/shutdown") {
     shutdownCommand(out);
+  } else if (command == "/goto") {
+    gotoCommand(arg, out);
+  } else if (command == "/up") {
+    upCommand(out);
+  } else if (command == "/down") {
+    downCommand(out);
+  } else if (command == "/select") {
+    selectCommand(out);
+  } else if (command == "/back") {
+    backCommand(out);
   } else {
     out.println("Command not found!");
   }

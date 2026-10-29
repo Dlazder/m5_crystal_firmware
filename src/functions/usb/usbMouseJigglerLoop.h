@@ -1,6 +1,9 @@
 // PID::USB_MOUSE_JIGGLER
+//
+// Works on any board: native USB HID on ESP32-S3 boards, or an external CH9329
+// USB-HID-over-UART bridge when enabled in Settings → USB (see usbHid.h).
 
-#ifdef ESP32S3
+#include "../../services/ch9329/usbHid.h"
 
 #define JIGGLER_INTERVAL 5000
 #define JIGGLER_STEP 5
@@ -13,13 +16,20 @@ void usbMouseJigglerLoop() {
 	if (isSetup()) {
 		usbReady = false;
 		dirRight = true;
-		if (!usbHidBegan) {
-			usbMouse.begin();
-			USB.begin();
-			usbHidBegan = true;
+
+		if (!usbHidActive()) {
+			centeredPrint(L->TXT_USB_HID_UNSOPPORTED, MEDIUM_TEXT);
+			return;
 		}
+
+		usbHidBegin();
 		centeredPrint(L->TXT_WAITING_CONNECTION, MEDIUM_TEXT);
 		updateTimer();
+	}
+
+	if (!usbHidActive()) {
+		checkExit();
+		return;
 	}
 
 	if (!usbReady) {
@@ -39,22 +49,12 @@ void usbMouseJigglerLoop() {
 	// Nudge the cursor left/right on a private timer so it stays in place.
 	if (checkTimer(JIGGLER_INTERVAL, true, &jiggleTimer)) {
 		int delta = dirRight ? JIGGLER_STEP : -JIGGLER_STEP;
-		usbMouse.move(delta, 0);
+		usbMouseMove(delta, 0);
 		dirRight = !dirRight;
 	}
 
 	if (checkExit()) {
 		usbReady = false;
+		usbHidEnd();
 	}
 }
-
-#else // !ESP32S3 — USB HID unsupported on this board
-
-void usbMouseJigglerLoop() {
-	if (isSetup()) {
-		centeredPrint(L->TXT_USB_HID_UNSOPPORTED, MEDIUM_TEXT);
-	}
-	checkExit();
-}
-
-#endif // ESP32S3

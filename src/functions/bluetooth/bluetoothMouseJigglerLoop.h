@@ -13,10 +13,10 @@ void bluetoothMouseJigglerLoop() {
 
 	if (isSetup()) {
 		dirRight = true;
-		bleConnect();
+		Ble::begin();
 	}
 
-	bleHandleConnection(
+	Ble::handleConnection(
 		[]() {
 			jiggleTimer = globalTimer; // start our private timer fresh
 			soundSuccess();
@@ -27,7 +27,7 @@ void bluetoothMouseJigglerLoop() {
 		}
 	);
 
-	if (bleConnected) {
+	if (Ble::connected) {
 		// Animated "working" status, redrawn every frame so the spinner spins.
 		centeredPrint(L->TXT_WORKING, MEDIUM_TEXT, true);
 		drawSpinner();
@@ -36,13 +36,13 @@ void bluetoothMouseJigglerLoop() {
 		// Nudge the cursor left/right on a private timer so it stays in place.
 		if (checkTimer(BT_JIGGLER_INTERVAL, true, &jiggleTimer)) {
 			int delta = dirRight ? BT_JIGGLER_STEP : -BT_JIGGLER_STEP;
-			bleMouse.move(delta, 0);
+			Ble::mouse.move(delta, 0);
 			dirRight = !dirRight;
 		}
 	}
 
 	if (checkExit()) {
-		bleConnected = false;
+		Ble::connected = false;
 		centeredPrint(L->TXT_DISCONNECTING, MEDIUM_TEXT);
 	}
 }

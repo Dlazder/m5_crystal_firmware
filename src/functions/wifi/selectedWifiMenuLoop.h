@@ -16,15 +16,15 @@ void selectedWifiMenuLoop() {
 
 	if (isSetup()) {
 		if (previousProcess == PID::WIFI_SCAN) {
-			wifiScanIndex = cursor - 2;
-			ssid = WiFi.SSID(wifiScanIndex);
-			mac = WiFi.BSSIDstr(wifiScanIndex);
-			channel = WiFi.channel(wifiScanIndex);
-			bssid = WiFi.BSSID(wifiScanIndex);
-			rssi = WiFi.RSSI(wifiScanIndex);
-			wifiAuthMode = WiFi.encryptionType(wifiScanIndex);
-			wifiHasWps = false;
-			wifiHasFtPsk = false;
+			Wifi::selected.scanIndex = cursor - 2;
+			Wifi::selected.ssid = WiFi.SSID(Wifi::selected.scanIndex);
+			Wifi::selected.mac = WiFi.BSSIDstr(Wifi::selected.scanIndex);
+			Wifi::selected.channel = WiFi.channel(Wifi::selected.scanIndex);
+			Wifi::selected.bssid = WiFi.BSSID(Wifi::selected.scanIndex);
+			Wifi::selected.rssi = WiFi.RSSI(Wifi::selected.scanIndex);
+			Wifi::selected.authMode = WiFi.encryptionType(Wifi::selected.scanIndex);
+			Wifi::selected.hasWps = false;
+			Wifi::selected.hasFtPsk = false;
 		}
 		cursor = 0;
 		drawMenu(selectedWifiMenu, selectedWifiMenuSize);

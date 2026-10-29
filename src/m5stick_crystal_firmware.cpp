@@ -3,7 +3,6 @@
 #include "./system/serialCommandHandler.h"
 #include "./system/functions.h"
 #include "./system/switcher.h"
-#include "./system/loadPreferences.h"
 
 void setup() {
   deviceInit();
@@ -12,7 +11,7 @@ void setup() {
   Serial.printf("[DEBUG] Detected board: %d (14=M5Cardputer, 24=M5CardputerADV)\n", (int)DEVICE.getBoard());
   Serial.printf("[DEBUG] SDA=%d  SCL=%d\n", SDA, SCL);
   preferences.begin("storage", false);
-  loadPreferences();
+  Settings::load();
 
   // GPIO UART — also accepts serial commands (in addition to USB Serial).
   Serial2.begin(uartBaud, SERIAL_8N1, uartRxPin, uartTxPin);
@@ -54,17 +53,20 @@ void loop() {
   globalTimer = millis();
   deviceUpdate();
 
-  // Serial command handlers — skipped while the terminal is active, since the
-  // terminal reads both USB and GPIO UART itself (and runs commands from them).
-  if (process != PID::UART_TERMINAL) {
-    handleSerialCommands(Serial);
-    handleSerialCommands(Serial2);
-  }
-
   dimmerUpdate();
 
   if (statusBar) {
     statusBarLoop();
+  }
+
+  // Serial command handlers — skipped while the terminal is active, since the
+  // terminal reads both USB and GPIO UART itself (and runs commands from them).
+  // Must run right before switcher(): /up /down /select /back emulate button
+  // presses via one-shot flags, and dimmerUpdate() above also consumes those
+  // flags, so running it after dimmerUpdate() would make the flag a no-op.
+  if (process != PID::UART_TERMINAL) {
+    handleSerialCommands(Serial);
+    handleSerialCommands(Serial2);
   }
 
   /* global process functions switcher */
@@ -75,4 +77,10 @@ void loop() {
   if (isWebInterfaceEnabled && !webDataRequested) {
     webServer.handleClient();
   }
+
+  // Yields the CPU for 1 tick so FreeRTOS can run the idle task between
+  // iterations — without this, loop() never blocks and the scheduler never
+  // sees idle time, which keeps automatic frequency scaling / light sleep
+  // from engaging even when nothing is happening (button polling, etc.).
+  delay(1);
 }
