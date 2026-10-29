@@ -33,13 +33,13 @@ int defaultDimTimeoutIndex = 1;
 
 bool iconsEnabled = true;
 
-// Visibility of these sections on the main menu (settings > UI > customize menu)
+// Visibility of these sections on the main menu
 bool showMenuWifi = true;
 bool showMenuBt = true;
 bool showMenuNfc = true;
 bool showMenuIr = true;
 bool showMenuUsb = true;
-bool showMenuRf = true;
+bool showMenuRf = false;
 bool showMenuUart = true;
 bool showMenuFiles = true;
 bool showMenuOther = true;
