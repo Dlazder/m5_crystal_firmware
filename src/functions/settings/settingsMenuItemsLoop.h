@@ -9,6 +9,7 @@ void settingsMenuItemsLoop() {
 		{PID::PLACEHOLDER, L->MENU_IR, Icons::view, "showMenuIr"},
 		{PID::PLACEHOLDER, L->MENU_USB, Icons::view, "showMenuUsb"},
 		{PID::PLACEHOLDER, "RF", Icons::view, "showMenuRf"},
+		{PID::PLACEHOLDER, "NRF", Icons::view, "showMenuNrf"},
 		{PID::PLACEHOLDER, L->MENU_UART, Icons::view, "showMenuUart"},
 		{PID::PLACEHOLDER, L->MENU_FILES, Icons::view, "showMenuFiles"},
 		{PID::PLACEHOLDER, L->MENU_OTHER, Icons::view, "showMenuOther"},

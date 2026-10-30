@@ -40,6 +40,7 @@ bool showMenuNfc = true;
 bool showMenuIr = true;
 bool showMenuUsb = true;
 bool showMenuRf = false;
+bool showMenuNrf = true;
 bool showMenuUart = true;
 bool showMenuFiles = true;
 bool showMenuOther = true;

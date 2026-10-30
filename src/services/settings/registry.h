@@ -148,6 +148,7 @@ static const Setting settingsRegistry[] = {
 	TOGGLE_SETTING("showMenuIr",     showMenuIr,       nullptr),
 	TOGGLE_SETTING("showMenuUsb",    showMenuUsb,      nullptr),
 	TOGGLE_SETTING("showMenuRf",     showMenuRf,       nullptr),
+	TOGGLE_SETTING("showMenuNrf",    showMenuNrf,      nullptr),
 	TOGGLE_SETTING("showMenuUart",   showMenuUart,     nullptr),
 	TOGGLE_SETTING("showMenuFiles",  showMenuFiles,    nullptr),
 	TOGGLE_SETTING("showMenuOther",  showMenuOther,    nullptr),
@@ -170,6 +171,12 @@ static const Setting settingsRegistry[] = {
 	PIN_SETTING("rfMosiPin", RF_PINS, rfMosiPin, CC1101_MOSI_PIN),
 	PIN_SETTING("rfMisoPin", RF_PINS, rfMisoPin, CC1101_MISO_PIN),
 	PIN_SETTING("rfGdo0Pin", RF_PINS, rfGdo0Pin, CC1101_GDO0_PIN),
+
+	PIN_SETTING("nrfCsnPin",  NRF_PINS, nrfCsnPin,  NRF_CSN_PIN),
+	PIN_SETTING("nrfSckPin",  NRF_PINS, nrfSckPin,  NRF_SCK_PIN),
+	PIN_SETTING("nrfMosiPin", NRF_PINS, nrfMosiPin, NRF_MOSI_PIN),
+	PIN_SETTING("nrfMisoPin", NRF_PINS, nrfMisoPin, NRF_MISO_PIN),
+	PIN_SETTING("nrfCePin",   NRF_PINS, nrfCePin,   NRF_CE_PIN),
 
 	PIN_SETTING("pn532SdaPin", PN532_PINS, pn532SdaPin, NFC_SDA),
 	PIN_SETTING("pn532SclPin", PN532_PINS, pn532SclPin, NFC_SCL),

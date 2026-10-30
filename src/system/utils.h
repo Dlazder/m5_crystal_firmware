@@ -6,6 +6,7 @@
 #include "../services/wifi/wifi.h"
 #include "../services/ble/ble.h"
 #include "../services/cc1101/cc1101.h"
+#include "../services/nrf24/nrf24.h"
 #include "../services/nfc/nfc.h"
 
 // 1st layer utilities

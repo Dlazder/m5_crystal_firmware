@@ -63,12 +63,18 @@
     X(NFC_PN532_PINS,    408, nfcPn532ConfigurePinsMenuLoop) \
     X(NFC_PN532_RESET,   409, nfcPn532ConfigureResetLoop) \
     \
-    /* RF / sub-GHz CC1101 (450-499) */ \
+    /* RF / sub-GHz CC1101 (450-479) */ \
     X(RF,              450, rfMenuLoop) \
     X(RF_SPECTRUM,     451, cc1101SpectrumAnalyzerLoop) \
     X(RF_RAW_SNIFFER,  452, cc1101RawSnifferLoop) \
     X(RF_CONFIG_PINS,  453, rfConfigurePinsMenuLoop) \
     X(RF_CONFIG_RESET, 454, rfConfigureResetLoop) \
+    \
+    /* NRF / 2.4 GHz nRF24L01 (480-499) */ \
+    X(NRF,              480, nrfMenuLoop) \
+    X(NRF_SPECTRUM,     481, nrfSpectrumAnalyzerLoop) \
+    X(NRF_CONFIG_PINS,  482, nrfConfigurePinsMenuLoop) \
+    X(NRF_CONFIG_RESET, 483, nrfConfigureResetLoop) \
     \
     /* Files (500-599) */ \
     X(FILES_MENU,         500, filesMenuLoop) \

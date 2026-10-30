@@ -8,6 +8,7 @@ void mainMenuLoop() {
 		{PID::IR, L->MENU_IR, Icons::ir},
 		{PID::USB, L->MENU_USB, Icons::usb},
 		{PID::RF, "RF", Icons::rf},
+		{PID::NRF, "NRF", Icons::nrf},
 		{PID::UART, L->MENU_UART, Icons::terminal},
 		{PID::SETTINGS, L->MENU_SETTINGS, Icons::settings},
 		{PID::FILES_MENU, L->MENU_FILES, Icons::folder},
@@ -26,6 +27,7 @@ void mainMenuLoop() {
 		if (pid == PID::IR && !showMenuIr) continue;
 		if (pid == PID::USB && !showMenuUsb) continue;
 		if (pid == PID::RF && !showMenuRf) continue;
+		if (pid == PID::NRF && !showMenuNrf) continue;
 		if (pid == PID::UART && !showMenuUart) continue;
 		if (pid == PID::FILES_MENU && !showMenuFiles) continue;
 		if (pid == PID::OTHER && !showMenuOther) continue;

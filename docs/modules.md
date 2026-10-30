@@ -2,6 +2,7 @@
 
 - [NFC (PN532)](#nfc-pn532)
 - [NFC (RC522)](#nfc-rc522)
+- [NRF (nRF24L01)](#nrf-nrf24l01)
 - [SD Card](#sd-card)
 - [IR reciever](#ir-reciever)
 
@@ -85,6 +86,46 @@ Select the module in **NFC → module** (PN532 or RC522); reading UID then works
 | GND | GND |
 
 Reading shows the tag type and UID. The tag is saved as a Flipper `.nfc` file (UID, ATQA and SAK only: the RC522 does not dump sectors or pages like the PN532 does). Writing a UID or Mifare Classic sectors works with both modules; the UID can only be changed on magic (CUID/gen2) cards, same as with the PN532.
+
+## NRF (nRF24L01)
+
+Connect the nRF24L01(+) module over SPI. Power it from **3.3V only**. The IRQ pin is not used and stays unconnected.
+
+### M5StickC Plus 2
+
+| M5StickCPlus2 | nRF24L01 |
+| - | - |
+| G32 | CSN |
+| G0 | SCK |
+| G26 | MOSI |
+| G36 | MISO |
+| G33 | CE |
+| 3V3 | VCC |
+| GND | GND |
+
+### M5StickS3
+
+| M5StickS3 | nRF24L01 |
+| - | - |
+| G8 | CSN |
+| G5 | SCK |
+| G6 | MOSI |
+| G4 | MISO |
+| G7 | CE |
+| 3V3 | VCC |
+| GND | GND |
+
+### Cardputer-ADV
+
+| Cardputer-ADV | nRF24L01 |
+| - | - |
+| G13 | CSN |
+| G5 | SCK |
+| G6 | MOSI |
+| G4 | MISO |
+| G3 | CE |
+| 3V3 | VCC |
+| GND | GND |
 
 ## SD Card
 

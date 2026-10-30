@@ -239,6 +239,14 @@ uint8_t rfMosiPin = CC1101_MOSI_PIN;
 uint8_t rfMisoPin = CC1101_MISO_PIN;
 uint8_t rfGdo0Pin = CC1101_GDO0_PIN;
 
+// nRF24L01 module — SPI pins + CE, defaults from hal/nrfPins.h
+#include "../hal/nrfPins.h"
+uint8_t nrfCsnPin = NRF_CSN_PIN;
+uint8_t nrfSckPin = NRF_SCK_PIN;
+uint8_t nrfMosiPin = NRF_MOSI_PIN;
+uint8_t nrfMisoPin = NRF_MISO_PIN;
+uint8_t nrfCePin = NRF_CE_PIN;
+
 // RC522 (MFRC522) module — SPI pins, defaults from hal/rc522Pins.h
 #include "../hal/rc522Pins.h"
 uint8_t rc522SsPin = RC522_SS_PIN;
