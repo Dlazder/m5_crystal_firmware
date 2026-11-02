@@ -204,7 +204,7 @@ bool usbHidBegan = false;
 // Device abstraction — must come after BleCombo to avoid KEY_BACKSPACE redefinition by M5Cardputer headers.
 #include "../devices/device.h"
 
-// IR pins — configurable via IR → configure pins; defaults come from the device header
+// IR pins
 uint8_t irRxPin = IR_RECEIVE_PIN;
 uint8_t irTxPin = IR_SEND_PIN;
 #ifdef IR_USE_RMT
@@ -216,50 +216,30 @@ bool irRxUseGpio = false;
 uint8_t irRmtRxPin = IR_RECEIVE_PIN;
 #endif
 
-// UART terminal — configurable pins/baud; defaults come from the device header
-uint8_t uartRxPin = UART_RX_PIN;
-uint8_t uartTxPin = UART_TX_PIN;
-uint32_t uartBaud = UART_BAUD_DEFAULT;
-bool uartLogEnabled = false; // write UART terminal traffic (RX/TX) to a log file
+namespace UartCfg {
+	inline uint8_t rx = UART_RX_PIN;
+	inline uint8_t tx = UART_TX_PIN;
+	inline uint32_t baud = UART_BAUD_DEFAULT;
+	inline bool log = false;
+}
 
-// CH9329 (USB-HID-over-UART bridge) — optional add-on module. Off by default
-// since it is external hardware, not a built-in header like the UART terminal.
-// Uses its own HardwareSerial (Serial1) and its own pin pair (CH9329_RX_PIN/
-// CH9329_TX_PIN, defined per device header) so it never collides with the UART
-// terminal's Serial2.
-bool ch9329Enabled = false;
-uint8_t ch9329RxPin = CH9329_RX_PIN;
-uint8_t ch9329TxPin = CH9329_TX_PIN;
-uint32_t ch9329Baud = 9600; // CH9329 factory default serial baud rate
+namespace Ch9329Cfg {
+	inline bool enabled = false;
+	inline uint8_t rx = CH9329_RX_PIN;
+	inline uint8_t tx = CH9329_TX_PIN;
+	inline uint32_t baud = 9600;
+}
 
 #include "../hal/cc1101Pins.h"
-uint8_t rfCsPin = CC1101_CS_PIN;
-uint8_t rfSckPin = CC1101_SCK_PIN;
-uint8_t rfMosiPin = CC1101_MOSI_PIN;
-uint8_t rfMisoPin = CC1101_MISO_PIN;
-uint8_t rfGdo0Pin = CC1101_GDO0_PIN;
-
-// nRF24L01 module — SPI pins + CE, defaults from hal/nrfPins.h
 #include "../hal/nrfPins.h"
-uint8_t nrfCsnPin = NRF_CSN_PIN;
-uint8_t nrfSckPin = NRF_SCK_PIN;
-uint8_t nrfMosiPin = NRF_MOSI_PIN;
-uint8_t nrfMisoPin = NRF_MISO_PIN;
-uint8_t nrfCePin = NRF_CE_PIN;
-
-// RC522 (MFRC522) module — SPI pins, defaults from hal/rc522Pins.h
 #include "../hal/rc522Pins.h"
-uint8_t rc522SsPin = RC522_SS_PIN;
-uint8_t rc522SckPin = RC522_SCK_PIN;
-uint8_t rc522MosiPin = RC522_MOSI_PIN;
-uint8_t rc522MisoPin = RC522_MISO_PIN;
-uint8_t rc522RstPin = RC522_RST_PIN;
 
 // Reader used by the NFC menu: PN532 (I2C) or RC522 (SPI)
 #define NFC_MODULE_PN532 0
 #define NFC_MODULE_RC522 1
 uint8_t nfcModule = NFC_MODULE_PN532;
 
-// PN532 I2C pins, defaults from the device header
-uint8_t pn532SdaPin = NFC_SDA;
-uint8_t pn532SclPin = NFC_SCL;
+namespace Pn532Pins {
+	inline uint8_t sda = NFC_SDA;
+	inline uint8_t scl = NFC_SCL;
+}

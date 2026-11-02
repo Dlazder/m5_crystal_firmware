@@ -35,8 +35,8 @@ void nrfSpectrumAnalyzerLoop() {
 	if (!available) {
 		String lines[] = {
 			"NRF24 not found",
-			"CSN" + String(nrfCsnPin) + " SCK" + String(nrfSckPin) + " MOSI" + String(nrfMosiPin),
-			"MISO" + String(nrfMisoPin) + " CE" + String(nrfCePin),
+			"CSN" + String(NrfPins::csn) + " SCK" + String(NrfPins::sck) + " MOSI" + String(NrfPins::mosi),
+			"MISO" + String(NrfPins::miso) + " CE" + String(NrfPins::ce),
 		};
 		centeredPrintRows(lines, 3, SMALL_TEXT);
 		if (checkExit()) nrfRadioClose();

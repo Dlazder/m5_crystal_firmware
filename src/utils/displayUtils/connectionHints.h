@@ -81,8 +81,8 @@ void connectionGuideNFC() {
 
 	// Pins are configurable (NFC > configure pins > PN532), so show the current ones
 	static char sda[8], scl[8];
-	snprintf(sda, sizeof(sda), "G%d", pn532SdaPin);
-	snprintf(scl, sizeof(scl), "G%d", pn532SclPin);
+	snprintf(sda, sizeof(sda), "G%d", Pn532Pins::sda);
+	snprintf(scl, sizeof(scl), "G%d", Pn532Pins::scl);
 
 	const char* rows[][2] = {
 		{"VCC", "3.3V"},
@@ -108,11 +108,11 @@ void connectionGuideRC522() {
 
 	// Pins are configurable (NFC > configure pins > RC522), so show the current ones
 	static char ss[8], sck[8], mosi[8], miso[8], rst[8];
-	snprintf(ss, sizeof(ss), "G%d", rc522SsPin);
-	snprintf(sck, sizeof(sck), "G%d", rc522SckPin);
-	snprintf(mosi, sizeof(mosi), "G%d", rc522MosiPin);
-	snprintf(miso, sizeof(miso), "G%d", rc522MisoPin);
-	snprintf(rst, sizeof(rst), "G%d", rc522RstPin);
+	snprintf(ss, sizeof(ss), "G%d", Rc522Pins::ss);
+	snprintf(sck, sizeof(sck), "G%d", Rc522Pins::sck);
+	snprintf(mosi, sizeof(mosi), "G%d", Rc522Pins::mosi);
+	snprintf(miso, sizeof(miso), "G%d", Rc522Pins::miso);
+	snprintf(rst, sizeof(rst), "G%d", Rc522Pins::rst);
 
 	const char* rows[][2] = {
 		{"SDA(SS)", ss},

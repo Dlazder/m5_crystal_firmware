@@ -23,3 +23,13 @@
 	#define RC522_MISO_PIN 36
 	#define RC522_RST_PIN 33
 #endif
+
+// Current (user-configurable) RC522 pins, editable via NFC -> configure pins -> RC522.
+#include <stdint.h>
+namespace Rc522Pins {
+	inline uint8_t ss   = RC522_SS_PIN;
+	inline uint8_t sck  = RC522_SCK_PIN;
+	inline uint8_t mosi = RC522_MOSI_PIN;
+	inline uint8_t miso = RC522_MISO_PIN;
+	inline uint8_t rst  = RC522_RST_PIN;
+}

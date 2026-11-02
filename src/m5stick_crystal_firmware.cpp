@@ -14,7 +14,7 @@ void setup() {
   Settings::load();
 
   // GPIO UART — also accepts serial commands (in addition to USB Serial).
-  Serial2.begin(uartBaud, SERIAL_8N1, uartRxPin, uartTxPin);
+  Serial2.begin(UartCfg::baud, SERIAL_8N1, UartCfg::rx, UartCfg::tx);
   Serial2.setTimeout(50);
 
   // RGB332 sprite keeps the buffer at half size (see canvasColorDepth in globals.h).

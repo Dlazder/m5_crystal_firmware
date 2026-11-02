@@ -25,3 +25,13 @@
 	#define NRF_MISO_PIN 36
 	#define NRF_CE_PIN 33
 #endif
+
+// Current (user-configurable) nRF24 pins, editable via NRF -> configure pins.
+#include <stdint.h>
+namespace NrfPins {
+	inline uint8_t csn  = NRF_CSN_PIN;
+	inline uint8_t sck  = NRF_SCK_PIN;
+	inline uint8_t mosi = NRF_MOSI_PIN;
+	inline uint8_t miso = NRF_MISO_PIN;
+	inline uint8_t ce   = NRF_CE_PIN;
+}

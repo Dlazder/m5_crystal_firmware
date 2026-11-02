@@ -1,11 +1,11 @@
 // PID::NRF_CONFIG_RESET
 
 static String _nrfPinsRow1() {
-	return "CSN" + String(nrfCsnPin) + " SCK" + String(nrfSckPin) + " MOSI" + String(nrfMosiPin);
+	return "CSN" + String(NrfPins::csn) + " SCK" + String(NrfPins::sck) + " MOSI" + String(NrfPins::mosi);
 }
 
 static String _nrfPinsRow2() {
-	return "MISO" + String(nrfMisoPin) + " CE" + String(nrfCePin);
+	return "MISO" + String(NrfPins::miso) + " CE" + String(NrfPins::ce);
 }
 
 void nrfConfigureResetLoop() {

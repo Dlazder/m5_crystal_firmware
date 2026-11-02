@@ -19,3 +19,12 @@
 	#define CC1101_MISO_PIN 36
 	#define CC1101_GDO0_PIN 33
 #endif
+
+#include <stdint.h>
+namespace RfPins {
+	inline uint8_t cs   = CC1101_CS_PIN;
+	inline uint8_t sck  = CC1101_SCK_PIN;
+	inline uint8_t mosi = CC1101_MOSI_PIN;
+	inline uint8_t miso = CC1101_MISO_PIN;
+	inline uint8_t gdo0 = CC1101_GDO0_PIN;
+}

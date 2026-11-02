@@ -8,9 +8,9 @@
 static bool nrfSerial2Detached = false;
 
 static bool _nrfPinsOverlapUart() {
-	const uint8_t nrf[] = { nrfCsnPin, nrfSckPin, nrfMosiPin, nrfMisoPin, nrfCePin };
+	const uint8_t nrf[] = { NrfPins::csn, NrfPins::sck, NrfPins::mosi, NrfPins::miso, NrfPins::ce };
 	for (uint8_t p : nrf) {
-		if (p == uartRxPin || p == uartTxPin) return true;
+		if (p == UartCfg::rx || p == UartCfg::tx) return true;
 	}
 	return false;
 }
@@ -20,13 +20,13 @@ bool nrfRadioOpen() {
 		Serial2.end();
 		nrfSerial2Detached = true;
 	}
-	return NRF24::begin(nrfCsnPin, nrfSckPin, nrfMosiPin, nrfMisoPin, nrfCePin);
+	return NRF24::begin(NrfPins::csn, NrfPins::sck, NrfPins::mosi, NrfPins::miso, NrfPins::ce);
 }
 
 void nrfRadioClose() {
 	NRF24::end();
 	if (nrfSerial2Detached) {
-		Serial2.begin(uartBaud, SERIAL_8N1, uartRxPin, uartTxPin);
+		Serial2.begin(UartCfg::baud, SERIAL_8N1, UartCfg::rx, UartCfg::tx);
 		Serial2.setTimeout(50);
 		nrfSerial2Detached = false;
 	}
