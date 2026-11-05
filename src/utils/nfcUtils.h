@@ -4,9 +4,9 @@
 /// Starts the selected reader (PN532 or RC522). Returns true when it answers.
 inline bool nfcBegin() {
 	if (nfcModule == NFC_MODULE_RC522) {
-		return Nfc::begin(Nfc::Rc522Pins{rc522SsPin, rc522SckPin, rc522MosiPin, rc522MisoPin, rc522RstPin});
+		return Nfc::begin(Nfc::Rc522Pins{Rc522Pins::ss, Rc522Pins::sck, Rc522Pins::mosi, Rc522Pins::miso, Rc522Pins::rst});
 	}
-	return Nfc::begin(pn532SdaPin, pn532SclPin);
+	return Nfc::begin(Pn532Pins::sda, Pn532Pins::scl);
 }
 
 /// Wiring table of the selected reader.

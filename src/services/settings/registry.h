@@ -140,7 +140,7 @@ static const Setting settingsRegistry[] = {
 	TOGGLE_SETTING("statusBar",      statusBar,        onStatusBarChanged),
 	TOGGLE_SETTING("statusBarPid",   statusBarPid,     nullptr),
 	TOGGLE_SETTING("sbSeconds",      statusBarSeconds, nullptr),
-	TOGGLE_SETTING("uartLog",        uartLogEnabled,   nullptr),
+	TOGGLE_SETTING("uartLog",        UartCfg::log,   nullptr),
 	TOGGLE_SETTING("sdMountCrystal", sdMountCrystal,   nullptr),
 	TOGGLE_SETTING("showMenuWifi",   showMenuWifi,     nullptr),
 	TOGGLE_SETTING("showMenuBt",     showMenuBt,       nullptr),
@@ -148,6 +148,7 @@ static const Setting settingsRegistry[] = {
 	TOGGLE_SETTING("showMenuIr",     showMenuIr,       nullptr),
 	TOGGLE_SETTING("showMenuUsb",    showMenuUsb,      nullptr),
 	TOGGLE_SETTING("showMenuRf",     showMenuRf,       nullptr),
+	TOGGLE_SETTING("showMenuNrf",    showMenuNrf,      nullptr),
 	TOGGLE_SETTING("showMenuUart",   showMenuUart,     nullptr),
 	TOGGLE_SETTING("showMenuFiles",  showMenuFiles,    nullptr),
 	TOGGLE_SETTING("showMenuOther",  showMenuOther,    nullptr),
@@ -165,36 +166,42 @@ static const Setting settingsRegistry[] = {
 	RANGE_SETTING("languageIndex", languageIndex,    0, sizeof(locales) / sizeof(locales[0]) - 1,         fmtLanguage,   false, onLanguageChanged),
 	RANGE_SETTING("dimTimeout",    dimTimeoutIndex,  0, dimTimeoutsCount - 1,                             fmtDimTimeout, false, onDimTimeoutChanged),
 
-	PIN_SETTING("rfCsPin",   RF_PINS, rfCsPin,   CC1101_CS_PIN),
-	PIN_SETTING("rfSckPin",  RF_PINS, rfSckPin,  CC1101_SCK_PIN),
-	PIN_SETTING("rfMosiPin", RF_PINS, rfMosiPin, CC1101_MOSI_PIN),
-	PIN_SETTING("rfMisoPin", RF_PINS, rfMisoPin, CC1101_MISO_PIN),
-	PIN_SETTING("rfGdo0Pin", RF_PINS, rfGdo0Pin, CC1101_GDO0_PIN),
+	PIN_SETTING("rfCsPin",   RF_PINS, RfPins::cs,   CC1101_CS_PIN),
+	PIN_SETTING("rfSckPin",  RF_PINS, RfPins::sck,  CC1101_SCK_PIN),
+	PIN_SETTING("rfMosiPin", RF_PINS, RfPins::mosi, CC1101_MOSI_PIN),
+	PIN_SETTING("rfMisoPin", RF_PINS, RfPins::miso, CC1101_MISO_PIN),
+	PIN_SETTING("rfGdo0Pin", RF_PINS, RfPins::gdo0, CC1101_GDO0_PIN),
 
-	PIN_SETTING("pn532SdaPin", PN532_PINS, pn532SdaPin, NFC_SDA),
-	PIN_SETTING("pn532SclPin", PN532_PINS, pn532SclPin, NFC_SCL),
+	PIN_SETTING("nrfCsnPin",  NRF_PINS, NrfPins::csn,  NRF_CSN_PIN),
+	PIN_SETTING("nrfSckPin",  NRF_PINS, NrfPins::sck,  NRF_SCK_PIN),
+	PIN_SETTING("nrfMosiPin", NRF_PINS, NrfPins::mosi, NRF_MOSI_PIN),
+	PIN_SETTING("nrfMisoPin", NRF_PINS, NrfPins::miso, NRF_MISO_PIN),
+	PIN_SETTING("nrfCePin",   NRF_PINS, NrfPins::ce,   NRF_CE_PIN),
 
-	PIN_SETTING("rc522SsPin",   RC522_PINS, rc522SsPin,   RC522_SS_PIN),
-	PIN_SETTING("rc522SckPin",  RC522_PINS, rc522SckPin,  RC522_SCK_PIN),
-	PIN_SETTING("rc522MosiPin", RC522_PINS, rc522MosiPin, RC522_MOSI_PIN),
-	PIN_SETTING("rc522MisoPin", RC522_PINS, rc522MisoPin, RC522_MISO_PIN),
-	PIN_SETTING("rc522RstPin",  RC522_PINS, rc522RstPin,  RC522_RST_PIN),
+	PIN_SETTING("pn532SdaPin", PN532_PINS, Pn532Pins::sda, NFC_SDA),
+	PIN_SETTING("pn532SclPin", PN532_PINS, Pn532Pins::scl, NFC_SCL),
+
+	PIN_SETTING("rc522SsPin",   RC522_PINS, Rc522Pins::ss,   RC522_SS_PIN),
+	PIN_SETTING("rc522SckPin",  RC522_PINS, Rc522Pins::sck,  RC522_SCK_PIN),
+	PIN_SETTING("rc522MosiPin", RC522_PINS, Rc522Pins::mosi, RC522_MOSI_PIN),
+	PIN_SETTING("rc522MisoPin", RC522_PINS, Rc522Pins::miso, RC522_MISO_PIN),
+	PIN_SETTING("rc522RstPin",  RC522_PINS, Rc522Pins::rst,  RC522_RST_PIN),
 
 	PIN_SETTING("irTxPin",   IR_PINS, irTxPin,   IR_SEND_PIN),
 	PIN_SETTING("irRxPin",   IR_PINS, irRxPin,   IR_RECEIVE_PIN),
 
-	PIN_SETTING("uartRxPin", UART_PINS, uartRxPin, UART_RX_PIN),
-	PIN_SETTING("uartTxPin", UART_PINS, uartTxPin, UART_TX_PIN),
-	LIST_SETTING("uartBaud", uartBaud, uartBauds, uartBaudsCount, UART_BAUD_DEFAULT, nullptr, nullptr),
+	PIN_SETTING("uartRxPin", UART_PINS, UartCfg::rx, UART_RX_PIN),
+	PIN_SETTING("uartTxPin", UART_PINS, UartCfg::tx, UART_TX_PIN),
+	LIST_SETTING("uartBaud", UartCfg::baud, uartBauds, uartBaudsCount, UART_BAUD_DEFAULT, nullptr, nullptr),
 
 	// CH9329 (USB-HID-over-UART bridge, Settings → USB) uses its own
 	// HardwareSerial (Serial1). Sharing the UART_PINS group with
 	// uartRxPin/uartTxPin lets hasConflict() flag it if a pin ends up assigned
 	// to both the UART terminal (Serial2) and CH9329 at once.
-	TOGGLE_SETTING("ch9329Enabled", ch9329Enabled, nullptr),
-	PIN_SETTING("ch9329RxPin", UART_PINS, ch9329RxPin, CH9329_RX_PIN),
-	PIN_SETTING("ch9329TxPin", UART_PINS, ch9329TxPin, CH9329_TX_PIN),
-	LIST_SETTING("ch9329Baud", ch9329Baud, uartBauds, uartBaudsCount, 9600, nullptr, nullptr),
+	TOGGLE_SETTING("ch9329Enabled", Ch9329Cfg::enabled, nullptr),
+	PIN_SETTING("ch9329RxPin", UART_PINS, Ch9329Cfg::rx, CH9329_RX_PIN),
+	PIN_SETTING("ch9329TxPin", UART_PINS, Ch9329Cfg::tx, CH9329_TX_PIN),
+	LIST_SETTING("ch9329Baud", Ch9329Cfg::baud, uartBauds, uartBaudsCount, 9600, nullptr, nullptr),
 
 	LIST_SETTING("timezone", timezoneOffset, timezoneOffsets, timezoneOffsetsCount, SETTING_DEF_INITIAL, fmtUtcOffset, nullptr),
 };

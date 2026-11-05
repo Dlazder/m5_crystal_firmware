@@ -59,7 +59,7 @@ void cc1101RawSnifferLoop() {
 
 			rfEdgeHead = rfEdgeTail = 0;
 			rfEdgeLast = micros();
-			attachInterrupt(digitalPinToInterrupt(rfGdo0Pin), rfEdgeIsr, CHANGE);
+			attachInterrupt(digitalPinToInterrupt(RfPins::gdo0), rfEdgeIsr, CHANGE);
 		}
 		canvas.setTextColor(FGCOLOR, BGCOLOR);
 	}
@@ -144,7 +144,7 @@ void cc1101RawSnifferLoop() {
 	}
 
 	if (checkExit()) {
-		detachInterrupt(digitalPinToInterrupt(rfGdo0Pin));
+		detachInterrupt(digitalPinToInterrupt(RfPins::gdo0));
 		rfRadioClose();
 	}
 }

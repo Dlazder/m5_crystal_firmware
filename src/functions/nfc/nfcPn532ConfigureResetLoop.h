@@ -4,7 +4,7 @@ void nfcPn532ConfigureResetLoop() {
 	if (isSetup()) {
 		String lines[] = {
 			"Reset PN532 pins?",
-			"SDA" + String(pn532SdaPin) + " SCL" + String(pn532SclPin),
+			"SDA" + String(Pn532Pins::sda) + " SCL" + String(Pn532Pins::scl),
 		};
 		centeredPrintRows(lines, 2, SMALL_TEXT, true);
 		drawHintCustom("enter: reset", "A: reset");
@@ -16,7 +16,7 @@ void nfcPn532ConfigureResetLoop() {
 
 		String lines[] = {
 			"PN532 pins reset",
-			"SDA" + String(pn532SdaPin) + " SCL" + String(pn532SclPin),
+			"SDA" + String(Pn532Pins::sda) + " SCL" + String(Pn532Pins::scl),
 		};
 		Serial.printf("PN532 pins reset: %s\n", lines[1].c_str());
 		centeredPrintRows(lines, 2, SMALL_TEXT);

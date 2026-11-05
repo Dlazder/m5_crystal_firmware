@@ -25,7 +25,7 @@ enum class SettingType : uint8_t {
 #define SETTING_DEF_INITIAL INT_MIN
 
 // Settings that must not collide with each other (checked for PIN settings only).
-enum class SettingGroup : uint8_t { NONE, RF_PINS, PN532_PINS, RC522_PINS, IR_PINS, UART_PINS };
+enum class SettingGroup : uint8_t { NONE, RF_PINS, NRF_PINS, PN532_PINS, RC522_PINS, IR_PINS, UART_PINS };
 
 struct Setting {
 	const char*    key;   // NVS key; also MENU::settingKey of the menu item bound to it

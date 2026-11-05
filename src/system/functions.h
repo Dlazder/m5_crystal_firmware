@@ -105,6 +105,13 @@
 #include "../functions/rf/rfConfigurePinsMenuLoop.h"
 #include "../functions/rf/rfConfigureResetLoop.h"
 
+// NRF / 2.4 GHz nRF24L01
+#include "../functions/nrf/nrfMenuLoop.h"
+#include "../functions/nrf/nrfRadioUtils.h"
+#include "../functions/nrf/nrfSpectrumAnalyzerLoop.h"
+#include "../functions/nrf/nrfConfigurePinsMenuLoop.h"
+#include "../functions/nrf/nrfConfigureResetLoop.h"
+
 // UART
 #include "../functions/uart/uartMenuLoop.h"
 #include "../functions/uart/uartTerminalLoop.h"

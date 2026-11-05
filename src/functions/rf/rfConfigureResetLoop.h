@@ -1,8 +1,8 @@
 // PID::RF_CONFIG_RESET
 
 static String _rfPinsSummary() {
-	return "CS" + String(rfCsPin) + " SCK" + String(rfSckPin) + " MOSI" + String(rfMosiPin) +
-				" MISO" + String(rfMisoPin) + " G0:" + String(rfGdo0Pin);
+	return "CS" + String(RfPins::cs) + " SCK" + String(RfPins::sck) + " MOSI" + String(RfPins::mosi) +
+				" MISO" + String(RfPins::miso) + " G0:" + String(RfPins::gdo0);
 }
 
 void rfConfigureResetLoop() {

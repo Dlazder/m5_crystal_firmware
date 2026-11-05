@@ -154,11 +154,11 @@ void uartTerminalLoop() {
 		_uartLayout();
 		_uartPort = &Serial2;
 		_uartPort->end();
-		_uartPort->begin(uartBaud, SERIAL_8N1, uartRxPin, uartTxPin);
+		_uartPort->begin(UartCfg::baud, SERIAL_8N1, UartCfg::rx, UartCfg::tx);
 		_uartDraw();
-		if (uartLogEnabled) _uartLogOpen();
+		if (UartCfg::log) _uartLogOpen();
 		Serial.printf("UART terminal: %lu baud RX=G%d TX=G%d\n",
-			(unsigned long)uartBaud, uartRxPin, uartTxPin);
+			(unsigned long)UartCfg::baud, UartCfg::rx, UartCfg::tx);
 	}
 
 	if (_uartKbActive) {
@@ -201,7 +201,7 @@ void uartTerminalLoop() {
 		_uartLogClose();
 		if (_uartPort) {
 			_uartPort->end();
-			_uartPort->begin(uartBaud, SERIAL_8N1, uartRxPin, uartTxPin); // restore GPIO command listening
+			_uartPort->begin(UartCfg::baud, SERIAL_8N1, UartCfg::rx, UartCfg::tx); // restore GPIO command listening
 		}
 		_uartPort = nullptr;
 	}
