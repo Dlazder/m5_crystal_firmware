@@ -106,6 +106,7 @@ static float _csrHeading = 0; // integrated yaw, degrees, CCW positive
 static float _csrRate = 0; // smoothed |yaw rate|, deg/s
 static uint32_t _csrLastImuUs = 0;
 static int _csrSelected = 0;
+static bool _csrSingle = false; // tracking only Wifi::selected
 
 static int _csrFindAp(const uint8_t* mac) {
 	for (int i = 0; i < _csrApCount; i++) {
@@ -171,31 +172,40 @@ static void _csrPromiscCb(void* buf, wifi_promiscuous_pkt_type_t type) {
 	_csrPush(ap, pkt->rx_ctrl.rssi, CSR_PROMISC_WEIGHT, pkt->rx_ctrl.timestamp);
 }
 
-// Copy the scan results (BSSID pointers die on the next scan) and collect the
-// set of channels to hop over.
+// Copy one AP into the tracked list (BSSID pointers from the scan die on the
+// next scan) and add its channel to the hop set.
+static void _csrAddAp(const uint8_t* bssid, String name, const String& mac, int ch, int rssi) {
+	if (_csrApCount >= CSR_MAX_APS || ch < 1 || ch > 14 || !bssid) return;
+
+	CsrAp& ap = _csrAps[_csrApCount++];
+	memset(&ap, 0, sizeof(ap));
+	memcpy(ap.bssid, bssid, 6);
+	if (name.length() == 0) name = mac; // hidden network
+	strlcpy(ap.ssid, name.c_str(), sizeof(ap.ssid));
+	ap.channel = ch;
+	ap.level = rssi;
+
+	for (int c = 0; c < _csrChannelCount; c++) {
+		if (_csrChannels[c] == ch) return;
+	}
+	_csrChannels[_csrChannelCount++] = ch;
+}
+
+// All APs from the last scan.
 static void _csrLoadAps() {
 	_csrApCount = 0;
 	_csrChannelCount = 0;
 	for (int i = 0; i < wifiCount && _csrApCount < CSR_MAX_APS; i++) {
-		int ch = WiFi.channel(i);
-		uint8_t* bssid = WiFi.BSSID(i);
-		if (ch < 1 || ch > 14 || !bssid) continue;
-
-		CsrAp& ap = _csrAps[_csrApCount++];
-		memset(&ap, 0, sizeof(ap));
-		memcpy(ap.bssid, bssid, 6);
-		String name = WiFi.SSID(i);
-		if (name.length() == 0) name = WiFi.BSSIDstr(i); // hidden network
-		strlcpy(ap.ssid, name.c_str(), sizeof(ap.ssid));
-		ap.channel = ch;
-		ap.level = WiFi.RSSI(i);
-
-		bool known = false;
-		for (int c = 0; c < _csrChannelCount; c++) {
-			if (_csrChannels[c] == ch) { known = true; break; }
-		}
-		if (!known) _csrChannels[_csrChannelCount++] = ch;
+		_csrAddAp(WiFi.BSSID(i), WiFi.SSID(i), WiFi.BSSIDstr(i), WiFi.channel(i), WiFi.RSSI(i));
 	}
+}
+
+// Only the network picked in the selected-wifi menu (single channel, no hopping).
+static void _csrLoadSelected() {
+	_csrApCount = 0;
+	_csrChannelCount = 0;
+	const Wifi::SelectedNetwork& sel = Wifi::selected;
+	_csrAddAp(sel.bssid, sel.ssid, sel.mac, sel.channel, sel.rssi);
 }
 
 static void _csrStartCalibration() {
@@ -537,8 +547,7 @@ static void _csrDrawRadar(int cx, int cy, int r, int panelX) {
 		int y = cy - (int)(cosf(rel) * pr);
 
 		bool stale = (now - ap.lastSeen) > CSR_STALE_MS;
-		uint16_t color = (stale || !sure) ? TFT_DARKGREY : FGCOLOR;
-		int dotR = (i == _csrSelected) ? 3 : 2;
+		uint16_t color = (stale || !sure) ? TFT_DARKGREY : FGCOLOR;		int dotR = (i == _csrSelected) ? 3 : 2;
 		if (sure) canvas.fillCircle(x, y, dotR, color);
 		else canvas.drawCircle(x, y, dotR, color); // hollow: bearing uncertain
 		if (i == _csrSelected) canvas.drawCircle(x, y, 6, FGCOLOR);
@@ -598,7 +607,8 @@ static void _csrLogFits() {
 	}
 }
 
-void wifiCsiRadarLoop() {
+// Shared body of both radar processes. `single`: track only Wifi::selected.
+static void _csrRun(bool single) {
 	if (!hasImu) {
 		if (isSetup()) centeredPrint("no gyroscope", MEDIUM_TEXT);
 		checkExit();
@@ -607,9 +617,13 @@ void wifiCsiRadarLoop() {
 
 	if (isSetup()) {
 		_csrSelected = 0;
-		if (wifiCount > 0) _csrLoadAps();
-		if (wifiCount == 0 || _csrApCount == 0) {
-			_csrApCount = 0;
+		_csrSingle = single;
+		_csrApCount = 0;
+		if (wifiCount > 0) {
+			if (single) _csrLoadSelected();
+			else _csrLoadAps();
+		}
+		if (_csrApCount == 0) {
 			centeredPrint(L->TXT_WIFI_NO_SCAN_DATA, MEDIUM_TEXT);
 		} else {
 			_csrStart();
@@ -644,7 +658,7 @@ void wifiCsiRadarLoop() {
 
 	// Stick: A = next AP, PWR = recalibrate.
 	// Cardputer: arrows switch APs (left/up = prev, right/down = next), enter = recalibrate.
-	if (_csrPhase == CSR_RADAR) {
+	if (_csrPhase == CSR_RADAR && !_csrSingle) {
 		if (isBtnAWasPressed() || isKbRightPressed() || isKbDownPressed()) {
 			_csrSelected = (_csrSelected + 1) % _csrApCount;
 		}
@@ -669,10 +683,21 @@ void wifiCsiRadarLoop() {
 	canvas.fillSprite(BGCOLOR);
 	if (_csrPhase == CSR_RADAR) {
 		_csrDrawRadar(cx, cy, r, panelX);
-		drawHintCustom("__LEFT__ __RIGHT__: AP  enter: recal", "A: next  PWR: recal");
+		if (_csrSingle) drawHintCustom("enter: recal", "PWR: recal");
+		else drawHintCustom("__LEFT__ __RIGHT__: AP  enter: recal", "A: next  PWR: recal");
 	} else {
 		_csrDrawCalibration(cx, cy, r, panelX);
 		drawHintCustom("enter: restart", "PWR: restart");
 	}
 	canvas.pushSprite(0, getStatusBarHeight());
+}
+
+// PID::WIFI_CSI_RADAR — every AP from the last scan.
+void wifiCsiRadarLoop() {
+	_csrRun(false);
+}
+
+// PID::WIFI_CSI_RADAR_SELECTED — only the network picked in the selected-wifi menu.
+void wifiCsiRadarSelectedLoop() {
+	_csrRun(true);
 }

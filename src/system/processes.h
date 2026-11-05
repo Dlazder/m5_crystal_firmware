@@ -37,6 +37,7 @@
     X(LFS_WEB_UI,        218, lfsWebUILoop) \
     X(WIFI_WPS_PBC,      219, wifiWpsPbcLoop) \
     X(WIFI_CSI_RADAR,    220, wifiCsiRadarLoop) \
+    X(WIFI_CSI_RADAR_SELECTED, 221, wifiCsiRadarSelectedLoop) \
     \
     /* Bluetooth (300-399) */ \
     X(BLUETOOTH,    300, bluetoothMenuLoop) \
