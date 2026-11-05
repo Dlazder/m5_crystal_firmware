@@ -25,6 +25,7 @@ const Locale LANG_ID = {
     .MENU_WIFI_PIXIE_DUST        = "pixie dust",
     .MENU_WIFI_WPS_PBC          = "wps pbc",
     .MENU_WIFI_CHANNEL_ANALYZER  = "analisis saluran",
+    .MENU_WIFI_CSI_RADAR         = "radar CSI",
     .MENU_WIFI_WEB_SERVER       = "server web",
     .MENU_SETTINGS_WIFI_SSID      = "Wi-Fi SSID",
 
@@ -186,6 +187,9 @@ const Locale LANG_ID = {
     .TXT_WIFI_HANDSHAKE_PACKETS   = "Handshake: ",
 
     .TXT_WIFI_NO_SCAN_DATA        = "Pindai jaringan dulu",
+    .TXT_CSI_RADAR_HOLD_STILL     = "Tahan diam",
+    .TXT_CSI_RADAR_TURN           = "Putar 360 pelan",
+    .TXT_CSI_RADAR_SLOWER         = "Lebih pelan!",
 
     // Bluetooth text
     .TXT_BT_FILE_ERROR            = "Error file",

@@ -25,6 +25,7 @@ const Locale LANG_RU = {
 	.MENU_WIFI_PIXIE_DUST        = "pixie dust",
 	.MENU_WIFI_WPS_PBC          = "wps pbc",
 	.MENU_WIFI_CHANNEL_ANALYZER  = "анализатор каналов",
+	.MENU_WIFI_CSI_RADAR         = "CSI радар",
 	.MENU_WIFI_WEB_SERVER       = "веб-сервер",
 	.MENU_SETTINGS_WIFI_SSID      = "Wi-Fi SSID",
 
@@ -186,6 +187,9 @@ const Locale LANG_RU = {
 	.TXT_WIFI_HANDSHAKE_PACKETS   = "Handshake: ",
 
 	.TXT_WIFI_NO_SCAN_DATA        = "Сначала просканируйте сети",
+	.TXT_CSI_RADAR_HOLD_STILL     = "Не двигайте",
+	.TXT_CSI_RADAR_TURN           = "Повернитесь на 360",
+	.TXT_CSI_RADAR_SLOWER         = "Медленнее!",
 
 	// Bluetooth text
 	.TXT_BT_FILE_ERROR           = "Ошибка файла",

@@ -25,6 +25,7 @@ struct Locale {
 	const char* MENU_WIFI_PIXIE_DUST;
 	const char* MENU_WIFI_WPS_PBC;
 	const char* MENU_WIFI_CHANNEL_ANALYZER;
+	const char* MENU_WIFI_CSI_RADAR;
 	const char* MENU_WIFI_WEB_SERVER;
 	const char* MENU_SETTINGS_WIFI_SSID;
 
@@ -186,6 +187,9 @@ struct Locale {
 	const char* TXT_WIFI_HANDSHAKE_PACKETS;
 
 	const char* TXT_WIFI_NO_SCAN_DATA;
+	const char* TXT_CSI_RADAR_HOLD_STILL;
+	const char* TXT_CSI_RADAR_TURN;
+	const char* TXT_CSI_RADAR_SLOWER;
 
 	// Bluetooth text
 	const char* TXT_BT_FILE_ERROR;

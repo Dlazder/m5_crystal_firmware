@@ -25,6 +25,7 @@ const Locale LANG_TR = {
 	.MENU_WIFI_PIXIE_DUST        = "pixie dust",
 	.MENU_WIFI_WPS_PBC           = "wps pbc",
 	.MENU_WIFI_CHANNEL_ANALYZER  = "kanal analizörü",
+	.MENU_WIFI_CSI_RADAR         = "CSI radar",
 	.MENU_WIFI_WEB_SERVER        = "web sunucusu",
 	.MENU_SETTINGS_WIFI_SSID     = "Wi-Fi SSID",
 
@@ -186,6 +187,9 @@ const Locale LANG_TR = {
 	.TXT_WIFI_HANDSHAKE_PACKETS   = "Handshake: ",
 
 	.TXT_WIFI_NO_SCAN_DATA        = "Önce ağları tara",
+	.TXT_CSI_RADAR_HOLD_STILL     = "Sabit tutun",
+	.TXT_CSI_RADAR_TURN           = "Yavaşça 360 dönün",
+	.TXT_CSI_RADAR_SLOWER         = "Daha yavaş!",
 
 	// Bluetooth text
 	.TXT_BT_FILE_ERROR           = "Dosya hatası",

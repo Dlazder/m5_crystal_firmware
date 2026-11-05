@@ -20,6 +20,12 @@
 #define IMU_LEVEL_BUBBLE_ROLL(ax, ay, az)   ( -atan2((ax), (az)) * 180 / PI )
 #define IMU_LEVEL_BUBBLE_PITCH(ax, ay, az)  ( -atan2((ay), (az)) * 180 / PI )
 
+// Direction of strongest Wi-Fi reception relative to the device's forward
+// (top edge), degrees, CCW (left) positive. Used by the CSI radar: an AP is
+// at (heading of max signal) + this. Measured: lying on a table, the max came
+// when the AP was on the right side of the device.
+#define ANTENNA_BORESIGHT_DEG -90.0f
+
 // IMU axis mapping for gyro keyboard (not used — Cardputer has physical KB)
 #define IMU_KB_X(ax, ay)              ( -(ax) )
 #define IMU_KB_Y(ax, ay)              ( (ay) )

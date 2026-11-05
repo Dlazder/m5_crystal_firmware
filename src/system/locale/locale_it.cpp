@@ -25,6 +25,7 @@ const Locale LANG_IT = {
     .MENU_WIFI_PIXIE_DUST        = "pixie dust",
     .MENU_WIFI_WPS_PBC          = "wps pbc",
     .MENU_WIFI_CHANNEL_ANALYZER  = "analizzatore canali",
+    .MENU_WIFI_CSI_RADAR         = "radar CSI",
     .MENU_WIFI_WEB_SERVER       = "web server",
     .MENU_SETTINGS_WIFI_SSID      = "Wi-Fi SSID",
 
@@ -186,6 +187,9 @@ const Locale LANG_IT = {
     .TXT_WIFI_HANDSHAKE_PACKETS   = "Handshake: ",
 
     .TXT_WIFI_NO_SCAN_DATA        = "Prima scansiona reti",
+    .TXT_CSI_RADAR_HOLD_STILL     = "Tieni fermo",
+    .TXT_CSI_RADAR_TURN           = "Ruota di 360",
+    .TXT_CSI_RADAR_SLOWER         = "Più lento!",
 
     // Bluetooth text
     .TXT_BT_FILE_ERROR            = "Errore file",

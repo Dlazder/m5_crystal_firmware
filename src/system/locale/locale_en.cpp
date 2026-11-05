@@ -23,8 +23,9 @@ const Locale LANG_EN = {
 	.MENU_WIFI_HANDSHAKE         = "handshake capture",
 	.MENU_WIFI_PMKID             = "pmkid capture",
 	.MENU_WIFI_PIXIE_DUST        = "pixie dust",
-.MENU_WIFI_WPS_PBC          = "wps pbc",
+	.MENU_WIFI_WPS_PBC          = "wps pbc",
 	.MENU_WIFI_CHANNEL_ANALYZER  = "channel analyzer",
+	.MENU_WIFI_CSI_RADAR         = "CSI radar",
 	.MENU_WIFI_WEB_SERVER       = "web server",
 	.MENU_SETTINGS_WIFI_SSID      = "Wi-Fi SSID",
 
@@ -186,6 +187,9 @@ const Locale LANG_EN = {
 	.TXT_WIFI_HANDSHAKE_PACKETS   = "Handshakes: ",
 
 	.TXT_WIFI_NO_SCAN_DATA        = "Scan networks first",
+	.TXT_CSI_RADAR_HOLD_STILL     = "Hold still",
+	.TXT_CSI_RADAR_TURN           = "Turn 360 slowly",
+	.TXT_CSI_RADAR_SLOWER         = "Slower!",
 
 	// Bluetooth text
 	.TXT_BT_FILE_ERROR           = "File error",
