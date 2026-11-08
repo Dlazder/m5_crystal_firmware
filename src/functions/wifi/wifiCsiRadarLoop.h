@@ -1,35 +1,6 @@
 // PID::WIFI_CSI_RADAR
 
 // CSI radar: plots every scanned AP on a circular radar by bearing and level.
-//
-// The ESP32 has a single antenna, so a CSI frame alone carries no direction.
-// The bearing comes from the body/hand shadow instead: an AP in front of the
-// device is received a few dB stronger than one behind it. Every frame from an
-// AP is tagged with the current heading (gyro yaw) and averaged into 15-degree
-// heading bins. The bins are fitted to
-//   level(h) = a + b*cos(h) + c*sin(h)
-// `a` is the AP's mean level (radar distance) and sqrt(b^2 + c^2) the
-// front/back difference, which gives the confidence. The bearing is the
-// strongest direction of the smoothed bin profile once (nearly) the whole
-// circle is covered — a direct "turn around and find the max" — and the peak
-// of the sinusoid, atan2(c, b), while coverage is still partial.
-//
-// Calibration: hold still (gyro bias), then turn slowly through a full 360
-// degrees, so every direction is measured instead of extrapolated. After that
-// the estimate keeps updating live with exponential forgetting.
-//
-// Samples come from two sources:
-//  - promiscuous RX: every beacon/probe response/data frame the AP transmits,
-//    at any rate. Needed because many APs send beacons at 1 Mbps DSSS, which
-//    carries no OFDM training field and therefore never produces CSI.
-//  - CSI RX: OFDM frames. CSI amplitudes are AGC-normalized (no absolute
-//    level), so the level is still the frame RSSI, but the subcarrier
-//    flatness weights the sample: a flat channel (direct path dominates)
-//    counts more than one with deep frequency-selective fading (multipath).
-//
-// Binning makes every heading count equally no matter how long the user
-// lingered there, and the bin residuals give a confidence for each bearing:
-// low-confidence APs are drawn hollow instead of being trusted blindly.
 
 #include "esp_wifi.h"
 
@@ -615,7 +586,15 @@ static void _csrRun(bool single) {
 		return;
 	}
 
-	if (isSetup()) {
+	static bool _csrNeedsSetup = false;
+	if (isSetup()) _csrNeedsSetup = true;
+	if (!single && _csrNeedsSetup && !ensureWifiScan()) {
+		checkExit();
+		return;
+	}
+
+	if (_csrNeedsSetup) {
+		_csrNeedsSetup = false;
 		_csrSelected = 0;
 		_csrSingle = single;
 		_csrApCount = 0;

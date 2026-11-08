@@ -3,13 +3,28 @@
 #define CH_ANALYZER_MAX_CH 13
 
 void wifiChannelAnalyzerLoop() {
-	if (isSetup()) {
+	// Draw the chart once per entry, but only after scan data is ready. The
+	// background scan can span several frames, so isSetup() alone isn't enough
+	// (it's consumed on frame 1); track it with a flag that resets on entry.
+	static bool _caNeedsDraw = false;
+	if (isSetup()) _caNeedsDraw = true;
+
+	// Kick off / wait on a background scan if nothing has been scanned yet.
+	if (!ensureWifiScan()) {
+		checkExit();
+		return;
+	}
+
+	if (_caNeedsDraw) {
+		_caNeedsDraw = false;
+
 		if (wifiCount == 0) {
 			centeredPrint(L->TXT_WIFI_NO_SCAN_DATA, MEDIUM_TEXT);
+			checkExit();
 			return;
 		}
 
-		// ---------- collect channel histogram ----------
+		// collect channel histogram
 		int counts[CH_ANALYZER_MAX_CH] = {0};
 		int maxCount = 0;
 		int bestChannel = 1;

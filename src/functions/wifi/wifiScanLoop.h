@@ -4,11 +4,51 @@ int wifiCount = 0;
 MENU* wifiScanMenu = nullptr;
 static bool _wifiScanning = false;
 
+// Ensure WiFi scan results are available for processes that need them
+// (channel analyzer, CSI radar, deauth/bruteforce-all...). If nothing has been
+// scanned yet, this kicks off a background scan and renders the scanning
+// spinner while it runs, so a process no longer has to bail out with
+// "scan networks first" — it just waits for the scan to finish.
+//
+// Returns true once results are ready (wifiCount valid, scan buffer populated),
+// false while a scan is still in progress — in which case the caller should
+// return for this frame (the spinner has already been drawn) and try again next
+// frame. A completed scan may still yield 0 networks; callers handle that via
+// wifiCount as before.
+bool ensureWifiScan() {
+	// Results already cached and no scan running -> ready immediately.
+	if (wifiCount > 0 && !_wifiScanning) return true;
+
+	// No data and nothing running -> start a background scan.
+	if (!_wifiScanning && wifiCount == 0) {
+		Serial.println("Scanning... (background, requested by process)");
+		WiFi.scanNetworks(true);  // async; calls scanDelete() internally
+		_wifiScanning = true;
+	}
+
+	if (_wifiScanning) {
+		int result = WiFi.scanComplete();
+		if (result == WIFI_SCAN_RUNNING) {
+			centeredPrint(L->TXT_SCANNING, MEDIUM_TEXT, true);
+			drawSpinner();
+			canvas.pushSprite(0, getStatusBarHeight());
+			return false;
+		}
+		// Scan finished.
+		_wifiScanning = false;
+		wifiCount = (result >= 0) ? result : 0;
+	}
+
+	return wifiCount > 0;
+}
+
 void wifiScanLoop() {
 	if (isSetup()) {
 		// Start a fresh scan if needed and no scan is already running
 		// (a background scan may have been left from a previous session).
-		if ((wifiCount == 0 || previousProcess == PID::WIFI_SCAN) && !_wifiScanning) {
+		// Also rescan if a background scan (started by another process via
+		// ensureWifiScan) populated wifiCount but never built the menu.
+		if ((wifiCount == 0 || wifiScanMenu == nullptr || previousProcess == PID::WIFI_SCAN) && !_wifiScanning) {
 			delete[] wifiScanMenu;
 			wifiScanMenu = nullptr;
 			cursor = 0;
