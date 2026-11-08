@@ -136,7 +136,7 @@ struct Locale {
 	// System menu
 	const char* MENU_SYSTEM_INFO;
 	const char* MENU_SYSTEM_SHUTDOWN;
-	const char* MENU_SYSTEM_BATTERY_INFO;
+	const char* MENU_SYSTEM_VERSION;
 
 
 	// Common text

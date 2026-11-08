@@ -138,6 +138,6 @@
 #include "../functions/other/flashlight/flashLightFlickerLoop.h"
 // System
 #include "../functions/other/system/systemInfoLoop.h"
+#include "../functions/other/system/systemVersionLoop.h"
 #include "../functions/other/system/systemMenuLoop.h"
 #include "../functions/other/system/shutdownLoop.h"
-#include "../functions/other/system/batteryLoop.h"

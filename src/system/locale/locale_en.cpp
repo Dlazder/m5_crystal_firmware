@@ -136,7 +136,7 @@ const Locale LANG_EN = {
 	// System menu
 	.MENU_SYSTEM_INFO            = "info",
 	.MENU_SYSTEM_SHUTDOWN        = "shutdown",
-	.MENU_SYSTEM_BATTERY_INFO    = "battery info",
+	.MENU_SYSTEM_VERSION    = "version",
 
 	// Common text
 	.TXT_PRESS_A                 = "press A",

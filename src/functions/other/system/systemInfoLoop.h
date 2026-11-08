@@ -3,6 +3,8 @@
 void systemInfoLoop() {
 
 	if (isSetup()) {
+		int battery = DEVICE.Power.getBatteryLevel();
+
 		int W = canvas.width();
 		int H = canvas.height();
 
@@ -19,11 +21,12 @@ void systemInfoLoop() {
 		int edgeGap = logoLeft; // gap between screen edge and logo
 
 		// Text occupies the right side.
-		canvas.setTextSize(MEDIUM_TEXT);
+		canvas.setTextSize(SMALL_TEXT);
 		String lines[] = {
 			"Crystal",
 			"firmware",
 			"v" + String(FIRMWARE_VERSION),
+			String(battery) + "% " + String(DEVICE.Power.getBatteryVoltage()) + " V",
 		};
 		int numLines = sizeof(lines) / sizeof(lines[0]);
 		int fontHeight = canvas.fontHeight();
@@ -44,7 +47,7 @@ void systemInfoLoop() {
 
 			canvas.clear();
 			canvas.setTextColor(FGCOLOR, BGCOLOR);
-			canvas.setTextSize(MEDIUM_TEXT);
+			canvas.setTextSize(SMALL_TEXT);
 
 			_drawLogoSegment(originX, originY, scaleX, segments);
 
@@ -63,9 +66,16 @@ void systemInfoLoop() {
 			}
 
 			canvas.pushSprite(0, getStatusBarHeight());
-			delay(70);
+			delay(30);
 		}
 	}
 
 	checkExit();
+
+	if (isWebDataRequested()) {
+		int battery = DEVICE.Power.getBatteryLevel();
+		char text[10];
+		sprintf(text, "%d%%", battery);
+		webData = generateWebData("function", generateFunctionElement(text, BIG_TEXT, "center"));
+	}
 }

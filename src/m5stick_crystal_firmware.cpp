@@ -31,7 +31,7 @@ void setup() {
   drawStartupScreen();
   Wire.setClock(10000);
   Wire.setTimeout(100);
-  delay(1000);
+  delay(500);
   // When starting the firmware, the state of the pressed btnPWR is stuck, which is why the menu scrolls. We update the state of the buttons to avoid this.
   DEVICE.update();
 

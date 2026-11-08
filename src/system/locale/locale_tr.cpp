@@ -136,7 +136,7 @@ const Locale LANG_TR = {
 	// System menu
 	.MENU_SYSTEM_INFO            = "bilgi",
 	.MENU_SYSTEM_SHUTDOWN        = "kapat",
-	.MENU_SYSTEM_BATTERY_INFO    = "pil bilgisi",
+	.MENU_SYSTEM_VERSION    = "sürüm",
 
 	// Common text
 	.TXT_PRESS_A                 = "A'ya bas",

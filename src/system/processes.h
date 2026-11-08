@@ -116,14 +116,14 @@
     /* Other (700-799) */ \
     X(OTHER,              700, otherMenuLoop) \
     X(CLOCK,              701, clockLoop) \
-    X(BATTERY,            702, batteryLoop) \
+    X(SYSTEM_INFO,        702, systemInfoLoop) \
     X(SOUND_LEVEL,        703, soundLevelLoop) \
     X(FLASHLIGHT_MENU,    704, flashLightMenuLoop) \
     X(FLASHLIGHT,         705, flashLightLoop) \
     X(FLASHLIGHT_FLICKER, 706, flickerLoop) \
     X(LEVEL_TOOL,         707, levelToolLoop) \
     X(SYSTEM,             708, systemMenuLoop) \
-    X(SYSTEM_INFO,        709, systemInfoLoop) \
+    X(SYSTEM_VERSION,     709, systemVersionLoop) \
     X(SHUTDOWN,           710, shutdownLoop) \
     X(WEATHER,            711, weatherLoop) \
     \

@@ -136,7 +136,7 @@ const Locale LANG_ID = {
     // System menu
     .MENU_SYSTEM_INFO             = "info",
     .MENU_SYSTEM_SHUTDOWN         = "matikan",
-    .MENU_SYSTEM_BATTERY_INFO     = "baterai",
+    .MENU_SYSTEM_VERSION     = "versi",
 
     // Common text
     .TXT_PRESS_A                  = "tekan A",

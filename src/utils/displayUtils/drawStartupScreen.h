@@ -47,31 +47,63 @@ void drawStartupScreen() {
 	int W = canvas.width();
 	int H = canvas.height();
 
-	float scaleX = (float)(W * 33 / 100) / 18.0f;
+	// Logo on the left, text on the right (same layout as systemInfoLoop).
+	int leftW = W * 40 / 100;
+	float scaleX = (float)(leftW * 80 / 100) / 18.0f;
 	float scaleY = scaleX * 0.7f;
+	int crystalW = (int)(18.0f * scaleX);
 	int crystalH = (int)(18.0f * scaleY);
-	// center crystal in upper half, same as original formula
-	int originY = (H / 2 - crystalH) / 2 - (int)(3.0f * scaleY);
+	int originX = (leftW - crystalW) / 2;
+	int originY = (H - crystalH) / 2 - (int)(3.0f * scaleY);
+
+	int logoLeft = originX + (int)(3.0f * scaleX);
+	int logoRight = originX + (int)(21.0f * scaleX);
+	int edgeGap = logoLeft; // gap between screen edge and logo
 
 	canvas.setTextColor(FGCOLOR, BGCOLOR);
 	canvas.setTextSize(MEDIUM_TEXT);
 
-	int textBlockH = 3 * canvas.fontHeight();
-	int textStartY = (H / 2) + (H / 2 - textBlockH) / 2;
-
-	int originX = W / 2 - (int)(12.0f * scaleX);
-
+	int fontHeight = canvas.fontHeight();
 	String labels[] = { "Crystal", "firmware", "v" + String(FIRMWARE_VERSION) };
-	for (int seg = 1; seg <= CRYSTAL_SEGMENTS; seg++) {
+	int numLines = sizeof(labels) / sizeof(labels[0]);
+
+	int textBlockH = numLines * fontHeight;
+	int textStartY = (H - textBlockH) / 2;
+	// Offset text from the logo by the same gap the logo has from the edge.
+	int textAreaX = logoRight + edgeGap;
+
+	int totalChars = 0;
+	for (int i = 0; i < numLines; i++) totalChars += labels[i].length();
+
+	// Animate crystal segments and text characters in parallel, finishing
+	// together (neofetch style typewriter effect).
+	int frames = max(CRYSTAL_SEGMENTS, totalChars);
+	for (int f = 1; f <= frames; f++) {
+		int segments = CRYSTAL_SEGMENTS * f / frames;
+		int charsShown = totalChars * f / frames;
+
 		canvas.clear();
-		_drawLogoSegment(originX, originY, scaleX, seg);
-		for (int i = 0; i < 3; i++) {
-			int tw = canvas.textWidth(labels[i].c_str());
-			canvas.setCursor((W - tw) / 2, textStartY + i * canvas.fontHeight());
-			canvas.print(labels[i].c_str());
+		canvas.setTextColor(FGCOLOR, BGCOLOR);
+		canvas.setTextSize(MEDIUM_TEXT);
+
+		_drawLogoSegment(originX, originY, scaleX, segments);
+
+		// Print the first `charsShown` characters across the lines,
+		// left-aligned within the text area.
+		int remaining = charsShown;
+		for (int i = 0; i < numLines; i++) {
+			int len = labels[i].length();
+			int take = remaining < len ? remaining : len;
+			if (take > 0) {
+				canvas.setCursor(textAreaX, textStartY + i * fontHeight);
+				canvas.print(labels[i].substring(0, take).c_str());
+			}
+			remaining -= take;
+			if (remaining <= 0) break;
 		}
+
 		canvas.pushSprite(0, 0);
-		delay(70);
+		delay(30);
 	}
 
 	statusBar = statusBarOld;

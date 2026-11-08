@@ -136,7 +136,7 @@ const Locale LANG_RU = {
 	// System menu
 	.MENU_SYSTEM_INFO            = "инфо",
 	.MENU_SYSTEM_SHUTDOWN        = "выключить",
-	.MENU_SYSTEM_BATTERY_INFO    = "инфо батареи",
+	.MENU_SYSTEM_VERSION    = "версия",
 
 	// Common text
 	.TXT_PRESS_A                 = "нажмите A",
