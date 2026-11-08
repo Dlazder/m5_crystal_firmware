@@ -83,7 +83,20 @@ static void _bfaStartAttempt() {
 }
 
 void wifiBruteforceAllLoop() {
-	if (isSetup()) {
+	// Deferred setup: wait for a background scan to finish before configuring the
+	// run, so the user doesn't pick a wordlist only to find zero networks. The
+	// scan can span several frames while isSetup() is consumed on frame 1, so
+	// remember it with a flag.
+	static bool _bfaNeedsSetup = false;
+	if (isSetup()) _bfaNeedsSetup = true;
+
+	if (_bfaNeedsSetup && !ensureWifiScan()) {
+		checkExit();
+		return;
+	}
+
+	if (_bfaNeedsSetup) {
+		_bfaNeedsSetup = false;
 		_bfaRunning = _bfaDone = _bfaGotResult = _bfaConnected = false;
 		_bfaCracked = 0;
 		WiFi.onEvent(_bfaOnWifiEvent);
