@@ -3,8 +3,10 @@
 - [NFC (PN532)](#nfc-pn532)
 - [NFC (RC522)](#nfc-rc522)
 - [NRF (nRF24L01)](#nrf-nrf24l01)
+- [CC1101](#cc1101)
 - [SD Card](#sd-card)
 - [IR reciever](#ir-reciever)
+- [CH9329 (USB-HID-over-UART)](#ch9329-usb-hid-over-uart)
 
 ---
 
@@ -127,6 +129,44 @@ Connect the nRF24L01(+) module over SPI. Power it from **3.3V only**. The IRQ pi
 | 3V3 | VCC |
 | GND | GND |
 
+## CC1101
+
+### M5StickC Plus 2
+
+| M5StickCPlus2 | CC1101 |
+| - | - |
+| G32 | CS (CSN) |
+| G0 | SCK |
+| G26 | MOSI |
+| G36 | MISO |
+| G33 | GDO0 |
+| 3V3 | VCC |
+| GND | GND |
+
+### M5StickS3
+
+| M5StickS3 | CC1101 |
+| - | - |
+| G2 | CS (CSN) |
+| G5 | SCK |
+| G6 | MOSI |
+| G4 | MISO |
+| G3 | GDO0 |
+| 3V3 | VCC |
+| GND | GND |
+
+### Cardputer-ADV
+
+| Cardputer-ADV | CC1101 |
+| - | - |
+| G13 | CS (CSN) |
+| G5 | SCK |
+| G6 | MOSI |
+| G4 | MISO |
+| G3 | GDO0 |
+| 3V3 | VCC |
+| GND | GND |
+
 ## SD Card
 
 ### M5StickC Plus 2
@@ -168,3 +208,18 @@ Connect the nRF24L01(+) module over SPI. Power it from **3.3V only**. The IRQ pi
 | GND | GND |
 | 5V OUT/IN | VCC |
 | G3 | OUT |
+
+## CH9329
+
+This module is only needed on the **M5StickC Plus 2** (classic ESP32, no native USB). The M5StickS3 and Cardputer-ADV have native USB HID and do not need it.
+
+### M5StickC Plus 2
+
+Wired on the Grove port by default (shares it with nothing else when CH9329 is in use). Keep the UART terminal on the header pins (G0/G36) so the two do not conflict.
+
+| M5StickCPlus2 (GROVE) | CH9329 |
+| - | - |
+| G33 (TX) | RX |
+| G32 (RX) | TX |
+| 5V | 5V / VCC |
+| G | GND |

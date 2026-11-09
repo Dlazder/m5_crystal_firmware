@@ -1,5 +1,15 @@
 # M5 Crystal Firmware — Developer Guide
 
+This file is intended to help developers understand how the project works, but unfortunately it is not complete and not the most up-to-date.
+
+## Simple and extensible
+
+Unlike many projects, the global structure is intuitive and fundamentally very simple. Adding your own logic or modifying existing one is quite simple, and I tried to document it.
+
+<img src="../images/architecture.png" width="500" alt="Firmware architecture"/>
+
+You can easily add a new function using the [documentation](#documentation) and by looking on already created funcs in `functions/` folder.
+
 ## Process managment
 
 In the main loop, two processes are continuously running: the status bar process (if it is not turned off) and the running function process.

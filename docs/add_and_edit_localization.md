@@ -1,7 +1,7 @@
 # Adding and editing localization
 
 > [!NOTE]
-> Если некоторые буквы отображаются не корректно, поменяйте стандартный шрифт в настройках.
+> If some letters are not displayed correctly, change the default font in the settings.
 
 ## Editing localization
 
