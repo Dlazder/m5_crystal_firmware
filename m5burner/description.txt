@@ -1,15 +1,15 @@
 Multifunctional firmware for pentesting and everyday use.
-- Wi-Fi: scanner, deauth, WPA bruteforce, handshake capture, evil twin, evil portal, web server, channel analyzer, weather, time sync, wifi info, wifi connect, password store
-- Bluetooth: scanner, sniffer, bad BLE, air mouse, keyboard, presenter, camera shutter, bluetooth scan, device info, device finder, mouse jiggler.
+- Wi-Fi: scanner, deauth, WPA bruteforce, CSI radar, handshake capture, evil twin, evil portal, WPS PBC, web server, channel analyzer, weather, time sync, wifi info, wifi connect, password save
+- Bluetooth: BLE Scan, BAD BLE, sniffer, device finder, gyro mouse, gyro keyboard, presenter, phone camera shutter, mouse jiggler
 - IR: read and save signal, send signal, TV-B-Gone.
-- NFC (PN-532 & RC522): read and save cards, write 4-byte UID or sectors.
+- NFC: read and save cards, write 4-byte UID or sectors (PN-532 & RC522).
 - USB: BAD USB, mouse jiggler, air mouse, keyboard, mass storage mode, CH9329 module support
-- Files: edit, create, delete, rename files/folders, view images.
+- Files: create, edit, delete, rename files/directories in sd card and littleFS, view images and GIFs.
 - UART terminal: recieving and sending text. baud rate and pins settings
-- Settings: time, timezone, rotation, colors, fonts, brightness, status bar, volume, startup sound, menu items, language (12 languages) etc.
-- Other: clock, battery, level tool, flashlight, sound level, system info
+- Settings: language, time, timezone, rotation, colors, brightness, status bar, volume, startup sound, keyboard gyro, screen dimming, web server FS mode, pins settings
+- Other: clock, flashlight, battery, level tool, sound meter, system info
 - 12 Languages: English, French, German, Portuguese, Turkish, Italian, Spanish, Indonesian, Russian, Ukrainian, Polish, Romanian.
 - Modules: PN532, RC522, CH9329, SD, IR reciever.
 
-Rate my project on github.
+Support my project with a star on GitHub
 Contributing is welcome.
