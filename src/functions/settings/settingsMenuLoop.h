@@ -4,15 +4,11 @@ void settingsMenuLoop() {
 	MENU settingsMenu[] = {
 		{PID::MAIN_MENU,           L->MENU_BACK, Icons::back},
 		{PID::SETTINGS_UI,         L->MENU_SETTINGS_UI, Icons::personalization},
-		{PID::PLACEHOLDER,         L->MENU_SETTINGS_STARTUP_SOUND, Icons::volume, "startupSound"},
-		{PID::SETTINGS,            L->MENU_SETTINGS_VOLUME, Icons::volume, "volume"},
-		{PID::SETTINGS,            L->MENU_SETTINGS_LANGUAGE, Icons::language, "languageIndex"},
+		{PID::SETTINGS_SYSTEM,     L->MENU_SETTINGS_SYSTEM, Icons::settings},
 		{PID::PLACEHOLDER,         L->MENU_SETTINGS_KB_GYRO, Icons::keyboard, "kbGyro"},
-		{PID::PLACEHOLDER,         L->MENU_SETTINGS_WEBSERVER_FS, nullptr, "webServerFs"},
-		{PID::SETTINGS_SSID,       L->MENU_SETTINGS_WIFI_SSID},
-		{PID::PLACEHOLDER,         L->MENU_SETTINGS_SD_ROOT, nullptr, "sdMountCrystal"},
-		{PID::SETTINGS_CLOCK,      L->MENU_SETTINGS_TIME, Icons::clock},
-		{PID::SETTINGS,            L->MENU_SETTINGS_TIMEZONE, Icons::clock, "timezone"},
+		{PID::SETTINGS_SSID,       L->MENU_SETTINGS_WIFI_SSID, Icons::wifi},
+		{PID::PLACEHOLDER,         L->MENU_SETTINGS_WEBSERVER_FS, Icons::folder, "webServerFs"},
+		{PID::PLACEHOLDER,         L->MENU_SETTINGS_SD_ROOT, Icons::sd, "sdMountCrystal"},
 	};
 	int settingsMenuSize = sizeof(settingsMenu) / sizeof(MENU);
 

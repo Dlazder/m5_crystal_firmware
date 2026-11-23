@@ -7,7 +7,7 @@ void otherMenuLoop() {
 		{PID::SOUND_LEVEL,     L->MENU_OTHER_SOUND_LEVEL, Icons::volume},
 		{PID::LEVEL_TOOL,      L->MENU_OTHER_LEVEL_TOOL, Icons::degree},
 		{PID::FLASHLIGHT_MENU, L->MENU_OTHER_FLASHLIGHT, Icons::flashlight},
-		{PID::SYSTEM,          L->MENU_OTHER_SYSTEM},
+		{PID::SYSTEM,          L->MENU_OTHER_SYSTEM, Icons::info},
 	};
 	int otherMenuSize = sizeof(otherMenu) / sizeof(MENU);
 

@@ -115,6 +115,7 @@ const Locale LANG_RO = {
 	.MENU_SETTINGS_TIMEZONE      = "fus orar",
 	.MENU_SETTINGS_SD_ROOT       = "montează SD în /crystal",
 	.MENU_SETTINGS_CUSTOMIZE_MENU = "personalizează meniul",
+	.MENU_SETTINGS_SYSTEM       = "sistem",
 
 	// Other menu
 	.MENU_OTHER                  = "altele",

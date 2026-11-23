@@ -115,6 +115,7 @@ const Locale LANG_TR = {
 	.MENU_SETTINGS_TIMEZONE      = "saat dilimi",
 	.MENU_SETTINGS_SD_ROOT       = "SD'yi /crystal'e bağla",
 	.MENU_SETTINGS_CUSTOMIZE_MENU = "menüyü özelleştir",
+	.MENU_SETTINGS_SYSTEM       = "sistem",
 
 	// Other menu
 	.MENU_OTHER                  = "diğer",

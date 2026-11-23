@@ -14,6 +14,7 @@
     X(SETTINGS_SSID,         103, setSsidLoop) \
     X(SETTINGS_UI,           104, settingsUIMenuLoop) \
     X(SETTINGS_MENU_ITEMS,   105, settingsMenuItemsLoop) \
+    X(SETTINGS_SYSTEM,       106, settingsSystemMenuLoop) \
     \
     /* Wi-Fi (200-299) */ \
     X(WIFI,              200, wifiMenuLoop) \

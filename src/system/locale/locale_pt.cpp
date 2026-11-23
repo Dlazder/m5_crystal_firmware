@@ -115,6 +115,7 @@ const Locale LANG_PT = {
 	.MENU_SETTINGS_TIMEZONE      = "fuso horário",
 	.MENU_SETTINGS_SD_ROOT       = "montar SD em /crystal",
 	.MENU_SETTINGS_CUSTOMIZE_MENU = "personalizar menu",
+	.MENU_SETTINGS_SYSTEM       = "sistema",
 
 	// Other menu
 	.MENU_OTHER                  = "outro",

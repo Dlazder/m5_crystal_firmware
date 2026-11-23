@@ -68,7 +68,7 @@ void settingsClockLoop() {
 		}
 		if (isKbEnterPressed() && checkTimer(100, true)) {
 			deviceSetTime(tempHours, tempMinutes, 0);
-			changeProcess(PID::SETTINGS);
+			changeProcess(PID::SETTINGS_SYSTEM);
 		}
 		if (checkExit()) {
 			deviceSetTime(tempHours, tempMinutes, 0);
@@ -88,7 +88,7 @@ void settingsClockLoop() {
 				drawclockSettingsUi(currentState, tempHours, tempMinutes);
 			} else if (currentState == 2) {
 				deviceSetTime(tempHours, tempMinutes, 0);
-				changeProcess(PID::SETTINGS);
+				changeProcess(PID::SETTINGS_SYSTEM);
 			}
 		}
 
@@ -101,7 +101,7 @@ void settingsClockLoop() {
 				drawclockSettingsUi(currentState, tempHours, tempMinutes);
 			} else if (currentState == 2) {
 				deviceSetTime(tempHours, tempMinutes, 0);
-				changeProcess(PID::SETTINGS);
+				changeProcess(PID::SETTINGS_SYSTEM);
 			}
 		}
 	#endif

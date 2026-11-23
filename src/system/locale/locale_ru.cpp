@@ -115,6 +115,7 @@ const Locale LANG_RU = {
 	.MENU_SETTINGS_TIMEZONE      = "часовой пояс",
 	.MENU_SETTINGS_SD_ROOT       = "монтировать SD в /crystal",
 	.MENU_SETTINGS_CUSTOMIZE_MENU = "настроить меню",
+	.MENU_SETTINGS_SYSTEM       = "система",
 
 	// Other menu
 	.MENU_OTHER                  = "другое",
